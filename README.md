@@ -8,3 +8,5 @@
 3. git rebase upstream/master
 4. git push origin master --force
 5. git pull
+
+Catatan: kalau `master` tidak jalan ganti pakai `main`
