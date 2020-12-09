@@ -17,7 +17,7 @@ class ProgramStudiTableSeeder extends Seeder
         \DB::statement('ALTER TABLE pe3_prodi AUTO_INCREMENT = 1;');
 
         \DB::table('pe3_prodi')->insert([            
-            'kode_prodi'=>'60202',
+            'kode_prodi'=>'60202', //sesuaikan dengan nama kode prodi di FORLAP
             'nama_prodi'=>'Ekonomi Syariah',
             'nama_prodi_alias'=>'ESY',
             'kode_jenjang'=>'C',
