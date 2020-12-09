@@ -11,16 +11,17 @@
 `php artisan db:seed`
 6. extract file public.zip didalam folder storage/app sehingga strukturnya menjadi sebagai berikut :
 
-A. public/exported
-B. public/exported/pdf
-C. public/exported/excel
-D. public/images
-E. public/images/buktibayar
-F. public/images/pmb
-G. public/images/sliders
-H. public/users/no_photo.png
-I. public/logo.png
-``
+<ul>
+<li>public/exported</li>
+<li>public/exported/pdf</li>
+<li>public/exported/excel</li>
+<li>public/images</li>
+<li>public/images/buktibayar</li>
+<li>public/images/pmb</li>
+<li>public/images/sliders</li>
+<li>public/users/no_photo.png</li>
+<li>public/logo.png</li>
+</ul>
 
 7. Buatlah shortcut atau symlink ke folder storage/app/public dari folder /public dengan cara mengeksekusi file symlink.php tetapi sebelumnya sesuaikan terlebih dahulu pathnya.
 
