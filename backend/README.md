@@ -9,18 +9,19 @@
 `php artisan migrate`
 5. Isi database dengan nilai default, supaya sistem bisa berjalan  dengan mengeksekusi perintah :
 `php artisan db:seed`
-6. extract file public.zip didalam folder storage/app sehingga strukturnya menjadi sebagai berikut 
-``
-public/exported
-public/exported/pdf
-public/exported/excel
-public/images
-public/images/buktibayar
-public/images/pmb
-public/images/sliders
-public/users/no_photo.png
-public/logo.png
-``
+6. extract file public.zip didalam folder storage/app sehingga strukturnya menjadi sebagai berikut :
+
+<ul>
+<li>public/exported</li>
+<li>public/exported/pdf</li>
+<li>public/exported/excel</li>
+<li>public/images</li>
+<li>public/images/buktibayar</li>
+<li>public/images/pmb</li>
+<li>public/images/sliders</li>
+<li>public/users/no_photo.png</li>
+<li>public/logo.png</li>
+</ul>
 
 7. Buatlah shortcut atau symlink ke folder storage/app/public dari folder /public dengan cara mengeksekusi file symlink.php tetapi sebelumnya sesuaikan terlebih dahulu pathnya.
 
