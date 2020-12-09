@@ -6,7 +6,7 @@ import Uiadmin from './modules/uiadmin'
 import Auth from './modules/auth'
 
 const vuexStorage = new VuexPersistence({
-	key:'portalekampus3',
+	key:'campus50',
     storage: localStorage, 
 })
 Vue.use(Vuex)

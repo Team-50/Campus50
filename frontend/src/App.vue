@@ -19,7 +19,7 @@
 <script>
 import confirm from "./components/Confirm"
 export default {	
-	name: 'PortalEkampus',
+	name: 'Campus50',
 	created(){
 		this.$ajax.interceptors.response.use (response => {
 			let data = response.data;			
