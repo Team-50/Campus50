@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-system-bar app dark class="green lighten-2 white--text">
-            
+        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
+            <strong>Hak Akses Sebagai :</strong> {{ROLE}}
 		</v-system-bar>	
         <v-app-bar app>            
             <v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
@@ -35,7 +35,7 @@
                                 {{ATTRIBUTE_USER('username')}}
                             </v-list-item-title>
                             <v-list-item-subtitle>                                
-                                {{ROLE}}
+                                [{{DEFAULT_ROLE}}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>                    
@@ -113,7 +113,8 @@ export default {
         ...mapGetters('auth',{
             AUTHENTICATED:'Authenticated',  
             ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',          
+            TOKEN:'Token', 
+            DEFAULT_ROLE:'DefaultRole',         
             ROLE:'Role',
             CAN_ACCESS:'can',         
             ATTRIBUTE_USER:'AttributeUser',               

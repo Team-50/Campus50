@@ -37,6 +37,9 @@ const getters= {
     Roles:state=>{
         return state.user.role;
     },
+    DefaultRole:state=>{
+        return state.user.default_role;
+    },
     Role : state => {
         var role='';
         if (state.access_token != null && state.user != null)

@@ -187,12 +187,14 @@
                 </v-col>
             </v-row>
         </v-container>
+        <dialog-printout pid="registrasikrs" title="Registrasi KRS" ref="dialogprint"></dialog-printout>
     </KeuanganLayout>
 </template>
 <script>
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter2 from '@/components/sidebar/FilterMode2';
+import DialogPrintoutKeuangan from '@/components/DialogPrintoutKeuangan';
 export default {
     name:'TransaksiRegistrasiKRS',
     created()
@@ -434,7 +436,8 @@ export default {
     components:{
         KeuanganLayout,
         ModuleHeader,     
-        Filter2    
+        Filter2,
+        'dialog-printout':DialogPrintoutKeuangan    
     },
 }
 </script>
