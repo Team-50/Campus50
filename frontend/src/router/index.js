@@ -601,7 +601,18 @@ const routes = [
 			requiresAuth:true,
         },
 		component: () => import('../views/pages/admin/akademik/TranskripNilaiKurikulumDetail.vue'),		
-	},	
+	},
+	
+	//elearning
+	{
+		path: '/elearning',
+		name: 'ELEARNING',
+		meta:{
+			title: "E-LEARNING",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/elearning/Elearning.vue'),		
+	},
 
 	//system	
 	{
