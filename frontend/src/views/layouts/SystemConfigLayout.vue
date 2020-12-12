@@ -103,10 +103,10 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>    
-                <v-subheader>SERVER</v-subheader>
+                <v-subheader>SERVER</v-subheader>            
                 <v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES')" to="/system-setting/captcha">
                     <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account</v-icon>
+                        <v-icon>mdi-puzzle</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>
@@ -116,14 +116,25 @@
                 </v-list-item>    
                 <v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES')" to="/system-setting/email">
                     <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account</v-icon>
+                        <v-icon>mdi-email</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>
                             EMAIL
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                    
+                </v-list-item>
+                <v-subheader>PLUGIN</v-subheader>                    
+                <v-list-item link v-if="CAN_ACCESS('PLUGINS-H2H-ZOOMAPI_BROWSE')" to="/system-setting/zoom">
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-desktop-mac-dashboard</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            ZOOM
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
             </v-list>
         </v-navigation-drawer>        
         <v-main class="mx-4 mb-4">			
