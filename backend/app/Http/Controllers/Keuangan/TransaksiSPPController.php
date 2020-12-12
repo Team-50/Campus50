@@ -356,7 +356,7 @@ class TransaksiSPPController extends Controller {
                 'bulan_selected.*'=>'required',            
             ]);
         }
-        $transaksi = \DB::transaction(function () use ($request){
+        $result = \DB::transaction(function () use ($request){
 
             $transaksi_id=$request->input('id');
             $transaksi=TransaksiModel::find($transaksi_id);
@@ -393,8 +393,10 @@ class TransaksiSPPController extends Controller {
             $transaksi->total=$total_spp;
             $transaksi->desc="BAYAR SPP BULAN $nama_bulan";
             $transaksi->save();
-        });
 
+            return ['transaksi'=>$transaksi,'bulan_spp'=>$bulan_spp];
+        });
+        $bulan_spp=$result['bulan_spp'];
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'store',                                                                                                                                                                         

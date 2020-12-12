@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Plugins\H2H\BankRiauKepriSyariah;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 use App\Models\Akademik\RegisterMahasiswaModel;
 use App\Models\Keuangan\TransaksiModel;
@@ -18,20 +17,20 @@ use Exception;
 
 use Ramsey\Uuid\Uuid;
 
-class TransaksiController extends Controller {  
+class TransaksiController extends Controller {
     public function inquiryTagihan(Request $request)
     {
         $kode_billing=$request->input('kode_billing');
-        
+
         $config = ConfigurationModel::getCache();
 
         $transaksi=TransaksiModel::select(\DB::raw('
                                         pe3_transaksi.no_transaksi AS kode_billing,
                                         pe3_formulir_pendaftaran.no_formulir,
-                                        pe3_transaksi.nim,                                        
+                                        pe3_transaksi.nim,
                                         pe3_formulir_pendaftaran.nama_mhs,
-                                        \''.addslashes($config['NAMA_PT']).'\' AS universitas,                                        
-                                        \'\' AS fakultas, 
+                                        \''.addslashes($config['NAMA_PT']).'\' AS universitas,
+                                        \'\' AS fakultas,
                                         pe3_prodi.nama_prodi AS prodi,
                                         pe3_transaksi.desc AS jenis_pembayaran,
                                         pe3_transaksi.idsmt,
@@ -47,32 +46,32 @@ class TransaksiController extends Controller {
                                     ->leftJoin('pe3_prodi','pe3_prodi.id','pe3_transaksi.kjur')
                                     ->where('pe3_transaksi.no_transaksi',$kode_billing)
                                     ->first();
-        
+
         if (is_null($transaksi))        {
             return Response()->json(['Result'=>[
-                                            'status'=>'14',                                        
+                                            'status'=>'14',
                                             'message'=>"request KODE_BILLING ($kode_billing) tidak sesuai"
                                         ]
-                                    ],200); 
+                                    ],200);
         }
         else if ($transaksi->status==1)
         {
             return Response()->json(['Result'=>[
-                                        'status'=>'88',                                        
+                                        'status'=>'88',
                                         'message'=>"Tagihan sudah dibayarkan tanggal: ".$transaksi->updated_at_konfirm
                                     ]
-                                ],200); 
+                                ],200);
         }
         else if ($transaksi->status==2)
             {
                 return Response()->json(['Result'=>[
-                                            'status'=>'88',                                        
+                                            'status'=>'88',
                                             'message'=>"status kode billing ini dibatalkan"
                                         ]
-                                    ],200); 
+                                    ],200);
             }
         else
-        {     
+        {
             $transaksi->periode=\App\Helpers\HelperAkademik::getSemester($transaksi->idsmt).' '.$transaksi->ta;
             return response()->json([
                 'Result' => [
@@ -80,7 +79,7 @@ class TransaksiController extends Controller {
                     'message'=>'Request Data Berhasil',
                     'data'=>$transaksi
                 ]
-            ], 200); 
+            ], 200);
         }
     }
     public function payment(Request $request)
@@ -89,13 +88,13 @@ class TransaksiController extends Controller {
 
         $messages=[
             'kode_billing.required'=>'kode billing diperlukan mohon di isi',
-            'kode_billing.exists'=>'kode billing tidak terdaftar didatabase',            
+            'kode_billing.exists'=>'kode billing tidak terdaftar didatabase',
             'noref.required'=>'Nomor referensi dibutuhkan',
             'noref.numeric'=>'Nomor referensi harus numeric',
-            
+
             'amount”.required'=>'amount diperlukan mohon di isi',
             'amount”.numeric'=>'Nilai amount harus numeric',
-            
+
             'tanggal_terima.required'=>'tanggal terima dibutuhkan',
             'tanggal_kirim.required'=>'tanggal kirim dibutuhkan',
         ];
@@ -110,11 +109,11 @@ class TransaksiController extends Controller {
         if ($validator->fails())
         {
             return Response()->json(['Result'=>[
-                    'status'=>'11',                                        
+                    'status'=>'11',
                     'message'=>"Format request tidak sesuai",
                     'errors'=>$validator->customMessages
                 ]
-            ],200); 
+            ],200);
         }
         else
         {
@@ -124,10 +123,10 @@ class TransaksiController extends Controller {
                                         pe3_transaksi.no_transaksi,
                                         pe3_transaksi.no_faktur,
                                         pe3_formulir_pendaftaran.no_formulir,
-                                        pe3_transaksi.nim,                                        
-                                        pe3_formulir_pendaftaran.nama_mhs,    
-                                        \''.addslashes($config['NAMA_PT']).'\' AS universitas,                                        
-                                        \'\' AS fakultas,                                   
+                                        pe3_transaksi.nim,
+                                        pe3_formulir_pendaftaran.nama_mhs,
+                                        \''.addslashes($config['NAMA_PT']).'\' AS universitas,
+                                        \'\' AS fakultas,
                                         pe3_prodi.nama_prodi AS prodi,
                                         pe3_transaksi.kjur,
                                         pe3_transaksi.idsmt,
@@ -143,31 +142,31 @@ class TransaksiController extends Controller {
                                     ->leftJoin('pe3_prodi','pe3_prodi.id','pe3_transaksi.kjur')
                                     ->where('pe3_transaksi.no_transaksi',$kode_billing)
                                     ->first();
-            
+
             if ($transaksi->status==1)
             {
                 return Response()->json(['Result'=>[
-                                                'status'=>'88',                                        
+                                                'status'=>'88',
                                                 'message'=>"Tagihan sudah dibayarkan tanggal: ".\App\Helpers\Helper::tanggal('d/m/Y H:i:s',$transaksi->updated_at_konfirm),
                                                 'noref'=>$transaksi->no_faktur
                                             ]
-                                        ],200); 
+                                        ],200);
             }
             else if ($transaksi->status==2)
             {
                 return Response()->json(['Result'=>[
-                                                'status'=>'88',                                        
+                                                'status'=>'88',
                                                 'message'=>"status kode billing ini dibatalkan"
                                             ]
-                                        ],200); 
+                                        ],200);
             }
             else if ($transaksi->total!=$request->input('amount'))
-            {     
+            {
                 return Response()->json(['Result'=>[
-                                            'status'=>'11',                                        
+                                            'status'=>'11',
                                             'message'=>'Nilai nominal salah ('.\App\Helpers\Helper::formatUang($request->input('amount')).') karena  tidak sama dengan dengan transaksi '.\App\Helpers\Helper::formatUang($transaksi->total)
                                         ]
-                                    ],200); 
+                                    ],200);
             }
             else
             {
@@ -177,8 +176,8 @@ class TransaksiController extends Controller {
                     if (is_null($konfirmasi))
                     {
                         $konfirmasi_insert=KonfirmasiPembayaranModel::create([
-                            'transaksi_id'=>$transaksi->id,                
-                            'user_id'=>$this->getUserid(),                
+                            'transaksi_id'=>$transaksi->id,
+                            'user_id'=>$this->getUserid(),
                             'no_transaksi'=>$transaksi->no_transaksi,
                             'id_channel'=>4,
                             'total_bayar'=>$transaksi->total,
@@ -186,20 +185,20 @@ class TransaksiController extends Controller {
                             'nama_rekening_pengirim'=>'BANK RIAU KEPRI SYARIAH',
                             'nama_bank_pengirim'=>'BANK RIAU KEPRI SYARIAH',
                             'desc'=>'',
-                            'tanggal_bayar'=>date ('Y-m-d H:m:s'),                
-                            'bukti_bayar'=>"storage/images/buktibayar/paid.png",  
+                            'tanggal_bayar'=>date ('Y-m-d H:m:s'),
+                            'bukti_bayar'=>"storage/images/buktibayar/paid.png",
                             'verified'=>true
-                        ]);                        
-                        $transaksi=$konfirmasi_insert->transaksi;                        
+                        ]);
+                        $transaksi=$konfirmasi_insert->transaksi;
                     }
                     else
                     {
-                        $transaksi=$konfirmasi->transaksi;                        
+                        $transaksi=$konfirmasi->transaksi;
                     }
                     $transaksi->no_faktur=$no_ref;
                     $transaksi->status=1;
                     $transaksi->save();
-                    
+
                     //aksi setelah PAID
 
                     $detail = TransaksiDetailModel::select(\DB::raw('
@@ -212,7 +211,7 @@ class TransaksiController extends Controller {
                         switch ($v->kombi_id)
                         {
                             case 101: //biaya formulir pendaftaran
-                                $formulir=\App\Models\SPMB\FormulirPendaftaranModel::find($transaksi->user_id);                        
+                                $formulir=\App\Models\SPMB\FormulirPendaftaranModel::find($transaksi->user_id);
                                 $no_formulir=$formulir->idsmt.mt_rand();
                                 $formulir->no_formulir=$no_formulir;
                                 $formulir->save();
@@ -239,11 +238,11 @@ class TransaksiController extends Controller {
                             break;
                         }
                     }
-                    
+
                     \App\Models\System\ActivityLog::log($request,[
-                                                                    'object' => $transaksi, 
-                                                                    'object_id' => $transaksi->id, 
-                                                                    'user_id' => $this->getUserid(), 
+                                                                    'object' => $transaksi,
+                                                                    'object_id' => $transaksi->id,
+                                                                    'user_id' => $this->getUserid(),
                                                                     'message' => 'Transaksi berhasil.'
                                                                 ]);
                     $result=[
@@ -259,7 +258,7 @@ class TransaksiController extends Controller {
                                             'Result' => $result
                                         ], 200);
             }
-        
-        }        
+
+        }
     }
 }
