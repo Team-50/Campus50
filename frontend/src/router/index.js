@@ -630,6 +630,15 @@ const routes = [
 			requiresAuth:true,
         },
 		component: () => import('../views/pages/admin/system/HeaderLaporan.vue'),		
+	},
+	{
+		path: '/system-setting/zoom',
+		name: 'SettingZoom',
+		meta:{
+			title: "SETTING - ZOOM",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/system/Zoom.vue'),		
 	},	
 	{
 		path: '/system-setting/captcha',
