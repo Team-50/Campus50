@@ -606,12 +606,21 @@ const routes = [
 	//elearning
 	{
 		path: '/elearning',
-		name: 'ELEARNING',
+		name: 'Elearning',
 		meta:{
 			title: "E-LEARNING",
 			requiresAuth:true,
         },
 		component: () => import('../views/pages/admin/elearning/Elearning.vue'),		
+	},
+	{
+		path: '/elearning/kelas',
+		name: 'Elearning Kelas',
+		meta:{
+			title: "E-LEARNING - KELAS",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/elearning/ElearningKelas.vue'),		
 	},
 
 	//system	
