@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "carlos-meneses/laravel-mpdf": "^2.1",
+        "firebase/php-jwt": "^5.2",
         "flipbox/lumen-generator": "^8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
