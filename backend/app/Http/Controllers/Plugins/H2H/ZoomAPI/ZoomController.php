@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+use \Firebase\JWT\JWT;
+use GuzzleHttp\Client;
+
 use App\Models\Plugins\H2H\ZoomAPI\ZoomModel;
 
 use Ramsey\Uuid\Uuid;
@@ -17,6 +20,7 @@ class ZoomController extends Controller {
      */
     public function index(Request $request)
     {
+        $this->hasPermissionTo('PLUGINS-H2H-ZOOMAPI_BROWSE');
         $zoom=ZoomModel::all();
 
         return Response()->json([
@@ -66,6 +70,96 @@ class ZoomController extends Controller {
                                     'message'=>'Data account zoom berhasil disimpan.'
                                 ],200);
 
+    }
+    /**
+     * digunakan untuk testing
+     */
+    public function testing(Request $request,$id)
+    {
+        $this->hasPermissionTo('PLUGINS-H2H-ZOOMAPI_UPDATE');
+
+        $zoom = ZoomModel::find($id);
+        if (is_null($zoom))
+        {
+            return Response()->json([
+                                    'status'=>0,
+                                    'pid'=>'update',
+                                    'message'=>["account zoom ($id) gagal di testing"]
+                                ],422);
+        }
+        else
+        {
+            $email = $zoom->email;
+            $api_key = $zoom->api_key;
+            $api_secret = $zoom->api_secret;
+
+            $payload = array(
+                'iss' => $api_key,
+                'exp' => (time() + 60)
+            );
+
+            try
+            {
+                $jwt = JWT::encode($payload, $api_secret);
+                $client = new Client ();
+                $response = $client->get(
+                    'https://api.zoom.us/v2/users/'.$zoom->email,
+                    [
+                        'debug' => FALSE,
+                        'headers'=>[
+                            'Authorization' => 'Bearer ' . $jwt,
+                            'content-type' => 'application/json'
+                        ]
+                    ]
+                );
+                $result=json_decode($response->getBody(),true);
+                if (isset($result['id']))
+                {
+                    $zoom->zoom_id=$result['id'];
+                    $zoom->jwt_token=$jwt;
+                    $zoom->status=$result['type'];
+                    $desc=$result['status']=='active'?'AKTIF - ':'TIDAK AKTIF - ';
+                    switch ($zoom->status)
+                    {
+                        case 1 :
+                            $desc.='Basic';
+                        break;
+                        case 2 :
+                            $desc.='Lincesed';
+                        break;
+                        case 3 :
+                            $desc.='On-Prem';
+                        break;
+                    }
+                    $zoom->desc=$desc;
+                    $zoom->save();
+                }
+                else
+                {
+                    $zoom->zoom_id=null;
+                    $zoom->jwt_token=null;
+                    $zoom->status=0;
+                    $zoom->desc=null;
+                    $zoom->save();
+                }
+                return Response()->json([
+                    'status'=>1,
+                    'pid'=>'store',
+                    'zoom'=>$zoom,
+                    'message'=>'Data account zoom berhasil di synchronize.'
+                ],200);
+            }
+            catch(\GuzzleHttp\Exception\ClientException $e)
+            {
+                return Response()->json([
+                    'status'=>0,
+                    'pid'=>'update',
+                    'request'=> \GuzzleHttp\Psr7\Message::toString($e->getRequest()),
+                    'response'=> \GuzzleHttp\Psr7\Message::toString($e->getResponse()),
+                    'message'=>["account zoom ($id) gagal di sync (check response untuk lebih detail)"]
+                ],422);
+            }
+        }
     }
     /**
      * Update the specified resource in storage.
