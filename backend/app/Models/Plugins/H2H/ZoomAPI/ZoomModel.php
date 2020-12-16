@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Plugins\H2H\ZoomAPI;
+namespace App\Models\Plugins\H2H\ZoomAPI;
 
 use Illuminate\Database\Eloquent\Model;
 
