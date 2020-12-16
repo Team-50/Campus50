@@ -24,7 +24,7 @@
                     Setting akun Zoom untuk pertemuan tatap muka
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>
         <v-container>     
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -128,7 +128,7 @@
                                         </v-card>
                                     </v-form>
                                 </v-dialog>
-                                <v-dialog v-model="dialogdetailitem" max-width="500px" persistent>
+                                <v-dialog v-model="dialogdetailitem" max-width="600px" persistent>
                                     <v-card>
                                         <v-card-title>
                                             <span class="headline">DETAIL DATA</span>
@@ -140,15 +140,6 @@
                                                         <v-card-title>ID :</v-card-title>
                                                         <v-card-subtitle>
                                                             {{formdata.id}}
-                                                        </v-card-subtitle>
-                                                    </v-card>
-                                                </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                                <v-col xs="12" sm="6" md="6">
-                                                    <v-card flat>
-                                                        <v-card-title>CREATED :</v-card-title>
-                                                        <v-card-subtitle>
-                                                            {{$date(formdata.created_at).format('DD/MM/YYYY HH:mm')}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -225,6 +216,14 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>CREATED :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{$date(formdata.created_at).format('DD/MM/YYYY HH:mm')}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -234,8 +233,7 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                       
-                                                
+                                                <!-- <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                        -->
                                             </v-row>
 
                                         </v-card-text>
@@ -277,8 +275,17 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>    
+                                <v-col cols="12">
+                                    <v-btn block elevation="2"
+                                    color="green" 
+                                    @click.stop="sink(item)"
+                                    class="mb-2 white--text"
+                                    :disabled="!form_valid||btnLoading">SINKRONISASI
+                                    </v-btn>
+                                </v-col>
                             </td>
+                           
                         </template>
                         <template v-slot:no-data>
                             Data belum tersedia
@@ -370,13 +377,13 @@ export default {
             v => /.+@.+\..+/.test(v) || 'Format E-mail mohon di isi dengan benar',
         ], 
         rule_api_key:[
-            value => !!value||"Mohon untuk di isi API Key !!!",  
+            value => !!value||"Mohon untuk mengisi API Key !!!",  
         ], 
         rule_api_secret:[
-            value => !!value||"Mohon untuk di isi API Secret !!!",  
+            value => !!value||"Mohon untuk mengisi API Secret !!!",  
         ],
         rule_im_token:[
-            value => !!value||"Mohon untuk di isi IM Token !!!",  
+            value => !!value||"Mohon mengisi IM Token !!!",  
         ],
     }),
     methods: {
@@ -427,7 +434,7 @@ export default {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/path/'+this.formdata.id,
+                    await this.$ajax.post(process.env.VUE_APP_API_HOST+'/h2h/zoom/'+this.formdata.id,
                         {
                             '_method':'PUT',
                             email:this.formdata.email,                            
@@ -449,7 +456,7 @@ export default {
                     });                 
                      
                 } else {
-                    await this.$ajax.post('/path/store',
+                    await this.$ajax.post(process.env.VUE_APP_API_HOST+'/h2h/zoom/store',
                         {
                             email:this.formdata.email,                            
                             api_key:this.formdata.api_key, 
@@ -471,12 +478,33 @@ export default {
                 }
             }
         },
-        deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
+        sink (item) {
+            this.$root.$confirm.open('Sinkronisasi', 'Sinkronasi Akun Zoom dengan ID '+item.id+' ?', { color: 'yellow' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/path/'+item.id,
+                    this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom/sync/'+item.id,
+                        {
+                            headers:{
+                                Authorization:this.$store.getters['auth/Token']
+                            }
+                        }
+                    ).then(()=>{   
+                        //const index = this.datatable.indexOf(item);
+                        //this.datatable.splice(index, 1);
+                        this.btnLoading=false;
+                    }).catch(()=>{
+                        this.btnLoading=false;
+                    });
+                }                
+            });
+        },
+        deleteItem (item) {           
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus Akun Zoom dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
+                if (confirm)
+                {
+                    this.btnLoading=true;
+                    this.$ajax.post(process.env.VUE_APP_API_HOST+'/h2h/zoom/'+item.id,
                         {
                             '_method':'DELETE',
                         },
