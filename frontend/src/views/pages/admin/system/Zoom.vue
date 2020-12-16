@@ -153,16 +153,78 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>
-                                            <v-row no-gutters>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
-                                                        <v-card-title>NAME :</v-card-title>
+                                                        <v-card-title>ZOOM ID :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{formdata.name}}
+                                                            {{formdata.zoom_id}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>EMAIL :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{formdata.email}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>API KEY :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{formdata.api_key}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>API SECRET :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{formdata.api_secret}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>IM TOKEN :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{formdata.im_token}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>JWT TOKEN :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{formdata.jwt_token}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                 <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>STATUS :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{formdata.status}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                <v-col xs="12" sm="6" md="6">
+                                                    <v-card flat>
+                                                        <v-card-title>DESC :</v-card-title>
+                                                        <v-card-subtitle>
+                                                            {{formdata.desc}}
+                                                        </v-card-subtitle>
+                                                    </v-card>
+                                                </v-col>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -172,8 +234,10 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                       
+                                                
                                             </v-row>
+
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
@@ -319,7 +383,7 @@ export default {
         initialize:async function () 
         {
             this.datatableLoading=true;
-            await this.$ajax.get('/h2h/zoom',{
+            await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',{
                 headers: {
                     Authorization:this.$store.getters['auth/Token']
                 }
@@ -366,7 +430,10 @@ export default {
                     await this.$ajax.post('/path/'+this.formdata.id,
                         {
                             '_method':'PUT',
-                            name:this.formdata.name,                       
+                            email:this.formdata.email,                            
+                            api_key:this.formdata.api_key, 
+                            api_secret:this.formdata.api_secret,                            
+                            im_token:this.formdata.im_token, 
                         },
                         {
                             headers:{
@@ -374,17 +441,20 @@ export default {
                             }
                         }
                     ).then(({data})=>{   
-                        Object.assign(this.datatable[this.editedIndex], data.object);
+                        Object.assign(this.datatable[this.editedIndex], data.zoom);
                         this.closedialogfrm();
                         this.btnLoading=false;
                     }).catch(()=>{
                         this.btnLoading=false;
                     });                 
-                    
+                     
                 } else {
                     await this.$ajax.post('/path/store',
                         {
-                            name:this.formdata.name,                            
+                            email:this.formdata.email,                            
+                            api_key:this.formdata.api_key, 
+                            api_secret:this.formdata.api_secret,                            
+                            im_token:this.formdata.im_token,                                                       
                         },
                         {
                             headers:{
@@ -392,7 +462,7 @@ export default {
                             }
                         }
                     ).then(({data})=>{   
-                        this.datatable.push(data.object);
+                        this.datatable.push(data.zoom);
                         this.closedialogfrm();
                         this.btnLoading=false;
                     }).catch(()=>{
