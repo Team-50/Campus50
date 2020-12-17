@@ -128,7 +128,7 @@
                                         </v-card>
                                     </v-form>
                                 </v-dialog>
-                                <v-dialog v-model="dialogdetailitem" max-width="600px" persistent>
+                                <v-dialog v-model="dialogdetailitem" max-width="800px" persistent>
                                     <v-card>
                                         <v-card-title>
                                             <span class="headline">DETAIL DATA</span>
@@ -331,7 +331,7 @@ export default {
             { text: 'EMAIL ZOOM', value: 'email' },
             { text: 'API KEY', value: 'api_key' },
             { text: 'STATUS', value: 'status' },
-            { text: 'KETERANGAN', value: 'keterangan' },
+            { text: 'KETERANGAN', value: 'desc' },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         search:'',    
@@ -490,8 +490,7 @@ export default {
                             }
                         }
                     ).then(()=>{   
-                        //const index = this.datatable.indexOf(item);
-                        //this.datatable.splice(index, 1);
+                        this.$router.go();
                         this.btnLoading=false;
                     }).catch(()=>{
                         this.btnLoading=false;

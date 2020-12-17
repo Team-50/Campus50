@@ -5,190 +5,230 @@
         </v-container>        
         <v-container fluid v-else>
             <v-row>
+                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('DMASTER-GROUP')">
-                    <v-card 
-                        min-height="140"
-                        class="clickable green darken-1"
-                        color="#385F73" 
-                        @click.native="$router.push('/dmaster')"
-                        dark>
-                        <v-card-title class="headline">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    color="#ea5455"
+                    @click.native="$router.push('/dmaster')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="#ea5455">
+                                    mdi-monitor-multiple
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
                             DATA MASTER
-                        </v-card-title>                        
-                        <v-card-text>
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
                             Pengaturan berbagai parameter sebagai referensi dari modul-modul lain dalam sistem.
-                        </v-card-text>
+                        </v-card-subtitle>
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SPMB-GROUP')">
-                    <v-card 
-                        min-height="140"
-                        class="clickable green darken-1"
-                        color="#385F73" 
-                        @click.native="$router.push('/spmb')"
-                        dark>
-                        <v-card-title class="headline">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    color="#2d4059"
+                    @click.native="$router.push('/spmb')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="#2d4059">
+                                    mdi-account-box
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
                             SPMB
-                        </v-card-title>                        
-                        <v-card-text>
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
                             Modul ini digunakan untuk mengelola Seleksi Penerimaan Mahasiswa Baru (SPMB) tahun {{tahun_pendaftaran}}.
-                        </v-card-text>
+                        </v-card-subtitle>
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('KEUANGAN-GROUP')">
-                    <v-card 
-                        min-height="140"
-                        class="clickable green darken-1"
-                        color="#385F73" 
-                        @click.native="$router.push('/keuangan')"
-                        dark>
-                        <v-card-title class="headline">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    color="#FFC107"
+                    @click.native="$router.push('/keuangan')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="orange">
+                                    mdi-note-multiple-outline
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
                             KEUANGAN
-                        </v-card-title>                        
-                        <v-card-text>
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
                             Modul ini digunakan untuk mengelola Keuangan Perguruan Tinggi.
-                        </v-card-text>
+                        </v-card-subtitle>
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('AKADEMIK-GROUP')">
-                    <v-card 
-                        min-height="140"
-                        class="clickable green darken-1"
-                        color="#385F73" 
-                        @click.native="$router.push('/akademik')"
-                        dark>
-                        <v-card-title class="headline">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    color="#FFC107"
+                    @click.native="$router.push('/akademik')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="orange">
+                                    mdi-book
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
                             AKADEMIK
-                        </v-card-title>                        
-                        <v-card-text>
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
                             Modul ini digunakan untuk mengelola Akademik Perguruan Tinggi.
-                        </v-card-text>
+                        </v-card-subtitle>
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('ELEARNING-GROUP')">
-                    <v-card 
-                        min-height="140"
-                        class="clickable green darken-1"
-                        color="#385F73" 
-                        @click.native="$router.push('/elearning')"
-                        dark>
-                        <v-card-title class="headline">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    color="#FFC107"
+                    @click.native="$router.push('/elearning')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="orange">
+                                    mdi-lan-connect
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
                             E-LEARNING
-                        </v-card-title>                        
-                        <v-card-text>
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
                             Modul ini digunakan untuk mengelola E-Learning.
-                        </v-card-text>
+                        </v-card-subtitle>
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
-                    <v-card 
-                        min-height="140"
-                        class="clickable green darken-1"
-                        color="#385F73" 
-                        @click.native="$router.push('/system-users')"
-                        dark>
-                        <v-card-title class="headline">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    color="#FFC107"
+                    @click.native="$router.push('/system-users')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="orange">
+                                    mdi-account-key
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
                             USER SISTEM
-                        </v-card-title>                        
-                        <v-card-text>
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
                             Modul ini digunakan untuk mengelola user sistem.
-                        </v-card-text>
+                        </v-card-subtitle>
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-SETTING-GROUP')">
-                    <v-card 
-                        min-height="140"
-                        class="clickable green darken-1"
-                        color="#385F73" 
-                        @click.native="$router.push('/system-setting')"
-                        dark>
-                        <v-card-title class="headline">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    color="#FFC107"
+                    @click.native="$router.push('/system-setting')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="orange">
+                                    mdi-database-plus
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
                             KONFIGURASI SISTEM
-                        </v-card-title>                        
-                        <v-card-text>
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
                             Modul ini digunakan untuk mengatur berbagai macam konfigurasi sistem.
-                        </v-card-text>
+                        </v-card-subtitle>
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
-                    <v-card 
-                        min-height="140"
-                        class="clickable green darken-1"
-                        color="#385F73" 
-                        @click.native="$router.push('/system-migration')"
-                        dark>
-                        <v-card-title class="headline">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    color="#FFC107"
+                    @click.native="$router.push('/system-migration')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="orange">
+                                    mdi-source-pull
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
                             MIGRASI SISTEM
-                        </v-card-title>                        
-                        <v-card-text>
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
                             Modul ini digunakan untuk melakukan migrasi data atau sistem lama.
-                        </v-card-text>
+                        </v-card-subtitle>
                     </v-card>
-                </v-col>
-                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
-                <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
-                    <template>
-  <!-- <v-card
-    class="mx-auto"
-    color="#26c6da"
-    dark
-    max-width="400"
-  >
-    <v-card-title>
-      <v-icon
-        large
-        left
-      >
-        mdi-twitter
-      </v-icon>
-      <span class="title font-weight-light">Twitter</span>
-    </v-card-title>
-
-    <v-card-text class="headline font-weight-bold">
-      "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-    </v-card-text>
-
-    <v-card-actions>
-      <v-list-item class="grow">
-        <v-list-item-avatar color="grey darken-3">
-          <v-img
-            class="elevation-6"
-            alt=""
-            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-          ></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-content>
-          <v-list-item-title>Evan You</v-list-item-title>
-        </v-list-item-content>
-
-        <v-row
-          align="center"
-          justify="end"
-        >
-          <v-icon class="mr-1">
-            mdi-heart
-          </v-icon>
-          <span class="subheading mr-2">256</span>
-          <span class="mr-1">·</span>
-          <v-icon class="mr-1">
-            mdi-share-variant
-          </v-icon>
-          <span class="subheading">45</span>
-        </v-row>
-      </v-list-item>
-    </v-card-actions>
-  </v-card> -->
-</template>
-                </v-col>
-                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+                </v-col>          
             </v-row>
         </v-container>
     </AdminLayout>
