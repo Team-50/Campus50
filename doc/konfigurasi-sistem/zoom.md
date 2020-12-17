@@ -8,4 +8,7 @@ ___
 ### Langkah-langkah konfigurasinya sebagai berikut:
 1. Masuklah ke *App Marketplace Zoom* terlebih dahulu melalui url https://marketplace.zoom.us/
 2. Sign In menggunakan akun zoom yang telah didaftarkan sebelumnya
-3. 
+3. Pada halaman utama *App Marketplace Zoom*, masuk ke *Develop* > *Build App*
+4. Pilih *Create* pada *JWT*, kemudian masukkan *Campus50* ke dalam kolom nama aplikasi
+5. Masukkan data
+6.
