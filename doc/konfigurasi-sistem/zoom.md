@@ -13,9 +13,10 @@ ___
 5. Pada *Basic Information* isi data sebagai berikut:
 * Nama Aplikasi     : Campus50
 * Nama Perusahaan   : Team50
-6. Masukkan id dan email sesuai dengan data login awal yg diinput pada *Developer Contact Information*
-7. Setelah selesai isi semua data yang dibutuhkan, masuklah ke konfigurasi sistem pada https://campus50.sttindonesia.ac.id/
-8. Masuk ke halaman Zoom pada _plugin_
-9. Klik *Tambah*, kemudian isilah kolom yang ada sesuai dengan data *App Credentials* yang dihasilkan dari zoom tadi
-10. Klik Data yang baru ditambahkan dan lakukan sinkronisasi
-11. Sistem akan menghasilkan pemberitahuan bahwa data berhasil disinkronisasi dan akan menggenerasi *Zoom ID* dan *Status* secara otomatis
+6. Masukkan nama dan email sesuai dengan data login awal yg diinput pada *Developer Contact Information*
+7. Bagian optional boleh dikosongkan saja
+8. Setelah selesai isi semua data yang dibutuhkan, masuklah ke konfigurasi sistem pada https://campus50.sttindonesia.ac.id/
+9. Setelah melakukan login, masuk ke halaman Zoom pada _plugin_
+10. Klik *Tambah*, kemudian isilah email serta kolom yang ada sesuai dengan data *App Credentials* yang dihasilkan dari zoom tadi, kosongkan field *Zoom ID* dan *Status*
+11. Klik Data yang baru ditambahkan dan lakukan sinkronisasi
+12. Sistem akan menghasilkan pemberitahuan bahwa data berhasil disinkronisasi dan akan menggenerasi *Zoom ID* dan *Status* secara otomatis
