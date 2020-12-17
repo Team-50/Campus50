@@ -3,14 +3,14 @@
         <v-container v-if="dashboard=='mahasiswabaru'">
             <DashboardMB />
         </v-container>        
-        <v-container fluid v-else>
+        <v-container fluid v-else color="#f1f2f6">
             <v-row>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('DMASTER-GROUP')">
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#ea5455"
+                    color="#eccc68"
                     @click.native="$router.push('/dmaster')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -20,7 +20,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ea5455">
+                                <v-icon color="#eccc68">
                                     mdi-monitor-multiple
                                 </v-icon>
                             </v-btn>
@@ -38,7 +38,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#2d4059"
+                    color="#ff7f50"
                     @click.native="$router.push('/spmb')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -48,7 +48,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#2d4059">
+                                <v-icon color="#ff7f50">
                                     mdi-account-box
                                 </v-icon>
                             </v-btn>
@@ -66,7 +66,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#FFC107"
+                    color="#ff6b81"
                     @click.native="$router.push('/keuangan')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -76,7 +76,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="orange">
+                                <v-icon color="#ff6b81">
                                     mdi-note-multiple-outline
                                 </v-icon>
                             </v-btn>
@@ -94,7 +94,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#FFC107"
+                    color="#a4b0be"
                     @click.native="$router.push('/akademik')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -104,7 +104,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="orange">
+                                <v-icon color="#a4b0be">
                                     mdi-book
                                 </v-icon>
                             </v-btn>
@@ -122,7 +122,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#FFC107"
+                    color="#ffa502"
                     @click.native="$router.push('/elearning')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -132,7 +132,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="orange">
+                                <v-icon color="#ffa502">
                                     mdi-lan-connect
                                 </v-icon>
                             </v-btn>
@@ -150,7 +150,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#FFC107"
+                    color="#ff6348"
                     @click.native="$router.push('/system-users')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -160,7 +160,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="orange">
+                                <v-icon color="#ff6348">
                                     mdi-account-key
                                 </v-icon>
                             </v-btn>
@@ -178,7 +178,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#FFC107"
+                    color="#ff4757"
                     @click.native="$router.push('/system-setting')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -188,7 +188,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="orange">
+                                <v-icon color="#ff4757">
                                     mdi-database-plus
                                 </v-icon>
                             </v-btn>
@@ -206,7 +206,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#FFC107"
+                    color="#747d8c"
                     @click.native="$router.push('/system-migration')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -216,7 +216,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="orange">
+                                <v-icon color="#747d8c">
                                     mdi-source-pull
                                 </v-icon>
                             </v-btn>
