@@ -10,7 +10,8 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#eccc68"
+                    min-height="210"
+                    color="#2ed573"
                     @click.native="$router.push('/dmaster')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -20,7 +21,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#eccc68">
+                                <v-icon color="#2ed573">
                                     mdi-monitor-multiple
                                 </v-icon>
                             </v-btn>
@@ -38,7 +39,8 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#ff7f50"
+                    min-height="210"
+                    color="#1e90ff"
                     @click.native="$router.push('/spmb')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -48,7 +50,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ff7f50">
+                                <v-icon color="#1e90ff">
                                     mdi-account-box
                                 </v-icon>
                             </v-btn>
@@ -66,7 +68,8 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
-                    color="#ff6b81"
+                    min-height="210"
+                    color="#3742fa"
                     @click.native="$router.push('/keuangan')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -76,7 +79,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ff6b81">
+                                <v-icon color="#3742fa">
                                     mdi-note-multiple-outline
                                 </v-icon>
                             </v-btn>
@@ -94,6 +97,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
+                    min-height="210"
                     color="#a4b0be"
                     @click.native="$router.push('/akademik')">
                         <div class="text-center pt-4">
@@ -122,6 +126,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
+                    min-height="210"
                     color="#ffa502"
                     @click.native="$router.push('/elearning')">
                         <div class="text-center pt-4">
@@ -150,6 +155,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
+                    min-height="210"
                     color="#ff6348"
                     @click.native="$router.push('/system-users')">
                         <div class="text-center pt-4">
@@ -178,6 +184,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
+                    min-height="210"
                     color="#ff4757"
                     @click.native="$router.push('/system-setting')">
                         <div class="text-center pt-4">
@@ -206,6 +213,7 @@
                     <v-card
                     class="mx-auto clickable"
                     max-width="344"
+                    min-height="210"
                     color="#747d8c"
                     @click.native="$router.push('/system-migration')">
                         <div class="text-center pt-4">
