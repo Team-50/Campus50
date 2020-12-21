@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-system-bar app dark color="#a4b0be" class="white--text">
+        <v-system-bar app color="#a4b0be" class="white--text">
             <strong>Hak Akses Sebagai :</strong> {{ROLE}}
 		</v-system-bar>	
-        <v-app-bar app class="#ced6e0" elevation="0">            
+        <v-app-bar app class="white" elevation="0">            
             <v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
 			</v-toolbar-title>
@@ -13,7 +13,8 @@
                 inset
                 vertical
             ></v-divider>
-            <v-menu 
+            <v-menu
+                
                 :close-on-content-click="true"
                 origin="center center"
                 transition="scale-transition"
@@ -56,7 +57,7 @@
                 </v-list>
             </v-menu>			
         </v-app-bar>                    
-        <v-main class="mx-4 mb-4">			
+        <v-main class="mx-4 mb-4 grey lighten-3">			
 			<slot />
 		</v-main>
     </div>    

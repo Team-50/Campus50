@@ -137,6 +137,19 @@
                                     outlined
                                     :disabled="dosen_id==null"/> 
                             </v-card-text>
+                        </v-card>
+                        <v-card class="mb-2">
+                            <v-card-title>PILIH AKUN ZOOM</v-card-title>
+                            <v-card-text>
+                                <v-autocomplete
+                                    label="AKUN ZOOM"
+                                    v-model="formdata.zoom"
+                                    :items="daftar_zoom"
+                                    item-text="email"
+                                    item-value="email"
+                                    :rules="rule_zoom"
+                                    outlined/>    
+                            </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
                                 <v-btn color="blue darken-1" text @click.stop="$router.push('/akademik/perkuliahan/pembagiankelas/daftar')">KEMBALI</v-btn>
@@ -203,6 +216,7 @@ export default {
         form_valid:true, 
         daftar_dosen:[],        
         dosen_id:null,
+        daftar_zoom:[],
 
         daftar_sks:[
             1,2,3,4,5,6,7,8,9,10,11,12
@@ -285,6 +299,9 @@ export default {
         rule_ruang_kelas:[
             value => !!value||"Mohon dipilih ruang kelas mengajar!!!"
         ],
+        rule_zoom:[
+            value => !!value||"Mohon dipilih Akun zoom !!!"
+        ],
     }),
     methods: {        
         initialize:async function () 
@@ -302,6 +319,15 @@ export default {
             }).then(({data})=>{                                               
                 this.daftar_dosen = data.dosen;                
             });  
+
+            await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',       
+            {
+                headers: {
+                    Authorization:this.$store.getters['auth/Token']
+                }
+            }).then(({data})=>{                                               
+                this.daftar_zoom = data.zoom;                
+            });
 
             await this.$ajax.get('/datamaster/ruangankelas',{
                 headers: {
