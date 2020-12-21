@@ -143,10 +143,10 @@
                             <v-card-text>
                                 <v-autocomplete
                                     label="AKUN ZOOM"
-                                    v-model="formdata.zoom"
+                                    v-model="formdata.zoom_id"
                                     :items="daftar_zoom"
                                     item-text="email"
-                                    item-value="email"
+                                    item-value="id"
                                     :rules="rule_zoom"
                                     outlined/>    
                             </v-card-text>
@@ -265,7 +265,8 @@ export default {
             jam_masuk:'',
             jam_keluar:'',
             penyelenggaraan_dosen_id:'',
-            ruang_kelas_id:'',            
+            ruang_kelas_id:'',           
+            zoom_id:'',
         },  
         rule_dosen:[
             value => !!value||"Mohon dipilih Dosen pengampu matakuliah !!!"
@@ -352,10 +353,10 @@ export default {
                         jam_masuk:this.formdata.jam_masuk,
                         jam_keluar:this.formdata.jam_keluar,                        
                         penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
-                        ruang_kelas_id:this.formdata.ruang_kelas_id,                            
+                        ruang_kelas_id:this.formdata.ruang_kelas_id,
+                        zoom_id:this.formdata.zoom_id,                            
                         tahun:this.tahun_akademik,                            
-                        idsmt:this.semester_akademik,                            
-                                              
+                        idsmt:this.semester_akademik,
                     },
                     {
                         headers:{
