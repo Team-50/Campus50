@@ -232,7 +232,7 @@ class UsersAkademikController extends Controller {
                 if (($key= array_search('dosen',$daftar_roles))===false)
                 {                    
                     $key= array_search('dosenwali',$daftar_roles);                    
-                    if (isset($daftar_roles[$key]))
+                    if ($key)
                     {
                         unset($daftar_roles[$key]);
                     }                    
