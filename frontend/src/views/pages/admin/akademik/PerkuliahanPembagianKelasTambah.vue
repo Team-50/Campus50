@@ -140,15 +140,14 @@
                         </v-card>
                         <v-card class="mb-2">
                             <v-card-title>PILIH AKUN ZOOM</v-card-title>
-                            <v-card-text>
-                                <v-autocomplete
-                                    label="AKUN ZOOM"
+                            <v-card-text>  
+                                <v-select
                                     v-model="formdata.zoom_id"
-                                    :items="daftar_zoom"
+                                    :items="daftar_zoom"                                                   
+                                    label="AKUN ZOOM"                                    
                                     item-text="email"
                                     item-value="id"
-                                    :rules="rule_zoom"
-                                    outlined/>    
+                                    outlined/>
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -257,6 +256,7 @@ export default {
         formdata:{            
             id:'',
             user_id:'',            
+            zoom_id:'',
             kmatkul:'',            
             nmatkul:'',            
             sks:'',            
@@ -265,8 +265,7 @@ export default {
             jam_masuk:'',
             jam_keluar:'',
             penyelenggaraan_dosen_id:'',
-            ruang_kelas_id:'',           
-            zoom_id:'',
+            ruang_kelas_id:'',                       
         },  
         rule_dosen:[
             value => !!value||"Mohon dipilih Dosen pengampu matakuliah !!!"
@@ -345,6 +344,7 @@ export default {
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/store',
                     {
                         user_id:this.dosen_id,
+                        zoom_id:this.formdata.zoom_id, 
                         idkelas:this.formdata.idkelas,                            
                         kmatkul:this.formdata.kmatkul,                            
                         nmatkul:this.formdata.nmatkul,                            
@@ -353,8 +353,7 @@ export default {
                         jam_masuk:this.formdata.jam_masuk,
                         jam_keluar:this.formdata.jam_keluar,                        
                         penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
-                        ruang_kelas_id:this.formdata.ruang_kelas_id,
-                        zoom_id:this.formdata.zoom_id,                            
+                        ruang_kelas_id:this.formdata.ruang_kelas_id,                                                   
                         tahun:this.tahun_akademik,                            
                         idsmt:this.semester_akademik,
                     },

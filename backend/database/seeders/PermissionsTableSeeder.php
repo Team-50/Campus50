@@ -167,6 +167,22 @@ class PermissionsTableSeeder extends Seeder
             'updated_at'=>Carbon::now()
         ]);        
         
+        //kemahasiswaan
+        \DB::table('permissions')->insert([
+            'name'=>"KEMAHASISWAAN-GROUP",
+            'guard_name'=>'api',
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now()
+        ]);
+        
+        //elearning
+        \DB::table('permissions')->insert([
+            'name'=>"ELEARNING-GROUP",
+            'guard_name'=>'api',
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now()
+        ]);
+
         //system
         \DB::table('permissions')->insert([
             'name'=>"SYSTEM-SETTING-GROUP",
@@ -225,6 +241,8 @@ class PermissionsTableSeeder extends Seeder
             
             'AKADEMIK-NILAI-MATAKULIAH',                        
             'AKADEMIK-NILAI-MATAKULIAH-DOSEN',                        
+            
+            'KEMAHASISWAAN-PROFIL-MHS',
             
             'SYSTEM-SETTING-PERMISSIONS',
             'SYSTEM-SETTING-ROLES',

@@ -17,6 +17,7 @@ class CreateKelasMhsTable extends Migration
         Schema::create('pe3_kelas_mhs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
+            $table->uuid('zoom_id')->nullable();
             $table->string('kmatkul');
             $table->string('nmatkul');
             $table->tinyinteger('sks');
@@ -42,12 +43,19 @@ class CreateKelasMhsTable extends Migration
             $table->index('ruang_kelas_id');
             $table->index('idkelas'); 
             $table->index('user_id');   
+            $table->index('zoom_id');   
             
             $table->foreign('user_id')
                 ->references('user_id')
                 ->on('pe3_dosen')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('plugins_h2h_zoom')
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
             
         });
 

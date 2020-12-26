@@ -89,6 +89,7 @@ class PembagianKelasController extends Controller
             $pembagiankelas=PembagianKelasModel::create([
                 'id'=>$uuid,
                 'user_id'=>$request->input('user_id'),
+                'zoom_id'=>$request->input('zoom_id'),
                 'kmatkul'=>$request->input('kmatkul'),
                 'nmatkul'=>$request->input('nmatkul'),
                 'sks'=>$request->input('sks'),
