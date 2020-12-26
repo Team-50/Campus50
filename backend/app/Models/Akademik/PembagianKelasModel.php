@@ -27,6 +27,7 @@ class PembagianKelasModel extends Model
     protected $fillable = [
         'id',
         'user_id',
+        'zoom_id',
         'kmatkul',
         'nmatkul',
         'sks',
