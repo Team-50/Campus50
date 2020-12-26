@@ -25,25 +25,30 @@
         </v-main>     
 
         <v-footer
+            app
+            fixed 
             dark
             padless
         >
-            <v-card
-            class="flex"
-            flat
-            tile
-            >
-            <v-card-title class="teal">
-                <strong class="subheading">Get connected with us on social networks!</strong>
-
-                <v-spacer></v-spacer>
-            </v-card-title>
-
-            <v-card-text class="py-2 white--text text-center">
-                {{ new Date().getFullYear() }} — <strong>{{namaPTAlias}}</strong>
-            </v-card-text>
+            <v-card class="flex" flat tile>
+                
+                <v-card-text class="py-2 white--text text-center">
+                    Team 50 — <strong>{{namaPTAlias}}</strong>
+                </v-card-text>
             </v-card>
         </v-footer>
+
+        <!-- <v-footer app padless fixed dark>
+			<v-card class="flex" flat tile>
+				<v-divider></v-divider>
+				<v-card-text class="py-2 white--text text-center">
+					<strong>{{NamaAPP}} (2019-2020)</strong> dikembangkan oleh TIM IT BAPELITBANG KAB. Bintan. 
+					<v-btn dark icon href="https://github.com/mrizkir/simonev">
+						<v-icon>mdi-github</v-icon>
+					</v-btn>					
+				</v-card-text>
+			</v-card>			
+		</v-footer> -->
 
     </div>
 </template>
