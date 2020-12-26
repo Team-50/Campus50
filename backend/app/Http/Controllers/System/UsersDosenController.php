@@ -201,7 +201,7 @@ class UsersDosenController extends Controller {
                 $user_dosen->is_dw = $request->input('is_dw');
                 $user_dosen->save();                                
                 
-                if ($request->input('is_dw') == 'true')
+                if (filter_var($request->input('is_dw'),FILTER_VALIDATE_BOOLEAN))
                 {
                     $user->assignRole('dosenwali'); 
                     $permission=Role::findByName('dosenwali')->permissions;
