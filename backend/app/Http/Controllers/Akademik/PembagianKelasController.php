@@ -15,7 +15,7 @@ use Ramsey\Uuid\Uuid;
 class PembagianKelasController extends Controller
 {
     /**
-     * daftar penyelenggaraan
+     * daftar pembagian kelas
      */
     public function index(Request $request)
     {
@@ -23,17 +23,17 @@ class PembagianKelasController extends Controller
 
         $this->validate($request, [
             'ta'=>'required',
-            'semester_akademik'=>'required',            
+            'semester_akademik'=>'required',
         ]);
 
-        $ta=$request->input('ta');        
+        $ta=$request->input('ta');
         $semester_akademik=$request->input('semester_akademik');
 
         $pembagiankelas=PembagianKelasModel::select(\DB::raw('
                             pe3_kelas_mhs.id,
-                            pe3_kelas_mhs.idkelas,                            
-                            pe3_kelas_mhs.hari,     
-                            \'\' AS nama_hari,        
+                            pe3_kelas_mhs.idkelas,
+                            pe3_kelas_mhs.hari,
+                            \'\' AS nama_hari,
                             pe3_kelas_mhs.jam_masuk,
                             pe3_kelas_mhs.jam_keluar,
                             pe3_kelas_mhs.kmatkul,
@@ -46,25 +46,35 @@ class PembagianKelasController extends Controller
                             pe3_ruangkelas.kapasitas,
                             0 AS jumlah_mhs,
                             pe3_kelas_mhs.created_at,
-                            pe3_kelas_mhs.updated_at                   
+                            pe3_kelas_mhs.updated_at
                         '))
                         ->join('pe3_dosen','pe3_kelas_mhs.user_id','pe3_dosen.user_id')
-                        ->join('pe3_ruangkelas','pe3_ruangkelas.id','pe3_kelas_mhs.ruang_kelas_id')                            
+                        ->join('pe3_ruangkelas','pe3_ruangkelas.id','pe3_kelas_mhs.ruang_kelas_id')
                         ->where('pe3_kelas_mhs.tahun',$ta)
-                        ->where('pe3_kelas_mhs.idsmt',$semester_akademik)                                              
-                        ->get();
-                        
-        $pembagiankelas->transform(function ($item,$key){              
-            $item->nama_hari=\App\Helpers\Helper::getNamaHari($item->hari);          
+                        ->where('pe3_kelas_mhs.idsmt',$semester_akademik);
+        if ($this->hasRole('dosen'))
+        {
+            $pembagiankelas=$pembagiankelas->where('pe3_dosen.user_id',$this->getUserid())
+                                ->get();
+        }
+        else
+        {
+            $pembagiankelas=$pembagiankelas->get();
+        }
+
+
+
+        $pembagiankelas->transform(function ($item,$key){
+            $item->nama_hari=\App\Helpers\Helper::getNamaHari($item->hari);
             $item->jumlah_mhs=\DB::table('pe3_kelas_mhs_peserta')->where('kelas_mhs_id',$item->id)->count();
             return $item;
         });
         return Response()->json([
                                     'status'=>1,
-                                    'pid'=>'fetchdata',  
-                                    'pembagiankelas'=>$pembagiankelas,                                                                                                                                   
+                                    'pid'=>'fetchdata',
+                                    'pembagiankelas'=>$pembagiankelas,
                                     'message'=>'Fetch data pembagian kelas berhasil.'
-                                ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);  ; 
+                                ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);  ;
     }
     /**
      * simpan
@@ -420,6 +430,7 @@ class PembagianKelasController extends Controller
                 'ruang_kelas_id'=>'required|exists:pe3_ruangkelas,id',   
             ]);
 
+            $pembagian->zoom_id=$request->input('zoom_id');
             $pembagian->hari=$request->input('hari');
             $pembagian->jam_masuk=$request->input('jam_masuk');
             $pembagian->jam_keluar=$request->input('jam_keluar');

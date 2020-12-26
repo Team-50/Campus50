@@ -299,9 +299,6 @@ export default {
         rule_ruang_kelas:[
             value => !!value||"Mohon dipilih ruang kelas mengajar!!!"
         ],
-        rule_zoom:[
-            value => !!value||"Mohon dipilih Akun zoom !!!"
-        ],
     }),
     methods: {        
         initialize:async function () 
