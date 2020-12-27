@@ -8,7 +8,7 @@
                 E-LEARNING - KELAS 
             </template>
             <template v-slot:subtitle>
-                TAHUN AKADEMIK {{tahun_akademik}}
+                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -29,14 +29,17 @@
             </template>
         </ModuleHeader>
         <template v-slot:filtersidebar>
-            <Filter1 v-on:changeTahunAkademik="changeTahunAkademik" ref="filter1" />
+            <Filter2 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" ref="filter2" />	
         </template>
         <v-container fluid>            
             <v-row class="mb-4" no-gutters>
-                <v-col cols="12">
+                <v-col
+                cols="4"
+                v-for="item in datatable" :key="item.id">
                     <v-card
                         class="mx-auto"
                         max-width="344"
+
                     >
                         <v-img
                         src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -44,12 +47,16 @@
                         ></v-img>
 
                         <v-card-title>
-                        Top western road trips
+                        {{item.nmatkul}}
                         </v-card-title>
 
                         <v-card-subtitle>
-                        1,000 miles of wonder
+                        Hari : {{item.nama_hari}} <br> Jam : {{item.jam_masuk}} - {{item.jam_keluar}}
                         </v-card-subtitle>
+
+                        <v-card-title>
+                        {{item.nama_dosen}}
+                        </v-card-title>
 
                         <v-card-actions>
                         <v-btn
@@ -63,14 +70,14 @@
 
                         <v-btn
                             icon
-                            @click="show = !show"
+                            
                         >
-                            <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                            <v-icon>mdi-chevron-down</v-icon>
                         </v-btn>
                         </v-card-actions>
 
                         <v-expand-transition>
-                        <div v-show="show">
+                        <div>
                             <v-divider></v-divider>
 
                             <v-card-text>
@@ -89,9 +96,9 @@
 <script>
 import ElearningLayout from '@/views/layouts/ElearningLayout';
 import ModuleHeader from '@/components/ModuleHeader';
-import Filter1 from '@/components/sidebar/FilterMode1';
+import Filter2 from '@/components/sidebar/FilterMode2';
 export default {
-    name: 'Elearning',
+    name: 'ElearningKelas',
     created ()
 	{
 		this.breadcrumbs = [
@@ -111,7 +118,8 @@ export default {
 				href:'#'
 			}
         ];				
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];         
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];        
     },
     mounted()
     {
@@ -121,7 +129,9 @@ export default {
         datatableLoading:false,
         firstloading:true,
         breadcrumbs:[],        
-        tahun_akademik:0,
+        datatable:[],      
+        tahun_akademik:null,
+        semester_akademik:null,
         
     }),
     methods : {
@@ -129,17 +139,41 @@ export default {
         {
             this.tahun_akademik=tahun;
         },
-		initialize:async function()
-		{	
-            this.datatableLoading=true;            
-            
-            this.firstloading=false;            
-            this.$refs.filter1.setFirstTimeLoading(this.firstloading); 
-
-        }
+        changeSemesterAkademik (semester)
+        {
+            this.semester_akademik=semester;
+        },
+		initialize:async function () 
+        {
+            this.datatableLoading=true;
+            await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
+            {
+                ta:this.tahun_akademik,
+                semester_akademik:this.semester_akademik,
+            },
+            {
+                headers: {
+                    Authorization:this.$store.getters['auth/Token']
+                }
+            }).then(({data})=>{                               
+                this.datatable = data.pembagiankelas;
+                this.datatableLoading=false;
+            }).catch(()=>{
+                this.datatableLoading=false;
+            });  
+            this.firstloading=false;
+            this.$refs.filter2.setFirstTimeLoading(this.firstloading); 
+        },
     },
     watch:{
         tahun_akademik()
+        {
+            if (!this.firstloading)
+            {
+                this.initialize();
+            }            
+        },
+        semester_akademik()
         {
             if (!this.firstloading)
             {
@@ -150,7 +184,7 @@ export default {
     components:{
         ElearningLayout,
         ModuleHeader,           
-        Filter1,        
+        Filter2,        
     },
 }
 </script>

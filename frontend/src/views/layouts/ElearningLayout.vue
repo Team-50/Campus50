@@ -83,7 +83,19 @@
                     <v-list-item-content>
                         <v-list-item-title>BOARD E-LEARNING</v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                   
+                </v-list-item>   
+                <v-subheader>DATA MASTER</v-subheader>                
+                <v-list-item link to="/elearning/kelas" :active-class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-google-classroom</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            MATERI
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>   
+                <v-subheader>PERKULIAHAN</v-subheader>
                 <v-list-item link to="/elearning/kelas" :active-class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-google-classroom</v-icon>
