@@ -119,6 +119,13 @@
                                                     item-text="namaruang"
                                                     item-value="id"
                                                     outlined/> 
+                                                <v-select
+                                                    v-model="formdata.zoom_id"
+                                                    :items="daftar_zoom"                                                   
+                                                    label="AKUN ZOOM"                                    
+                                                    item-text="email"
+                                                    item-value="id"
+                                                    outlined/>
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -284,8 +291,10 @@ export default {
                 value:6,
             },
         ],
+        daftar_zoom:[],
         formdata:{            
             id:'',
+            zoom_id:'',
             idkelas:'',            
             hari:'',            
             jam_masuk:'',
@@ -295,6 +304,7 @@ export default {
         }, 
         formdefault:{            
             id:'',
+            zoom_id:'',
             idkelas:'',            
             hari:'',            
             jam_masuk:'',
@@ -369,6 +379,14 @@ export default {
                 this.daftar_ruang_kelas = data.ruangan;                 
                 this.formdata = Object.assign({}, item);
                 this.dialogfrm = true;               
+            });
+            await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',       
+            {
+                headers: {
+                    Authorization:this.$store.getters['auth/Token']
+                }
+            }).then(({data})=>{                                               
+                this.daftar_zoom = data.zoom;                
             });
         },    
         save:async function () {

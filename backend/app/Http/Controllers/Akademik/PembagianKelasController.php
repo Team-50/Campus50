@@ -31,6 +31,7 @@ class PembagianKelasController extends Controller
 
         $pembagiankelas=PembagianKelasModel::select(\DB::raw('
                             pe3_kelas_mhs.id,
+                            pe3_kelas_mhs.zoom_id,
                             pe3_kelas_mhs.idkelas,
                             pe3_kelas_mhs.hari,
                             \'\' AS nama_hari,
