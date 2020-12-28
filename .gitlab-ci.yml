@@ -20,6 +20,7 @@ build:
 test:
   stage: test
   script:
+    - echo "Ini tahap testing"
     - cd frontend    
     - cd ..
 
