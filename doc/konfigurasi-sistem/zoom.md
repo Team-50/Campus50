@@ -1,6 +1,6 @@
 # Konfigurasi Zoom
 
-### Silahkan konfigurasi zoom terlebih dahulu dengan menyimpan credential integrasi ke zoom yang item-itemnya adalah sebagai berikut [Market Place](https://marketplace.zoom.us/docs/guides/build/jwt-app) :
+### Silahkan konfigurasi zoom terlebih dahulu dengan menyimpan credential integrasi ke [Zoom Market Place](https://marketplace.zoom.us/docs/guides/build/jwt-app)  yang item-itemnya adalah sebagai berikut :
 1. API Key
 2. API Secret
 3. IM Chat History Token
