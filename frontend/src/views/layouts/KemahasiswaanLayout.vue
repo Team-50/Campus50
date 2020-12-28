@@ -78,7 +78,7 @@
                         <v-icon>mdi-account</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>PROFIL MAHASISWA</v-list-item-title>
+                        <v-list-item-title>PROFILE MAHASISWA</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item link to="/system-users/profil">
@@ -86,9 +86,7 @@
                         <v-icon>mdi-account</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>
-                            PROFIL
-                        </v-list-item-title>
+                        <v-list-item-title>DAFTAR MAHASISWA</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
                 <v-divider />
@@ -97,9 +95,7 @@
                         <v-icon>mdi-account-key</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>
-                            PERMISSIONS
-                        </v-list-item-title>
+                        <v-list-item-title>PEND. KONSENTRASI</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>  
                 <v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-ROLES')" to="/system-users/roles">
@@ -107,9 +103,7 @@
                         <v-icon>mdi-account-group</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>
-                            ROLES
-                        </v-list-item-title>
+                        <v-list-item-title>REKAP STATUS MAHASISWA</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>  
                 <v-divider v-if="CAN_ACCESS('SYSTEM-SETTING-ROLES')"/>
@@ -118,9 +112,7 @@
                         <v-icon>mdi-account</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>
-                            SUPERADMIN
-                        </v-list-item-title>
+                        <v-list-item-title>CALON MAHASISWA</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>    
                 <v-list-item link v-if="CAN_ACCESS('SYSTEM-USERS-KEUANGAN_BROWSE')" to="/system-users/keuangan">
@@ -128,9 +120,7 @@
                         <v-icon>mdi-account</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>
-                            KEUANGAN
-                        </v-list-item-title>
+                        <v-list-item-title>PINDAH KELAS</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>    
                 <v-list-item link v-if="CAN_ACCESS('SYSTEM-USERS-PMB_BROWSE')" to="/system-users/pmb">
@@ -138,59 +128,7 @@
                         <v-icon>mdi-account</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>
-                            TIM PMB
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>    
-                <v-list-item link v-if="CAN_ACCESS('SYSTEM-USERS-AKADEMIK_BROWSE')" to="/system-users/akademik">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            AKADEMIK
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>    
-                <v-list-item link v-if="CAN_ACCESS('SYSTEM-USERS-PROGRAM-STUDI_BROWSE')" to="/system-users/prodi">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            PROGRAM STUDI
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>  
-                <v-list-item link v-if="CAN_ACCESS('SYSTEM-USERS-PUSLAHTA_BROWSE')" to="/system-users/puslahta">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            PUSLAHTA
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>        
-                <v-list-item link v-if="CAN_ACCESS('SYSTEM-USERS-DOSEN_BROWSE')" to="/system-users/dosen">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            DOSEN
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>                                    
-                <v-list-item link v-if="dashboard=='dosen'" to="/system-users/biodatadiridosen">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            BIODATA DIRI
-                        </v-list-item-title>
+                        <v-list-item-title>PERWALIAN</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>    
             </v-list>

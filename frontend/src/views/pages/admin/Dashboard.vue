@@ -243,8 +243,8 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#747d8c"
-                    @click.native="$router.push('/system-migration')">
+                    color="#ff7f50"
+                    @click.native="$router.push('/kemahasiswaan')">
                         <div class="text-center pt-4">
                             <v-btn
                                 class="mx-2"
@@ -253,7 +253,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#747d8c">
+                                <v-icon color="#ff7f50">
                                     mdi-source-pull
                                 </v-icon>
                             </v-btn>
