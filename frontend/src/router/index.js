@@ -804,6 +804,19 @@ const routes = [
         },
 		component: NotFoundComponent
 	},
+
+	//kemahasiswaan
+	{
+		path: '/kemahasiswaan',
+		name: 'Kemahasiswaan',
+		meta:{
+			title: "KEMAHASISWAAN",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/kemahasiswaan/Kemahasiswaan.vue'),		
+	},
+	
+
 	{ 
 		path: '*', 
 		redirect: '/404' 
