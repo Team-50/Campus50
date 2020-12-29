@@ -122,6 +122,35 @@
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+                <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    min-height="210"
+                    color="#ff7f50"
+                    @click.native="$router.push('/kemahasiswaan')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="#ff7f50">
+                                    mdi-account-group
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
+                            KEMAHASISWAAN
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
+                            Modul ini digunakan untuk mengelola data kemahasiswaan.
+                        </v-card-subtitle>
+                    </v-card>
+                </v-col>
+                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('ELEARNING-GROUP')">
                     <v-card
                     class="mx-auto clickable"
@@ -234,35 +263,6 @@
                         </v-card-title>
                         <v-card-subtitle class="white--text font-weight-medium text-center">
                             Modul ini digunakan untuk melakukan migrasi data atau sistem lama.
-                        </v-card-subtitle>
-                    </v-card>
-                </v-col>     
-                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
-                <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
-                    <v-card
-                    class="mx-auto clickable"
-                    max-width="344"
-                    min-height="210"
-                    color="#ff7f50"
-                    @click.native="$router.push('/kemahasiswaan')">
-                        <div class="text-center pt-4">
-                            <v-btn
-                                class="mx-2"
-                                fab
-                                dark
-                                large
-                                elevation ="0"
-                                color="white">
-                                <v-icon color="#ff7f50">
-                                    mdi-source-pull
-                                </v-icon>
-                            </v-btn>
-                        </div>
-                        <v-card-title class="white--text font-weight-bold justify-center">
-                            KEMAHASISWAAN
-                        </v-card-title>
-                        <v-card-subtitle class="white--text font-weight-medium text-center">
-                            Modul ini digunakan untuk mengelola data kemahasiswaan.
                         </v-card-subtitle>
                     </v-card>
                 </v-col>     
