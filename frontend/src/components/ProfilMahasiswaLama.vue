@@ -17,7 +17,7 @@
             <v-row>
                 <v-col xs="12" sm="12" md="2">
                     <v-card flat class="mb-2">
-                        <v-img :src="$api.url+'/'+datamhs.foto" />
+                        <v-img :src="$api.storageURL+'/'+datamhs.foto" />
                         <v-card-title>NOMOR HP:</v-card-title>  
                         <v-card-subtitle>
                             {{datamhs.nomor_hp}}

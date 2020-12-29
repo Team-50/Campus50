@@ -25,7 +25,7 @@
                                 <v-col xs="12" sm="6" md="2">
                                     <v-card flat>
                                         <v-card-text>
-                                            <v-img :src="$api.url+'/'+item.foto" />
+                                            <v-img :src="$api.storageURL+'/'+item.foto" />
                                         </v-card-text>
                                     </v-card>
                                     <v-card flat>
@@ -221,7 +221,7 @@ export default {
                     if (element.path != null)
                     {
                         this.slides.push({
-                            path:this.$api.url+'/'+element.path,
+                            path:this.$api.storageURL+'/'+element.path,
                             nama_persyaratan:element.nama_persyaratan
                         });
                     }

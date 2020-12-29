@@ -94,7 +94,7 @@
                                 :value="item.jumlah_persyaratan > 0"
                                 overlap>                
                                 <v-avatar size="30">                                        
-                                    <v-img :src="$api.url+'/'+item.foto" />                                                                     
+                                    <v-img :src="$api.storageURL+'/'+item.foto" />                                                                     
                                 </v-avatar>                                                                                                  
                             </v-badge>
                         </template>
