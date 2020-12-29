@@ -271,7 +271,7 @@
                                 :icon="badgeIcon(item)"
                                 overlap>                
                                 <v-avatar size="30">                                        
-                                    <v-img :src="$api.url+'/'+item.foto" />                                                                     
+                                    <v-img :src="$api.storageURL+'/'+item.foto" />                                                                     
                                 </v-avatar>                                                                                                  
                             </v-badge>
                         </template>

@@ -90,7 +90,7 @@
                                         <v-btn
                                             color="green"
                                             text
-                                            :href="$api.url+'/'+file_pdf">                            
+                                            :href="$api.storageURL+'/'+file_pdf">                            
                                             Download
                                         </v-btn>                           
                                     </v-card-text>

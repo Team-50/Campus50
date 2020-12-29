@@ -9,7 +9,7 @@
                         <v-carousel-item
                             v-for="(slide, i) in slides"
                             :key="i"
-                            :src="$api.url+'/'+slide.src">                            
+                            :src="$api.storageURL+'/'+slide.src">                            
                         </v-carousel-item>
                     </v-carousel>
                 </v-col>

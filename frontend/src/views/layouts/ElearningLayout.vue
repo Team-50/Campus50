@@ -210,11 +210,11 @@ export default {
 			var photo;
 			if (img == '')
 			{
-				photo = this.$api.url+'/storage/images/users/no_photo.png';	
+				photo = this.$api.storageURL+'/storage/images/users/no_photo.png';	
 			}
 			else
 			{
-				photo = this.$api.url+'/'+img;	
+				photo = this.$api.storageURL+'/'+img;	
 			}
 			return photo;
         },        

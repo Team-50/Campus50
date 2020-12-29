@@ -5,7 +5,7 @@
                 <span class="hidden-sm-and-down">
                     <v-img
                         max-width="80"
-                        :src="$api.url+'/storage/images/campus_50_logo.png'"
+                        :src="$api.storageURL+'/storage/images/campus_50_logo.png'"
                         ></v-img>
                 </span>
             </v-toolbar-title>
