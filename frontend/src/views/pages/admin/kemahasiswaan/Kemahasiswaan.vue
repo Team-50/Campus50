@@ -1,11 +1,11 @@
 <template>
-    <ElearningLayout>
+    <KemahasiswaanLayout>
         <ModuleHeader>
             <template v-slot:icon>
                 mdi-monitor-dashboard
             </template>
             <template v-slot:name>
-                PROFILE MAHASISWA
+                KEMAHASISWAAN 
             </template>
             <template v-slot:subtitle>
                 TAHUN AKADEMIK {{tahun_akademik}}
@@ -24,7 +24,7 @@
                     colored-border
                     type="info"
                     >
-                    dashboard untuk memperoleh ringkasan informasi Profile Mahasiswa.
+                    dashboard untuk memperoleh ringkasan informasi kemahasiswaan perguruan tinggi.
                     </v-alert>
             </template>
         </ModuleHeader>
@@ -34,10 +34,10 @@
         <v-container fluid>            
             
         </v-container>
-    </ElearningLayout>
+    </KemahasiswaanLayout>
 </template>
 <script>
-import ElearningLayout from '@/views/layouts/KemahasiswaanLayout';
+import KemahasiswaanLayout from '@/views/layouts/KemahasiswaanLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter1 from '@/components/sidebar/FilterMode1';
 export default {
@@ -51,7 +51,7 @@ export default {
 				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
-				text:'Kemahasiswaan',
+				text:'KEMAHASISWAAN',
 				disabled:true,
 				href:'#'
 			}
@@ -93,7 +93,7 @@ export default {
         },
     },
     components:{
-        ElearningLayout,
+        KemahasiswaanLayout,
         ModuleHeader,           
         Filter1,        
     },

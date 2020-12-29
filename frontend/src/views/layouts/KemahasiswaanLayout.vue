@@ -55,7 +55,15 @@
                         <v-list-item-title>Logout</v-list-item-title>
                     </v-list-item>
                 </v-list>
-            </v-menu>			
+            </v-menu>
+            <v-divider
+                class="mx-4"
+                inset
+                vertical
+            ></v-divider>
+			<v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
+                <v-icon>mdi-menu-open</v-icon>
+			</v-app-bar-nav-icon>			
         </v-app-bar>    
         <v-navigation-drawer v-model="drawer" width="300" dark class="green darken-1" :temporary="temporaryleftsidebar" app>
 			<v-list-item>
@@ -73,7 +81,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path:'/system-users'}" v-if="CAN_ACCESS('SYSTEM-USERS-GROUP')" link class="yellow" color="green" >
+                <v-list-item :to="{path:'/kemahasiswaan'}" v-if="CAN_ACCESS('SYSTEM-USERS-GROUP')" link class="yellow" color="green" >
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-account</v-icon>
                     </v-list-item-icon>
@@ -89,7 +97,7 @@
                         <v-list-item-title>DAFTAR MAHASISWA</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-divider />
+                <v-divider/>
                 <v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-PERMISSIONS')" to="/system-users/permissions">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-account-key</v-icon>
@@ -133,6 +141,30 @@
                 </v-list-item>    
             </v-list>
         </v-navigation-drawer>        
+        <v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
+            <v-list dense>
+                <v-list-item>		
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-menu-open</v-icon>
+                    </v-list-item-icon>			
+                    <v-list-item-content>									
+                        <v-list-item-title class="title">
+                            OPTIONS
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item :class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')">
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-filter</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>								
+                        <v-list-item-title>FILTER</v-list-item-title>
+                    </v-list-item-content>		
+                </v-list-item>
+                <slot name="filtersidebar"/>		                	
+            </v-list>
+		</v-navigation-drawer>
         <v-main class="mx-4 mb-4">			
 			<slot />
 		</v-main>
