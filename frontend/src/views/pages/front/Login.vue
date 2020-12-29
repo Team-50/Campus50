@@ -3,7 +3,7 @@
         <v-container class="fill-height" fluid>
             <v-row align="center" justify="center" no-gutters>
                 <v-col xs="12" sm="6" md="4">
-                    <h1 class="text-center display-1 font-weight-black primary--text">LOGIN</h1>
+                    <h1 class="text-center display-1 font-weight-black green--text">LOGIN</h1>
                     <v-alert
                         outlined
                         dense
@@ -32,7 +32,7 @@
                             </v-card-text>
                             <v-card-actions class="justify-center">
                                  <v-btn
-                                    color="primary"
+                                    color="success"
                                     @click="doLogin"
                                     :loading="btnLoading"
                                     :disabled="btnLoading"
