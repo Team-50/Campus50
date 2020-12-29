@@ -1,7 +1,7 @@
 <template>
     <FrontLayout>
         <v-container fluid>
-            <v-row>
+            <v-row class="grey lighten-5">
                 <v-col cols="12">
                     <v-carousel
                         cycle                                                

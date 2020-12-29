@@ -3,7 +3,7 @@
         <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
             <strong>Hak Akses Sebagai :</strong> {{ROLE}}
 		</v-system-bar>	
-        <v-app-bar app>
+        <v-app-bar app >
             <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="grey--text"></v-app-bar-nav-icon>
             <v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
@@ -173,7 +173,7 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
-    name:'SystemUserLayout',
+    name:'KemahasiswaanLayout',
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];          
