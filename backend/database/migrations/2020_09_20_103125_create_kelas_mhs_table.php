@@ -51,7 +51,7 @@ class CreateKelasMhsTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('user_id')
+            $table->foreign('zoom_id')
                     ->references('id')
                     ->on('plugins_h2h_zoom')
                     ->onDelete('set null')
