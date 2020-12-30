@@ -76,99 +76,35 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path:'/dmaster'}" v-if="CAN_ACCESS('DMASTER-GROUP')" link class="yellow" color="green" >
+                <v-list-item :to="{path:'/perencanaan'}" v-if="CAN_ACCESS('PERENCANAAN-GROUP')" link class="yellow" color="green" >
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-home-floor-b</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>BOARD DATA MASTER</v-list-item-title>
+                        <v-list-item-title>BOARD PERENCANAAN</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>                
-                <v-subheader>PERGURUAN TINGGI</v-subheader>
-                <v-list-item link to="/dmaster/jenjangstudi">
+                <v-subheader>RESNTRA P.T</v-subheader>
+                <v-list-item link to="/dmaster/renstra/visi">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-stairs-up</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>
-                            JENJANG STUDI
+                            VISI
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>      
-                <v-list-item link v-if="CAN_ACCESS('DMASTER-FAKULTAS_BROWSE') && isBentukPT('universitas')" to="/dmaster/fakultas">
+                <v-list-item link to="/perencanaan/renstra/misi">
                     <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-home</v-icon>
+                        <v-icon>mdi-stairs-up</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>
-                            FAKULTAS
+                            MISI
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>  
-                <v-list-item link v-if="CAN_ACCESS('DMASTER-PRODI_BROWSE')" to="/dmaster/programstudi">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-home-assistant</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            PROGRAM STUDI
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>            
-                <v-subheader>FASILITAS</v-subheader>
-                <v-list-item link to="/dmaster/ruangkelas">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-seat-legroom-extra</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            RUANG KELAS
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>  
-                <v-subheader>MAHASISWA</v-subheader>
-                <v-list-item link to="/dmaster/statusmahasiswa">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-arrow-vertical-lock</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            STATUS MAHASISWA
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>  
-                <v-list-item link v-if="CAN_ACCESS('DMASTER-KELAS_BROWSE')" to="/dmaster/kelas">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-google-classroom</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            KELAS
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>                                          
-                <v-subheader>DOSEN</v-subheader>
-                <v-list-item link to="/dmaster/jabatanakademik">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-chair-rolling</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            JABATAN AKADEMIK
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-                <v-subheader>AKADEMIK</v-subheader>
-                <v-list-item link v-if="CAN_ACCESS('DMASTER-TA_BROWSE')" to="/dmaster/ta">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-calendar-outline</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            TAHUN AKADEMIK
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>                  
+                </v-list-item>                      
             </v-list>
         </v-navigation-drawer>
         <v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
