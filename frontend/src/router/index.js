@@ -129,6 +129,16 @@ const routes = [
         },
 		component: () => import('../views/pages/admin/dmaster/ProgramStudi.vue'),		
 	},		
+	//perencanaan	
+	{
+		path: '/perencanaan',
+		name: 'Perencanaan',
+		meta:{
+			title: "PERENCANAAN",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/perencanaan/Perencanaan.vue'),		
+	},
 	//spmb	
 	{
 		path: '/spmb',
