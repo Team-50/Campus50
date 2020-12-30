@@ -35,6 +35,35 @@
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+                <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('PERENCANAAN-GROUP')">
+                    <v-card
+                    class="mx-auto clickable"
+                    max-width="344"
+                    min-height="210"
+                    color="#2ed573"
+                    @click.native="$router.push('/perencanaan')">
+                        <div class="text-center pt-4">
+                            <v-btn
+                                class="mx-2"
+                                fab
+                                dark
+                                large
+                                elevation ="0"
+                                color="white">
+                                <v-icon color="#2ed573">
+                                    mdi-monitor-multiple
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <v-card-title class="white--text font-weight-bold justify-center">
+                            PERENCANAAN
+                        </v-card-title>
+                        <v-card-subtitle class="white--text font-weight-medium text-center">
+                            Modul Perencanaan meliputi Renstra P.T dan Penelitian
+                        </v-card-subtitle>
+                    </v-card>
+                </v-col>
+                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SPMB-GROUP')">
                     <v-card
                     class="mx-auto clickable"

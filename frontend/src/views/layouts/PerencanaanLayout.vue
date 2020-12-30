@@ -203,7 +203,7 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
-    name:'DataMasterLayout',  
+    name:'PerencanaanLayout.vue',  
     props:{
         showrightsidebar:{
             type:Boolean,
