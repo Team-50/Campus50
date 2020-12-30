@@ -1,6 +1,6 @@
 <template>
     <FrontLayout>
-        <v-container class="fill-height" fluid>
+        <!-- <v-container class="fill-height" fluid>
             <v-row align="center" justify="center" no-gutters>
                 <v-col xs="12" sm="6" md="4">
                     <h1 class="text-center display-1 font-weight-black green--text">LOGIN</h1>
@@ -11,7 +11,7 @@
                         :value="form_error"
                         icon="mdi-close-octagon-outline"
                     >
-                        Username atau Password tidak dikenal !!!.
+                        Username atau Password tidak dikenal !.
                     </v-alert>
                     <v-form ref="frmlogin" @keyup.native.enter="doLogin" lazy-validation>
                         <v-card outlined>
@@ -44,7 +44,80 @@
                     </v-form>
                 </v-col>
             </v-row>
+        </v-container> -->
+        
+        <v-container class="grey lighten-5">
+            <v-row no-gutters>
+            <v-col
+                cols="12"
+                sm="6"
+                md="8"
+            >
+                <v-card
+                class="pa-2"
+                elevation="0"
+                tile
+                >
+                .col-12 .col-sm-6 .col-md-8
+                </v-card>
+            </v-col>
+            <v-col
+                cols="6"
+                md="4"
+            >
+                <v-card
+                class="pa-2"
+                elevation="0"
+                tile
+                >
+                    <v-card height="550px">
+                        <v-navigation-drawer
+                        width="550px"
+                        absolute
+                        permanent
+                        right
+                        >
+                        <template v-slot:prepend>
+                            <h1 class="text-center display-1 font-weight-black green--text">LOGIN</h1>
+                        </template>
+
+                        <v-divider></v-divider>
+                            <v-form ref="frmlogin" @keyup.native.enter="doLogin" lazy-validation>
+                                <v-card-text>
+                                    <v-text-field
+                                        v-model="formlogin.username"
+                                        label="Username"
+                                        :rules="rule_username"
+                                        outlined
+                                        dense />
+                                    <v-text-field
+                                        v-model="formlogin.password"
+                                        label="Password"
+                                        type="password"
+                                        :rules="rule_password"
+                                        outlined
+                                        dense />  
+                                </v-card-text>
+                                <v-card-actions class="justify-center">
+                                        <v-btn
+                                        height="50px"
+                                        color="success"
+                                        @click="doLogin"
+                                        :loading="btnLoading"
+                                        :disabled="btnLoading"
+                                        block>
+                                            Login
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-form>
+                        </v-navigation-drawer>
+                    </v-card>
+                </v-card>
+            </v-col>
+            </v-row>
         </v-container>
+        
+        
     </FrontLayout>
 </template>
 <script>
