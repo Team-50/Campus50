@@ -139,6 +139,24 @@ const routes = [
         },
 		component: () => import('../views/pages/admin/perencanaan/Perencanaan.vue'),		
 	},
+	{
+		path: '/perencanaan/renstra/visi',
+		name: 'RenstraVisi',
+		meta:{
+			title: "RENSTRA - VISI",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/perencanaan/RenstraVisi.vue'),		
+	},
+	{
+		path: '/perencanaan/renstra/misi',
+		name: 'RenstraMisi',
+		meta:{
+			title: "RENSTRA - MISI",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/perencanaan/RenstraMisi.vue'),		
+	},
 	//spmb	
 	{
 		path: '/spmb',
