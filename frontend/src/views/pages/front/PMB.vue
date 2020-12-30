@@ -3,10 +3,10 @@
         <v-container class="fill-height" fluid>
             <v-row align="center" justify="center" no-gutters>
                 <v-col xs="12" sm="6" md="4">
-                    <h1 class="text-center display-1 font-weight-black primary--text">
+                    <h1 class="text-center display-1 font-weight-black success--text">
                         PENDAFTARAN MAHASISWA BARU
                     </h1>    
-                    <h4 class="text-center title font-weight-black primary--text">
+                    <h4 class="text-center title font-weight-black success--text">
                         TAHUN AKADEMIK {{tahunPendaftaran|formatTA}}
                     </h4>
                     <v-form ref="frmpendaftaran" v-model="form_valid" lazy-validation>
@@ -78,7 +78,7 @@
                             </v-card-actions>                            
                             <v-card-actions class="justify-center">                                
                                  <v-btn 
-                                    color="primary" 
+                                    color="success" 
                                     @click="save" 
                                     :loading="btnLoading"
                                     :disabled="btnLoading"

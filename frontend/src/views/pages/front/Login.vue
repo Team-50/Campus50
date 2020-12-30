@@ -46,7 +46,7 @@
             </v-row>
         </v-container> -->
         
-        <v-container class="grey lighten-5">
+        <v-container class="grey lighten-5" fluid>
             <v-row no-gutters>
             <v-col
                 cols="12"
@@ -58,7 +58,7 @@
                 elevation="0"
                 tile
                 >
-                .col-12 .col-sm-6 .col-md-8
+                
                 </v-card>
             </v-col>
             <v-col
