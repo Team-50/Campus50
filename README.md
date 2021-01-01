@@ -11,7 +11,7 @@
 
 Catatan: kalau `main` tidak jalan ganti pakai `master`
 
-## Cara membuat branch 
+## Cara membuat branch
 1. git branch
 2. git branch nama_branch
 3. git checkout nama_branch
@@ -25,3 +25,6 @@ lakukan commit terlebih dahulu:
 
 Setelah branch di merge, best practice-nya branch tsb dihapus (INGAT!!! Biasakan 1 Task = 1 Branch):
 1. git branch -D nama_branch
+
+## Mac Multiple PHP
+Bagi pengguna Mac bila ingin PHP bisa jalan beberapa versi silahkan ikuti panduan di https://getgrav.org/blog/macos-bigsur-apache-multiple-php-versions
