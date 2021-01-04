@@ -129,6 +129,15 @@ const routes = [
         },
 		component: () => import('../views/pages/admin/dmaster/ProgramStudi.vue'),		
 	},		
+	{
+		path: '/dmaster/konsentrasi',
+		name: 'DMasterKonsentrasi',
+		meta:{
+			title: "DATA MASTER - KONSENTRASI",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/Konsentrasi.vue'),		
+	},		
 	//perencanaan	
 	{
 		path: '/perencanaan',
