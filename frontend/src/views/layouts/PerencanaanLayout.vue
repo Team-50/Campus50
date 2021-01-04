@@ -84,7 +84,7 @@
                         <v-list-item-title>BOARD PERENCANAAN</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>                
-                <v-subheader>RESNTRA P.T</v-subheader>
+                <v-subheader>RENSTRA P.T</v-subheader>
                 <v-list-item link to="/dmaster/renstra/visi">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-stairs-up</v-icon>
