@@ -1,6 +1,7 @@
 stages:
   - build
-  - test  
+  - test 
+  - deploy 
 
 cache:
   paths:
@@ -11,6 +12,7 @@ build:
   stage : build
   script:
     - cd frontend
+    - npm install
     - rm -rf .env.production    
     - cp .env.production.example .env.production  
     - npm run build    
@@ -31,3 +33,7 @@ test:
     - echo "Ini tahap testing"
     - cd frontend    
     - cd ..
+deploy:
+  stage: deploy
+  script:
+    - echo "Ini tahap deploye "
