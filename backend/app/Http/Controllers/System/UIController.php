@@ -41,12 +41,12 @@ class UIController extends Controller {
     {
         $config = ConfigurationModel::getCache();
         $theme=[
-            'V-SYSTEM-BAR-CSS-CLASS'=>$config['V-SYSTEM-BAR-CSS-CLASS'],
-            'V-APP-BAR-NAV-ICON-CSS-CLASS'=>$config['V-APP-BAR-NAV-ICON-CSS-CLASS'],
-            'V-NAVIGATION-DRAWER-CSS-CLASS'=>$config['V-NAVIGATION-DRAWER-CSS-CLASS'],
-            'V-LIST-ITEM-BOARD-CSS-CLASS'=>$config['V-LIST-ITEM-BOARD-CSS-CLASS'],
-            'V-LIST-ITEM-BOARD-COLOR'=>$config['V-LIST-ITEM-BOARD-COLOR'],
-            'V-LIST-ITEM-ACTIVE-CSS-CLASS'=>$config['V-LIST-ITEM-ACTIVE-CSS-CLASS'],
+            'V_SYSTEM_BAR_CSS_CLASS'=>$config['V_SYSTEM_BAR_CSS_CLASS'],
+            'V_APP_BAR_NAV_ICON_CSS_CLASS'=>$config['V_APP_BAR_NAV_ICON_CSS_CLASS'],
+            'V_NAVIGATION_DRAWER_CSS_CLASS'=>$config['V_NAVIGATION_DRAWER_CSS_CLASS'],
+            'V_LIST_ITEM_BOARD_CSS_CLASS'=>$config['V_LIST_ITEM_BOARD_CSS_CLASS'],
+            'V_LIST_ITEM_BOARD_COLOR'=>$config['V_LIST_ITEM_BOARD_COLOR'],
+            'V_LIST_ITEM_ACTIVE_CSS_CLASS'=>$config['V_LIST_ITEM_ACTIVE_CSS_CLASS'],
         ];
         $daftar_semester=[
                             0=>[
