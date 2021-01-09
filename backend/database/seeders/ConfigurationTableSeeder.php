@@ -220,18 +220,19 @@ class ConfigurationTableSeeder extends Seeder
             'config_id'=>"807",
             'config_group'=>'theme',
             'config_key'=>'COLOR_DASHBOARD_COLOR',
-            'config_value'=>"{
-                                'dmaster':'#2ed573',
-                                'perencanaan':'#2ed573',
-                                'spmb':'#1e90ff',
-                                'keuangan':'#3742fa',
-                                'akademik':'#a4b0be',
-                                'kemahasiswaan':'#ff7f50',
-                                'elearning':'#ffa502',
-                                'user-sistem':'#ff6348',
-                                'konfigurasi-sistem':'#ff4757',
-                                'migrasi-sistem':'#747d8c',
-                            }",
+            'config_value'=>json_encode([
+                'dmaster'=>'#2ed573',
+                'perencanaan'=>'#2ed573',
+                'spmb'=>'#1e90ff',
+                'keuangan'=>'#3742fa',
+                'akademik'=>'#a4b0be',
+                'kemahasiswaan'=>'#ff7f50',
+                'elearning'=>'#ffa502',
+                'user_sistem'=>'#ff6348',
+                'konfigurasi_sistem'=>'#ff4757',
+                'migrasi_sistem'=>'#747d8c'
+            ]),
+            
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
