@@ -47,6 +47,7 @@ class UIController extends Controller {
             'V_LIST_ITEM_BOARD_CSS_CLASS'=>$config['V_LIST_ITEM_BOARD_CSS_CLASS'],
             'V_LIST_ITEM_BOARD_COLOR'=>$config['V_LIST_ITEM_BOARD_COLOR'],
             'V_LIST_ITEM_ACTIVE_CSS_CLASS'=>$config['V_LIST_ITEM_ACTIVE_CSS_CLASS'],
+            'COLOR_DASHBOARD'=>json_decode($config['COLOR_DASHBOARD'],true)
         ];
         $daftar_semester=[
                             0=>[

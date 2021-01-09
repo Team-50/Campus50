@@ -3,7 +3,7 @@
         <v-container v-if="dashboard=='mahasiswabaru'">
             <DashboardMB />
         </v-container>        
-        <v-container fluid v-else color="#f1f2f6">
+        <v-container fluid v-else :color="color_dashboard.dmaster">
             <v-row>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('DMASTER-GROUP')">
@@ -40,7 +40,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#2ed573"
+                    :color="color_dashboard.perencanaan"
                     @click.native="$router.push('/perencanaan')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -69,7 +69,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#1e90ff"
+                    :color="color_dashboard.spmb"
                     @click.native="$router.push('/spmb')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -98,7 +98,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#3742fa"
+                    :color="color_dashboard.keuangan"
                     @click.native="$router.push('/keuangan')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -127,7 +127,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#a4b0be"
+                    :color="color_dashboard.akademik"
                     @click.native="$router.push('/akademik')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -156,7 +156,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#ff7f50"
+                    :color="color_dashboard.kemahasiswaan"
                     @click.native="$router.push('/kemahasiswaan')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -185,7 +185,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#ffa502"
+                    :color="color_dashboard.elearning"
                     @click.native="$router.push('/elearning')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -214,7 +214,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#ff6348"
+                    :color="color_dashboard.user_sistem"
                     @click.native="$router.push('/system-users')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -243,7 +243,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#ff4757"
+                    :color="color_dashboard.konfigurasi_sistem"
                     @click.native="$router.push('/system-setting')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -272,7 +272,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#747d8c"
+                    :color="color_dashboard.migrasi_sistem"
                     @click.native="$router.push('/system-migration')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -326,7 +326,9 @@ export default {
         TOKEN:null,
         dashboard:null,
 
-        tahun_pendaftaran:''
+        tahun_pendaftaran:'',
+        //theme
+        color_dashboard:{}
 	}),
 	methods : {
 		initialize:async function()
@@ -338,10 +340,11 @@ export default {
                 }
             }).then(({data})=>{          
                 this.dashboard = data.role[0];    
-                this.$store.dispatch('uiadmin/changeDashboard',this.dashboard);                                       
+                this.$store.dispatch('uiadmin/changeDashboard',this.dashboard);                 
             });                 
             this.$store.dispatch('uiadmin/init',this.$ajax);              
-            this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];            
+            this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
+            this.color_dashboard=this.$store.getters['uiadmin/getTheme']('COLOR_DASHBOARD');                                                  
 		}
 	},
 	computed:{

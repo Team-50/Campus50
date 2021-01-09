@@ -1,51 +1,5 @@
 <template>
     <FrontLayout>
-        <!-- <v-container class="fill-height" fluid>
-            <v-row align="center" justify="center" no-gutters>
-                <v-col xs="12" sm="6" md="4">
-                    <h1 class="text-center display-1 font-weight-black green--text">LOGIN</h1>
-                    <v-alert
-                        outlined
-                        dense
-                        type="error"
-                        :value="form_error"
-                        icon="mdi-close-octagon-outline"
-                    >
-                        Username atau Password tidak dikenal !.
-                    </v-alert>
-                    <v-form ref="frmlogin" @keyup.native.enter="doLogin" lazy-validation>
-                        <v-card outlined>
-                            <v-card-text>
-                                <v-text-field
-                                    v-model="formlogin.username"
-                                    label="Username"
-                                    :rules="rule_username"
-                                    outlined
-                                    dense />
-                                <v-text-field
-                                    v-model="formlogin.password"
-                                    label="Password"
-                                    type="password"
-                                    :rules="rule_password"
-                                    outlined
-                                    dense />  
-                            </v-card-text>
-                            <v-card-actions class="justify-center">
-                                 <v-btn
-                                    color="success"
-                                    @click="doLogin"
-                                    :loading="btnLoading"
-                                    :disabled="btnLoading"
-                                    block>
-                                        Login
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-form>
-                </v-col>
-            </v-row>
-        </v-container> -->
-        
         <v-container class="grey lighten-5" fluid>
             <v-row
                 no-gutters
@@ -66,8 +20,7 @@
                         :src="$api.url+'/storage/images/campus_50_logo.png'"
                         ></v-img>
                 </v-card>
-            </v-col>
-            
+            </v-col>            
             <v-col
                 sm="12"
                 md="4"
@@ -77,13 +30,7 @@
                 elevation="0"
                 tile
                 >
-                    <v-card height="450px">
-                        <!-- <v-navigation-drawer
-                        width="550px"
-                        absolute
-                        permanent
-                        right
-                        > -->
+                    <v-card height="450px">                        
                         <template v-slot:prepend>
                             <h1 class="text-center display-1 font-weight-black green--text">LOGIN</h1>
                         </template>
@@ -121,8 +68,6 @@
             </v-col>
             </v-row>
         </v-container>
-        
-        
     </FrontLayout>
 </template>
 <script>

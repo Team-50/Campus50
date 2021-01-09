@@ -219,7 +219,7 @@ class ConfigurationTableSeeder extends Seeder
         \DB::table('pe3_configuration')->insert([
             'config_id'=>"807",
             'config_group'=>'theme',
-            'config_key'=>'COLOR_DASHBOARD_COLOR',
+            'config_key'=>'COLOR_DASHBOARD',
             'config_value'=>json_encode([
                 'dmaster'=>'#2ed573',
                 'perencanaan'=>'#2ed573',

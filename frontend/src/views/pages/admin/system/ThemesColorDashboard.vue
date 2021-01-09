@@ -132,7 +132,7 @@ export default {
                     Authorization:this.TOKEN
                 }
             }).then(({data})=>{  
-                let setting = JSON.parse(data.setting.COLOR_DASHBOARD_COLOR);              
+                let setting = JSON.parse(data.setting.COLOR_DASHBOARD);              
                 this.showColor=setting.dmaster;                             
                 this.formdata.dmaster=setting.dmaster;            
                 this.formdata.perencanaan=setting.perencanaan;            
@@ -168,6 +168,9 @@ export default {
                     break;
                     case 'kemahasiswaan':
                         this.formdata.kemahasiswaan=this.showColor;               
+                    break;
+                    case 'akademik':
+                        this.formdata.akademik=this.showColor;               
                     break;
                     case 'elearning':
                         this.formdata.elearning=this.showColor;                
@@ -237,6 +240,9 @@ export default {
                 break;
                 case 'keuangan':
                     this.showColor=this.formdata.keuangan;                 
+                break;
+                case 'akademik':
+                    this.showColor=this.formdata.akademik;                 
                 break;
                 case 'kemahasiswaan':
                     this.showColor=this.formdata.kemahasiswaan;                 
