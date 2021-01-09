@@ -716,6 +716,15 @@ const routes = [
 		component: () => import('../views/pages/admin/system/Email.vue'),		
 	},
 	{
+		path: '/system-setting/themes/colordashboard',
+		name: 'SettingThemesColorDashboard',
+		meta:{
+			title: "SETTING - THEMES",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/system/ThemesColorDashboard.vue'),		
+	},
+	{
 		path: '/system-users',
 		name: 'SystemUsers',
 		meta:{

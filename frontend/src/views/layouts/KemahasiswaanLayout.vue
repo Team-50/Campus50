@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
+        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V_SYSTEM_BAR_CSS_CLASS')">
             <strong>Hak Akses Sebagai :</strong> {{ROLE}}
 		</v-system-bar>	
         <v-app-bar app >
@@ -154,7 +154,7 @@
                     </v-list-item-content>
                 </v-list-item>
                 <v-divider></v-divider>
-                <v-list-item :class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')">
+                <v-list-item :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-filter</v-icon>
                     </v-list-item-icon>

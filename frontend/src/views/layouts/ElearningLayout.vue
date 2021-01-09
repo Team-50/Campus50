@@ -1,10 +1,10 @@
 <template>
     <div>
-        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
+        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V_SYSTEM_BAR_CSS_CLASS')">
             
 		</v-system-bar>	
         <v-app-bar app>
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']('V-APP-BAR-NAV-ICON-CSS-CLASS')"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']('V_APP_BAR_NAV_ICON_CSS_CLASS')"></v-app-bar-nav-icon>
             <v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
 			</v-toolbar-title>
@@ -60,7 +60,7 @@
                 <v-icon>mdi-menu-open</v-icon>
 			</v-app-bar-nav-icon>            
         </v-app-bar>    
-        <v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']('V-NAVIGATION-DRAWER-CSS-CLASS')" :temporary="temporaryleftsidebar" app>
+        <v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')" :temporary="temporaryleftsidebar" app>
 			<v-list-item>
 				<v-list-item-avatar>
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path:'/elearning'}" link :class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-BOARD-CSS-CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-BOARD-COLOR')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
+                <v-list-item :to="{path:'/elearning'}" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-monitor-dashboard</v-icon>
                     </v-list-item-icon>
@@ -85,7 +85,7 @@
                     </v-list-item-content>
                 </v-list-item>   
                 <v-subheader>DATA MASTER</v-subheader>                
-                <v-list-item link to="/elearning/kelas" :active-class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
+                <v-list-item link to="/elearning/kelas" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-google-classroom</v-icon>
                     </v-list-item-icon>
@@ -96,7 +96,7 @@
                     </v-list-item-content>
                 </v-list-item>   
                 <v-subheader>PERKULIAHAN</v-subheader>
-                <v-list-item link to="/elearning/kelas" :active-class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
+                <v-list-item link to="/elearning/kelas" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-google-classroom</v-icon>
                     </v-list-item-icon>
@@ -121,7 +121,7 @@
                     </v-list-item-content>
                 </v-list-item>
                 <v-divider></v-divider>
-                <v-list-item :class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')">
+                <v-list-item :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-filter</v-icon>
                     </v-list-item-icon>
