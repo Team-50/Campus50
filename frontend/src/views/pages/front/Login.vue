@@ -47,22 +47,29 @@
         </v-container> -->
         
         <v-container class="grey lighten-5" fluid>
-            <v-row no-gutters>
+            <v-row
+                no-gutters
+                align="center"
+                >
             <v-col
-                cols="12"
-                sm="6"
+                sm="12"
                 md="8"
+                align="center"
             >
                 <v-card
                 class="pa-2"
                 elevation="0"
-                tile
+                color="grey lighten-5"
                 >
-                
+                    <v-img
+                        max-width="400px"
+                        :src="$api.url+'/storage/images/campus_50_logo.png'"
+                        ></v-img>
                 </v-card>
             </v-col>
+            
             <v-col
-                cols="6"
+                sm="12"
                 md="4"
             >
                 <v-card
@@ -70,19 +77,18 @@
                 elevation="0"
                 tile
                 >
-                    <v-card height="550px">
-                        <v-navigation-drawer
+                    <v-card height="450px">
+                        <!-- <v-navigation-drawer
                         width="550px"
                         absolute
                         permanent
                         right
-                        >
+                        > -->
                         <template v-slot:prepend>
                             <h1 class="text-center display-1 font-weight-black green--text">LOGIN</h1>
                         </template>
-
-                        <v-divider></v-divider>
                             <v-form ref="frmlogin" @keyup.native.enter="doLogin" lazy-validation>
+                                <h2 class="text-center green--text pt-2">Login</h2>
                                 <v-card-text>
                                     <v-text-field
                                         v-model="formlogin.username"
@@ -106,11 +112,10 @@
                                         :loading="btnLoading"
                                         :disabled="btnLoading"
                                         block>
-                                            Login
+                                            Sign In
                                     </v-btn>
                                 </v-card-actions>
                             </v-form>
-                        </v-navigation-drawer>
                     </v-card>
                 </v-card>
             </v-col>
