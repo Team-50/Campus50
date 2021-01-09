@@ -32,10 +32,8 @@
                         <v-card>                            
                             <v-card-text>
                                 <v-row>
-                                    <v-col xs="12" sm="12" md="12">
-                                        <v-radio-group
-                                            v-model="currentBox"
-                                            row>
+                                    <v-col xs="12" sm="6" md="6">
+                                        <v-radio-group v-model="currentBox">
                                             <v-radio label="DATA MASTER" value="dmaster" />
                                             <v-radio label="PERENCANAAN" value="perencanaan" />
                                             <v-radio label="SPMB" value="spmb" />
@@ -48,23 +46,12 @@
                                             <v-radio label="MIGRASI SISTEM" value="migrasi_sistem" />
                                         </v-radio-group>
                                     </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col xs="12" sm="6" md="6">
-                                        <v-color-picker v-model="color"></v-color-picker>
-                                    </v-col>
                                     <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                     <v-col xs="12" sm="6" md="6">
-                                        <v-sheet
-                                            dark
-                                            class="pa-4"
-                                            >
-                                            <pre>{{ showColor }}</pre>
-                                        </v-sheet>
+                                        <v-color-picker v-model="color" mode="hexa" :hide-mode-switch="true"></v-color-picker>
                                     </v-col>
                                     <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                </v-row>
-                                
+                                </v-row>                                
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>                                
@@ -164,17 +151,44 @@ export default {
         save () {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                
+                this.btnLoading=true;    
+                switch (this.currentBox)
+                {
+                    case 'dmaster':
+                        this.formdata.dmaster=this.showColor;
+                    break;
+                    case 'perencanaan':
+                        this.formdata.perencanaan=this.showColor;
+                    break;                    
+                    case 'spmb':
+                        this.formdata.spmb=this.showColor;              
+                    break;
+                    case 'keuangan':
+                        this.formdata.keuangan=this.showColor;                 
+                    break;
+                    case 'kemahasiswaan':
+                        this.formdata.kemahasiswaan=this.showColor;               
+                    break;
+                    case 'elearning':
+                        this.formdata.elearning=this.showColor;                
+                    break;
+                    case 'user_sistem':
+                        this.formdata.user_sistem=this.showColor;               
+                    break;
+                    case 'konfigurasi_sistem':
+                        this.formdata.konfigurasi_sistem=this.showColor; 
+                    break;
+                    case 'migrasi_sistem':
+                        this.formdata.migrasi_sistem=this.showColor;                  
+                    break;                
+                }
+                            
                 this.$ajax.post('/system/setting/variables',
                     {
                         '_method':'PUT', 
-                        'pid':'Header Laporan',
+                        'pid':'Color Dashboard',
                         setting:JSON.stringify({
-                            701:this.formdata.header_1,
-                            702:this.formdata.header_2,
-                            703:this.formdata.header_3,
-                            704:this.formdata.header_4,
-                            705:this.formdata.header_address,
+                            807:this.formdata,                            
                         }),                                                                                                                            
                     },
                     {
