@@ -165,7 +165,7 @@ class ConfigurationTableSeeder extends Seeder
         \DB::table('pe3_configuration')->insert([
             'config_id'=>"801",
             'config_group'=>'theme',
-            'config_key'=>'V-SYSTEM-BAR-CSS-CLASS',
+            'config_key'=>'V_SYSTEM_BAR_CSS_CLASS',
             'config_value'=>'green lighten-2 white--text',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
@@ -174,7 +174,7 @@ class ConfigurationTableSeeder extends Seeder
         \DB::table('pe3_configuration')->insert([
             'config_id'=>"802",
             'config_group'=>'theme',
-            'config_key'=>'V-APP-BAR-NAV-ICON-CSS-CLASS',
+            'config_key'=>'V_APP_BAR_NAV_ICON_CSS_CLASS',
             'config_value'=>'grey--text',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
@@ -183,7 +183,7 @@ class ConfigurationTableSeeder extends Seeder
         \DB::table('pe3_configuration')->insert([
             'config_id'=>"803",
             'config_group'=>'theme',
-            'config_key'=>'V-NAVIGATION-DRAWER-CSS-CLASS',
+            'config_key'=>'V_NAVIGATION_DRAWER_CSS_CLASS',
             'config_value'=>'green darken-1',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
@@ -192,7 +192,7 @@ class ConfigurationTableSeeder extends Seeder
         \DB::table('pe3_configuration')->insert([
             'config_id'=>"804",
             'config_group'=>'theme',
-            'config_key'=>'V-LIST-ITEM-BOARD-CSS-CLASS',
+            'config_key'=>'V_LIST_ITEM_BOARD_CSS_CLASS',
             'config_value'=>'yellow',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
@@ -201,7 +201,7 @@ class ConfigurationTableSeeder extends Seeder
         \DB::table('pe3_configuration')->insert([
             'config_id'=>"805",
             'config_group'=>'theme',
-            'config_key'=>'V-LIST-ITEM-BOARD-COLOR',
+            'config_key'=>'V_LIST_ITEM_BOARD_COLOR',
             'config_value'=>'green',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
@@ -210,8 +210,28 @@ class ConfigurationTableSeeder extends Seeder
         \DB::table('pe3_configuration')->insert([
             'config_id'=>"806",
             'config_group'=>'theme',
-            'config_key'=>'V-LIST-ITEM-ACTIVE-CSS-CLASS',
+            'config_key'=>'V_LIST_ITEM_ACTIVE_CSS_CLASS',
             'config_value'=>'green darken-1',
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now()
+        ]);
+        
+        \DB::table('pe3_configuration')->insert([
+            'config_id'=>"807",
+            'config_group'=>'theme',
+            'config_key'=>'COLOR_DASHBOARD_COLOR',
+            'config_value'=>"{
+                                'dmaster':'#2ed573',
+                                'perencanaan':'#2ed573',
+                                'spmb':'#1e90ff',
+                                'keuangan':'#3742fa',
+                                'akademik':'#a4b0be',
+                                'kemahasiswaan':'#ff7f50',
+                                'elearning':'#ffa502',
+                                'user-sistem':'#ff6348',
+                                'konfigurasi-sistem':'#ff4757',
+                                'migrasi-sistem':'#747d8c',
+                            }",
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);

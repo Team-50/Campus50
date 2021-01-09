@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
+        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V_SYSTEM_BAR_CSS_CLASS')">
             <strong>Hak Akses Sebagai :</strong> {{ROLE}}
 		</v-system-bar>	
         <v-app-bar app>
@@ -115,6 +115,16 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>            
+                <v-list-item link v-if="CAN_ACCESS('DMASTER-KONSENTRASI_BROWSE')" to="/dmaster/konsentrasi">
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-home-assistant</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            KONSENTRASI
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>                                        
                 <v-subheader>FASILITAS</v-subheader>
                 <v-list-item link to="/dmaster/ruangkelas">
                     <v-list-item-icon class="mr-2">

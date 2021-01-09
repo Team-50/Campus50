@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
+        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V_SYSTEM_BAR_CSS_CLASS')">
             <strong>Hak Akses Sebagai :</strong> {{ROLE}}
 		</v-system-bar>	
         <v-app-bar app>
@@ -132,6 +132,17 @@
                     <v-list-item-content>
                         <v-list-item-title>
                             ZOOM
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-subheader v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" >THEMES</v-subheader>                    
+                <v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" to="/system-setting/themes/colordashboard">
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-desktop-mac-dashboard</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            WARNA DASHBOARD
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>

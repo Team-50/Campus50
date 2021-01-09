@@ -248,6 +248,7 @@ class PermissionsTableSeeder extends Seeder
             'SYSTEM-SETTING-ROLES',
             'SYSTEM-SETTING-IDENTITAS-DIRI',
             'SYSTEM-SETTING-VARIABLES',
+            'SYSTEM-SETTING-THEMES',
             'SYSTEM-USERS-SUPERADMIN',
             'SYSTEM-USERS-AKADEMIK',
             'SYSTEM-USERS-PROGRAM-STUDI',

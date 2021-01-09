@@ -18,7 +18,7 @@ class CreateConfigurationTable extends Migration
             $table->smallInteger('config_id',1);
             $table->string('config_group');
             $table->string('config_key');
-            $table->string('config_value')->nullable();            
+            $table->text('config_value')->nullable();            
             $table->timestamps();
         });
     }
