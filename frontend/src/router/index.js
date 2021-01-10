@@ -719,10 +719,19 @@ const routes = [
 		path: '/system-setting/themes/colordashboard',
 		name: 'SettingThemesColorDashboard',
 		meta:{
-			title: "SETTING - THEMES",
+			title: "SETTING - THEMES - WARNA DASHBOARD",
 			requiresAuth:true,
         },
 		component: () => import('../views/pages/admin/system/ThemesColorDashboard.vue'),		
+	},
+	{
+		path: '/system-setting/themes/layout',
+		name: 'SettingThemesColorDashboard',
+		meta:{
+			title: "SETTING - THEMES - LAYOUT",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/system/ThemesLayout.vue'),		
 	},
 	{
 		path: '/system-users',

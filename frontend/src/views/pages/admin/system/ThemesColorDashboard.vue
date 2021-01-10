@@ -204,6 +204,7 @@ export default {
                 }).catch(()=>{
                     this.btnLoading=false;
                 });        
+                this.$store.dispatch('uiadmin/init',this.$ajax); 
             }
         }
     },
