@@ -146,6 +146,16 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+                <v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" to="/system-setting/themes/colordashboard">
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-desktop-mac-dashboard</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            LAYOUT
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
             </v-list>
         </v-navigation-drawer>        
         <v-main class="mx-4 mb-4">			

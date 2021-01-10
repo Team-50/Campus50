@@ -21,7 +21,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#2ed573">
+                                <v-icon :color="color_dashboard.dmaster">
                                     mdi-monitor-multiple
                                 </v-icon>
                             </v-btn>
@@ -50,8 +50,8 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#2ed573">
-                                    mdi-monitor-multiple
+                                <v-icon :color="color_dashboard.perencanaan">
+                                    mdi-airplane-takeoff
                                 </v-icon>
                             </v-btn>
                         </div>
@@ -79,7 +79,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#1e90ff">
+                                <v-icon :color="color_dashboard.spmb">
                                     mdi-account-box
                                 </v-icon>
                             </v-btn>
@@ -108,7 +108,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#3742fa">
+                                <v-icon :color="color_dashboard.keuangan">
                                     mdi-note-multiple-outline
                                 </v-icon>
                             </v-btn>
@@ -137,7 +137,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#a4b0be">
+                                <v-icon :color="color_dashboard.akademik">
                                     mdi-book
                                 </v-icon>
                             </v-btn>
@@ -166,7 +166,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ff7f50">
+                                <v-icon :color="color_dashboard.kemahasiswaan">
                                     mdi-account-group
                                 </v-icon>
                             </v-btn>
@@ -195,7 +195,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ffa502">
+                                <v-icon :color="color_dashboard.elearning">
                                     mdi-lan-connect
                                 </v-icon>
                             </v-btn>
@@ -224,7 +224,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ff6348">
+                                <v-icon :color="color_dashboard.user_sistem">
                                     mdi-account-key
                                 </v-icon>
                             </v-btn>
@@ -253,7 +253,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ff4757">
+                                <v-icon :color="color_dashboard.konfigurasi_sistem">
                                     mdi-database-plus
                                 </v-icon>
                             </v-btn>
@@ -282,7 +282,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#747d8c">
+                                <v-icon :color="color_dashboard.migrasi_sistem">
                                     mdi-source-pull
                                 </v-icon>
                             </v-btn>
