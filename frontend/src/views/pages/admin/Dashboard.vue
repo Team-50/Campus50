@@ -3,7 +3,7 @@
         <v-container v-if="dashboard=='mahasiswabaru'">
             <DashboardMB />
         </v-container>        
-        <v-container fluid v-else :color="color_dashboard.dmaster">
+        <v-container fluid v-else color="#f1f2f6">
             <v-row>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('DMASTER-GROUP')">
@@ -11,7 +11,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#2ed573"
+                    :color="color_dashboard.dmaster"
                     @click.native="$router.push('/dmaster')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -344,7 +344,7 @@ export default {
             });                 
             this.$store.dispatch('uiadmin/init',this.$ajax);              
             this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
-            this.color_dashboard=this.$store.getters['uiadmin/getTheme']('COLOR_DASHBOARD');                                             
+            this.color_dashboard=this.$store.getters['uifront/getTheme']('COLOR_DASHBOARD');                                             
 		}
 	},
 	computed:{
