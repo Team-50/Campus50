@@ -344,7 +344,7 @@ export default {
             });                 
             this.$store.dispatch('uiadmin/init',this.$ajax);              
             this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
-            this.color_dashboard=this.$store.getters['uiadmin/getTheme']('COLOR_DASHBOARD');                                                  
+            this.color_dashboard=this.$store.getters['uiadmin/getTheme']('COLOR_DASHBOARD');                                             
 		}
 	},
 	computed:{

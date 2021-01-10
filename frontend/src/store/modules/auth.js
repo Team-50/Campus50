@@ -38,7 +38,14 @@ const getters= {
         return state.user.role;
     },
     DefaultRole:state=>{
-        return state.user.default_role;
+        if (state.user===null || typeof state.user === 'undefined')
+        {
+            return 'N.A';            
+        }
+        else
+        {
+            return state.user.default_role;
+        }
     },
     Role : state => {
         var role='';
