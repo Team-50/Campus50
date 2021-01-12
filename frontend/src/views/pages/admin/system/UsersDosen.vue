@@ -216,7 +216,10 @@
                                             </v-card-actions>
                                         </v-card>
                                     </v-form>
-                                </v-dialog>                                
+                                </v-dialog>   
+                                <v-dialog v-if="dialogUserPermission" v-model="dialogUserPermission" max-width="800px" persistent>
+                                    <UserPermissions :user="editedItem" v-on:closeUserPermissions="closeUserPermissions" role_default="dosen" />
+                                </v-dialog>                             
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
@@ -225,30 +228,60 @@
                         <template v-slot:item.is_dw="{ item }">
                             {{item.is_dw == false ? 'BUKAN':'YA'}}
                         </template>
-                        <template v-slot:item.actions="{ item }">                            
-                            <v-icon
-                                small
-                                class="mr-2"
-                                :loading="btnLoading"
-                                :disabled="btnLoading"
-                                @click.stop="editItem(item)"
-                                v-if="item.default_role=='dosen'"
-                            >
-                                mdi-pencil
-                            </v-icon>
-                            <v-icon
-                                small
-                                :loading="btnLoading"
-                                :disabled="btnLoading"
-                                @click.stop="deleteItem(item)"
-                                v-if="item.default_role=='dosen'"
-                            >
-                                mdi-delete
-                            </v-icon>                            
+                        <template v-slot:item.actions="{ item }">               
+                            <v-tooltip bottom v-if="item.default_role=='dosen'">             
+                                <template v-slot:activator="{ on, attrs }">                                             
+                                    <v-btn 
+                                        v-bind="attrs"
+                                        v-on="on"
+                                        color="primary" 
+                                        icon                                         
+                                        x-small                                        
+                                        @click.stop="setPermission(item)"
+                                        :loading="btnLoading"
+                                        :disabled="btnLoading">
+                                        <v-icon>mdi-axis-arrow-lock</v-icon>
+                                    </v-btn>     
+                                </template>
+                                <span>Setting Hak Akses</span>                                   
+                            </v-tooltip>   
+                            <v-tooltip bottom v-if="item.default_role=='dosen'">             
+                                <template v-slot:activator="{ on, attrs }">                                             
+                                    <v-btn 
+                                        v-bind="attrs"
+                                        v-on="on"
+                                        color="primary" 
+                                        icon                                         
+                                        x-small
+                                        class="ma-2" 
+                                        @click.stop="editItem(item)"
+                                        :loading="btnLoading"
+                                        :disabled="btnLoading">
+                                        <v-icon>mdi-pencil</v-icon>
+                                    </v-btn>     
+                                </template>
+                                <span>Ubah data user dosen</span>                                   
+                            </v-tooltip>   
+                            <v-tooltip bottom v-if="item.default_role=='dosen'">             
+                                <template v-slot:activator="{ on, attrs }">                                             
+                                    <v-btn 
+                                        v-bind="attrs"
+                                        v-on="on"
+                                        color="warning" 
+                                        icon                                         
+                                        x-small                                        
+                                        @click.stop="deleteItem(item)"
+                                        :loading="btnLoading"
+                                        :disabled="btnLoading">
+                                        <v-icon>mdi-delete</v-icon>
+                                    </v-btn>     
+                                </template>
+                                <span>Hapus data user dosen</span>                                   
+                            </v-tooltip>                             
                         </template>
                         <template v-slot:item.foto="{ item }">                            
                             <v-avatar size="30">
-                                <v-img :src="$api.storageURL+'/'+item.foto" />                                
+                                <v-img :src="$api.url+'/'+item.foto" />                                
                             </v-avatar>                                                                                                  
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
@@ -275,6 +308,7 @@
 import {mapGetters} from 'vuex';
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from '@/components/ModuleHeader';
+import UserPermissions from '@/views/pages/admin/system/UserPermissions';
 export default {
     name: 'UsersDosen',  
     created () {
@@ -298,8 +332,7 @@ export default {
         this.initialize()
     },  
    
-    data: () => ({ 
-        role_id:0,
+    data: () => ({         
         datatableLoading:false,
         btnLoading:false,      
         //tables
@@ -312,16 +345,17 @@ export default {
             { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },     
             { text: 'DW', value: 'is_dw',sortable:true },     
             { text: 'ROLE ASAL', value: 'default_role',sortable:true },     
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: 'AKSI', value: 'actions', sortable: false,width:120 },
         ],
         expanded:[],
         search:'',
-        daftar_users: [],        
-
+        daftar_users: [],                       
+        
         //form
         form_valid:true,
         dialog: false,
-        dialogEdit: false,        
+        dialogEdit: false,   
+        dialogUserPermission: false,     
         editedIndex: -1,        
         editedItem: {
             id:0,
@@ -405,8 +439,7 @@ export default {
                     Authorization:this.TOKEN
                 }
             }).then(({data})=>{               
-                this.daftar_users = data.users;
-                this.role_id=data.role.id;
+                this.daftar_users = data.users;                
                 this.datatableLoading=false;
             });          
             
@@ -443,6 +476,10 @@ export default {
                 }, 300
             );
         },        
+        closeUserPermissions () {
+            this.btnLoading=false;            
+            this.dialogUserPermission = false;
+        },
         save () {
             if (this.$refs.frmdata.validate())
             {
@@ -498,6 +535,10 @@ export default {
                     });
                 }
             }
+        },
+        setPermission: async function (item) {
+            this.editedItem=item;            
+            this.dialogUserPermission = true;
         },
         syncPermission:async function ()
         {
@@ -562,7 +603,8 @@ export default {
     },    
     components:{
         SystemUserLayout,
-        ModuleHeader,        
+        ModuleHeader, 
+        UserPermissions       
     },
 }
 </script>

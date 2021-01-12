@@ -30,6 +30,7 @@ class UsersDosenController extends Controller {
                         users.email,
                         users.nomor_hp,
                         users.foto,
+                        users.theme,
                         pe3_dosen.is_dw,
                         users.default_role,
                         users.created_at,
@@ -37,13 +38,11 @@ class UsersDosenController extends Controller {
                     '))
                     ->join('pe3_dosen','pe3_dosen.user_id','users.id')
                     ->orderBy('username','ASC')
-                    ->get();       
-                    
-        $role = Role::findByName('dosen');
+                    ->get();                           
+        
         return Response()->json([
                                 'status'=>1,
-                                'pid'=>'fetchdata',
-                                'role'=>$role,
+                                'pid'=>'fetchdata',                                
                                 'users'=>$data,
                                 'message'=>'Fetch data users Dosen berhasil diperoleh'
                             ],200);  
@@ -108,7 +107,7 @@ class UsersDosenController extends Controller {
             $permissions=$permission->pluck('name');
             $user->givePermissionTo($permissions);
             
-            if ($request->input('is_dw')=='true')
+            if (filter_var($request->input('is_dw'),FILTER_VALIDATE_BOOLEAN))
             {
                 $user->assignRole('dosenwali'); 
                 $permission=Role::findByName('dosenwali')->permissions;
@@ -198,8 +197,7 @@ class UsersDosenController extends Controller {
                 $user_dosen->nama_dosen=$request->input('name');
                 $user_dosen->nidn = $request->input('nidn');
                 $user_dosen->nipy = $request->input('nipy');
-                $user_dosen->is_dw = $request->input('is_dw');
-                $user_dosen->save();                                
+                $user_dosen->is_dw = $request->input('is_dw');                                             
                 
                 if (filter_var($request->input('is_dw'),FILTER_VALIDATE_BOOLEAN))
                 {
@@ -215,6 +213,7 @@ class UsersDosenController extends Controller {
                     $permissions=$permission->pluck('name');
                     $user->revokePermissionTo($permissions);
                 }
+                $user_dosen->save();   
                 return $user;
             });
             
@@ -255,8 +254,10 @@ class UsersDosenController extends Controller {
 
         $biodatadiri = UserDosen::select(\DB::raw('
                                     pe3_dosen.*,
+                                    users.username,
                                     users.email,
-                                    users.nomor_hp
+                                    users.nomor_hp,
+                                    users.foto
                                 '))
                                 ->join('users','pe3_dosen.user_id','users.id')
                                 ->where('pe3_dosen.active',1)
