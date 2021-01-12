@@ -9,7 +9,8 @@ const getDefaultState = () =>
         identitas:{
             nama_pt:'',
             nama_pt_alias:''
-        },        
+        },     
+        theme:null   
     }
 }
 const state = getDefaultState();
@@ -36,6 +37,10 @@ const mutations = {
     {
         state.identitas = identitas;
     },    
+    setTheme(state,theme)
+    {
+        state.theme=theme;
+    },
     resetState (state) {
         Object.assign(state, getDefaultState())
     }
@@ -68,6 +73,10 @@ const getters= {
     {             
         return state.identitas.bentuk_pt;
     },
+    getTheme : (state) => (key) =>
+    {           
+        return state.theme == null?'':state.theme[key];
+    },
 }
 const actions = {
     init: async function ({commit,state},ajax)
@@ -80,7 +89,8 @@ const actions = {
                 commit('setCaptchaSiteKey',data.captcha_site_key);                                         
                 commit('setTahunPendaftaran',data.tahun_pendaftaran);                                         
                 commit('setSemesterPendaftaran',data.semester_pendaftaran);                                         
-                commit('setIdentitas',data.identitas);                                                         
+                commit('setIdentitas',data.identitas);       
+                commit('setTheme',data.theme);                                                  
                 commit('setLoaded',true);
             })
         }

@@ -11,7 +11,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#2ed573"
+                    :color="color_dashboard.dmaster"
                     @click.native="$router.push('/dmaster')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -21,7 +21,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#2ed573">
+                                <v-icon :color="color_dashboard.dmaster">
                                     mdi-monitor-multiple
                                 </v-icon>
                             </v-btn>
@@ -40,7 +40,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#2ed573"
+                    :color="color_dashboard.perencanaan"
                     @click.native="$router.push('/perencanaan')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -50,8 +50,8 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#2ed573">
-                                    mdi-monitor-multiple
+                                <v-icon :color="color_dashboard.perencanaan">
+                                    mdi-airplane-takeoff
                                 </v-icon>
                             </v-btn>
                         </div>
@@ -69,7 +69,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#1e90ff"
+                    :color="color_dashboard.spmb"
                     @click.native="$router.push('/spmb')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -79,7 +79,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#1e90ff">
+                                <v-icon :color="color_dashboard.spmb">
                                     mdi-account-box
                                 </v-icon>
                             </v-btn>
@@ -98,7 +98,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#3742fa"
+                    :color="color_dashboard.keuangan"
                     @click.native="$router.push('/keuangan')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -108,7 +108,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#3742fa">
+                                <v-icon :color="color_dashboard.keuangan">
                                     mdi-note-multiple-outline
                                 </v-icon>
                             </v-btn>
@@ -127,7 +127,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#a4b0be"
+                    :color="color_dashboard.akademik"
                     @click.native="$router.push('/akademik')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -137,7 +137,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#a4b0be">
+                                <v-icon :color="color_dashboard.akademik">
                                     mdi-book
                                 </v-icon>
                             </v-btn>
@@ -156,7 +156,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#ff7f50"
+                    :color="color_dashboard.kemahasiswaan"
                     @click.native="$router.push('/kemahasiswaan')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -166,7 +166,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ff7f50">
+                                <v-icon :color="color_dashboard.kemahasiswaan">
                                     mdi-account-group
                                 </v-icon>
                             </v-btn>
@@ -185,7 +185,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#ffa502"
+                    :color="color_dashboard.elearning"
                     @click.native="$router.push('/elearning')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -195,7 +195,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ffa502">
+                                <v-icon :color="color_dashboard.elearning">
                                     mdi-lan-connect
                                 </v-icon>
                             </v-btn>
@@ -214,7 +214,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#ff6348"
+                    :color="color_dashboard.user_sistem"
                     @click.native="$router.push('/system-users')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -224,7 +224,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ff6348">
+                                <v-icon :color="color_dashboard.user_sistem">
                                     mdi-account-key
                                 </v-icon>
                             </v-btn>
@@ -243,7 +243,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#ff4757"
+                    :color="color_dashboard.konfigurasi_sistem"
                     @click.native="$router.push('/system-setting')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -253,7 +253,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#ff4757">
+                                <v-icon :color="color_dashboard.konfigurasi_sistem">
                                     mdi-database-plus
                                 </v-icon>
                             </v-btn>
@@ -272,7 +272,7 @@
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
-                    color="#747d8c"
+                    :color="color_dashboard.migrasi_sistem"
                     @click.native="$router.push('/system-migration')">
                         <div class="text-center pt-4">
                             <v-btn
@@ -282,7 +282,7 @@
                                 large
                                 elevation ="0"
                                 color="white">
-                                <v-icon color="#747d8c">
+                                <v-icon :color="color_dashboard.migrasi_sistem">
                                     mdi-source-pull
                                 </v-icon>
                             </v-btn>
@@ -306,7 +306,7 @@ export default {
     name: 'Dashboard',
     created ()
 	{
-        this.TOKEN = this.$route.params.token;        
+        this.TOKEN = this.$route.params.token;                
 		this.breadcrumbs = [
 			{
 				text:'HOME',
@@ -318,7 +318,9 @@ export default {
 				disabled:true,
 				href:'#'
 			}
-		];		
+        ];		
+        this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
+        this.color_dashboard=this.$store.getters['uifront/getTheme']('COLOR_DASHBOARD');                                             
 		this.initialize();
 	},
 	data: () => ({
@@ -326,7 +328,9 @@ export default {
         TOKEN:null,
         dashboard:null,
 
-        tahun_pendaftaran:''
+        tahun_pendaftaran:'',
+        //theme
+        color_dashboard:{}
 	}),
 	methods : {
 		initialize:async function()
@@ -338,10 +342,9 @@ export default {
                 }
             }).then(({data})=>{          
                 this.dashboard = data.role[0];    
-                this.$store.dispatch('uiadmin/changeDashboard',this.dashboard);                                       
+                this.$store.dispatch('uiadmin/changeDashboard',this.dashboard);                 
             });                 
-            this.$store.dispatch('uiadmin/init',this.$ajax);              
-            this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];            
+            this.$store.dispatch('uiadmin/init',this.$ajax); 
 		}
 	},
 	computed:{

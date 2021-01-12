@@ -24,6 +24,17 @@ class UIController extends Controller {
         $identitas['nama_pt']=$config['NAMA_PT'];
         $identitas['nama_pt_alias']=$config['NAMA_PT_ALIAS'];
         $identitas['bentuk_pt']=$config['BENTUK_PT'];
+
+        $theme=[
+            'V_SYSTEM_BAR_CSS_CLASS'=>$config['V_SYSTEM_BAR_CSS_CLASS'],
+            'V_APP_BAR_NAV_ICON_CSS_CLASS'=>$config['V_APP_BAR_NAV_ICON_CSS_CLASS'],
+            'V_NAVIGATION_DRAWER_CSS_CLASS'=>$config['V_NAVIGATION_DRAWER_CSS_CLASS'],
+            'V_LIST_ITEM_BOARD_CSS_CLASS'=>$config['V_LIST_ITEM_BOARD_CSS_CLASS'],
+            'V_LIST_ITEM_BOARD_COLOR'=>$config['V_LIST_ITEM_BOARD_COLOR'],
+            'V_LIST_ITEM_ACTIVE_CSS_CLASS'=>$config['V_LIST_ITEM_ACTIVE_CSS_CLASS'],
+            'COLOR_DASHBOARD'=>json_decode($config['COLOR_DASHBOARD'],true)
+        ];
+        
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',
@@ -31,6 +42,7 @@ class UIController extends Controller {
                                     'tahun_pendaftaran'=>$tahun_pendaftaran,
                                     'semester_pendaftaran'=>$semester_pendaftaran,
                                     'identitas'=>$identitas,
+                                    'theme'=>$theme,
                                     'message'=>'Fetch data ui untuk front berhasil diperoleh'
                                 ],200);
     }
@@ -41,12 +53,13 @@ class UIController extends Controller {
     {
         $config = ConfigurationModel::getCache();
         $theme=[
-            'V-SYSTEM-BAR-CSS-CLASS'=>$config['V-SYSTEM-BAR-CSS-CLASS'],
-            'V-APP-BAR-NAV-ICON-CSS-CLASS'=>$config['V-APP-BAR-NAV-ICON-CSS-CLASS'],
-            'V-NAVIGATION-DRAWER-CSS-CLASS'=>$config['V-NAVIGATION-DRAWER-CSS-CLASS'],
-            'V-LIST-ITEM-BOARD-CSS-CLASS'=>$config['V-LIST-ITEM-BOARD-CSS-CLASS'],
-            'V-LIST-ITEM-BOARD-COLOR'=>$config['V-LIST-ITEM-BOARD-COLOR'],
-            'V-LIST-ITEM-ACTIVE-CSS-CLASS'=>$config['V-LIST-ITEM-ACTIVE-CSS-CLASS'],
+            'V_SYSTEM_BAR_CSS_CLASS'=>$config['V_SYSTEM_BAR_CSS_CLASS'],
+            'V_APP_BAR_NAV_ICON_CSS_CLASS'=>$config['V_APP_BAR_NAV_ICON_CSS_CLASS'],
+            'V_NAVIGATION_DRAWER_CSS_CLASS'=>$config['V_NAVIGATION_DRAWER_CSS_CLASS'],
+            'V_LIST_ITEM_BOARD_CSS_CLASS'=>$config['V_LIST_ITEM_BOARD_CSS_CLASS'],
+            'V_LIST_ITEM_BOARD_COLOR'=>$config['V_LIST_ITEM_BOARD_COLOR'],
+            'V_LIST_ITEM_ACTIVE_CSS_CLASS'=>$config['V_LIST_ITEM_ACTIVE_CSS_CLASS'],
+            'COLOR_DASHBOARD'=>json_decode($config['COLOR_DASHBOARD'],true)
         ];
         $daftar_semester=[
                             0=>[
