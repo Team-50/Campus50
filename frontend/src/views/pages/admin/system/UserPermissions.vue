@@ -1,102 +1,113 @@
 <template>
-    <v-card>
-        <v-card-title>
-            <span class="headline">USER PERMISSIONS</span>
-        </v-card-title>
+    <v-card color="grey lighten-4">
+        <v-toolbar elevation="2"> 
+            <v-toolbar-title>PROFIL DAN PERMISSION USER</v-toolbar-title>
+            <v-divider
+                class="mx-4"
+                inset
+                vertical
+            ></v-divider>
+            <v-spacer></v-spacer>
+            <v-icon                
+                @click.stop="exit">
+                mdi-close-thick
+            </v-icon>
+        </v-toolbar>
         <v-card-text>
             <v-container fluid>
-                <v-row class="mb-4" no-gutters>
-                    <v-col xs="12" sm="12" md="12">
-                        <v-card>
-                           <v-card-text>
-                                <v-row no-gutters>
-                                   <v-col xs="12" sm="6" md="6">
-                                       <v-card flat>
-                                            <v-card-title>ID :</v-card-title>
-                                            <v-card-text>
-                                                {{user.id}}
-                                            </v-card-text>
-                                        </v-card>
-                                   </v-col>
-                                   <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                   <v-col xs="12" sm="6" md="6">
-                                       <v-card flat>
-                                            <v-card-title>NOMOR HP :</v-card-title>
-                                            <v-card-text>
-                                                {{user.nomor_hp}}
-                                            </v-card-text>
-                                        </v-card>
-                                   </v-col>
-                                   <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                </v-row>
-                                <v-row no-gutters>
-                                   <v-col xs="12" sm="6" md="6">
-                                       <v-card flat>
-                                            <v-card-title>USERNAME :</v-card-title>
-                                            <v-card-text>
-                                                {{user.username}}
-                                            </v-card-text>
-                                        </v-card>
-                                   </v-col>
-                                   <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                   
-                                   <v-col xs="12" sm="6" md="6">
-                                       <v-card flat>
-                                            <v-card-title>THEME :</v-card-title>
-                                            <v-card-text>
-                                                {{user.theme}}
-                                            </v-card-text>
-                                        </v-card>
-                                   </v-col>                                    
-                                   <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                </v-row>
-                                <v-row no-gutters>
-                                   <v-col xs="12" sm="6" md="6">
-                                       <v-card flat>
-                                            <v-card-title>NAMA :</v-card-title>
-                                            <v-card-text>
-                                                {{user.name}}
-                                            </v-card-text>
-                                        </v-card>
-                                   </v-col>
-                                   <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                    <v-col xs="12" sm="6" md="6">
-                                       <v-card flat>
-                                            <v-card-title>CREATED :</v-card-title>
-                                            <v-card-text>                                                
-                                                {{$date(user.created_at).format('DD/MM/YYYY HH:mm')}}
-                                            </v-card-text>
-                                        </v-card>
-                                   </v-col>
-                                   <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                </v-row>
-                                <v-row no-gutters>
-                                   <v-col xs="12" sm="6" md="6">
-                                       <v-card flat>
-                                            <v-card-title>EMAIL :</v-card-title>
-                                            <v-card-text>
-                                                {{user.email}}
-                                            </v-card-text>
-                                        </v-card>
-                                   </v-col>
-                                   <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                   <v-col xs="12" sm="6" md="6">
-                                       <v-card flat>
-                                            <v-card-title>UPDATED :</v-card-title>
-                                            <v-card-text>                                                
-                                                {{$date(user.updated_at).format('DD/MM/YYYY HH:mm')}}
-                                            </v-card-text>
-                                        </v-card>
-                                   </v-col>
-                                   <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                </v-row>
-                           </v-card-text>
+                <v-row>
+                    <v-col xs="12" sm="12" md="6">
+                        <v-card flat class="mb-2">
+                            <v-card-title>USER ID:</v-card-title>  
+                            <v-card-subtitle>
+                                {{user.id}}
+                            </v-card-subtitle>
                         </v-card>
                     </v-col>
-                </v-row>                
+                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                    <v-col xs="12" sm="12" md="6">
+                        <v-card flat class="mb-2">
+                            <v-card-title>NOMOR HP:</v-card-title>  
+                            <v-card-subtitle>
+                                {{user.nomor_hp}}
+                            </v-card-subtitle>
+                        </v-card>
+                    </v-col>
+                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                </v-row>
+                <v-row>
+                    <v-col xs="12" sm="12" md="6">
+                        <v-card flat class="mb-2">
+                            <v-card-title>USERNAME:</v-card-title>  
+                            <v-card-subtitle>
+                                {{user.username}}
+                            </v-card-subtitle>
+                        </v-card>
+                    </v-col>
+                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                    <v-col xs="12" sm="12" md="6">
+                        <v-card flat class="mb-2">
+                            <v-card-title>THEME:</v-card-title>  
+                            <v-card-subtitle>
+                                {{user.theme}}
+                            </v-card-subtitle>
+                        </v-card>
+                    </v-col>
+                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                </v-row>
+                <v-row>
+                    <v-col xs="12" sm="12" md="6">
+                        <v-card flat class="mb-2">
+                            <v-card-title>NAMA:</v-card-title>  
+                            <v-card-subtitle>
+                                {{user.name}}
+                            </v-card-subtitle>
+                        </v-card>
+                    </v-col>
+                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                    <v-col xs="12" sm="12" md="6">
+                        <v-card flat class="mb-2">
+                            <v-card-title>ROLE:</v-card-title>  
+                            <v-card-subtitle>
+                                {{role_user}}
+                            </v-card-subtitle>
+                        </v-card>
+                    </v-col>
+                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                </v-row>
+                <v-row>
+                    <v-col xs="12" sm="12" md="6">
+                        <v-card flat class="mb-2">
+                            <v-card-title>EMAIL:</v-card-title>  
+                            <v-card-subtitle>
+                                {{user.email}}
+                            </v-card-subtitle>
+                        </v-card>
+                    </v-col>
+                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                    <v-col xs="12" sm="12" md="6">
+                        <v-card flat class="mb-2">
+                            <v-card-title>CREATED/UPDATED:</v-card-title>  
+                            <v-card-subtitle>
+                                {{$date(user.created_at).format('DD/MM/YYYY HH:mm')}} ~ {{$date(user.updated_at).format('DD/MM/YYYY HH:mm')}}
+                            </v-card-subtitle>
+                        </v-card>
+                    </v-col>
+                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                </v-row>
                 <v-row class="mb-4" no-gutters>
                     <v-col cols="12">
                         <v-card>
+                            <v-card-title>
+                                FILTER ROLE DAN PENCARIAN PERMISSION
+                            </v-card-title>
                             <v-card-text>
+                                <v-select
+                                    label="ROLES"
+                                    :items="daftar_role"
+                                    v-model="role_name"
+                                >                                    
+                                </v-select>
                                 <v-text-field
                                     v-model="search"
                                     append-icon="mdi-database-search"
@@ -111,6 +122,7 @@
                 <v-row no-gutters> 
                     <v-col col="12">
                         <v-data-table
+                            :loading="datatableLoading"
                             v-model="permissions_selected"
                             :headers="headers"
                             :items="daftar_permissions"
@@ -137,36 +149,66 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click.stop="close">KELUAR</v-btn>
+            <v-btn color="blue darken-1" text @click.stop="exit">KELUAR</v-btn>
             <v-btn 
                 color="blue darken-1" 
                 text 
                 :loading="btnLoading"
-                :disabled="btnLoading||!perm_selected.length > 0"
+                :disabled="btnLoading||!permissions_selected.length > 0"
                 @click.stop="save">
                     SIMPAN
             </v-btn>
         </v-card-actions>
     </v-card>
-    
 </template>
 <script>
-import {mapGetters} from 'vuex';
 export default {
     name: 'UserPermissions',
+    mounted()
+    {
+        this.role_name=this.role_default;
+        this.initialize();
+    },
     data: () => ({
         btnLoading:false,
+        datatableLoading:false,
         //tables
         headers: [                        
             { text: 'NAMA PERMISSION', value: 'name' },
             { text: 'GUARD', value: 'guard_name' },   
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },         
         ],
-        search:'',        
-        perm_selected:[],
-        perm_revoked:[]
+        search:'',
+
+        role_name:null,
+        daftar_role:[],
+
+        daftar_permissions: [],
+        permissions_selected: [],
+
     }),
-    methods: {        
+    props:{                        
+        user:{
+            type:Object,
+            required:true
+        },
+        role_default:{
+            required:true
+        }
+    },
+    methods: {
+        initialize()
+        {
+            this.$ajax.get('/system/users/'+this.user.id+'/roles',                
+                {
+                    headers:{
+                        Authorization:this.$store.getters['auth/Token']
+                    }
+                }
+            ).then(({data})=>{   
+                this.daftar_role=data.roles;
+            });            
+        }, 
         save()
         {
             this.btnLoading=true;
@@ -177,11 +219,11 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.TOKEN
+                        Authorization:this.$store.getters['auth/Token']
                     }
                 }
             ).then(()=>{   
-                this.close();                
+                this.exit();                
             }).catch(()=>{
                 this.btnLoading=false;
             });
@@ -196,53 +238,49 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.TOKEN
+                        Authorization:this.$store.getters['auth/Token']
                     }
                 }
             ).then(()=>{   
-                this.close();                
+                this.exit();                
             }).catch(()=>{
                 this.btnLoading=false;
             });
         },
-        close()
-        {            
-            this.btnLoading=false;
-            this.permissions_selected=[];     
-            this.$emit('closeUserPermissions');
+        exit()
+        {
+            this.$emit('closeUserPermissions');           
         }
     },
-    props:{
-        user:Object,
-        daftarpermissions:Array,
-        permissionsselected:Array,
-    },
-    computed: {
-        ...mapGetters('auth',{                        
-            TOKEN:'Token',                                  
-        }),
-        daftar_permissions()
+    computed:{
+        role_user()
         {
-            return this.daftarpermissions;
-        },
-        permissions_selected: {
-            get ()
+            return this.daftar_role.join(',').toUpperCase();
+        }
+    },
+    watch:{
+        async role_name(val)
+        {
+            if(val)
             {
-                if (this.perm_selected.length >0)
-                {
-                    return this.perm_selected;
-                }
-                else
-                {
-                    return this.permissionsselected;
-                }
-            },
-            set (val)
-            {                
-                this.perm_selected=val;                
+                this.datatableLoading=true;
+                await this.$ajax.get('/system/setting/rolesbyname/'+this.role_name+'/permission',{
+                    headers: {
+                        Authorization:this.$store.getters['auth/Token']
+                    }
+                }).then(({data})=>{
+                    this.daftar_permissions = data.permissions;
+                });
+                await this.$ajax.get('/system/users/'+this.user.id+'/permission',{
+                    headers: {
+                        Authorization:this.$store.getters['auth/Token']
+                    }
+                }).then(({data})=>{
+                    this.permissions_selected = data.permissions;                    
+                });
+                this.datatableLoading=false;
             }
         }
-
     }
 }
 </script>
