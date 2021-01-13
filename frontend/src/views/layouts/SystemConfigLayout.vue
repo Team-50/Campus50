@@ -84,11 +84,21 @@
                 <v-subheader>PERGURUAN TINGGI</v-subheader>
                 <v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-IDENTITAS-DIRI')" to="/system-setting/identitasdiri">
                     <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account</v-icon>
+                        <v-icon>mdi-identifier</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>
                             IDENTITAS DIRI
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>    
+                <v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES')" to="/system-setting/variables">
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-variable</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            VARIABLES
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>    

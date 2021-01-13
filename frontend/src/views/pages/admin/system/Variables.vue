@@ -2,10 +2,10 @@
     <SystemConfigLayout>
 		<ModuleHeader>
             <template v-slot:icon>
-                mdi-identifier
+                mdi-variable
             </template>
             <template v-slot:name>
-                IDENTITAS DIRI
+                VARIABLES
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -21,7 +21,7 @@
                     colored-border
                     type="info"
                     >
-                    Mengatur halaman informasi dan bentuk perguruan tinggi. Perubahan berlaku pada Login selanjutnya.
+                    Mengatur berbagai macam variable default sistem. Perubahan berlaku pada Login selanjutnya.
                     </v-alert>
             </template>
         </ModuleHeader> 
@@ -31,32 +31,40 @@
                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                         <v-card>
                             <v-card-title>
-                                PERGURUAN TINGGI
+                                PERKULIAHAN DAN PMB
                             </v-card-title>
                             <v-card-text>
-                                <v-text-field 
-                                    v-model="formdata.nama_pt" 
-                                    label="NAMA PERGURUAN TINGGI"
-                                    outlined
-                                    :rules="rule_nama_pt">
-                                </v-text-field>                                                                                               
-                                <v-text-field 
-                                    v-model="formdata.nama_alias_pt" 
-                                    label="NAMA SINGKATAN PERGURUAN TINGGI"
-                                    outlined
-                                    :rules="rule_nama_singkatan_pt">
-                                </v-text-field>
-                                <v-radio-group v-model="formdata.bentuk_pt" row>
-                                    BENTUK PERGURUAN TINGGI : 
-                                    <v-radio label="SEKOLAH TINGGI" value="sekolahtinggi"></v-radio>
-                                    <v-radio label="UNIVERSITAS" value="universitas"></v-radio>
-                                </v-radio-group>
-                                <v-text-field 
-                                    v-model="formdata.kode_pt" 
-                                    label="KODE PERGURUAN TINGGI (SESUAI FORLAP)"
-                                    outlined
-                                    :rules="rule_kode_pt">
-                                </v-text-field>                                                                                               
+                                <v-row>
+                                    <v-col xs="12" sm="12" md="4">
+                                        <v-select
+                                            v-model="formdata.default_ta" 
+                                            :items="daftar_ta"                
+                                            label="TAHUN AKADEMIK"
+                                            outlined
+                                            :rules="rule_default_ta"/>
+                                    </v-col>
+                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                                    <v-col xs="12" sm="12" md="4">
+                                        <v-select
+                                            v-model="formdata.default_semester" 
+                                            :items="daftar_semester"
+                                            item-text="text"
+                                            item-value="id"
+                                            label="SEMESTER AKADEMIK"
+                                            outlined
+                                            :rules="rule_default_semester"/>            
+                                    </v-col>
+                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                                    <v-col xs="12" sm="12" md="4">
+                                        <v-select
+                                            v-model="formdata.tahun_pendaftaran" 
+                                            :items="daftar_ta"                                            
+                                            label="TAHUN PENDAFTARAN"
+                                            outlined
+                                            :rules="rule_tahun_pendaftaran"/>            
+                                    </v-col>
+                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+                                </v-row>                                                                                                                            
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>                                
@@ -79,7 +87,7 @@ import {mapGetters} from 'vuex';
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name: 'IdentitasDiri',
+    name: 'Variables',
     created()
     {
         this.breadcrumbs = [
@@ -99,11 +107,13 @@ export default {
                 href:'#'
             },
             {
-                text:'IDENTITAS DIRI',
+                text:'VARIABLES',
                 disabled:true,
                 href:'#'
             }
         ];
+        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
+        this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];  
         this.initialize();
     },
     data: () => ({
@@ -111,22 +121,22 @@ export default {
         btnLoading:false,   
         //form
         form_valid:true,   
+        daftar_ta:[],
+        daftar_semester:[],
         formdata: {
-            nama_pt:'',
-            nama_alias_pt:'',
-            bentuk_pt:'',
-            kode_pt:0,
+            default_ta:'',
+            default_semester:'',            
+            tahun_pendaftaran:0,
         },
         //form rules        
-        rule_nama_pt:[
-            value => !!value||"Mohon untuk di isi Nama Perguruan Tinggi !!!",             
+        rule_default_ta:[
+            value => !!value||"Mohon untuk dipilih Tahun Akademik !!!",             
         ], 
-        rule_nama_singkatan_pt:[
-            value => !!value||"Mohon untuk di isi Nama Alias Perguruan Tinggi !!!",             
+        rule_default_semester:[
+            value => !!value||"Mohon untuk diisi Semester !!!",             
         ],
-        rule_kode_pt:[
-            value => !!value||"Mohon untuk di isi Kode Perguruan Tinggi !!!",                     
-            value => /^[0-9]+$/.test(value) || 'Kode Perguruan Tinggi hanya boleh angka',
+        rule_tahun_pendaftaran:[
+            value => !!value||"Mohon untuk dipilih Tahun Pendaftaran !!!",                                 
         ]
     }),
     methods: {
@@ -139,10 +149,9 @@ export default {
                 }
             }).then(({data})=>{  
                 let setting = data.setting;                           
-                this.formdata.nama_pt=setting.NAMA_PT;
-                this.formdata.nama_alias_pt=setting.NAMA_PT_ALIAS;
-                this.formdata.bentuk_pt=setting.BENTUK_PT;
-                this.formdata.kode_pt=setting.KODE_PT;
+                this.formdata.default_ta=setting.DEFAULT_TA;
+                this.formdata.default_semester=setting.DEFAULT_SEMESTER;                
+                this.formdata.tahun_pendaftaran=setting.DEFAULT_TAHUN_PENDAFTARAN;
             });          
             
         },
@@ -153,12 +162,11 @@ export default {
                 this.$ajax.post('/system/setting/variables',
                     {
                         '_method':'PUT', 
-                        'pid':'Identitas Perguruan Tinggi',
+                        'pid':'Variable default sistem',
                         setting:JSON.stringify({
-                            101:this.formdata.nama_pt,
-                            102:this.formdata.nama_alias_pt,
-                            103:this.formdata.bentuk_pt,
-                            104:this.formdata.kode_pt,
+                            201:this.formdata.default_ta,
+                            202:this.formdata.default_semester,                            
+                            203:this.formdata.tahun_pendaftaran,
                         }),                                                                                                                            
                     },
                     {
