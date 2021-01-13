@@ -680,6 +680,15 @@ const routes = [
 		component: () => import('../views/pages/admin/system/IdentitasDiri.vue'),		
 	},	
 	{
+		path: '/system-setting/variables',
+		name: 'IdentitasDiri',
+		meta:{
+			title: "SETTING - VARIABLES",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/system/Variables.vue'),		
+	},	
+	{
 		path: '/system-setting/headerlaporan',
 		name: 'HeaderLaporan',
 		meta:{
