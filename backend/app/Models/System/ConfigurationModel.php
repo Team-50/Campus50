@@ -47,6 +47,11 @@ class ConfigurationModel extends Model {
     }
     public static function getCache($idx=null)
     {
+        if (!Cache::has('config'))
+        {
+            ConfigurationModel::toCache();
+        }
+        
         if ($idx == null)
         {
             return Cache::get('config');
