@@ -25,8 +25,9 @@
                                 <v-row
                                     justify="center"
                                     alignment="center">
-                                    {{nama_soal}}
+                                    {{nama_soal}}                                    
                                 </v-row>
+                                
                             </v-card-text>
                         </v-card>
                     </v-col>

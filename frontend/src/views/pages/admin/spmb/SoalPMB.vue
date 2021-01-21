@@ -8,7 +8,7 @@
                 SOAL PMB
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_semester_pendaftaran}}
+                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - SEMESTER {{nama_semester_pendaftaran}}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -86,7 +86,15 @@
                                                     label="SOAL" 
                                                     :rules="rule_soal"
                                                     type="text"
-                                                    outlined />                                                
+                                                    outlined />
+                                                <v-file-input 
+                                                    accept="image/jpeg,image/png" 
+                                                    label="FILE GAMBAR (MAKS. 2MB)"
+                                                    :rules="rule_gambar"
+                                                    show-size
+                                                    v-model="formdata.gambar"
+                                                    @change="previewImage">
+                                                </v-file-input>                                                
                                                 <v-divider class="mt-2"/>
                                                 <h3 class="headline mt-2">Jawaban Ke-1:</h3>  
                                                 <v-text-field
