@@ -66,7 +66,7 @@
                 </v-timeline-item>                
                 <v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-if="status_ujian">
                     <v-card color="indigo">
-                        <v-card-title class="title text--white">Ujian Online</v-card-title>
+                        <v-card-title class="title white--text">Ujian Online</v-card-title>
                         <v-card-text class="white text--primary">
                             <table width="100%">
                                 <tbody>

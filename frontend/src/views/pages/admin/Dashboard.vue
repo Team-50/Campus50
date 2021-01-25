@@ -8,6 +8,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('DMASTER-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
@@ -37,6 +38,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('PERENCANAAN-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
@@ -66,6 +68,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SPMB-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
@@ -95,6 +98,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('KEUANGAN-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
@@ -124,6 +128,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('AKADEMIK-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
@@ -153,6 +158,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
@@ -182,6 +188,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('ELEARNING-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
@@ -211,6 +218,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
@@ -240,6 +248,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-SETTING-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"
@@ -269,6 +278,7 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                 <v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
                     <v-card
+                    elevation="0"
                     class="mx-auto clickable"
                     max-width="344"
                     min-height="210"

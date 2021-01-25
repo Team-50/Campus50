@@ -1,4 +1,4 @@
-<template>    
+<template>
     <v-card
         class="clickable"
         @click.native="jawabSoal">
