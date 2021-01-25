@@ -172,6 +172,10 @@ class SoalPMBController extends Controller {
             $soal->soal=$request->input('soal');
             $soal->save();
             
+            \DB::table('pe3_jawaban_soal')
+                ->where('soal_id',$soal->id)
+                ->update(['status'=>0]);
+                
             $jawaban = JawabanSoalPMBModel::find($request->input('jawaban_benar'));
             if (!is_null($jawaban))
             {
