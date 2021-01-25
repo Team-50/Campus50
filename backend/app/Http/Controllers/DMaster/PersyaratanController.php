@@ -4,8 +4,8 @@ namespace App\Http\Controllers\DMaster;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Models\DMaster\PersyaratanModel;
+use Ramsey\Uuid\Uuid;
 
 class PersyaratanController extends Controller {  
     /**
@@ -26,6 +26,102 @@ class PersyaratanController extends Controller {
                                     'message'=>'Fetch data persyaratan berhasil.'
                                 ],200);     
     }    
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->hasPermissionTo('DMASTER-PERSYARATAN-PMB_STORE');
+
+        $this->validate($request, [
+            'proses'=>'required',
+            'nama_persyaratan'=>'required',
+            'ta'=>'required',
+        ]);
+             
+        $persyaratan=PersyaratanModel::create([
+            'id'=>Uuid::uuid4()->toString(),            
+            'proses'=>$request->input('proses'),            
+            'nama_persyaratan'=>$request->input('nama_persyaratan'),            
+            'ta'=>$request->input('ta'),                       
+        ]);                      
+        
+        \App\Models\System\ActivityLog::log($request,[
+                                        'object' => $persyaratan,
+                                        'object_id'=>$persyaratan->id, 
+                                        'user_id' => $this->getUserid(), 
+                                        'message' => 'Menambah persyaratan baru berhasil'
+                                    ]);
+
+        return Response()->json([
+                                    'status'=>1,
+                                    'pid'=>'store',
+                                    'persyaratan'=>$persyaratan,                                    
+                                    'message'=>'Data persyaratan berhasil disimpan.'
+                                ],200); 
+
+    }
+    /**
+     * salin persyaratan dari tahun ke tahun lainnya
+     */
+    public function salin(Request $request,$id)
+    {
+        $this->hasPermissionTo('DMASTER-PERSYARATAN-PMB_UPDATE');
+        
+        $this->validate($request, [           
+            'dari_tahun_pendaftaran'=>'required',                     
+            'proses'=>'required',                     
+        ]);
+
+        $dari_tahun_pendaftaran=$request->input('dari_tahun_pendaftaran');
+        $proses=$request->input('proses');
+        
+        \DB::table('pe3_persyaratan')
+            ->where('ta',$id)
+            ->where('proses','pmb')
+            ->delete();
+
+        $sql = "INSERT INTO pe3_persyaratan (id,
+                                            proses,
+                                            nama_persyaratan,
+                                            prodi_id,
+                                            ta,
+                                            created_at,
+                                            updated_at)
+                SELECT UUID(),
+                        '$proses' AS proses,
+                        nama_persyaratan,
+                        NULL AS prodi_id,
+                        $id AS ta,
+                        NOW() as created_at,
+                        NOW() as updated_at
+                FROM
+                    pe3_persyaratan 
+                WHERE
+                    ta='$dari_tahun_pendaftaran'
+                    AND proses='pmb'";
+
+        \DB::statement($sql);
+        
+        $persyaratan=PersyaratanModel::where('ta',$id)->get();
+
+        \App\Models\System\ActivityLog::log($request,[
+                                                        'object' => $persyaratan,
+                                                        'object_id'=>'N.A', 
+                                                        'user_id' => $this->getUserid(), 
+                                                        'message' => "Menyalin data persyaratan dari tahun $dari_tahun_pendaftaran ke $id berhasil."
+                                                    ]);
+
+        return Response()->json([
+                                'status'=>1,
+                                'pid'=>'store',  
+                                'persyaratan'=>$persyaratan,                                                                                                                                   
+                                'message' => "Menyalin data persyaratan dari tahun $dari_tahun_pendaftaran ke $id berhasil."
+                            ],200);    
+    }
     /**
      * daftar persyaratan dari sebuah proses 
      */
@@ -70,6 +166,43 @@ class PersyaratanController extends Controller {
 
     }
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->hasPermissionTo('DMASTER-PERSYARATAN-PMB_UPDATE');
+
+        $persyaratan = PersyaratanModel::find($id); 
+
+        if (is_null($persyaratan))
+        {
+            return Response()->json([
+                                        'status'=>0,
+                                        'pid'=>'destroy',                
+                                        'message'=>["Kode persyaratan ($id) gagal dihapus"]
+                                    ],422); 
+        }
+        else
+        {
+            $this->validate($request, [           
+                                        'nama_persyaratan'=>'required',                    
+                                    ]);
+            $persyaratan->nama_persyaratan=$request->input('nama_persyaratan');
+            $persyaratan->save();
+
+            return Response()->json([
+                                    'status'=>1,
+                                    'pid'=>'update',
+                                    'persyaratan'=>$persyaratan,      
+                                    'message'=>'Data persyaratan '.$persyaratan->nama_persyaratan.' berhasil diubah.'
+                                ],200); 
+        }
+    }
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -77,7 +210,7 @@ class PersyaratanController extends Controller {
      */
     public function destroy(Request $request,$id)
     { 
-        $this->hasPermissionTo('DMASTER-FAKULTAS_DESTROY');
+        $this->hasPermissionTo('DMASTER-PERSYARATAN-PMB_DESTROY');
 
         $persyaratan = PersyaratanModel::find($id); 
         
@@ -93,7 +226,7 @@ class PersyaratanController extends Controller {
         {
             \App\Models\System\ActivityLog::log($request,[
                                                                 'object' => $persyaratan, 
-                                                                'object_id' => $persyaratan->kode_persyaratan, 
+                                                                'object_id' => $persyaratan->id, 
                                                                 'user_id' => $this->getUserid(), 
                                                                 'message' => 'Menghapus Kode Persyaratan ('.$id.') berhasil'
                                                             ]);

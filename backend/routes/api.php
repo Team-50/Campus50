@@ -81,9 +81,12 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->delete('/datamaster/ruangankelas/{id}',['middleware'=>['role:superadmin'],'uses'=>'DMaster\RuanganKelasController@destroy','as'=>'ruangankelas.destroy']);
 
     //data master - persyaratan
-    $router->post('/datamaster/persyaratan/store',['middleware'=>['role:superadmin'],'uses'=>'DMaster\PersyaratanController@store','as'=>'persyaratan.store']);
-    $router->put('/datamaster/persyaratan/{id}',['middleware'=>['role:superadmin'],'uses'=>'DMaster\PersyaratanController@update','as'=>'persyaratan.update']);
-    $router->delete('/datamaster/persyaratan/{id}',['middleware'=>['role:superadmin'],'uses'=>'DMaster\PersyaratanController@destroy','as'=>'`persyaratan.destroy']);
+    $router->post('/datamaster/persyaratan',['uses'=>'DMaster\PersyaratanController@index','as'=>'persyaratan.index']);
+    //id disini adalah tahun pendaftaran saat ini
+    $router->post('/datamaster/persyaratan/store',['uses'=>'DMaster\PersyaratanController@store','as'=>'persyaratan.store']);
+    $router->post('/datamaster/persyaratan/salin/{id}',['uses'=>'DMaster\PersyaratanController@salin','as'=>'persyaratan.salin']);
+    $router->put('/datamaster/persyaratan/{id}',['uses'=>'DMaster\PersyaratanController@update','as'=>'persyaratan.update']);
+    $router->post('/datamaster/persyaratan/{id}/proses',['uses'=>'DMaster\PersyaratanController@proses','as'=>'persyaratan.proses']);
 
     //data master - tahun akademik
     $router->post('/datamaster/tahunakademik/store',['middleware'=>['role:superadmin'],'uses'=>'DMaster\TahunAkademikController@store','as'=>'tahunakademik.store']);
