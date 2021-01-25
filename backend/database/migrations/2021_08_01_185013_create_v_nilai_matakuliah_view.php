@@ -15,7 +15,7 @@ class CreateVNilaiMatakuliahView extends Migration
      */
     public function up()
     {
-        \DB::statement('CREATE VIEW v_nilai AS
+        \DB::statement('CREATE OR REPLACE VIEW v_nilai AS
             SELECT
                 C.user_id,
                 B.krs_id,

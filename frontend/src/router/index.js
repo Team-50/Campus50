@@ -681,7 +681,7 @@ const routes = [
 	},	
 	{
 		path: '/system-setting/variables',
-		name: 'IdentitasDiri',
+		name: 'Variables',
 		meta:{
 			title: "SETTING - VARIABLES",
 			requiresAuth:true,

@@ -17,37 +17,19 @@ class ProgramStudiTableSeeder extends Seeder
         \DB::statement('ALTER TABLE pe3_prodi AUTO_INCREMENT = 1;');
 
         \DB::table('pe3_prodi')->insert([            
-            'kode_prodi'=>'60202', //sesuaikan dengan nama kode prodi di FORLAP
-            'nama_prodi'=>'Ekonomi Syariah',
-            'nama_prodi_alias'=>'ESY',
+            'kode_prodi'=>'57201', //sesuaikan dengan nama kode prodi di FORLAP
+            'nama_prodi'=>'Sistem Informasi',
+            'nama_prodi_alias'=>'SI',
             'kode_jenjang'=>'C',
             'nama_jenjang'=>'S-1',
         ]);              
 
         \DB::table('pe3_prodi')->insert([            
-            'kode_prodi'=>'86208',
-            'nama_prodi'=>'Pendidikan Agama Islam',
-            'nama_prodi_alias'=>'PAI',
+            'kode_prodi'=>'55201',
+            'nama_prodi'=>'Teknik Informatika',
+            'nama_prodi_alias'=>'IF',
             'kode_jenjang'=>'C',
             'nama_jenjang'=>'S-1',
         ]);              
-
-        \DB::table('pe3_prodi')->insert([            
-            'kode_prodi'=>'86232',
-            'nama_prodi'=>'Pendidikan Guru Madrasah Ibtidaiyah',
-            'nama_prodi_alias'=>'PGMI',
-            'kode_jenjang'=>'C',
-            'nama_jenjang'=>'S-1',
-        ]);      
-
-        \DB::table('pe3_prodi')->insert([            
-            'kode_prodi'=>'88203',
-            'nama_prodi'=>'Tadris Bahasa Inggris',
-            'nama_prodi_alias'=>'TBI',
-            'kode_jenjang'=>'C',
-            'nama_jenjang'=>'S-1',
-        ]);              
-        
-        
     }
 }
