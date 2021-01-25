@@ -136,6 +136,17 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>  
+                <v-subheader>PMB</v-subheader>
+                <v-list-item link v-if="CAN_ACCESS('DMASTER-PERSYARATAN-PMB_BROWSE')" to="/dmaster/persyaratanpmb">
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-format-list-checks</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            PERSYARATAN PMB
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
                 <v-subheader>MAHASISWA</v-subheader>
                 <v-list-item link to="/dmaster/statusmahasiswa">
                     <v-list-item-icon class="mr-2">
