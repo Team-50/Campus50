@@ -138,7 +138,7 @@ export default {
             {
                 if (typeof this.filepersyaratan[index] !== 'undefined')
                 {
-                    this.btnLoading=true;
+                    this.btnLoadingdata.nama_persyaratan=true;
                     var formdata = new FormData();                    
                     formdata.append('nama_persyaratan',data.nama_persyaratan);
                     formdata.append('persyaratan_id',data.persyaratan_id);

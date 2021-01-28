@@ -164,7 +164,15 @@
                                                     label="SOAL" 
                                                     :rules="rule_soal"
                                                     type="text"
-                                                    outlined />                                                
+                                                    outlined />
+                                                <v-file-input
+                                                    accept="image/jpeg,image/png" 
+                                                    label="FILE GAMBAR (MAKS. 2MB)"
+                                                    :rules="rule_gambar"
+                                                    show-size
+                                                    v-model="formdata.gambar"
+                                                    @change="previewImage">
+                                                </v-file-input>                                                    
                                                 <v-divider class="mt-2"/>
                                                 <v-radio-group v-model="formdata.jawaban_benar">
                                                     <v-data-table                                                        
@@ -527,7 +535,8 @@ export default {
                     await this.$ajax.post('/spmb/soalpmb/'+this.formdata.id,
                         {
                             '_method':'PUT',
-                            soal:this.formdata.soal, 
+                            soal:this.formdata.soal,
+                            //gambar:this.formdata.gambar,
                             jawaban_benar:this.formdata.jawaban_benar                      
                         },
                         {
@@ -544,10 +553,12 @@ export default {
                     });                 
                     
                 } else {
+
                     await this.$ajax.post('/spmb/soalpmb/store',
                         {  
                             soal:this.formdata.soal,                            
-                            gambar:'gambar',                            
+                            //gambar:this.formdata.gambar,
+                            gambar:this.formdata.append('gambar','test'),
                             jawaban1:this.formdata.jawaban1,                            
                             jawaban2:this.formdata.jawaban2,                            
                             jawaban3:this.formdata.jawaban3,                            
