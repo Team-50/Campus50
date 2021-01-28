@@ -93,17 +93,7 @@
                             DOSEN WALI
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>
-                <v-list-item link to="/akademik/matakuliah" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-MATAKULIAH_BROWSE')">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-book</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            MATAKULIAH
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+                </v-list-item>                
                 <v-subheader v-if="CAN_ACCESS('AKADEMIK-DULANG-BARU_BROWSE')||CAN_ACCESS('AKADEMIK-DULANG-LAMA_BROWSE')">DAFTAR ULANG</v-subheader>
                 <v-list-item link to="/akademik/dulang/mhsbelumpunyanim" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-DULANG-BARU_BROWSE')">
                     <v-list-item-icon class="mr-2">
@@ -146,7 +136,17 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>              
-                <v-subheader>PERKULIAHAN</v-subheader>                         
+                <v-subheader>PERKULIAHAN</v-subheader>    
+                <v-list-item link to="/akademik/matakuliah" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-MATAKULIAH_BROWSE')">
+                    <v-list-item-icon class="mr-2">
+                        <v-icon>mdi-book</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            MATAKULIAH
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>                     
                 <v-list-group group="/akademik/perkuliahan/penyelenggaraan" active-class="yellow" no-action v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_BROWSE')" color="green">
                     <template v-slot:activator>
                         <v-list-item-icon class="mr-2">
