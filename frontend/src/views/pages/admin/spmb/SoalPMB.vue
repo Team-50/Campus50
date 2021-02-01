@@ -1,5 +1,5 @@
 <template>
-    <SPMBLayout>
+    <KeuanganLayout>
         <ModuleHeader>
             <template v-slot:icon>
                 mdi-head-question-outline
@@ -24,11 +24,11 @@
                     colored-border
                     type="info"
                     >
-                    Berisi Soal PMB yang dikelompokan berdasarkan tahun akademik dan semester.
-                </v-alert>
+                        Berisi Soal PMB yang dikelompokan berdasarkan tahun akademik dan semester.
+                    </v-alert>
             </template>
-        </ModuleHeader>   
-        <v-container fluid>            
+        </ModuleHeader> 
+        <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -51,7 +51,7 @@
                         :items="datatable"
                         :search="search"
                         item-key="id"
-                        sort-by="name"
+                        sort-by="no_transaksi"
                         show-expand
                         :expanded.sync="expanded"
                         :single-expand="true"
@@ -59,28 +59,25 @@
                         class="elevation-1"
                         :loading="datatableLoading"
                         loading-text="Loading... Please wait">
-
                         <template v-slot:top>
                             <v-toolbar flat color="white">
-                                <v-toolbar-title>DAFTAR SOAL PMB</v-toolbar-title>
+                                <v-toolbar-title>DAFTAR TRANSAKSI</v-toolbar-title>
                                 <v-divider
                                     class="mx-4"
                                     inset
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-dialog v-model="dialogfrm" max-width="700px" persistent>
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn color="primary" icon outlined small class="ma-2" v-on="on">
-                                            <v-icon>mdi-plus</v-icon>
-                                        </v-btn>                                        
-                                    </template>
+                                <v-btn color="primary" icon outlined small class="ma-2" @click.stop="addItem">
+                                    <v-icon>mdi-plus</v-icon>
+                                </v-btn> 
+                                <v-dialog v-model="dialogfrm" max-width="750px" persistent v-if="dialogfrm">
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
                                                 <span class="headline">{{ formTitle }}</span>
-                                            </v-card-title>
-                                            <v-card-text>    
+                                            </v-card-title>                                            
+                                            <v-card-text>   
                                                 <v-textarea 
                                                     v-model="formdata.soal" 
                                                     label="SOAL" 
@@ -89,12 +86,13 @@
                                                     outlined />
                                                 <v-file-input 
                                                     accept="image/jpeg,image/png" 
-                                                    label="FILE GAMBAR (MAKS. 2MB)"
-                                                    :rules="rule_gambar"
+                                                    label="ILUSTRASI SOAL DALAM GAMBAR (MAKS. 2MB)"
+                                                    :rules="rule_file_gambar"
                                                     show-size
                                                     v-model="formdata.gambar"
                                                     @change="previewImage">
-                                                </v-file-input>                                                
+                                                </v-file-input> 
+                                                <v-img class="white--text align-end" :src="gambarSoal"></v-img>                                                                                        
                                                 <v-divider class="mt-2"/>
                                                 <h3 class="headline mt-2">Jawaban Ke-1:</h3>  
                                                 <v-text-field
@@ -136,7 +134,7 @@
                                                     item-text="text"                                                
                                                     label="JAWABAN BENAR"
                                                     outlined/>    
-                                            </v-card-text>
+                                            </v-card-text>                                            
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
                                                 <v-btn color="blue darken-1" text @click.stop="closedialogfrm">BATAL</v-btn>
@@ -152,62 +150,10 @@
                                         </v-card>
                                     </v-form>
                                 </v-dialog>
-                                <v-dialog v-model="dialogeditfrm" max-width="700px" persistent>
-                                    <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-                                        <v-card>
-                                            <v-card-title>
-                                                <span class="headline">{{ formTitle }}</span>
-                                            </v-card-title>
-                                            <v-card-text>    
-                                                <v-textarea 
-                                                    v-model="formdata.soal" 
-                                                    label="SOAL" 
-                                                    :rules="rule_soal"
-                                                    type="text"
-                                                    outlined />
-                                                <v-file-input
-                                                    accept="image/jpeg,image/png" 
-                                                    label="FILE GAMBAR (MAKS. 2MB)"
-                                                    :rules="rule_gambar"
-                                                    show-size
-                                                    v-model="formdata.gambar"
-                                                    @change="previewImage">
-                                                </v-file-input>                                                    
-                                                <v-divider class="mt-2"/>
-                                                <v-radio-group v-model="formdata.jawaban_benar">
-                                                    <v-data-table                                                        
-                                                        :headers="headers_detail"
-                                                        :items="daftar_soal_jawaban"
-                                                        :search="search"
-                                                        item-key="id"
-                                                        sort-by="jawaban"  
-                                                        hide-default-footer                                                      
-                                                        class="elevation-1">
-                                                        <template v-slot:item.status="{ item }">
-                                                            <v-radio :value="item.id"></v-radio>
-                                                        </template>
-                                                    </v-data-table>
-                                                </v-radio-group>
-                                            </v-card-text>
-                                            <v-card-actions>
-                                                <v-spacer></v-spacer>
-                                                <v-btn color="blue darken-1" text @click.stop="closedialogeditfrm">BATAL</v-btn>
-                                                <v-btn 
-                                                    color="blue darken-1" 
-                                                    text 
-                                                    @click.stop="save" 
-                                                    :loading="btnLoading"
-                                                    :disabled="!form_valid||btnLoading">
-                                                        SIMPAN
-                                                </v-btn>
-                                            </v-card-actions>
-                                        </v-card>
-                                    </v-form>
-                                </v-dialog>
-                                <v-dialog v-model="dialogdetailitem" max-width="700px" persistent>
+                                <v-dialog v-model="dialogdetailitem" max-width="750px" persistent v-if="dialogdetailitem">
                                     <v-card>
                                         <v-card-title>
-                                            <span class="headline">DETAIL DATA</span>
+                                            <span class="headline">DETAIL SOAL PMB</span>
                                         </v-card-title>
                                         <v-card-text>
                                             <v-row no-gutters>
@@ -249,7 +195,8 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>
+                                            </v-row>                                            
+                                            <v-img class="white--text align-end" :src="gambarSoal" v-if="formdata.gambar"></v-img>
                                             <v-row class="mb-4" no-gutters> 
                                                 <v-col col="12">
                                                     <v-data-table                                                        
@@ -268,16 +215,16 @@
                                                         </template>
                                                     </v-data-table>
                                                 </v-col>
-                                            </v-row>
+                                            </v-row>                                                                               
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
-                                            <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
+                                            <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">BATAL</v-btn>                                            
                                         </v-card-actions>
-                                    </v-card>                                    
-                                </v-dialog>
+                                    </v-card>
+                                </v-dialog>                                
                             </v-toolbar>
-                        </template>
+                        </template>                        
                         <template v-slot:item.actions="{ item }">
                             <v-icon
                                 small
@@ -310,7 +257,7 @@
                         </template>
                         <template v-slot:no-data>
                             Data belum tersedia
-                        </template>
+                        </template>             
                     </v-data-table>
                 </v-col>
             </v-row>
@@ -318,14 +265,14 @@
         <template v-slot:filtersidebar>
             <Filter19 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeSemesterPendaftaran="changeSemesterPendaftaran" ref="filter19" />	
         </template>
-    </SPMBLayout>
+    </KeuanganLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
+import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter19 from '@/components/sidebar/FilterMode19';
 export default {
-    name:'SoalPMB',
+    name: 'SoalPMB', 
     created () {
         this.breadcrumbs = [
             {
@@ -346,10 +293,11 @@ export default {
         ];
         this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];        
         this.semester_pendaftaran=this.$store.getters['uiadmin/getSemesterPendaftaran'];  
-        this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);  
+        this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
+             
         this.initialize()
-    },  
-    data: () => ({ 
+    },   
+    data: () => ({         
         firstloading:true,
         prodi_id:null,        
         nama_prodi:null,
@@ -357,6 +305,7 @@ export default {
         semester_pendaftaran:null,
         nama_semester_pendaftaran:null,
 
+        //tables
         btnLoading:false,
         datatableLoading:false,
         expanded:[],
@@ -371,15 +320,15 @@ export default {
         ],
         search:'',    
 
-        //dialog
+        //dialog        
         dialogfrm:false,
-        dialogdetailitem:false,
-        dialogeditfrm:false,
-        daftar_soal_jawaban:[],
-
+        dialogdetailitem:false,       
+        
         //form data   
-        form_valid:true,    
-        image_prev:null,      
+        form_valid:true,   
+        menuTanggalBayar:false,  
+        image_prev:null,            
+        daftar_soal_jawaban:[],        
         daftar_jawaban:[
             {
                 id:1,
@@ -398,46 +347,46 @@ export default {
                 text:'JAWABAN KE 4'
             },
         ],     
-        formdata: {
+        formdata: {            
             id:0,                        
             soal:'',  
-            gambar:'',  
+            gambar:null,  
             jawaban1:'',                    
             jawaban2:'',                    
             jawaban3:'',                    
             jawaban4:'',                    
             jawaban_benar:'',                    
             created_at: '',           
-            updated_at: '',           
+            updated_at: '',
 
         },
-        formdefault: {
-            id:0,           
-            soal:'',    
-            gambar:'',                      
+        formdefault: {            
+            id:0,                        
+            soal:'',  
+            gambar:null,  
             jawaban1:'',                    
             jawaban2:'',                    
             jawaban3:'',                    
-            jawaban4:'',        
-            jawaban_benar:'',                                
+            jawaban4:'',                    
+            jawaban_benar:'',                    
             created_at: '',           
-            updated_at: '',       
-        },
+            updated_at: '',
+        },    
         editedIndex: -1,
 
-        //form rules      
+        //form rules  
         rule_soal:[
             value => !!value||"Mohon untuk di isi soal !!!",              
-        ], 
-        rule_gambar:[            
-            value =>  !value || value.size < 2000000 || 'File gambar harus kurang dari 2MB.'                
         ],
         rule_jawaban:[
             value => !!value||"Mohon isi jawaban dari soal ini",              
         ], 
         rule_jawaban_benar:[
             value => !!value||"Mohon pilih jawaban benar dari soal ini",              
-        ], 
+        ],  
+        rule_file_gambar:[            
+            value =>  !value || value.size < 2000000 || 'File Bukti Bayar harus kurang dari 2MB.'                
+        ],
     }),
     methods: {
         changeTahunPendaftaran (tahun)
@@ -469,6 +418,7 @@ export default {
             this.firstloading=false;   
             this.$refs.filter19.setFirstTimeLoading(this.firstloading);          
         },
+
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
@@ -480,7 +430,12 @@ export default {
                 this.expanded=[item];
             }               
         },
-        viewItem:async function (item) {                          
+        addItem()
+        {
+            this.dialogfrm=true;
+        },       
+        async viewItem (item)
+        {
             await this.$ajax.get('/spmb/soalpmb/'+item.id,{
                 headers: {
                     Authorization:this.$store.getters['auth/Token']
@@ -489,28 +444,8 @@ export default {
                 this.formdata=item;      
                 this.dialogdetailitem=true;              
                 this.daftar_soal_jawaban=data.soal.jawaban;
-            });                      
-        },    
-        editItem:async function (item) {                          
-            await this.$ajax.get('/spmb/soalpmb/'+item.id,{
-                headers: {
-                    Authorization:this.$store.getters['auth/Token']
-                }
-            }).then(({data})=>{          
-                this.editedIndex = this.datatable.indexOf(item);
-                this.formdata = Object.assign({}, item);
-                this.dialogeditfrm = true;
-                let jawaban_benar ='';
-                data.soal.jawaban.forEach(element => {
-                    if (element.status==1)
-                    {
-                        jawaban_benar=element.id;                        
-                    }                     
-                });    
-                this.formdata.jawaban_benar=jawaban_benar;         
-                this.daftar_soal_jawaban=data.soal.jawaban;
-            });                      
-        }, 
+            });                    
+        },
         previewImage (e)
         {
             if (typeof e === 'undefined')
@@ -525,65 +460,71 @@ export default {
                     this.image_prev=img.target.result;
                 }                
             }          
-        },   
-        save:async function () {
+        },
+        save () {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/spmb/soalpmb/'+this.formdata.id,
-                        {
-                            '_method':'PUT',
-                            soal:this.formdata.soal,
-                            //gambar:this.formdata.gambar,
-                            jawaban_benar:this.formdata.jawaban_benar                      
-                        },
-                        {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
-                            }
-                        }
-                    ).then(({data})=>{   
-                        Object.assign(this.datatable[this.editedIndex], data.soal);
-                        this.closedialogeditfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
-                    });                 
-                    
-                } else {
+                    var data = new FormData();                    
+                    data.append('soal',this.formdata.soal);
+                    data.append('jawaban1',this.formdata.jawaban1);
+                    data.append('jawaban2',this.formdata.jawaban2);
+                    data.append('jawaban3',this.formdata.jawaban3);
+                    data.append('jawaban4',this.formdata.jawaban4);
+                    data.append('jawaban_benar',this.formdata.jawaban_benar);
+                    data.append('tahun_pendaftaran',this.tahun_pendaftaran);
+                    data.append('semester_pendaftaran',this.semester_pendaftaran);
+                    data.append('gambar',this.formdata.gambar);
 
-                    await this.$ajax.post('/spmb/soalpmb/store',
-                        {  
-                            soal:this.formdata.soal,                            
-                            //gambar:this.formdata.gambar,
-                            gambar:this.formdata.append('gambar','test'),
-                            jawaban1:this.formdata.jawaban1,                            
-                            jawaban2:this.formdata.jawaban2,                            
-                            jawaban3:this.formdata.jawaban3,                            
-                            jawaban4:this.formdata.jawaban4,                            
-                            jawaban_benar:this.formdata.jawaban_benar,                            
-                            tahun_pendaftaran:this.tahun_pendaftaran,
-                            semester_pendaftaran:this.semester_pendaftaran
-                        },                        
+                    this.$ajax.post('/spmb/soalpmb/store',data,                    
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization:this.$store.getters['auth/Token'],
+                                'Content-Type': 'multipart/form-data'
                             }
                         }
-                    ).then(({data})=>{   
-                        this.datatable.push(data.soal);
+                    ).then(()=>{               
+                        this.btnLoading=false;          
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.initialize();
                     }).catch(()=>{
                         this.btnLoading=false;
                     });
                 }
+                else
+                {    
+                    var data = new FormData();                    
+                    data.append('soal',this.formdata.soal);
+                    data.append('jawaban1',this.formdata.jawaban1);
+                    data.append('jawaban2',this.formdata.jawaban2);
+                    data.append('jawaban3',this.formdata.jawaban3);
+                    data.append('jawaban4',this.formdata.jawaban4);
+                    data.append('jawaban_benar',this.formdata.jawaban_benar);
+                    data.append('tahun_pendaftaran',this.tahun_pendaftaran);
+                    data.append('semester_pendaftaran',this.semester_pendaftaran);
+                    data.append('gambar',this.formdata.gambar);
+
+                    this.$ajax.post('/spmb/soalpmb/store',data,                    
+                        {
+                            headers:{
+                                Authorization:this.$store.getters['auth/Token'],
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        }
+                    ).then(()=>{               
+                        this.btnLoading=false;          
+                        this.closedialogfrm();
+                        this.initialize();
+                    }).catch(()=>{
+                        this.btnLoading=false;
+                    });
+                }            
             }
-        },
+        },    
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data soal dengan ID '+item.id+' ?', { color: 'red',width:'600px' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
@@ -604,37 +545,25 @@ export default {
                         this.btnLoading=false;
                     });
                 }                
-            });
-        },
-        closedialogdetailitem () {
-            this.dialogdetailitem = false;          
-            this.daftar_soal_jawaban=[];
-            setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault)
-                this.editedIndex = -1
-                }, 300
-            );
-        },
-        closedialogfrm () {
+            }); 
+        },           
+        closedialogfrm () {            
             this.dialogfrm = false;            
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);
-                this.$refs.frmdata.reset(); 
-                this.editedIndex = -1
+                this.gambarSoal=null;
+                this.formdata = Object.assign({}, this.formdefault);                                               
                 }, 300
             );
         },
-        closedialogeditfrm () {
-            this.dialogeditfrm = false;            
+        closedialogdetailitem () {
+            this.dialogdetailitem = false;            
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);
-                this.$refs.frmdata.reset(); 
-                this.editedIndex = -1
+                this.formdata = Object.assign({}, this.formdefault);                                                
                 }, 300
             );
         },
     },
-    computed: {
+    computed: {        
         gambarSoal:{
             get ()
             {   
@@ -650,11 +579,12 @@ export default {
             set (val)
             {
                 this.image_prev=val;
-            }            
+            }
+            
         },
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
-        },        
+            return this.editedIndex === -1 ? 'TAMBAH SOAL PMB' : 'UBAH SOAL PMB'
+        },  
     },
     watch:{
         tahun_pendaftaran()
@@ -680,12 +610,12 @@ export default {
                 this.initialize();
             }            
         }
+
     },
     components:{
-        SPMBLayout,
-        ModuleHeader,        
-        Filter19,        
+        KeuanganLayout,
+        ModuleHeader, 
+        Filter19        
     },
-
 }
 </script>

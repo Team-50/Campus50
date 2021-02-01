@@ -748,6 +748,7 @@ export default {
         closedialogfrm () {            
             this.dialogfrm = false;            
             setTimeout(() => {
+                this.buktiBayar=null;
                 this.formdata = Object.assign({}, this.formdefault);                                
                 this.data_transaksi = Object.assign({}, {});
                 this.data_konfirmasi = Object.assign({}, {});                  

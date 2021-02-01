@@ -745,7 +745,7 @@ const routes = [
 	},
 	{
 		path: '/system-setting/themes/layout',
-		name: 'SettingThemesColorDashboard',
+		name: 'SettingThemesLayout',
 		meta:{
 			title: "SETTING - THEMES - LAYOUT",
 			requiresAuth:true,
