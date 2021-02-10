@@ -28,7 +28,8 @@ class SoalPMBModel extends Model {
         'gambar', 
         'prodi_id',         
         'ta',         
-        'semester',         
+        'semester',  
+        'active'       
     ];
     /**
      * enable auto_increment.

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\SPMB;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\SPMB\SoalPMBModel;
 use App\Models\SPMB\JawabanSoalPMBModel;
+use App\Helpers\Helper;
 
 use Ramsey\Uuid\Uuid;
 
@@ -44,29 +46,28 @@ class SoalPMBController extends Controller {
         $this->hasPermissionTo('SPMB-PMB-SOAL_STORE');
 
         $this->validate($request, [           
-            'soal'=>'required',
-            'gambar'=>'required',
+            'soal'=>'required',            
             'jawaban1'=>'required',
             'jawaban2'=>'required',
             'jawaban3'=>'required',
             'jawaban4'=>'required',
             'jawaban_benar'=>'required',
             'tahun_pendaftaran'=>'required',
-            'semester_pendaftaran'=>'required'
+            'semester_pendaftaran'=>'required',            
         ]);
         
         $soal = \DB::transaction(function () use ($request){
             $now = \Carbon\Carbon::now()->toDateTimeString();                               
             $soal=SoalPMBModel::create([
                 'id'=>Uuid::uuid4()->toString(),
-                'soal'=>$request->input('soal'),
                 'gambar'=>null,
+                'soal'=>$request->input('soal'),                
                 'ta'=> $request->input('tahun_pendaftaran'),
                 'semester'=>$request->input('semester_pendaftaran'),
                 'active'=>1,                  
                 'created_at'=>$now, 
                 'updated_at'=>$now
-            ]);            
+            ]);                        
             $soal_id=$soal->id;
             JawabanSoalPMBModel::create([
                 'id'=>Uuid::uuid4()->toString(),
@@ -107,6 +108,22 @@ class SoalPMBController extends Controller {
 
             return $soal;
         });
+
+        if ($request->filled('gambar')&&$request->file('gambar')->isValid())
+        {
+            $gambar=$request->file('gambar');
+            $mime_type=$gambar->getMimeType();
+            if ($mime_type=='image/png' || $mime_type=='image/jpeg')
+            {
+                $folder=Helper::public_path('images/banksoal/');
+                $file_name=uniqid('img').".".$gambar->getClientOriginalExtension();
+                $gambar->move($folder,$file_name);    
+
+
+                $soal->gambar="storage/images/banksoal/$file_name";
+                $soal->save();
+            }
+        }                    
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'store',
@@ -213,6 +230,11 @@ class SoalPMBController extends Controller {
         else
         {
             $nama_soal=$soal->soal;
+            if (!is_null($soal->gambar) )
+            {
+                Storage::delete('images/banksoal/'+$soal->gambar);
+
+            }
             $soal->delete();
 
             \App\Models\System\ActivityLog::log($request,[
