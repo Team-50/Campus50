@@ -465,9 +465,9 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
+                var data = new FormData(); 
                 if (this.editedIndex > -1) 
-                {
-                    var data = new FormData();                    
+                {                   
                     data.append('soal',this.formdata.soal);
                     data.append('jawaban1',this.formdata.jawaban1);
                     data.append('jawaban2',this.formdata.jawaban2);
@@ -494,8 +494,7 @@ export default {
                     });
                 }
                 else
-                {    
-                    var data = new FormData();                    
+                {                    
                     data.append('soal',this.formdata.soal);
                     data.append('jawaban1',this.formdata.jawaban1);
                     data.append('jawaban2',this.formdata.jawaban2);

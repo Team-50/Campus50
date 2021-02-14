@@ -109,19 +109,22 @@ class SoalPMBController extends Controller {
             return $soal;
         });
 
-        if ($request->filled('gambar')&&$request->file('gambar')->isValid())
+        if ($request->filled('gambar'))
         {
-            $gambar=$request->file('gambar');
-            $mime_type=$gambar->getMimeType();
-            if ($mime_type=='image/png' || $mime_type=='image/jpeg')
+            if ($request->file('gambar')->isValid())
             {
-                $folder=Helper::public_path('images/banksoal/');
-                $file_name=uniqid('img').".".$gambar->getClientOriginalExtension();
-                $gambar->move($folder,$file_name);    
+                $gambar=$request->file('gambar');
+                $mime_type=$gambar->getMimeType();
+                if ($mime_type=='image/png' || $mime_type=='image/jpeg')
+                {
+                    $folder=Helper::public_path('images/banksoal/');
+                    $file_name=uniqid('img').".".$gambar->getClientOriginalExtension();
+                    $gambar->move($folder,$file_name);    
 
 
-                $soal->gambar="storage/images/banksoal/$file_name";
-                $soal->save();
+                    $soal->gambar="storage/images/banksoal/$file_name";
+                    $soal->save();
+                }
             }
         }                    
         return Response()->json([
