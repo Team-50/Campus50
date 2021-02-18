@@ -44,7 +44,7 @@ class CreateNilaiMatakuliahTable extends Migration
 
             $table->boolean('telah_isi_kuesioner')->default(false);
             $table->datetime('tanggal_isi_kuesioner')->nullable();
-
+            $table->boolean('bydosen')->default(false);
             $table->timestamps();  
 
             $table->index('penyelenggaraan_id');

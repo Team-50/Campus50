@@ -15,7 +15,8 @@ class CreateDosenTable extends Migration
     {   
         Schema::defaultStringLength(191);
         Schema::create('pe3_dosen', function (Blueprint $table) {
-            $table->uuid('user_id')->primary();            
+            $table->uuid('user_id')->primary();
+            $table->tinyinteger('id_jabatan')->default(1);                        
             $table->string('nidn',15)->nullable();
             $table->string('nipy')->nullable();
             $table->string('nama_dosen');

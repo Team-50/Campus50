@@ -82,7 +82,6 @@ class CreatePenyelenggaraanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pe3_penyelenggaraan_dosen');
         Schema::dropIfExists('pe3_penyelenggaraan');
     }
 }
