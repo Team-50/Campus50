@@ -17,9 +17,9 @@ class CreatePluginsH2hZoomTable extends Migration
     {
         Schema::defaultStringLength(191);
         Schema::create('plugins_h2h_zoom', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->primary();            
             $table->string('email')->unique();
-            $table->string('zoom_id')->nullable();
+            $table->string('zoom_id')->nullable();            
             $table->string('api_key');
             $table->string('api_secret');
             $table->string('im_token');
@@ -28,9 +28,9 @@ class CreatePluginsH2hZoomTable extends Migration
             $table->tinyInteger('status')->default(0);
 
             $table->string('desc')->nullable();
-
-            $table->timestamps();
-
+            
+            $table->timestamps();                         
+            
         });
     }
 

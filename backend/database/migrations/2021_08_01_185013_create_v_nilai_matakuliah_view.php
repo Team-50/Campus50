@@ -34,7 +34,7 @@ class CreateVNilaiMatakuliahView extends Migration
                 A.n_kuan,
                 A.n_kual,
                 A.n_mutu,
-                A.telah_isi_kuesioner,	
+                A.telah_isi_kuesioner,
                 B.tahun,
                 B.idsmt,
                 A.created_at,
@@ -47,24 +47,24 @@ class CreateVNilaiMatakuliahView extends Migration
                 pe3_krs C ON B.krs_id=C.id
             JOIN
                 pe3_penyelenggaraan D ON A.penyelenggaraan_id=D.id
-            LEFT JOIN 
-                pe3_dosen E ON E.user_id=D.user_id                                        
+            LEFT JOIN
+                pe3_dosen E ON E.user_id=D.user_id
             LEFT JOIN
                 pe3_kelas_mhs_peserta F ON F.krsmatkul_id=A.krsmatkul_id
             LEFT JOIN
-                pe3_kelas_mhs G ON G.id=F.kelas_mhs_id  
+                pe3_kelas_mhs G ON G.id=F.kelas_mhs_id
             LEFT JOIN
                 pe3_kelas_mhs_penyelenggaraan H ON H.kelas_mhs_id=F.kelas_mhs_id
-            LEFT JOIN 
+            LEFT JOIN
                 pe3_penyelenggaraan_dosen I ON I.id=H.penyelenggaraan_dosen_id
             LEFT JOIN
-                pe3_dosen J ON J.user_id=I.user_id                                      
+                pe3_dosen J ON J.user_id=I.user_id
             WHERE
                 B.batal=0
             ORDER BY
                 D.semester ASC,
                 D.kmatkul ASC
-        ');	
+        ');
     }
 
     /**
