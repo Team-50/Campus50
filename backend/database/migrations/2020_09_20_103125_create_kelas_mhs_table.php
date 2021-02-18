@@ -45,13 +45,13 @@ class CreateKelasMhsTable extends Migration
             $table->index('user_id');
             $table->index('zoom_id');
 
-            $table->foreign('user_id')
+            $table->foreign('user_id','pe3_kelas_mhs_user_id_foreign')
                 ->references('user_id')
                 ->on('pe3_dosen')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('user_id')
+            $table->foreign('zoom_id','plugins_h2h_zoom_zoom_id_foreign')
                     ->references('id')
                     ->on('plugins_h2h_zoom')
                     ->onDelete('set null')
