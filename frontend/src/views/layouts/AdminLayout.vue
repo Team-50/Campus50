@@ -14,7 +14,7 @@
                 vertical
             ></v-divider>
             <v-menu
-                
+
                 :close-on-content-click="true"
                 origin="center center"
                 transition="scale-transition"
