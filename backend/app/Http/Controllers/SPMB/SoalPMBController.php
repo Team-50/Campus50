@@ -202,6 +202,26 @@ class SoalPMBController extends Controller {
                 $jawaban->status=1;
                 $jawaban->save();
             }
+            
+            if ($request->filled('gambar'))
+            {
+                if ($request->file('gambar')->isValid())
+                {
+                    $gambar=$request->file('gambar');
+                    $mime_type=$gambar->getMimeType();
+                    if ($mime_type=='image/png' || $mime_type=='image/jpeg')
+                    {
+                        $folder=Helper::public_path('images/banksoal/');
+                        $file_name=uniqid('img').".".$gambar->getClientOriginalExtension();
+                        $gambar->move($folder,$file_name);    
+
+
+                        $soal->gambar="storage/images/banksoal/$file_name";
+                        $soal->save();
+                    }
+                }
+            }     
+
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'update',  
