@@ -5,7 +5,11 @@ ___
 1. PHP Minimal versi 7.3
 2. Database MySQL Minimal versi 5.7 atau MariaDB Minimal versi 10
 
-### Instalasi
+### Instalasi Frontend
+1. Buka file ```.env.local.example``` kemudian simpan kembali menjadi file .env.local 
+2. Sesuaikan isian dari konfigurasi file tersebut :   
+asdasd
+### Instalasi Backend (API)
 ___
 1. Buat file ```.env```, kemudian salin isinya dari ```.env.example``` atau cara mudahnya "save as" file ```.env.example``` menjadi ```.env```
 2. Eksekusi perintah ini untuk membuat JWT_SECRET. php artisan jwt:secret
