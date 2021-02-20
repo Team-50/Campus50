@@ -47,6 +47,7 @@ class SoalPMBController extends Controller {
 
         $this->validate($request, [           
             'soal'=>'required',            
+            'gambar'=>'image',            
             'jawaban1'=>'required',
             'jawaban2'=>'required',
             'jawaban3'=>'required',
@@ -109,6 +110,7 @@ class SoalPMBController extends Controller {
             return $soal;
         });
 
+        /*
         if ($request->filled('gambar'))
         {
             if ($request->file('gambar')->isValid())
@@ -126,7 +128,18 @@ class SoalPMBController extends Controller {
                     $soal->save();
                 }
             }
-        }                    
+        } */
+        if ($request->file('gambar')){
+            //$mime_type = $gambar->getMimeType();
+            //if ($mime_type=='image/png' || $mime_type=='image/jpg'){
+                $nama_gambar = $request->file('gambar')->getClientOriginalName();
+                $request->file('gambar')->move('storage/images/banksoal',$nama_gambar);
+                $soal->gambar="storage/images/banksoal/$nama_gambar";
+                $soal->save();
+            //}
+        }
+        
+        
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'store',
