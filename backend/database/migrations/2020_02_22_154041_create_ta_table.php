@@ -17,10 +17,10 @@ class CreateTaTable extends Migration
         Schema::create('pe3_ta', function (Blueprint $table) {
             $table->year('tahun')->primary();            
             $table->string('tahun_akademik')->unique();  
-            $table->date('awal_ganjil')->default(0);  
-            $table->date('akhir_ganjil')->default(0);  
-            $table->date('awal_genap')->default(0);  
-            $table->date('akhir_genap')->default(0);  
+            $table->date('awal_ganjil')->nullable();  
+            $table->date('akhir_ganjil')->nullable();  
+            $table->date('awal_genap')->nullable();  
+            $table->date('akhir_genap')->nullable();  
             $table->date('awal_pendek')->nullable();  
             $table->date('akhir_pendek')->nullable();  
         });

@@ -1,0 +1,30 @@
+[2021-02-20 02:23:12] local.ERROR: There are no commands defined in the "storage" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"storage\" namespace. at /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php:605)
+[stacktrace]
+#0 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php(656): Symfony\\Component\\Console\\Application->findNamespace('storage')
+#1 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php(254): Symfony\\Component\\Console\\Application->find('storage:link')
+#2 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php(166): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/laravel/lumen-framework/src/Console/Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 /Users/macbookpro/Documents/Projects/Campus50/backend/artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
+[2021-02-20 10:06:48] local.ERROR: There are no commands defined in the "storage" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"storage\" namespace. at /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php:605)
+[stacktrace]
+#0 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php(656): Symfony\\Component\\Console\\Application->findNamespace('storage')
+#1 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php(254): Symfony\\Component\\Console\\Application->find('storage:symlink')
+#2 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php(166): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/laravel/lumen-framework/src/Console/Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 /Users/macbookpro/Documents/Projects/Campus50/backend/artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
+[2021-02-20 10:09:05] local.ERROR: There are no commands defined in the "storage/app/public" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"storage/app/public\" namespace. at /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php:605)
+[stacktrace]
+#0 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php(656): Symfony\\Component\\Console\\Application->findNamespace('storage/app/pub...')
+#1 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php(254): Symfony\\Component\\Console\\Application->find('storage/app/pub...')
+#2 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/symfony/console/Application.php(166): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /Users/macbookpro/Documents/Projects/Campus50/backend/vendor/laravel/lumen-framework/src/Console/Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 /Users/macbookpro/Documents/Projects/Campus50/backend/artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
