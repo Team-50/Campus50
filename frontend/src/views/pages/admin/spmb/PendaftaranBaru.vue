@@ -236,6 +236,9 @@
                                 </v-dialog>
                             </v-toolbar>
                         </template>
+                        <template v-slot:item.nomor_hp="{ item }">    
+                            {{ item.nomor_hp == null || item.nomor_hp == ''? 'N.A' : '+'+item.nomor_hp}}
+                        </template>
                         <template v-slot:item.actions="{ item }">
                             <v-icon
                                 small

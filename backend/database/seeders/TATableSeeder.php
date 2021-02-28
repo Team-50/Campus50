@@ -1,38 +1,32 @@
 <?php
+namespace Database\Seeders;
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Seeder;
 
-class CreateTaTable extends Migration
+use Carbon\Carbon;
+
+class TATableSeeder extends Seeder
 {
     /**
-     * Run the migrations.
+     * Run the database seeds.
      *
      * @return void
      */
-    public function up()
+    public function run()
     {
-        Schema::defaultStringLength(191);
-        Schema::create('pe3_ta', function (Blueprint $table) {
-            $table->year('tahun')->primary();
-            $table->string('tahun_akademik')->unique();
-            $table->date('awal_ganjil')->nullable();
-            $table->date('akhir_ganjil')->nullable();
-            $table->date('awal_genap')->nullable();
-            $table->date('akhir_genap')->nullable();
-            $table->date('awal_pendek')->nullable();
-            $table->date('akhir_pendek')->nullable();
-        });
-    }
+        \DB::statement('DELETE FROM pe3_ta');
+        $current_year=date('Y');
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('pe3_ta');
+        \DB::table('pe3_ta')->insert([
+            'tahun'=>$current_year,
+            'tahun_akademik'=>$current_year.'/'.($current_year+1),            
+            'awal_ganjil'=>"$current_year-09-01",            
+            'akhir_ganjil'=>($current_year+1)."-02-28",            
+            'awal_genap'=>($current_year+1)."-03-01",            
+            'akhir_genap'=>($current_year+1)."-06-30",            
+            'awal_pendek'=>($current_year+1)."-07-01",            
+            'akhir_pendek'=>($current_year+1)."-08-30",            
+        ]);        
+
     }
 }
