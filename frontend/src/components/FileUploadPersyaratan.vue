@@ -24,7 +24,7 @@
                 <v-spacer/>          
                 <v-btn
                     icon
-                    :href="this.$api.storageURL+'/'+this.item.path"
+                    :href="this.$api.url+'/'+this.item.path"
                     target="_blank"                    
                     v-if="verified == 1">
                     <v-icon>
@@ -75,7 +75,7 @@ export default {
         else
         {            
             this.btnHapus=this.isVerified(this.item);
-            this.image_prev=this.$api.storageURL+'/'+this.item.path;
+            this.image_prev=this.$api.url+'/'+this.item.path;
             this.badgeColor=this.item.verified;
             this.badgeIcon=this.item.verified;
         }        
@@ -138,7 +138,7 @@ export default {
             {
                 if (typeof this.filepersyaratan[index] !== 'undefined')
                 {
-                    this.btnLoadingdata.nama_persyaratan=true;
+                    this.btnLoading=true;
                     var formdata = new FormData();                    
                     formdata.append('nama_persyaratan',data.nama_persyaratan);
                     formdata.append('persyaratan_id',data.persyaratan_id);
