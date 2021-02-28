@@ -248,7 +248,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>                                            
+                                            </v-row>                                          
                                             <v-img class="white--text align-end" :src="gambarSoal" v-if="formdata.gambar"></v-img>
                                             <v-row class="mb-4" no-gutters> 
                                                 <v-col col="12">
@@ -404,7 +404,7 @@ export default {
         formdata: {            
             id:0,                        
             soal:'',  
-            gambar:null,  
+            gambar:'',  
             jawaban1:'',                    
             jawaban2:'',                    
             jawaban3:'',                    
@@ -417,7 +417,7 @@ export default {
         formdefault: {            
             id:0,                        
             soal:'',  
-            gambar:null,  
+            gambar:'',  
             jawaban1:'',                    
             jawaban2:'',                    
             jawaban3:'',                    
@@ -523,6 +523,11 @@ export default {
                 this.formdata=item;      
                 this.dialogdetailitem=true;              
                 this.daftar_soal_jawaban=data.soal.jawaban;
+
+                if(this.formdata.gambar)
+                {
+                    this.image_prev=this.$api.url+'/'+this.formdata.gambar;
+                }
             });                    
         },
         previewImage (e)
