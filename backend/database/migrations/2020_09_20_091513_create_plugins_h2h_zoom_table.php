@@ -1,6 +1,6 @@
 <?php
 /**
- * tabel ini digunakan untuk menyimpan daftar mahasiswa yang telah dimigrasikan datanya
+ * tabel ini digunakan untuk menyimpan data account zoom
  */
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
