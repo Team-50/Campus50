@@ -298,6 +298,15 @@
                                             <v-icon>mdi-email-check</v-icon>
                                             VERIFIFIKASI EMAIL
                                     </v-btn>
+                                    <v-btn 
+                                        small 
+                                        class="primary" 
+                                        @click.stop="resend(item.id)"                                         
+                                        :disabled="btnLoading"
+                                        :loading="btnLoading">
+                                            <v-icon>mdi-email-sync</v-icon>
+                                            KIRIM ULANG KODE AKTIVASI 
+                                    </v-btn>
                                 </v-col>
                             </td>
                         </template>
