@@ -105,7 +105,7 @@
                 </v-timeline-item>
                 <v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-else>
                     <v-card color="indigo">
-                        <v-card-title class="title text--white">Ujian Online</v-card-title>
+                        <v-card-title class="title white--text">Ujian Online</v-card-title>
                         <v-card-text class="white text--primary">
                             <p>Untuk mengikuti ujian online, silahkan pilih jadwal terlebih dahulu</p>
                             <v-btn
