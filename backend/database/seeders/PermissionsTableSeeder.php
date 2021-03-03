@@ -262,9 +262,11 @@ class PermissionsTableSeeder extends Seeder
             'SYSTEM-USERS-MAHASISWA',
             'SYSTEM-USERS-MAHASISWA-BARU',
             'SYSTEM-USERS-ALUMNI',
-            'SYSTEM-USERS-ORANG-TUA-WALI',  
-            
-            'SYSTEM-MIGRATION'
+            'SYSTEM-USERS-ORANG-TUA-WALI',              
+                        
+            'SYSTEM-MIGRATION',
+
+            'PLUGINS-H2H-ZOOMAPI',
         ];
         $records=[];
         foreach($modules as $v)
