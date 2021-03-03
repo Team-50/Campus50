@@ -1,5 +1,5 @@
 <template>
-    <AdminLayout>		
+    <AdminLayout v-if="dashboard">		
         <v-container v-if="dashboard=='mahasiswabaru'">
             <DashboardMB />
         </v-container>        
@@ -317,6 +317,8 @@ export default {
     created ()
 	{
         this.TOKEN = this.$route.params.token;                
+        this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
+        this.color_dashboard=this.$store.getters['uifront/getTheme']('COLOR_DASHBOARD');    
 		this.breadcrumbs = [
 			{
 				text:'HOME',
@@ -328,9 +330,7 @@ export default {
 				disabled:true,
 				href:'#'
 			}
-        ];		
-        this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
-        this.color_dashboard=this.$store.getters['uifront/getTheme']('COLOR_DASHBOARD');                                             
+        ];	                                     
 		this.initialize();
 	},
 	data: () => ({
