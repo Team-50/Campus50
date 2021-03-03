@@ -22,12 +22,12 @@ class KelasTableSeeder extends Seeder
 
         \DB::table('pe3_kelas')->insert([
             'idkelas'=>"B",
-            'nkelas'=>'SORE (S1)',
+            'nkelas'=>'KARYAWAN (S1)',
         ]);               
 
         \DB::table('pe3_kelas')->insert([
             'idkelas'=>"C",
-            'nkelas'=>'MALAM (S1)',
+            'nkelas'=>'EKSEKUTIF (S1)',
         ]);               
     }
 }
