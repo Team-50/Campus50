@@ -62,7 +62,7 @@ class PMBController extends Controller {
                                 'pid'=>'fetchdata',
                                 'pmb'=>$data,
                                 'message'=>'Fetch data calon mahasiswa baru berhasil diperoleh'
-                            ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);;  
+                            ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);  
     }    
     /**
      * digunakan untuk mendapatkan calon mahasiswa baru yang telah mengisi formulir pendaftaran
