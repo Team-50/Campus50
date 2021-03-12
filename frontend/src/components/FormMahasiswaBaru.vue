@@ -386,7 +386,7 @@ export default {
     watch:{
         provinsi_id(val)
         {
-            if (val.id != null && val.id != '')
+            if (val.id != null && val.id != '' && val.id != "null")
             {
                 this.btnLoadingProv=true;
                 this.$ajax.get('/datamaster/provinsi/'+val.id+'/kabupaten').then(({data})=>{                
@@ -398,7 +398,7 @@ export default {
         },
         kabupaten_id(val)
         {
-            if (val.id != null && val.id != '')
+            if (val.id != null && val.id != '' && val.id != "null")
             {
                 this.btnLoadingKab=true;
                 this.$ajax.get('/datamaster/kabupaten/'+val.id+'/kecamatan').then(({data})=>{                                
@@ -409,7 +409,7 @@ export default {
         },
         kecamatan_id(val)
         {
-            if (val.id != null && val.id != '')
+            if (val.id != null && val.id != '' && val.id != "null")
             {
                 this.btnLoadingKec=true;
                 this.$ajax.get('/datamaster/kecamatan/'+val.id+'/desa').then(({data})=>{                                
