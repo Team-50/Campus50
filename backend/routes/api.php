@@ -153,6 +153,8 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->get('/spmb/ujianonline/peserta/{id}',['middleware'=>['role:mahasiswabaru'],'uses'=>'SPMB\PMBUjianOnlineController@peserta','as'=>'spmbujianonline.peserta']);
     //spmb/ujianonline/daftar, id disini di isi dengan user_id. digunakan untuk mendaftarkan calon mahasiswa ke jadwal ujian
     $router->post('/spmb/ujianonline/daftar',['middleware'=>['role:mahasiswabaru'],'uses'=>'SPMB\PMBUjianOnlineController@daftarujian','as'=>'spmbujianonline.daftar']);
+    //spmb/ujianonline/daftar, id disini di isi dengan user_id. digunakan untuk menghapus calon mahasiswa dari jadwal ujian
+    $router->delete('/spmb/ujianonline/hapus',['middleware'=>['role:superadmin|pmb|mahasiswabaru'],'uses'=>'SPMB\PMBUjianOnlineController@keluar','as'=>'spmbujianonline.keluar']);
     //spmb/ujianonline/mulaiujian, digunakan untuk mendaftarkan memulai ujian
     $router->put('/spmb/ujianonline/mulaiujian',['middleware'=>['role:mahasiswabaru'],'uses'=>'SPMB\PMBUjianOnlineController@mulaiujian','as'=>'spmbujianonline.mulaiujian']);
     //spmb/ujianonline/store, digunakan untuk menyimpan jawaban soal ujian online

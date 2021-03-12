@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SPMB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\SPMB\NilaiUjianModel;
 use App\Models\SPMB\JadwalUjianPMBModel;
 use App\Models\SPMB\PesertaUjianPMBModel;
 use App\Models\SPMB\SoalPMBModel;
@@ -166,6 +167,36 @@ class PMBUjianOnlineController extends Controller {
     
     }
     /**
+     * digunakan untuk keluar dari sebuah jadwal ujian
+     */
+    public function keluar (Request $request)
+    {   
+        $this->hasPermissionTo('SPMB-PMB-JADWAL-UJIAN_DESTROY');
+
+        $this->validate($request,[
+            'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',            
+        ]);
+
+        \DB::transaction(function () use ($request) {
+
+            \DB::table('pe3_jawaban_ujian')
+                ->where('user_id', $request->input('user_id'))
+                ->delete();
+
+            \DB::table('pe3_peserta_ujian_pmb')
+                ->where('user_id', $request->input('user_id'))
+                ->delete();
+        });
+
+        return Response()->json([
+                                    'status'=>1,
+                                    'pid'=>'destroy',                
+                                    'message'=>"Peserta berhasil dihapus dari jadwal ujian ini"
+                                ],200); 
+        
+    
+    }
+    /**
      * digunakan untuk memulai ujian 
      */
     public function mulaiujian (Request $request)
@@ -218,11 +249,19 @@ class PMBUjianOnlineController extends Controller {
         $this->validate($request,[
             'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',                               
         ]);
+        $peserta = \DB::transaction(function () use ($request) {
+
+
+            $peserta = PesertaUjianPMBModel::find($request->input('user_id'));        
+            $jadwal_ujian_id = $peserta->jadwal_ujian_id;
+
+            $peserta->selesai_ujian=\Carbon\Carbon::now()->toDateTimeString();
+            $peserta->isfinish=1;
+            $peserta->save();
+
+            return $peserta;
+        });
         
-        $peserta =PesertaUjianPMBModel::find($request->input('user_id'));        
-        $peserta->selesai_ujian=\Carbon\Carbon::now()->toDateTimeString();
-        $peserta->isfinish=1;
-        $peserta->save();
 
         return Response()->json([
                                 'status'=>1,

@@ -166,7 +166,10 @@ class NilaiUjianController extends Controller {
         }
         else
         {
-            $transaksi_detail=TransaksiDetailModel::select(\DB::raw('pe3_transaksi.no_transaksi,pe3_transaksi.status'))
+            $transaksi_detail=TransaksiDetailModel::select(\DB::raw('
+                                                        pe3_transaksi.no_transaksi,
+                                                        pe3_transaksi.status
+                                                    '))
                                                     ->join('pe3_transaksi','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
                                                     ->where('pe3_transaksi.user_id',$formulir->user_id)
                                                     ->where('kombi_id',101)                                                    
@@ -184,7 +187,7 @@ class NilaiUjianController extends Controller {
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'fetchdata',                                                        
-                                        'no_transaksi'=>"$no_transaksi",                                                                           
+                                        'no_transaksi'=>"$no_transaksi ",                                                                           
                                         'transaksi_status'=>$transaksi_status,
                                         'daftar_prodi'=>$daftar_prodi,
                                         'kjur'=>$formulir->kjur1,                                        

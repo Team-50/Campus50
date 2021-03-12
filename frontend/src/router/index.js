@@ -241,6 +241,15 @@ const routes = [
 		component: () => import('../views/pages/admin/spmb/JadwalUjianPMB.vue'),		
 	},
 	{
+		path: "/spmb/jadwalujianpmb/:jadwal_ujian_id/detail",
+		name: "SPMBJadwalUjianPMBDetail",
+		meta: {
+			title: "SPMB - JADWAL UJIAN PMB",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/spmb/JadwalUjianPMBDetail.vue"),
+	},
+	{
 		path: '/spmb/ujianonline',
 		name: 'SPMBUjianOnline',
 		meta:{
