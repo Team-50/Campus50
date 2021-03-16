@@ -22,6 +22,14 @@ const routes = [
 		component: () => import('../views/pages/front/PMB.vue')
 	},
 	{
+		path: "/blog/cara-pendaftaran",
+		name: "BlogCaraPendaftaran",
+		meta: {
+			title: "CARA PENDAFTARAN"
+		},
+		component: () => import("../views/pages/front/blog/CaraPendaftaran.vue")
+	},
+	{
 		path: '/login',
 		name: 'FrontLogin',
 		meta:{
