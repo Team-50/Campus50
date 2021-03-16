@@ -75,9 +75,6 @@ class JadwalUjianPMBController extends Controller {
                                             ->orderBy('tanggal_akhir_daftar','desc')
                                             ->get();
         }
-        
-        
-        
         $jumlah_bank_soal=SoalPMBModel::where('ta',$tahun_pendaftaran)
                                         ->where('semester',$semester_pendaftaran)
                                         ->count();
@@ -165,18 +162,29 @@ class JadwalUjianPMBController extends Controller {
         {
             $peserta = PesertaUjianPMBModel::select(\DB::raw('
                                                 pe3_peserta_ujian_pmb.user_id,                                                
-                                                no_peserta,
-                                                nama_mhs,
-                                                jk,
-                                                mulai_ujian,
-                                                selesai_ujian,
-                                                sisa_waktu,
-                                                isfinish,
+                                                pe3_peserta_ujian_pmb.no_peserta,
+                                                users.username,
+                                                pe3_formulir_pendaftaran.nama_mhs,
+                                                pe3_formulir_pendaftaran.jk,
+                                                pe3_formulir_pendaftaran.telp_hp,
+                                                pe3_peserta_ujian_pmb.mulai_ujian,
+                                                pe3_peserta_ujian_pmb.selesai_ujian,
+                                                pe3_peserta_ujian_pmb.sisa_waktu,
+                                                pe3_peserta_ujian_pmb.isfinish,
+                                                COALESCE(pe3_nilai_ujian_pmb.nilai,\'N.A\') AS nilai,
+                                                pe3_nilai_ujian_pmb.ket_lulus,
+                                                CASE
+                                                    WHEN pe3_nilai_ujian_pmb.ket_lulus IS NULL THEN \'N.A\'
+                                                    WHEN pe3_nilai_ujian_pmb.ket_lulus=0 THEN \'TIDAK LULUS\'
+                                                    WHEN pe3_nilai_ujian_pmb.ket_lulus=1 THEN \'LULUS\'
+                                                END AS status,
                                                 pe3_peserta_ujian_pmb.created_at,
                                                 pe3_peserta_ujian_pmb.updated_at
                                             '))
+                                            ->join('users','users.id','pe3_peserta_ujian_pmb.user_id')
                                             ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_peserta_ujian_pmb.user_id')
-                                            ->where('jadwal_ujian_id', $jadwal_ujian->id)
+                                            ->leftJoin('pe3_nilai_ujian_pmb','pe3_peserta_ujian_pmb.user_id','pe3_nilai_ujian_pmb.user_id')                    
+                                            ->where('pe3_peserta_ujian_pmb.jadwal_ujian_id', $jadwal_ujian->id)
                                             ->orderBy('nama_mhs', 'asc')
                                             ->get();
         
@@ -265,6 +273,7 @@ class JadwalUjianPMBController extends Controller {
                 $now = \Carbon\Carbon::now()->toDateTimeString();        
                 \DB::table('pe3_peserta_ujian_pmb')
                     ->where('jadwal_ujian_id', $jadwal_ujian->id)
+                    ->where('isfinish','!=',1)
                     ->update([
                         'isfinish'=>1,
                         'selesai_ujian'=>$now

@@ -33,6 +33,7 @@ class NilaiUjianController extends Controller {
         $data = FormulirPendaftaranModel::select(\DB::raw('
                         users.id,
                         pe3_formulir_pendaftaran.no_formulir,
+                        users.username,
                         users.name,
                         users.nomor_hp,
                         COALESCE(pe3_nilai_ujian_pmb.nilai,\'N.A\') AS nilai,
@@ -123,8 +124,7 @@ class NilaiUjianController extends Controller {
             {        
                 $formulir=$data_nilai->formulir;       
                 $this->createTransaksiDulang($formulir);
-                $this->createTransaksiSPP($formulir);
-                
+                $this->createTransaksiSPP($formulir);                
             }
 
             return $data_nilai;
@@ -248,10 +248,10 @@ class NilaiUjianController extends Controller {
                                                         ]);
                 if ($ket_lulus==1)
                 {        
-                    $formulir=$data_nilai->formulir;       
+                    $formulir=$data_nilai->formulir;     
+                    $this->createTransaksiPSPTJasAlmamater($formulir);  
                     $this->createTransaksiDulang($formulir);
                     $this->createTransaksiSPP($formulir);
-                    
                 }   
                 return $data_nilai;
             });
@@ -305,6 +305,54 @@ class NilaiUjianController extends Controller {
         }
                   
     } 
+    //buat transaksi keuangan daftar ulang 
+    private function createTransaksiPSPTJasAlmamater($formulir)
+    {
+        $transaksi_detail=TransaksiDetailModel::where('user_id',$formulir->user_id)->where('kombi_id',103)->first();                
+        if (is_null($transaksi_detail))
+        {   
+            $kombi=\App\Models\Keuangan\BiayaKomponenPeriodeModel::where('kombi_id',103)
+                                                                ->where('kjur',$formulir->kjur1)
+                                                                ->where('idkelas',$formulir->idkelas)
+                                                                ->where('tahun',$formulir->ta)
+                                                                ->first();
+            if (!is_null($kombi))
+            {                
+                $no_transaksi='103'.date('YmdHms');
+                $transaksi=TransaksiModel::create([
+                    'id'=>Uuid::uuid4()->toString(),
+                    'user_id'=>$formulir->user_id,
+                    'no_transaksi'=>$no_transaksi,
+                    'no_faktur'=>'',
+                    'kjur'=>$formulir->kjur1,
+                    'ta'=>$formulir->ta,
+                    'idsmt'=>$formulir->idsmt,
+                    'idkelas'=>$formulir->idkelas,
+                    'no_formulir'=>$formulir->no_formulir,
+                    'nim'=>$formulir->nim,
+                    'commited'=>0,
+                    'total'=>0,
+                    'tanggal'=>date('Y-m-d'),
+                ]);  
+                
+                $transaksi_detail=TransaksiDetailModel::create([
+                    'id'=>Uuid::uuid4()->toString(),
+                    'user_id'=>$formulir->user_id,
+                    'transaksi_id'=>$transaksi->id,
+                    'no_transaksi'=>$transaksi->no_transaksi,
+                    'kombi_id'=>$kombi->kombi_id,
+                    'nama_kombi'=>$kombi->nama_kombi,
+                    'biaya'=>$kombi->biaya,
+                    'jumlah'=>1,
+                    'sub_total'=>$kombi->biaya    
+                ]);
+                $transaksi->total=$kombi->biaya;
+                $transaksi->desc=$kombi->nama_kombi;
+                $transaksi->save();
+            }
+        }        
+        
+    }   
     //buat transaksi keuangan daftar ulang 
     private function createTransaksiDulang($formulir)
     {

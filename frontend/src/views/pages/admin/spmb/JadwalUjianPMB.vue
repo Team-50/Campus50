@@ -250,13 +250,13 @@
 							<v-icon
 								small
 								class="mr-2"
-								@click.stop="editItem(item)">
+								@click.stop="editItem(item)"
+								:disabled="item.status_ujian == 2 || item.status_ujian == 1">
 								mdi-pencil
 							</v-icon>
 							<v-icon
-								small
-								:loading="btnLoading"
-								:disabled="btnLoading"
+								small								
+								:disabled="btnLoading || item.status_ujian == 2 || item.status_ujian == 1"
 								@click.stop="deleteItem(item)">
 								mdi-delete
 							</v-icon>
@@ -325,7 +325,6 @@
 				tahun_pendaftaran: null,
 				semester_pendaftaran: null,
 				nama_semester_pendaftaran: null,
-
 				btnLoading: false,
 				datatableLoading: false,
 				expanded: [],
@@ -340,7 +339,6 @@
 					{ text: "AKSI", value: "actions", sortable: false, width:100 },
 				],				
 				search: "",
-
 				//dialog
 				dialogfrm: false,				
 				
@@ -387,7 +385,6 @@
 					updated_at: "",
 				},
 				editedIndex: -1,
-
 				//form rules      
 				rule_nama_kegiatan: [
 					value => !!value || "Mohon untuk di isi nama ujian online !!!",

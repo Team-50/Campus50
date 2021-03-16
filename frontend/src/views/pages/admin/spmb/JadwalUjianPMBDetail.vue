@@ -203,15 +203,23 @@
 							<v-icon
 								small								
 								:disabled="btnLoading || item.isfinish!=0 || item.mulai_ujian != null"
-								@click.stop="deleteItem(item)">
+								@click.stop="deleteItem(item)"
+								class="ma-2">
 								mdi-delete
+							</v-icon>
+							<v-icon
+								small								
+								:disabled="btnLoading || item.isfinish==0 || item.ket_lulus==1"
+								@click.stop="recalculate(item)"
+								class="ma-2">
+								mdi-refresh-circle
 							</v-icon>
 						</template>						
 						<template v-slot:expanded-item="{ headers, item }">
 							<td :colspan="headers.length" class="text-center">
 								<v-col cols="12">
-									<strong>ID:</strong>{{ item.id }} 
-									<strong>Ruangan:</strong>{{item.namaruang}} 
+									<strong>ID:</strong>{{ item.user_id }} 									
+									<strong>Username:</strong>{{ item.username }} 									
 									<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }} 
 									<strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }} 
 								</v-col>     								
@@ -274,7 +282,6 @@
 				tahun_pendaftaran: null,
 				semester_pendaftaran: null,
 				nama_semester_pendaftaran: null,
-
 				btnLoading: false,
 				datatableLoading: false,
 				expanded: [],
@@ -282,7 +289,10 @@
 				headers: [                
 					{ text: "NO", value: "no_peserta", sortable: true,width:70 },
 					{ text: "NAMA", value: "nama_mhs", sortable: true,width:250 },
-					{ text: "JK", value: "jk", sortable: true,width:50 },
+					{ text: "JK", value: "jk", sortable: true,width:70 },
+					{ text: "NOMOR HP", value: "telp_hp", sortable: true,width:125 },
+					{ text: "NILAI", value: "nilai", sortable: true,width:100 },
+					{ text: "KET.", value: "status", sortable: true,width:90 },					
 					{ text: "STATUS", value: "isfinish", sortable: true,width:100 },					
 					{ text: "AKSI", value: "actions", sortable: false, width:100 },
 				],		
@@ -302,7 +312,7 @@
 						})
 						.then(({ data }) => {
 							this.datatable = data.peserta;
-							this.data_jadwal = data.jadwal_ujian;										
+							this.data_jadwal = data.jadwal_ujian;				
 							this.StatusJadwanUjian = this.data_jadwal.status_ujian;				
 							this.datatableLoading = false;
 						})
@@ -352,73 +362,123 @@
 					});
 			},			
 			selesaiUjian: async function() {
-				this.$root.$confirm.open("Delete", "Apakah Anda ingin menyatakan ujian telah selesai ?", { color: "red" }).then((confirm) => {
-					if (confirm) {
-						this.btnLoading = true;
-						this.$ajax
-							.post("/spmb/jadwalujianpmb/updatestatusujian/" + this.jadwal_ujian_id,
-							{
-								_method: "PUT",
-								status_ujian: 2,
+				this.$root.$confirm
+					.open(
+						"Delete",
+						"Apakah Anda ingin menyatakan ujian telah selesai ?",
+						{ color: "red" }
+					)
+					.then(confirm => {
+						if (confirm) {
+							this.btnLoading = true;
+							this.$ajax
+								.post(
+									"/spmb/jadwalujianpmb/updatestatusujian/" +
+										this.jadwal_ujian_id,
+									{
+										_method: "PUT",
+										status_ujian: 2,
+									},
+									{
+										headers: {
+											Authorization: this.$store.getters[
+												"auth/Token"
+											],
+										},
+									}
+								)
+								.then(() => {
+									this.btnLoading = false;
+									this.$router.go();
+								})
+								.catch(() => {
+									this.btnLoading = false;
+								});
+						}
+					});
+			},
+			async recalculate(item) {
+				this.$ajax
+					.post(
+						"/spmb/ujianonline/recalculate",
+						{
+							_method: "PUT",
+							user_id: item.user_id,
+						},
+						{
+							headers: {
+								Authorization: this.$store.getters[
+									"auth/Token"
+								],
 							},
-							{
-								headers: {
-									Authorization: this.$store.getters["auth/Token"],
-								}
-							})
-							.then(() => {
-								this.btnLoading = false;
-								this.$router.go();
-							}).catch(() => {
-								this.btnLoading = false;
-							});
-					}                
-				});				
-			},			
+						}
+					)
+					.then(() => {
+						this.btnLoading = false;
+						this.$router.go();
+					})
+					.catch(() => {
+						this.btnLoading = false;
+					});
+			},
 			closedetail() {
 				this.jadwal_ujian_id = null;
 				this.data_jadwal = null;
 				this.$router.push("/spmb/jadwalujianpmb");
 			},
 			deleteItem(item) {
-				this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus peserta ujian denga user_id " + item.user_id + " ?", { color: "red" }).then((confirm) => {
-					if (confirm) {
-						this.btnLoading = true;
-						this.$ajax.post("/spmb/ujianonline/hapus",
-							{
-								_method: "DELETE",
-								user_id: item.user_id,
-							},
-							{
-								headers: {
-									Authorization: this.$store.getters["auth/Token"]
-								}
-							}
-						).then(() => {
-							const index = this.datatable.indexOf(item);
-							this.datatable.splice(index, 1);
-							this.btnLoading = false;
-						}).catch(() => {
-							this.btnLoading = false;
-						});
-					}                
-				});
+				this.$root.$confirm
+					.open(
+						"Delete",
+						"Apakah Anda ingin menghapus peserta ujian denga user_id " +
+							item.user_id +
+							" ?",
+						{ color: "red" }
+					)
+					.then(confirm => {
+						if (confirm) {
+							this.btnLoading = true;
+							this.$ajax
+								.post(
+									"/spmb/ujianonline/keluar",
+									{
+										_method: "DELETE",
+										user_id: item.user_id,
+									},
+									{
+										headers: {
+											Authorization: this.$store.getters[
+												"auth/Token"
+											],
+										},
+									}
+								)
+								.then(() => {
+									const index = this.datatable.indexOf(item);
+									this.datatable.splice(index, 1);
+									this.btnLoading = false;
+								})
+								.catch(() => {
+									this.btnLoading = false;
+								});
+						}
+					});
 			},
 		},
-		computed:{
+		computed: {
 			StatusJadwanUjian: {
 				set(newStatus) {
 					this.status_jadwan_ujian = newStatus;
 				},
 				get() {
-					switch(this.status_jadwan_ujian){
+					switch (this.status_jadwan_ujian) {
 						case 0:
-							return "BELUM MULAI";						
+							return "BELUM MULAI";
 						case 1:
-							return "BERJALAN";						
+							return "BERJALAN";
 						case 2:
-							return "SELESAI";						
-						default: 
+							return "SELESAI";
+						default:
 							return "";
 					}
 				},
