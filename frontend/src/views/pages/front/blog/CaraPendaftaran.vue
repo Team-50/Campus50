@@ -59,8 +59,8 @@
 									Selanjutnya lakukan pembayaran dengan cara ditransfer ke :
 									<v-alert type="tkinfo">
 										BRI (BANK RAKYAT INDONESIA) <br />
-										NOMOR REKENING : 10-0062-8460 <br />
-										A.N : STT INDONESIA TANJUNGPINANG <br />
+										NOMOR REKENING : 2147.01.000 129 307 <br />
+										A.N : SEKOLAH TINGGI TEKNOLOGI INDONESIA TANJUNGPINANG <br />
 									</v-alert>
 								</div>
 							</div>
