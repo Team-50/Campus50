@@ -91,9 +91,6 @@
                             </v-row>
                             <v-row v-if="isprosesujian">
                                 <v-col cols="12">
-                                    <v-btn class="mr-2">
-                                        Review Kembali
-                                    </v-btn>
                                     <v-btn 
                                         @click.stop="selesaiUjian"
                                         color="error">

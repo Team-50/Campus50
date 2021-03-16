@@ -16,7 +16,7 @@
 									Home
 							</v-btn>
 							<v-btn to="/blog/cara-pendaftaran" class="mr-2" color="green darken-2" text large>
-									PENDAFTARAN
+									PETUNJUK PENDAFTARAN
 							</v-btn>
 							<v-btn to="/pmb" class="mr-2" color="green darken-2" text large>
 									PENDAFTARAN
@@ -36,7 +36,7 @@
 									<v-list-item-title>HOME</v-list-item-title>
 								</v-list-item>
 								<v-list-item to="/blog/cara-pendaftaran">
-									<v-list-item-title>CARA PENDAFTARAN</v-list-item-title>
+									<v-list-item-title>PETUNJUK PENDAFTARAN</v-list-item-title>
 								</v-list-item>
 								<v-list-item to="/pmb">
 									<v-list-item-title>PENDAFTARAN</v-list-item-title>
