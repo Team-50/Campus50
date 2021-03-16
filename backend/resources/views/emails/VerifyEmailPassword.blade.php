@@ -1,40 +1,47 @@
-<table dir="ltr">
-    <tbody>
+<div style="font-family: Arial, Helvetica, sans-serif;">
+    <table>
         <tr>
-            <td style="padding:0;font-family:'Segoe UI Semibold','Segoe UI Bold','Segoe UI','Helvetica Neue Medium',Arial,sans-serif;font-size:17px;color:#707070">
-                {{$nama_pt}}
+            <td style="width: 20%;">
+                <img src="http://api.sttindonesia.ac.id/storage/images/logostti.png" style="width:85%; height: auto;">
+            </td>
+            <td style="font-size: 24pt;padding-left: 18px;"><b><p>{{$nama_pt}}<br>TANJUNGPINANG</b></p>
             </td>
         </tr>
+        
+    </table>
+    <h2 style="text-align:center; background-color: #FFB300; padding-block: 10px; ">Verifikasi Alamat Email</h2>
+    <table>
         <tr>
-            <td style="padding:0;font-family:'Segoe UI Light','Segoe UI','Helvetica Neue Medium',Arial,sans-serif;font-size:41px;color:#2672ec">
-                Verifikasi Alamat Email
+            <p>
+                Terima kasih atas pendaftaran Anda sebagai peserta Ujian, untuk menyelesaikan proses yang telah dilalui Kami ingin memastikan bahwa email ini adalah milik Anda. Untuk memverifikasi email gunakan kode keamanan:
+            </p>
+            <p>
+                <b>2320</b>
+            </p>
+            <p>
+                Untuk langkah selanjutnya, yang harus dilakukan adalah :
+                <ol type="1">
+                    <li>Login diSitus PMB menggunakan username dan password tersebut di atas</li>
+                    <li>Isi data sesuai petunjuk</li>
+                    <li>Lakukan pembayaran dengan menunjukkan No Billing (Bank) anda</li>
+                    <li>Upload berkas pendaftaran</li>
+                    <li>Cetak Kartu Tanda Peserta secara mandiri</li>
+                </ol>
+            </p>
+            <p>Lengkapilah data pribadi Anda sesuai dengan formulir yang telah kami sediakan, lalu silahkan anda melakukan pendaftaran calon peserta ujian STT Indonesia Gelombang XX Tahun XXXX.<br>
+            Jika Anda merasa tidak pernah mendaftar, silahkan Abaikan Email ini.</p>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <p>
+                    Salam,<br>
+                    Divisi Humas dan Marketing<br>
+                    {{$nama_pt}}<br>
+                    Telp. (0771) 7002638
+                </p>
             </td>
         </tr>
-        <tr>
-            <td style="padding:0;padding-top:25px;font-family:'Segoe UI',Tahoma,Verdana,Arial,sans-serif;font-size:14px;color:#2a2a2a">
-                Untuk menyelesaikan proses yang telah dilalui, Kami ingin memastikan bahwa email ini adalah milik Anda.
-            </td>
-        </tr>
-        <tr>
-            <td style="padding:0;padding-top:25px;font-family:'Segoe UI',Tahoma,Verdana,Arial,sans-serif;font-size:14px;color:#2a2a2a">                
-                untuk memverifikasi email gunakan kode keamanan : 
-                <span style="font-family:'Segoe UI Bold','Segoe UI Semibold','Segoe UI','Helvetica Neue Medium',Arial,sans-serif;font-size:14px;font-weight:bold;color:#2a2a2a">{{$code}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding:0;padding-top:25px;font-family:'Segoe UI',Tahoma,Verdana,Arial,sans-serif;font-size:14px;color:#2a2a2a">
-                Mohon maaf jika Anda tidak meminta kode ini, dengan aman silahkan abaikan email ini. Mungkin seseorang telah salah memasukan alamat email.
-            </td>
-        </tr>
-        <tr>
-            <td style="padding:0;padding-top:25px;font-family:'Segoe UI',Tahoma,Verdana,Arial,sans-serif;font-size:14px;color:#2a2a2a">
-                Terimakasih,
-            </td>
-        </tr>
-        <tr>
-            <td style="padding:0;font-family:'Segoe UI',Tahoma,Verdana,Arial,sans-serif;font-size:14px;color:#2a2a2a">
-                <span>TIM</span> IT {{$nama_pt}}
-            </td>
-        </tr>
-    </tbody>
-</table>
+    </table>
+</div>
