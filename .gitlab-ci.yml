@@ -24,6 +24,7 @@ build:
     - rsync -arvz -e "ssh -p $SSH_PORT" --progress backend/app $SSH_USERNAME@$SSH_HOST:$SSH_PATH/campus50/backend
     - rsync -arvz -e "ssh -p $SSH_PORT" --progress backend/database $SSH_USERNAME@$SSH_HOST:$SSH_PATH/campus50/backend
     - rsync -arvz -e "ssh -p $SSH_PORT" --progress backend/routes $SSH_USERNAME@$SSH_HOST:$SSH_PATH/campus50/backend    
+    - rsync -arvz -e "ssh -p $SSH_PORT" --progress backend/resources $SSH_USERNAME@$SSH_HOST:$SSH_PATH/campus50/backend    
     - rsync -arvz -e "ssh -p $SSH_PORT" --progress backend/.env.example $SSH_USERNAME@$SSH_HOST:$SSH_PATH/campus50/backend           
     
     
