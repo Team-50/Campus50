@@ -52,14 +52,14 @@
 				</v-main>    
 				<v-footer app fixed padless>
 						<v-card flat tile class="flex">
-								<v-card-text class="green darken-2 white--text text-center pa-5" v-if="$route.name!='FrontPMB'">
+								<v-card-text class="green darken-2 white--text text-center pa-4" v-if="$route.name!='FrontPMB'">
 										<v-btn
 										v-for="icon in icons"
 										:key="icon"
 										class="mx-8 white--text"
 										icon
 										>
-										<v-icon size="48px">
+										<v-icon size="45px">
 												{{ icon }}
 										</v-icon>
 										</v-btn>
