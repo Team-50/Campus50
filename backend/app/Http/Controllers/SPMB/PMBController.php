@@ -452,7 +452,8 @@ class PMBController extends Controller {
         {
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'update',                                                                                                                                        
+                                        'pid'=>'update',
+                                        'user'=>$user,
                                         'message'=>['Email Registrasi Mahasiswa gagal diverifikasi.']
                                     ],422);
         }
@@ -658,10 +659,22 @@ class PMBController extends Controller {
         $user = User::find($request->input('id'));
         $name=$user->name;
         
-        return Response()->json([
-                                'status'=>1,
-                                'pid'=>'resendemail',                
-                                'message'=>"Kirim ulang data dan konfirmasi PMB ($name) berhasil dikirim"
-                            ],200);         
+        if ($user->code > 0)
+        {
+            app()->mailer->to($user->email)->send(new VerifyEmailAddress($user->code,$user->name));            
+            return Response()->json([
+                                    'status'=>1,
+                                    'pid'=>'resendemail',                                                    
+                                    'message'=>"Kirim ulang data dan konfirmasi PMB ($name) berhasil dikirim"
+                                ],200);         
+        }
+        else
+        {
+            return Response()->json([
+                                    'status'=>0,
+                                    'pid'=>'resendemail',                                    
+                                    'message'=>"Gagal kirim ulang, karena kode verifikasi 0"
+                                ],422);
+        }
     } 
 }
