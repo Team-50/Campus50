@@ -12,16 +12,16 @@
 						</v-toolbar-title>
 						<v-spacer />
 						<v-toolbar-items class="hidden-sm-and-down">
-							<v-btn to="/" class="mr-2" color="green darken-2" text large>
+							<v-btn to="/" class="mr-2" color="indigo darken-4" text large>
 									Home
 							</v-btn>
-							<v-btn to="/blog/cara-pendaftaran" class="mr-2" color="green darken-2" text large>
+							<v-btn to="/blog/cara-pendaftaran" class="mr-2" color="indigo darken-4" text large>
 									PETUNJUK PENDAFTARAN
 							</v-btn>
-							<v-btn to="/pmb" class="mr-2" color="green darken-2" text large>
+							<v-btn to="/pmb" class="mr-2" color="indigo darken-4" text large>
 									PENDAFTARAN
 							</v-btn>
-							<v-btn to="/login" color="green darken-2" text large>
+							<v-btn to="/login" color="indigo darken-4" text large>
 									Login
 							</v-btn>
 						</v-toolbar-items>
@@ -52,7 +52,11 @@
 				</v-main>    
 				<v-footer app fixed padless>
 						<v-card flat tile class="flex">
+<<<<<<< HEAD
+								<v-card-text class="indigo darken-3 white--text text-center pa-5" v-if="$route.name!='FrontPMB'">
+=======
 								<v-card-text class="green darken-2 white--text text-center pa-4" v-if="$route.name!='FrontPMB'">
+>>>>>>> test
 										<v-btn
 										v-for="icon in icons"
 										:key="icon"
@@ -69,7 +73,7 @@
 										Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 								</v-card-text> -->
 
-								<v-card-text class="green darken-4 py-2 white--text text-center">
+								<v-card-text class="indigo darken-4 py-2 white--text text-center">
 										<v-btn
 										color="white"
 										text

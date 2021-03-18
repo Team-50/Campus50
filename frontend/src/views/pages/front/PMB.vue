@@ -3,10 +3,10 @@
         <v-container class="fill-height" fluid>
             <v-row align="center" justify="center" no-gutters>
                 <v-col xs="12" sm="6" md="4">
-                    <h1 class="text-center display-1 font-weight-black success--text">
+                    <h1 class="text-center display-1 font-weight-black" style="color:#233b6a">
                         PENDAFTARAN MAHASISWA BARU
-                    </h1>    
-                    <h4 class="text-center title font-weight-black success--text">
+                    </h1>
+                    <h4 class="text-center title font-weight-black" style="color:#233b6a">
                         TAHUN AKADEMIK {{tahunPendaftaran|formatTA}}
                     </h4>
                     <v-form ref="frmpendaftaran" v-model="form_valid" lazy-validation>
@@ -77,8 +77,9 @@
                                 </vue-recaptcha>                                                                   
                             </v-card-actions>                            
                             <v-card-actions class="justify-center">                                
-                                 <v-btn 
-                                    color="success" 
+                                 <v-btn
+                                    class="white--text"
+                                    color="indigo darken-4" 
                                     @click="save" 
                                     :loading="btnLoading"
                                     :disabled="btnLoading"
