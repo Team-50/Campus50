@@ -52,11 +52,7 @@
 				</v-main>    
 				<v-footer app fixed padless>
 						<v-card flat tile class="flex">
-<<<<<<< HEAD
 								<v-card-text class="indigo darken-3 white--text text-center pa-5" v-if="$route.name!='FrontPMB'">
-=======
-								<v-card-text class="green darken-2 white--text text-center pa-4" v-if="$route.name!='FrontPMB'">
->>>>>>> test
 										<v-btn
 										v-for="icon in icons"
 										:key="icon"

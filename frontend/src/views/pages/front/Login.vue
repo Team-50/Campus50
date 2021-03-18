@@ -209,8 +209,7 @@ export default {
 									this.btnLoading=false;                                                                                           
 							}).catch(() => {                                   
 									this.btnLoading=false;
-							});                       
-							                       
+							});
 							this.$refs.frmkonfirmasi.reset(); 
 							this.frmkonfirmasi = Object.assign({}, {email:'',code:''});
 							this.$router.replace('/login');
