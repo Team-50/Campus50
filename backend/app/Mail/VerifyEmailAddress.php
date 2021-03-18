@@ -13,14 +13,16 @@ class VerifyEmailAddress extends Mailable
     use Queueable, SerializesModels;
 
     private $code = '';
+    private $name = '';
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($code)
+    public function __construct($code,$name)
     {
         $this->code=$code;
+        $this->name=$name;
     }
 
     /**
@@ -33,6 +35,7 @@ class VerifyEmailAddress extends Mailable
         $config = ConfigurationModel::find(101);        
         return $this->view('emails.VerifyEmailPassword')->with([
                                                             'nama_pt'=>$config->config_value,
+                                                            'name'=>$this->name,
                                                             'code'=>$this->code
                                                         ]);
     }
