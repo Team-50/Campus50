@@ -32,7 +32,7 @@
 										<li>Ceklis Recaptcha / I'm Not Robot</li>                        
 									</ol>
 									Setelah tekan tombol "Daftar" maka akan muncul konfirmasi pendaftaran yang menyatakan proses pengisian form telah berhasil;
-									Sistem akan mengirimkan kode aktivasi bila sudah tersedia kode tersebut tekan tombol "Konfirmasi".                                                                                                                                                       
+									Sistem akan mengirimkan kode aktivasi ke alamat Email, bila sudah tersedia kode tersebut tekan tombol "Konfirmasi".                                                                                                                                                       
 								</div>
 							</div>
 						</v-timeline-item>
@@ -47,6 +47,35 @@
 							<div class="py-4">
 								<h2 :class="`headline font-weight-light mb-4`">
 								LENGKAPI FORMULIR PENDAFTARAN
+								</h2>
+								<div>
+									Klik tombol Login di menu utama, Setelah berhasil login ke dalam SIMAK, klik tombol "Isi Formulir" yang terdiri dari beberapa bagian yang wajib untuk diisi, yaitu :
+									<ol>
+										<li>Identitas Diri</li>
+										<li>Alamat Domisili</li>
+										<li>Rencana Studi dan Menentukan Kelas (Pagi, Sore, Karyawan)</li>                        
+									</ol>
+									Setelah tekan tombol "Simpan" maka lanjutkan langkah 3.
+									Selanjutnya lakukan pembayaran dengan cara ditransfer ke :
+									<v-alert type="tkinfo">
+										BRI (BANK RAKYAT INDONESIA) <br />
+										NOMOR REKENING : 10-0062-8460 <br />
+										A.N : STT INDONESIA TANJUNGPINANG <br />
+									</v-alert>
+								</div>
+							</div>
+						</v-timeline-item>
+						<v-timeline-item small color="green">
+							<template v-slot:opposite>
+								<span
+								:class="`headline font-weight-bold green--text`"
+								>
+									TAHAP KE - 3
+								</span>
+							</template>
+							<div class="py-4">
+								<h2 :class="`headline font-weight-light mb-4`">
+								KONFIRMASI PEMBAYARAN
 								</h2>
 								<div>
 									Klik tombol Login di menu utama, Setelah berhasil login ke dalam SIMAK, klik tombol "Isi Formulir" yang terdiri dari beberapa bagian yang wajib untuk diisi, yaitu :
