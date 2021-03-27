@@ -15,15 +15,17 @@ class CreateProdiTable extends Migration
     {   
         Schema::defaultStringLength(191);
         Schema::create('pe3_prodi', function (Blueprint $table) {
-            $table->increments('id');                        
-            $table->string('kode_prodi',5)->unique();                        
+            $table->unsignedInteger('id')->primary();
+            $table->string('kode_forlap',5);                        
             $table->string('kode_fakultas',10)->nullable();                        
             $table->string('nama_prodi',50);
             $table->string('nama_prodi_alias',50);
+            $table->string('konsentrasi')->nullable();
             $table->string('kode_jenjang',1);
             $table->string('nama_jenjang',15);
             $table->text('config')->nullable();
-            
+            $table->timestamps();
+
             $table->index('kode_fakultas'); 
             $table->index('kode_jenjang'); 
             
