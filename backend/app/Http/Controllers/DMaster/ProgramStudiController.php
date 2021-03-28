@@ -19,7 +19,10 @@ class ProgramStudiController extends Controller {
                                     id,
                                     kode_forlap,
                                     nama_prodi,
-                                    CONCAT(nama_prodi,\' (\',nama_jenjang,\')\') AS nama_prodi2,
+                                    CASE 
+                                        WHEN konsentrasi IS NULL THEN CONCAT(nama_prodi,\' (\',nama_jenjang,\')\')
+                                        WHEN konsentrasi IS NOT NULL THEN CONCAT(nama_prodi_alias,\' Kons. \',konsentrasi,\' (\',nama_jenjang,\')\')                                        
+                                    END AS nama_prodi2,                                    
                                     nama_prodi_alias,
                                     COALESCE(konsentrasi,"N.A") AS konsentrasi,
                                     kode_jenjang,
@@ -256,6 +259,7 @@ class ProgramStudiController extends Controller {
             $prodi->kode_forlap = $request->input('kode_forlap');
             $prodi->nama_prodi = $request->input('nama_prodi');            
             $prodi->nama_prodi_alias = $request->input('nama_prodi_alias');            
+            $prodi->konsentrasi = $request->input('konsentrasi');            
             $prodi->kode_jenjang = $request->input('kode_jenjang');            
             $prodi->nama_jenjang = $request->input('nama_jenjang');            
             $prodi->save();
@@ -266,6 +270,7 @@ class ProgramStudiController extends Controller {
                     'kode_forlap' => $request->input('kode_forlap'),
                     'nama_prodi' => $request->input('nama_prodi'),            
                     'nama_prodi_alias' => $request->input('nama_prodi_alias'),
+                    'konsentrasi' => $request->input('konsentrasi'),
                     'kode_jenjang' => $request->input('kode_jenjang'),
                     'nama_jenjang' => $request->input('nama_jenjang'),
                 ]);
