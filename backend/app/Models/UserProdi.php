@@ -26,9 +26,10 @@ class UserProdi extends Model {
         'id', 
         'user_id', 
         'prodi_id',
-        'kode_prodi',
+        'kode_forlap',
         'nama_prodi',
         'nama_prodi_alias',
+        'konsentrasi',
         'kode_jenjang',
         'nama_jenjang',    
     ];
