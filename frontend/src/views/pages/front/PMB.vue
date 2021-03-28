@@ -3,10 +3,10 @@
         <v-container class="fill-height" fluid>
             <v-row align="center" justify="center" no-gutters>
                 <v-col xs="12" sm="6" md="4">
-                    <h1 class="text-center display-1 font-weight-black" style="color:#233b6a">
+                    <h1 class="text-center display-1 font-weight-black" style="color:#1A237E">
                         PENDAFTARAN MAHASISWA BARU
                     </h1>
-                    <h4 class="text-center title font-weight-black" style="color:#233b6a">
+                    <h4 class="text-center title font-weight-black" style="color:#1A237E">
                         TAHUN AKADEMIK {{tahunPendaftaran|formatTA}}
                     </h4>
                     <v-form ref="frmpendaftaran" v-model="form_valid" lazy-validation>

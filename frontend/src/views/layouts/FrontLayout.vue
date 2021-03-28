@@ -4,8 +4,8 @@
 						<v-toolbar-title>
 								<span class="hidden-sm-and-down">
 									<v-img
-											max-width="80"
-											:src="$api.storageURL+'/storage/images/campus_50_logo.png'"
+											max-width="400"
+											:src="$api.storageURL+'/storage/images/applogo.png'"
 											>
 										</v-img>
 								</span>
@@ -25,7 +25,7 @@
 									Login
 							</v-btn>
 						</v-toolbar-items>
-						<v-menu class="hidden-md-and-up" v-if="$vuetify.breakpoint.xsOnly">
+						<v-menu class="hidden-lg-and-up" v-if="$vuetify.breakpoint.xsOnly">
 							<template v-slot:activator="{ on }">
 								<v-btn icon v-on="on">
 									<v-icon>mdi-dots-vertical</v-icon>
@@ -45,12 +45,12 @@
 									<v-list-item-title>LOGIN</v-list-item-title>
 								</v-list-item>
 							</v-list>
-            </v-menu>
+						</v-menu>
 				</v-app-bar>
 				<v-main>
 						<slot/>
 				</v-main>    
-				<v-footer app fixed padless>
+				<v-footer app absolute padless>
 						<v-card flat tile class="flex">
 								<v-card-text class="indigo darken-3 white--text text-center pa-5" v-if="$route.name!='FrontPMB'">
 										<v-btn

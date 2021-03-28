@@ -2,7 +2,7 @@
     <FrontLayout>
         <v-container fluid>
             <v-row class="grey lighten-5">
-                <v-col cols="12">
+                <v-col cols="12" class="hidden-sm-and-down">
                     <!--<v-carousel
                         cycle                                                
                         show-arrows-on-hover>
@@ -14,7 +14,15 @@
                         </v-carousel-item>
                     </v-carousel>-->
                     <v-img
+                        class="hidden-sm-and-down"
                         lazy-src="$api.storageURL/storage/images/sliders/banner1.jpg"
+                        max-height=""
+                        max-width="100%"
+                        :src="$api.url+'/storage/images/sliders/banner1.jpg'"
+                    ></v-img>
+                    <v-img
+                        class="hidden-md-and-up" v-if="$vuetify.breakpoint.xsOnly"
+                        lazy-src="$api.storageURL/storage/images/sliders/banner2.jpg"
                         max-height=""
                         max-width="100%"
                         :src="$api.url+'/storage/images/sliders/banner1.jpg'"
