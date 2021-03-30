@@ -20,16 +20,14 @@
 								<v-timeline-item color="purple darken-1" icon="mdi-book-variant" fill-dot>
 										<v-card color="purple darken-1" dark>
 												<v-card-title class="title">Formulir Pendaftaran</v-card-title>
-												<v-card-text class="white text--primary">
-														<p>
-																Isi formulir pendaftaran dan lengkapi persyaratannya yaitu:
-																<ul>
-																		<li>Scan Pas Foto</li>
-																		<li>Scan Ijazah Terakhir</li>
-																		<li>Scan KTP</li>
-																		<li>Scan Kartu Keluarga</li>
-																</ul>
-														</p>                            
+												<v-card-text class="white text--primary">														
+														Isi formulir pendaftaran dan lengkapi persyaratannya yaitu:
+														<ul>
+																<li>Scan Pas Foto</li>
+																<li>Scan Ijazah Terakhir</li>
+																<li>Scan KTP</li>
+																<li>Scan Kartu Keluarga</li>
+														</ul>												
 														<v-btn
 																color="purple darken-1"
 																class="mx-0 mr-2"
