@@ -5,7 +5,9 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix'=>'v1'], function () use ($router)
 {
-
+    //surat keluar - id dokumen
+    $router->get('/verifikasi/{id}/suratkelulusan',['uses'=>'SPMB\SKKelulusanController@show','as'=>'suratkelulusan.show']);
+    
     //dmaster - provinsi
     $router->get('/datamaster/provinsi',['uses'=>'DMaster\ProvinsiController@index','as'=>'provinsi.index']);
     $router->get('/datamaster/provinsi/{id}/kabupaten',['uses'=>'DMaster\ProvinsiController@kabupaten','as'=>'provinsi.kabupaten']);

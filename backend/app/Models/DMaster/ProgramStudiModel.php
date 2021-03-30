@@ -23,7 +23,7 @@ class ProgramStudiModel extends Model {
      * @var array
      */
     protected $fillable = [
-        'id',
+        'id', 
         'kode_forlap', 
         'nama_prodi', 
         'nama_prodi_alias', 
@@ -45,4 +45,18 @@ class ProgramStudiModel extends Model {
      * @var string
      */
     public $timestamps = true;
+
+    public function getKAProdi($prodi_id)
+    {
+        $prodi=ProgramStudiModel::find($prodi_id);
+        if (is_null($prodi))
+        {
+            return null;
+        }
+        else
+        {
+            $config=json_decode($prodi->config);            
+            return $config->kaprodi;
+        }        
+    }
 }
