@@ -111,7 +111,7 @@ class ConfigurationTableSeeder extends Seeder
             'config_id'=>"206",
             'config_group'=>'basic',
             'config_key'=>'DEFAULT_PRODI',
-            'config_value'=>1,
+            'config_value'=>12,
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
