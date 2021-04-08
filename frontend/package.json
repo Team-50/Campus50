@@ -54,9 +54,9 @@
 		"rules": {
 			"prettier/prettier": "warn",
 			"vue/valid-v-slot": [
-				"error", 
-				{ 
-					"allowModifiers": true 
+				"error",
+				{
+					"allowModifiers": true
 				}
 			]
 		}

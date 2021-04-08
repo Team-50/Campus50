@@ -17,7 +17,7 @@
 										>
 												<v-img
 														max-width="400px"
-														:src="$api.url+'/storage/images/campus_50_logo.png'"
+														:src="$api.url+'/storage/images/stti_light_grey.png'"
 														></v-img>
 										</v-card>
 								</v-col>            
