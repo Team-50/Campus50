@@ -16,9 +16,12 @@
 										color="grey lighten-5"
 										>
 												<v-img
-														max-width="400px"
-														:src="$api.url+'/storage/images/stti_light_grey.png'"
-														></v-img>
+														class="hidden-sm-and-down"
+														max-width="900px"
+														max-height="480px"
+														:src="$api.url+'/storage/images/whitebuilding.jpg'"
+														>
+												</v-img>
 										</v-card>
 								</v-col>            
 								<v-col
@@ -30,7 +33,10 @@
 										elevation="0"
 										tile
 										>
-												<v-card height="450px">                        
+												<v-card
+													height="450px"
+													
+													>
 														<template v-slot:prepend>
 																<h1 class="text-center display-1 font-weight-black green--text">LOGIN</h1>
 														</template>
@@ -95,11 +101,11 @@
 																		Silahkan isikan email dan kode OTP yang telah kami kirim di isian berikut.
 																	</v-alert>          
 																	<v-text-field 
-                                    v-model="formkonfirmasi.email"
-                                    label="EMAIL" 
-                                    :rules="rule_email"
-                                    outlined 
-                                    dense />                           
+																		v-model="formkonfirmasi.email"
+																		label="EMAIL" 
+																		:rules="rule_email"
+																		outlined 
+																		dense />                           
 																	<v-text-field 
 																		v-model="formkonfirmasi.code" 
 																		label="CODE"
@@ -148,9 +154,9 @@ export default {
 					password:''
 				},
 				formkonfirmasi:{
-            email:'',
-            code:''
-        },
+						email:'',
+						code:''
+				},
 				rule_username:[
 						value => !!value||"Kolom Username mohon untuk diisi !!!"
 				],
@@ -158,12 +164,12 @@ export default {
 						value => !!value||"Kolom Password mohon untuk diisi !!!"
 				],
 				rule_email:[
-            value => !!value||"Email mohon untuk diisi !!!",
-            v => /.+@.+\..+/.test(v) || 'Format E-mail mohon di isi dengan benar',
-        ],
+						value => !!value||"Email mohon untuk diisi !!!",
+						v => /.+@.+\..+/.test(v) || 'Format E-mail mohon di isi dengan benar',
+				],
 				rule_code:[
 					value => /^[0-9]+$/.test(value) || 'Code hanya boleh angka',
-        ]
+				]
 		}),
 		methods: {
 				doLogin: async function ()
@@ -197,9 +203,9 @@ export default {
 						}
 				},
 				konfirmasi: async function ()
-        {
-            if (this.$refs.frmkonfirmasi.validate())
-            {
+				{
+						if (this.$refs.frmkonfirmasi.validate())
+						{
 							this.btnLoading=true;                
 							await this.$ajax.post('/spmb/pmb/konfirmasi',{                                        
 									email:this.formkonfirmasi.email,                    
@@ -213,8 +219,8 @@ export default {
 							this.$refs.frmkonfirmasi.reset(); 
 							this.frmkonfirmasi = Object.assign({}, {email:'',code:''});
 							this.$router.replace('/login');
-            }                           
-        },
+						}                           
+				},
 				showDialogVerifikasi() {
 					this.dialogkonfirmasiemail = true;					
 				},
@@ -224,7 +230,7 @@ export default {
 						this.frmkonfirmasi = Object.assign({}, {email:'',code:''});
 						this.$refs.formkonfirmasi.resetValidation(); 
 					}, 300);
-        },
+				},
 		},
 		components: {
 		FrontLayout

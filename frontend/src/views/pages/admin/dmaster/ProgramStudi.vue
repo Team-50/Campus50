@@ -292,6 +292,9 @@
 								</v-dialog>
 							</v-toolbar>
 						</template>
+						<template v-slot:item.nama_prodi="{ item }">
+							{{ item.nama_prodi }} ({{ item.nama_prodi_alias }})
+						</template>
 						<template v-slot:item.config="{ item }">
 							{{ kaprodi(item) }}
 						</template>
@@ -376,6 +379,7 @@
 			daftar_jenjang: [],
 			jenjang_studi: null,
 			kode_forlap: "",
+			old_kode_prodi: 0,
 			formdata: {
 				id: "",
 				kode_fakultas: "",
@@ -504,6 +508,7 @@
 			},
 			editItem: async function(item) {
 				this.editedIndex = this.datatable.indexOf(item);
+				this.old_kode_prodi = item.id;
 				this.formdata = Object.assign({}, item);
 
 				if (this.$store.getters["uifront/getBentukPT"] == "universitas") {
@@ -529,7 +534,7 @@
 					if (this.editedIndex > -1) {
 						await this.$ajax
 							.post(
-								"/datamaster/programstudi/" + this.formdata.id,
+								"/datamaster/programstudi/" + this.old_kode_prodi,
 								{
 									_method: "PUT",
 									kode_fakultas: this.formdata.kode_fakultas,
@@ -624,6 +629,7 @@
 			closedialogdetailitem() {
 				this.dialogdetailitem = false;
 				setTimeout(() => {
+					this.old_kode_prodi = 0;
 					this.formdata = Object.assign({}, this.formdefault);
 					this.editedIndex = -1;
 					this.firstloading = true;
@@ -632,6 +638,7 @@
 			closedialogfrm() {
 				this.dialogfrm = false;
 				setTimeout(() => {
+					this.old_kode_prodi = 0;
 					this.formdata = Object.assign({}, this.formdefault);
 					this.$refs.frmdata.reset();
 					this.editedIndex = -1;
