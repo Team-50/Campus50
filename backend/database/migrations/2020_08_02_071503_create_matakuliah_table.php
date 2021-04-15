@@ -32,7 +32,7 @@ class CreateMatakuliahTable extends Migration
             $table->string('minimal_nilai',10);
             $table->boolean('syarat_skripsi')->default(false);
             $table->boolean('status')->default(false);
-            $table->year('ta');
+            $table->year('ta')->nullable();
             $table->tinyinteger('kjur');
             $table->timestamps();  
             
