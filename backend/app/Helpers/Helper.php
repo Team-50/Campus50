@@ -135,6 +135,69 @@ class Helper {
                             'Desember'
                         ], $result);
     }
+    public static function nextDay($format,$date,$next=1)
+    {
+        Carbon::setLocale(app()->getLocale());
+        $start = new Carbon($date,$next);
+        $tanggal = $start->addDays($next)->format($format);        
+        
+        $result = str_replace([
+                                'Sunday',
+                                'Monday',
+                                'Tuesday',
+                                'Wednesday',
+                                'Thursday',
+                                'Friday',
+                                'Saturday'
+                            ],
+                            [
+                                'Minggu',
+                                'Senin',
+                                'Selasa',
+                                'Rabu',
+                                'Kamis',
+                                'Jumat',
+                                'Sabtu'
+                            ],
+                            $tanggal);
+
+        return str_replace([
+                            'January',
+                            'February',
+                            'March',
+                            'April',
+                            'May',
+                            'June',
+                            'July',
+                            'August',
+                            'September',
+                            'October',
+                            'November' ,
+                            'December'
+                        ],
+                        [
+                            'Januari',
+                            'Februari',
+                            'Maret',
+                            'April',
+                            'Mei',
+                            'Juni',
+                            'Juli',
+                            'Agustus',
+                            'September',
+                            'Oktober',
+                            'November',
+                            'Desember'
+                        ], $result);
+    } 
+    /**
+     * digunakan untuk mengecek format tanggal valid
+     */
+    public static function checkformattanggal ($tanggal) {
+        
+        $data = explode('-',$tanggal);            
+        return checkdate($data[1],$data[2],$data[0]);
+    }
     /**
 	* digunakan untuk mem-format uang
 	*/
