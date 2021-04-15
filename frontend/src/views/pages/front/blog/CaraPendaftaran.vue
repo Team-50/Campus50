@@ -74,6 +74,8 @@
 						<v-row>
 							<v-col
 							cols="12"
+							class="font-weight-light"
+							style="font-size:14px"
 							>
 							Klik tombol Login di menu utama, Setelah berhasil login ke dalam SIMAK, klik tombol "Isi Formulir" yang terdiri dari beberapa bagian yang wajib untuk diisi, yaitu :
 									<ol>
@@ -92,44 +94,40 @@
 						</v-row>
 						</v-container>
 					</v-card>
-					</v-timeline-item>
-					<v-timeline-item
-					color="blue"
-					fill-dot
-					right
-					>
+						</v-timeline-item>
+					<v-timeline-item color="blue" fill-dot right>
 					<v-card>
-						<v-card-title class="blue">
-						<v-icon
-							dark
-							size="30"
-							class="mr-4"
-						>
-							mdi-clipboard-check-multiple
-						</v-icon>
-						<h3 class="white--text">
-							Konfirmasi Pembayaran
-						</h3>
-						</v-card-title>
-						<v-container>
-						<v-row>
-							<v-col
-							cols="12"
-							class="font-weight-light"
-							style="font-size:14px"
-							>
-							Klik menu KONFIRMASI PEMBAYARAN maka muncul halaman Konfirmasi Pembayaran
-							<ol type="a">
-								<li>Klik tombol konfirmasi</li>
-								<li>Pilih data pembayaran yang tampil pada Daftar Transaksi</li>
-								<li>Pilih Upload Pembayaran</li>
-							</ol>
-							belum selesai.   
-							</v-col>
-						</v-row>
-						</v-container>
-					</v-card>
-					</v-timeline-item>
+								<v-card-title class="blue">
+									<v-icon dark size="30" class="mr-4">
+										mdi-clipboard-check-multiple
+									</v-icon>
+									<h3 class="white--text">
+										Konfirmasi Pembayaran
+									</h3>
+								</v-card-title>
+								<v-container>
+									<v-row>
+										<v-col
+											cols="12"
+											class="font-weight-light"
+											style="font-size:14px"
+										>
+											Klik menu KONFIRMASI PEMBAYARAN maka muncul halaman
+											Konfirmasi Pembayaran
+											<ol type="a">
+												<li>Klik tombol konfirmasi</li>
+												<li>
+													Pilih data pembayaran yang tampil pada Daftar
+													Transaksi
+												</li>
+												<li>Pilih Upload Pembayaran</li>
+											</ol>
+											belum selesai.
+										</v-col>
+									</v-row>
+								</v-container>
+							</v-card>
+						</v-timeline-item>
 					</v-timeline>
 				</v-col>
 			</v-row>
@@ -140,13 +138,20 @@
 							<h3 class="title">INFORMASI PENDAFTARAN</h3>
 						</v-card-title>
 						<v-card-subtitle class="justify-center">
-							Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum jelas di nomor kontak WA berikut.
+							<p>
+								Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum
+								jelas di nomor kontak WA berikut.
+							</p>
 						</v-card-subtitle>
 						<v-card-text class="justify-center">
 							<div>
-								<h3 class="headline pink--text text--accent-2">TIM MARKETING</h3>
-								<div><v-icon>mdi-card-account-phone-outline</v-icon> 08117002638</div>
-							</div>							
+								<h3 class="headline pink--text text--accent-2">
+									TIM MARKETING
+								</h3>
+								<div>
+									<v-icon>mdi-card-account-phone-outline</v-icon>08117002638
+								</div>
+							</div>
 						</v-card-text>
 					</v-card>
 				</v-col>
