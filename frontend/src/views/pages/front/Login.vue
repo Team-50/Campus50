@@ -1,25 +1,27 @@
 <template>
 		<FrontLayout>
-				<v-container class="grey lighten-5" fluid>
+				<v-container
+					class="white pa-0"
+					fluid>
 						<v-row
 								no-gutters
 								align="center"
 								>
 								<v-col
+										class="hidden-sm-and-down"
 										sm="12"
 										md="8"
 										align="center"
 								>
 										<v-card
-										class="pa-2"
+										class="pa-0 rounded-0"
 										elevation="0"
-										color="grey lighten-5"
+										color="white"
 										>
 												<v-img
-														class="hidden-sm-and-down"
 														max-width="900px"
 														max-height="480px"
-														:src="$api.url+'/storage/images/whitebuilding.jpg'"
+														:src="$api.url+'/storage/images/gambar_login.jpg'"
 														>
 												</v-img>
 										</v-card>
@@ -29,19 +31,21 @@
 										md="4"
 								>
 										<v-card
-										class="pa-2"
+										class="pa-0"
 										elevation="0"
 										tile
 										>
 												<v-card
-													height="450px"
-													
+													height="480px"
+													elevation="0"
 													>
 														<template v-slot:prepend>
 																<h1 class="text-center display-1 font-weight-black green--text">LOGIN</h1>
 														</template>
 														<v-form ref="frmlogin" @keyup.native.enter="doLogin" lazy-validation>
-																<h2 class="text-center green--text pt-2">Login</h2>
+																<h1 class="text-center display-1 font-weight-black pa-3" style="color:#1A237E">
+																	LOGIN
+																</h1>
 																<v-card-text>
 																		<v-text-field
 																				v-model="formlogin.username"
@@ -69,7 +73,8 @@
 																<v-card-actions class="justify-center">
 																		<v-btn
 																				height="50px"
-																				color="success"
+																				color="#1A237E"
+																				class="white--text"
 																				@click="doLogin"
 																				:loading="btnLoading"
 																				:disabled="btnLoading"
@@ -80,7 +85,8 @@
 																<v-card-actions class="justify-center">
 																		<v-btn
 																				height="50px"
-																				color="success"
+																				color="#1A237E"
+																				class="white--text"
 																				@click="showDialogVerifikasi"																				
 																				:disabled="btnLoading"
 																				block>
