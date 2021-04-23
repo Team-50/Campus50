@@ -16,7 +16,7 @@
                 <p>Hi, {{$name}}</p>
                 <p>Terima kasih atas pendaftaran Anda sebagai peserta Ujian, untuk menyelesaikan proses yang telah dilalui Kami ingin memastikan bahwa email ini adalah milik Anda. Untuk memverifikasi email gunakan kode keamanan:</p>
             <p>
-                <b style="background-color:#FFB300; padding-block: 5px; padding-inline: 5px;">2320</b>
+                <h2 style="background-color:#FFB300; padding-block: 5px; padding-inline: 5px;">2320</h2>
             </p>
             <p>
                 Untuk langkah selanjutnya, yang harus dilakukan adalah :

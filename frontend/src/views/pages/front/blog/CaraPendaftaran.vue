@@ -77,15 +77,15 @@
 												<li>Identitas Diri</li>
 												<li>Alamat Domisili</li>
 												<li>
-													Rencana Studi dan Menentukan Kelas (Pagi, Sore,
-													Karyawan)
+													Rencana Studi dan Menentukan Kelas (Reguler Pagi,
+													Reguler Sore, dan Karyawan)
 												</li>
 											</ol>
 											Setelah tekan tombol "Simpan" maka lanjutkan langkah 3.
 											Selanjutnya lakukan pembayaran dengan cara ditransfer ke :
 											<v-alert type="tkinfo">
 												BRI (BANK RAKYAT INDONESIA) <br />
-												NOMOR REKENING : 2147.01.000 129 307 <br />
+												NOMOR REKENING : 2147.01.000.129.307 <br />
 												A.N : SEKOLAH TINGGI TEKNOLOGI INDONESIA TANJUNGPINANG
 												<br />
 											</v-alert>
@@ -121,7 +121,7 @@
 												</li>
 												<li>Pilih Upload Pembayaran</li>
 											</ol>
-											belum selesai.
+											Selesai.
 										</v-col>
 									</v-row>
 								</v-container>
@@ -139,7 +139,7 @@
 						<v-card-subtitle class="justify-center">
 							<p>
 								Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum
-								jelas di nomor kontak WA berikut.
+								jelas di nomor kontak WhatsApp berikut.
 							</p>
 						</v-card-subtitle>
 						<v-card-text class="justify-center">
