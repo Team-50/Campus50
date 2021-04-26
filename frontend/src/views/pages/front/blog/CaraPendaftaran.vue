@@ -25,10 +25,12 @@
 											class="font-weight-light"
 											style="font-size:14px"
 										>
-											Klik menu PENDAFTARAN maka muncul halaman pendaftaran,
-											yang terdiri dari beberapa bagian yang wajib untuk diisi,
-											yaitu:
-											<ol type="a">
+											<p class="text-justify">
+												Klik menu PENDAFTARAN maka muncul halaman pendaftaran,
+												yang terdiri dari beberapa bagian yang wajib untuk diisi,
+												yaitu:
+											</p>
+											<ol type="1">
 												<li>Nama Lengkap</li>
 												<li>
 													Nomor HP / WA dengan format seperti contoh +6281234567
@@ -42,12 +44,8 @@
 												</li>
 												<li>Tentukan Username dan Password</li>
 												<li>Ceklis Recaptcha / I'm Not Robot</li>
+												<li>Konfirmasi kode aktivasi yang dikirim melalui Email pada saat registrasi</li>
 											</ol>
-											Setelah tekan tombol "Daftar" maka akan muncul konfirmasi
-											pendaftaran yang menyatakan proses pengisian form telah
-											berhasil; Sistem akan mengirimkan kode aktivasi ke alamat
-											Email, bila sudah tersedia kode tersebut tekan tombol
-											"Konfirmasi".
 										</v-col>
 									</v-row>
 								</v-container>
