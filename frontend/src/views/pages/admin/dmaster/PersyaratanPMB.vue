@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"
@@ -70,9 +70,9 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-btn color="primary" dark class="mb-2 mr-2" @click.stop="showDialogCopyPersyaratan" v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">SALIN PERSYARATAN PMB</v-btn>
+                                <v-btn color="#1A237E" dark class="mb-2 mr-2" @click.stop="showDialogCopyPersyaratan" v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">SALIN PERSYARATAN PMB</v-btn>
                                 <v-btn 
-                                    color="primary" 
+                                    color="#1A237E" 
                                     dark 
                                     class="mb-2" 
                                     @click.stop="tambahItem"                                    
