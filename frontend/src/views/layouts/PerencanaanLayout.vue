@@ -68,7 +68,7 @@
 					width="300"
 					dark
 					:class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')"
-					color="#1A237E"
+					:color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
 					:temporary="temporaryleftsidebar"
 					app>
 
@@ -91,7 +91,10 @@
 					</v-list-item>
 					<v-divider></v-divider>
 
-						<v-list expand>
+						<v-list
+							expand
+							dense
+              rounded>
 								<v-list-item :to="{path:'/perencanaan'}" v-if="CAN_ACCESS('PERENCANAAN-GROUP')" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-home-floor-b</v-icon>
@@ -100,7 +103,7 @@
 												<v-list-item-title>BOARD PERENCANAAN</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item>                
-								<v-subheader>RENSTRA P.T</v-subheader>
+								<v-subheader style="color:#f0935c">RENSTRA P.T</v-subheader>
 								<v-list-item link to="/dmaster/renstra/visi">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-stairs-up</v-icon>
