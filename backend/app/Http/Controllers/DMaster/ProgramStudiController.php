@@ -15,16 +15,13 @@ class ProgramStudiController extends Controller {
      */
     public function index(Request $request)
     {
-        $prodi=ProgramStudiModel::select(\DB::raw('
+        $prodi=ProgramStudiModel::select(\DB::raw("
                                     id,
                                     kode_forlap,
-                                    nama_prodi,
-                                    CASE 
-                                        WHEN konsentrasi IS NULL THEN CONCAT(nama_prodi,\' (\',nama_jenjang,\')\')
-                                        WHEN konsentrasi IS NOT NULL THEN CONCAT(nama_prodi_alias,\' Kons. \',konsentrasi,\' (\',nama_jenjang,\')\')                                        
-                                    END AS nama_prodi2,                                    
+                                    nama_prodi,                                    
+                                    '' AS nama_prodi2,                                    
                                     nama_prodi_alias,
-                                    COALESCE(konsentrasi,"N.A") AS konsentrasi,
+                                    COALESCE(konsentrasi,'N.A') AS konsentrasi,
                                     kode_jenjang,
                                     nama_jenjang,
                                     pe3_fakultas.kode_fakultas,
@@ -32,10 +29,20 @@ class ProgramStudiController extends Controller {
                                     pe3_prodi.config,
                                     created_at,
                                     updated_at
-                                '))
+                                "))
                                 ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
                                 ->get();
-
+        $prodi->transform(function ($item,$key) {
+            if (is_null($item->konsentrasi) || empty(trim($item->konsentrasi)) || $item->konsentrasi == 'N.A')
+            {
+                $item->nama_prodi2 = $item->nama_prodi . ' ('. $item->nama_jenjang.')';
+            }
+            else
+            {
+                $item->nama_prodi2 = $item->nama_prodi . ' Kons. '.$item->konsentrasi.' ('. $item->nama_jenjang.')';                
+            }                           
+            return $item;
+        });              
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
@@ -205,7 +212,6 @@ class ProgramStudiController extends Controller {
                                     'nama_prodi'=>[
                                         'required',
                                         'string',
-                                        Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi,'nama_prodi')
                                     ],           
                                     'nama_prodi_alias'=>[
                                         'required',
@@ -239,10 +245,9 @@ class ProgramStudiController extends Controller {
                                     
                                     'nama_prodi'=>[
                                         'required',
-                                        'string',
-                                        Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi,'nama_prodi')
+                                        'string',                                        
                                     ],           
-                                    'nama_prodi'=>[
+                                    'nama_prodi_alias'=>[
                                         'required',
                                         'string',
                                         Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi_alias,'nama_prodi_alias')
