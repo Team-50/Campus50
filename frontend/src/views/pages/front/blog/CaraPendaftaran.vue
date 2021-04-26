@@ -81,7 +81,7 @@
 											</ol>
 											Setelah tekan tombol "Simpan" maka lanjutkan langkah 3.
 											Selanjutnya lakukan pembayaran dengan cara ditransfer ke :
-											<v-alert type="tkinfo">
+											<v-alert type="info">
 												BRI (BANK RAKYAT INDONESIA) <br />
 												NOMOR REKENING : 2147.01.000.129.307 <br />
 												A.N : SEKOLAH TINGGI TEKNOLOGI INDONESIA TANJUNGPINANG
