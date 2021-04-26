@@ -15,7 +15,7 @@
 				</v-breadcrumbs>
 			</template>
 			<template v-slot:desc>
-				<v-alert color="cyan" border="left" colored-border type="info">
+				<v-alert color="orange" border="left" colored-border type="info">
 					Halaman untuk mengelola nama-nama program studi pada perguruan tinggi.
 				</v-alert>
 			</template>
