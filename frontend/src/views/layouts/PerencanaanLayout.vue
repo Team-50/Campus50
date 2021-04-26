@@ -19,11 +19,9 @@
 								bottom 
 								left>
 								<template v-slot:activator="{on}">
-									<v-list-item-avatar color="indigo" size="30">
-										<v-icon dark v-on="on" size="18">
-											mdi-account-circle
-										</v-icon>
-									</v-list-item-avatar>
+									<v-avatar size="30">
+										<v-img :src="photoUser" v-on="on" />
+									</v-avatar>
 								</template>
 								<v-list>
 										<v-list-item>
@@ -75,10 +73,8 @@
 					app>
 
 					<v-list-item>
-						<v-list-item-avatar color="indigo lighten-5">
-							<v-icon color="#1A237E" dark @click.stop="toProfile">
-                mdi-account-circle
-              </v-icon>
+						<v-list-item-avatar>
+							<v-img :src="photoUser"></v-img>
 						</v-list-item-avatar>
 						<v-list-item-content>					
 							<v-list-item-title class="title">
