@@ -68,7 +68,7 @@
 					width="300"
 					dark
 					:class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')"
-					color="#1A237E"
+					:color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
 					:temporary="temporaryleftsidebar"
 					app>
 
