@@ -2,10 +2,10 @@
     <AkademikLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-format-columns
+                mdi-view-quilt
             </template>
             <template v-slot:name>
-                KARTUS HASIL STUDI (KHS)
+                KARTU HASIL STUDI (KHS)
             </template>
             <template v-slot:subtitle v-if="$store.getters['uiadmin/getDefaultDashboard']!='mahasiswa'">
                 TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{nama_prodi}}
@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"

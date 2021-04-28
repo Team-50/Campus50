@@ -2,7 +2,7 @@
     <AkademikLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-monitor-dashboard
+                mdi-view-grid-plus
             </template>
             <template v-slot:name>
                 PENYELENGGARAAN PERKULIAHAN
@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"

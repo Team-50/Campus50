@@ -2,7 +2,7 @@
     <AkademikLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-monitor-dashboard
+                mdi-progress-check
             </template>
             <template v-slot:name>
                 DAFTAR ULANG MAHASISWA BARU 
@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"
@@ -37,7 +37,7 @@
                     <v-form ref="frmdulang" v-model="form_valid" lazy-validation>
                         <v-card
                             :loading="true"
-                            color="yellow lighten-4"                            
+                            color="orange lighten-4"                            
                             outlined>
                             <v-card-title>
                                 TAMBAH DAFTAR ULANG
