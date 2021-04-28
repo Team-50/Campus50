@@ -45,6 +45,7 @@
 												<li>Tentukan Username dan Password</li>
 												<li>Ceklis Recaptcha / I'm Not Robot</li>
 												<li>Konfirmasi kode aktivasi yang dikirim melalui Email pada saat registrasi</li>
+												<li>Pendaftaran selesai.</li>
 											</ol>
 										</v-col>
 									</v-row>
@@ -65,28 +66,40 @@
 									<v-row>
 										<v-col
 											cols="12"
-											class="font-weight-light"
+											class="font-weight-light text-justify"
 											style="font-size:14px"
 										>
-											Klik tombol Login di menu utama, Setelah berhasil login ke
-											dalam SIMAK, klik tombol "Isi Formulir" yang terdiri dari
-											beberapa bagian yang wajib untuk diisi, yaitu :
+											<p>
+											Ikuti langkah-langkah dibawah ini untuk melengkapi formulir pendaftaran:
+											</p>
 											<ol>
-												<li>Identitas Diri</li>
-												<li>Alamat Domisili</li>
+												<li>Silahkan anda klik menu login pada menu utama</li>
+												<li>Inputkan username dan password anda yang telah didaftarkan</li>
 												<li>
-													Rencana Studi dan Menentukan Kelas (Reguler Pagi,
-													Reguler Sore, dan Karyawan)
+													Setelah login berhasil, upload persyaratan berikut:
+													<ul>a. Scan Pas Foto</ul>
+													<ul>b. Scan Ijazah Terakhir</ul>
+													<ul>c. Scan KTP</ul>
+													<ul>d. Scan Kartu Keluarga</ul>
 												</li>
 											</ol>
-											Setelah tekan tombol "Simpan" maka lanjutkan langkah 3.
-											Selanjutnya lakukan pembayaran dengan cara ditransfer ke :
-											<v-alert type="info">
+											<v-divider class="mt-2 mb-2"></v-divider>
+											<p>Mengisi Formulir Pendaftaran</p>
+											<ol>
+												<li>Klik tombol isi Formulir</li>	
+												<li>Harap mengisi identitas diri sesuai data KTP dan Kartu Keluarga</li>
+												<li>Pada Menu Alamat diisi sesuai Alamat Domisili</li>
+												<li>Setelah semua data terisi dengan benar, klik tombol Simpan</li>
+												<li>Kemudian akan muncul Kode Biling</li>
+												<li>Kode Biling akan digunakan saat proses pembayaran</li>
+												<li>Setelah formulir terisi, langkah selanjutnya adalah mengupload persyaratan</li>
+											</ol>
+											<!-- <v-alert type="info">
 												BRI (BANK RAKYAT INDONESIA) <br />
 												NOMOR REKENING : 2147.01.000.129.307 <br />
 												A.N : SEKOLAH TINGGI TEKNOLOGI INDONESIA TANJUNGPINANG
 												<br />
-											</v-alert>
+											</v-alert> -->
 										</v-col>
 									</v-row>
 								</v-container>
@@ -119,7 +132,7 @@
 												</li>
 												<li>Pilih Upload Pembayaran</li>
 											</ol>
-											Selesai.
+											Pembayaran Selesai.
 										</v-col>
 									</v-row>
 								</v-container>
