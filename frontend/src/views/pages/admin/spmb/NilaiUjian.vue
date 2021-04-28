@@ -2,7 +2,7 @@
     <SPMBLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-file-document-edit-outline
+                mdi-beaker-plus-outline
             </template>
             <template v-slot:name>
                 NILAI UJIAN
@@ -19,7 +19,7 @@
             </template>            
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"

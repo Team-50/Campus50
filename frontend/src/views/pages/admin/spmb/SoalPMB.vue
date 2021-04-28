@@ -2,7 +2,7 @@
     <SPMBLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-head-question-outline
+                mdi-beaker-question-outline
             </template>
             <template v-slot:name>
                 SOAL PMB
@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"

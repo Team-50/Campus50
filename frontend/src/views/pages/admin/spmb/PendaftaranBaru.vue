@@ -19,7 +19,7 @@
 						</template>
 						<template v-slot:desc>
 								<v-alert                                        
-										color="cyan"
+										color="orange"
 										border="left"                    
 										colored-border
 										type="info"
@@ -71,8 +71,9 @@
 																		v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
 																		SYNC PERMISSION
 																</v-btn>
-																<v-btn color="primary" 
-																		class="mb-2" 
+																<v-btn
+																		color="#1A237E" 
+																		class="mb-2 white--text" 
 																		@click.stop="addItem">
 																				TAMBAH
 																</v-btn>

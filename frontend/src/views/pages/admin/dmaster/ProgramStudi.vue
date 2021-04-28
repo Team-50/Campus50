@@ -2,7 +2,7 @@
 	<DataMasterLayout>
 		<ModuleHeader>
 			<template v-slot:icon>
-				mdi-home-assistant
+				mdi-file-tree
 			</template>
 			<template v-slot:name>
 				PROGRAM STUDI

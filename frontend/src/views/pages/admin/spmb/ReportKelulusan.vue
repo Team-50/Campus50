@@ -2,7 +2,7 @@
     <SPMBLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-file-document-edit-outline
+                mdi-newspaper-variant-outline
             </template>
             <template v-slot:name>
                 LAPORAN KELULUSAN MAHASISWA BARU
@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"
