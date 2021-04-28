@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc v-if="dashboard=='mahasiswabaru'">
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"
@@ -29,7 +29,7 @@
             </template>
             <template v-slot:desc v-else>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"

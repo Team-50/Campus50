@@ -2,7 +2,7 @@
     <DataMasterLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-arrow-vertical-lock
+                mdi-progress-check
             </template>
             <template v-slot:name>
                 STATUS MAHASISWA

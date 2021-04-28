@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"
@@ -35,8 +35,8 @@
             <v-row dense>
                 <v-col xs="12" sm="6" md="3">
                     <v-card                         
-                        class="clickable green darken-1"
-                        color="#385F73" 
+                        class="clickable"
+                        :color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
                         @click.native="$router.push('/spmb/pendaftaranbaru')"
                         dark>
                         <v-card-title class="headline">
@@ -53,8 +53,8 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
                 <v-col xs="12" sm="6" md="3">
                     <v-card                         
-                        class="clickable green darken-1"
-                        color="#385F73" 
+                        class="clickable"
+                        :color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
                         @click.native="$router.push('/spmb/formulirpendaftaran')"
                         dark>
                         <v-card-title class="headline">
@@ -71,8 +71,8 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
                 <v-col xs="12" sm="6" md="3">
                     <v-card                         
-                        class="clickable green darken-1"
-                        color="#385F73" 
+                        class="clickable"
+                        :color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
                         @click.native="$router.push('/spmb/laporankelulusan')"
                         dark>
                         <v-card-title class="headline">
@@ -89,8 +89,8 @@
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
                 <v-col xs="12" sm="6" md="3">
                     <v-card                         
-                        class="clickable green darken-1"
-                        color="#385F73" 
+                        class="clickable"
+                        :color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
                         @click.native="$router.push('/spmb/laporankelulusan')"
                         dark>
                         <v-card-title class="headline">

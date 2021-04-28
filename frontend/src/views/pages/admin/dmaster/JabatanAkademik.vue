@@ -2,7 +2,7 @@
     <DataMasterLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-chair-rolling
+                mdi-equalizer
             </template>
             <template v-slot:name>
                 JABATAN AKADEMIK

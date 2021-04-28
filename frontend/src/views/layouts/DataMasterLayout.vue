@@ -4,7 +4,7 @@
 						app
             elevation="0"
             color="#f7f8fd">
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="grey--text"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']('V_APP_BAR_NAV_ICON_CSS_CLASS')"></v-app-bar-nav-icon>
             <v-toolbar-title
                 class="headline clickable"
                 @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
@@ -33,12 +33,12 @@
 																			{{ATTRIBUTE_USER('username')}}
 																	</v-list-item-title>
 																	<v-list-item-subtitle>
-																			{{ROLE}}
+																			{{DEFAULT_ROLE}}
 																	</v-list-item-subtitle>
 															</v-list-item-content>
 													</v-list-item>
 													<v-divider/>
-													<v-list-item to="/users/profil">
+													<v-list-item to="/system-users/profil">
 															<v-list-item-icon class="mr-2">
 										<v-icon>mdi-account</v-icon>
 									</v-list-item-icon>
@@ -74,7 +74,7 @@
 
 					<v-list-item>
 						<v-list-item-avatar>
-							<v-img :src="photoUser"></v-img>
+							<v-img :src="photoUser" @click.stop="toProfile"></v-img>
 						</v-list-item-avatar>
 						<v-list-item-content>					
 							<v-list-item-title class="title">
@@ -97,7 +97,7 @@
               rounded>
 								<v-list-item :to="{path:'/dmaster'}" v-if="CAN_ACCESS('DMASTER-GROUP')" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')" >
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-home-floor-b</v-icon>
+												<v-icon>mdi-view-dashboard-variant</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>BOARD DATA MASTER</v-list-item-title>
@@ -126,7 +126,7 @@
 								</v-list-item>  
 								<v-list-item link v-if="CAN_ACCESS('DMASTER-PRODI_BROWSE')" to="/dmaster/programstudi">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-home-assistant</v-icon>
+												<v-icon>mdi-file-tree</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -159,7 +159,7 @@
 								<v-subheader style="color:#f0935c">MAHASISWA</v-subheader>
 								<v-list-item link to="/dmaster/statusmahasiswa">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-arrow-vertical-lock</v-icon>
+												<v-icon>mdi-progress-check</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -180,7 +180,7 @@
 								<v-subheader style="color:#f0935c">DOSEN</v-subheader>
 								<v-list-item link to="/dmaster/jabatanakademik">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-chair-rolling</v-icon>
+												<v-icon>mdi-equalizer</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>

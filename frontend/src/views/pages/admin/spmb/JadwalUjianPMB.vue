@@ -2,7 +2,7 @@
 	<SPMBLayout>
 		<ModuleHeader>
 			<template v-slot:icon>
-				mdi-calendar-account
+				mdi-account-question
 			</template>
 			<template v-slot:name>
 				JADWAL UJIAN PMB
@@ -18,7 +18,7 @@
 				</v-breadcrumbs>
 			</template>
 			<template v-slot:desc>
-				<v-alert color="cyan" border="left" colored-border type="info">
+				<v-alert color="orange" border="left" colored-border type="info">
 					Berisi daftar dan pengelolaan jadwal ujian PMB.
 				</v-alert>
 			</template>
@@ -65,8 +65,8 @@
 								></v-divider>
 								<v-spacer></v-spacer>
 								<v-btn 
-									color="primary" 
-									class="mb-2"
+									color="#1A237E" 
+									class="mb-2 white--text"
 									:loading="btnLoading"
 									:disabled="btnLoading"
 									@click.stop="addItem"

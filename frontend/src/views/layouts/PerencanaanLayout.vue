@@ -4,7 +4,7 @@
 						app
 						elevation="0"
 						color="#f7f8fd">
-						<v-app-bar-nav-icon @click.stop="drawer = !drawer" class="grey--text"></v-app-bar-nav-icon>
+						<v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']('V_APP_BAR_NAV_ICON_CSS_CLASS')"></v-app-bar-nav-icon>
 						<v-toolbar-title
 								class="headline clickable"
 								@click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
