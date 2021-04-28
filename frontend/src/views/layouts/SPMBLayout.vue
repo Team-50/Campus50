@@ -1,11 +1,17 @@
 <template>
 	<div>
-		<v-app-bar app>
+		<v-app-bar
+			app
+			elevation="0"
+			color="#f7f8fd">
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']('V_APP_BAR_NAV_ICON_CSS_CLASS')"></v-app-bar-nav-icon>
-			<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
+			<v-toolbar-title
+				class="headline clickable"
+				@click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
+				<span class="headline font-weight-bold mx-1">{{APP_NAME}}</span>
 			</v-toolbar-title>
 			<v-spacer></v-spacer>
+
 			<v-menu 
 				:close-on-content-click="true"
 				origin="center center"
@@ -48,6 +54,7 @@
 					</v-list-item>
 				</v-list>
 			</v-menu>
+
 			<v-divider
 				class="mx-4"
 				inset
@@ -63,22 +70,29 @@
 			width="300"
 			dark
 			:class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')"
-			color="#1A237E"
-			app v-if="dashboard == 'mahasiswabaru'">
+			:color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
+			app
+			v-if="dashboard == 'mahasiswabaru'">
+
 			<v-list-item>
 				<v-list-item-avatar>
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
 				</v-list-item-avatar>
 				<v-list-item-content>					
 					<v-list-item-title class="title">
-						{{ATTRIBUTE_USER('username')}}
+						<span class="headline font-weight-bold mx-1" style="color:#FFFFFF" dark>
+              {{ATTRIBUTE_USER('username')}}
+            </span>
 					</v-list-item-title>
 					<v-list-item-subtitle>
-						[{{DEFAULT_ROLE}}]
+						<span style="color:#FFFFFF" dark>
+							[{{DEFAULT_ROLE}}]
+						</span>
 					</v-list-item-subtitle>
 				</v-list-item-content>
 			</v-list-item>
 			<v-divider></v-divider>
+
 			<v-list
 				expand
 				dense
@@ -90,7 +104,18 @@
 					<v-list-item-content>
 						<v-list-item-title>MENU UTAMA</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>				
+				</v-list-item>
+				<v-list-item link to="/keuangan/channelpembayaran">
+					<v-list-item-icon class="mr-2">
+						<v-icon>mdi-numeric-3-circle</v-icon>
+					</v-list-item-icon>
+					<v-list-item-content>
+						<v-list-item-title>
+							CHANNEL PEMBAYARAN
+						</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
+				<v-divider></v-divider>
 				<v-list-item link to="/spmb/formulirpendaftaran">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-numeric-1-circle</v-icon>
@@ -111,16 +136,6 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
-				<v-list-item link to="/keuangan/channelpembayaran">
-					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-numeric-3-circle</v-icon>
-					</v-list-item-icon>
-					<v-list-item-content>
-						<v-list-item-title>
-							CHANNEL PEMBAYARAN
-						</v-list-item-title>
-					</v-list-item-content>
-				</v-list-item>
 				<v-list-item link to="/keuangan/konfirmasipembayaran">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-numeric-4-circle</v-icon>
@@ -133,23 +148,41 @@
 				</v-list-item>        
 			</v-list>
 		</v-navigation-drawer>
+
 		<!-- role selain mahasiswabaru dan mahasiswa -->
-		<v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')" :temporary="temporaryleftsidebar" app v-else>
+		<v-navigation-drawer
+			v-model="drawer"
+			width="300"
+			dark
+			:class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')"
+			:color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
+			:temporary="temporaryleftsidebar"
+			app
+			v-else>
+
 			<v-list-item>
 				<v-list-item-avatar>
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
 				</v-list-item-avatar>
 				<v-list-item-content>					
 					<v-list-item-title class="title">
-						{{ATTRIBUTE_USER('username')}}
+						<span class="headline font-weight-bold mx-1" style="color:#FFFFFF" dark>
+              {{ATTRIBUTE_USER('username')}}
+            </span>
 					</v-list-item-title>
 					<v-list-item-subtitle>
-						[{{DEFAULT_ROLE}}]
+						<span style="color:#FFFFFF" dark>
+							[{{DEFAULT_ROLE}}]
+						</span>
 					</v-list-item-subtitle>
 				</v-list-item-content>
 			</v-list-item>
 			<v-divider></v-divider>
-			<v-list expand>
+
+			<v-list
+				expand
+				dense
+        rounded>
 				<v-list-item :to="{path:'/spmb'}" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')" v-if="CAN_ACCESS('SPMB-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-monitor-dashboard</v-icon>
@@ -160,7 +193,7 @@
 				</v-list-item>   
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-SOAL_BROWSE')" to="/spmb/soalpmb">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-head-question-outline</v-icon>
+						<v-icon>mdi-beaker-question-outline</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -168,7 +201,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>        
-				<v-subheader>DATA MHS. BARU</v-subheader>                
+				<v-subheader style="color:#f0935c">DATA MHS. BARU</v-subheader>                
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB_BROWSE')" to="/spmb/pendaftaranbaru">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account-plus</v-icon>
@@ -181,7 +214,7 @@
 				</v-list-item>                    
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-FORMULIR-PENDAFTARAN_BROWSE')" to="/spmb/formulirpendaftaran">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-file-document-edit-outline</v-icon>
+						<v-icon>mdi-playlist-edit</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -199,10 +232,10 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>            
-				<v-subheader>UJIAN PMB</v-subheader>       
+				<v-subheader style="color:#f0935c">UJIAN PMB</v-subheader>       
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-JADWAL-UJIAN_BROWSE') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'" to="/spmb/jadwalujianpmb">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-calendar-account</v-icon>
+						<v-icon>mdi-account-question</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -212,7 +245,7 @@
 				</v-list-item>      
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-NILAI-UJIAN_BROWSE') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'" to="/spmb/nilaiujian">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-calendar-account</v-icon>
+						<v-icon>mdi-beaker-plus-outline</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -220,7 +253,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>      
-				<v-subheader v-if="CAN_ACCESS('SPMB-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">LAPORAN</v-subheader>                      
+				<v-subheader style="color:#f0935c" v-if="CAN_ACCESS('SPMB-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">LAPORAN</v-subheader>                      
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-LAPORAN-FAKULTAS_BROWSE') && isBentukPT('universitas')" to="/spmb/laporanfakultas">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-file-document-edit-outline</v-icon>
@@ -233,7 +266,7 @@
 				</v-list-item>
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-LAPORAN-PRODI_BROWSE')" to="/spmb/laporanprodi">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-file-document-edit-outline</v-icon>
+						<v-icon>mdi-newspaper-variant-outline</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -243,7 +276,7 @@
 				</v-list-item>                
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-LAPORAN-KELULUSAN_BROWSE')" to="/spmb/laporankelulusan">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-file-document-edit-outline</v-icon>
+						<v-icon>mdi-newspaper-variant-outline</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>

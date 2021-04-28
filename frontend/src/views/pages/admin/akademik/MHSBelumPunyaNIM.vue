@@ -2,7 +2,7 @@
     <AkademikLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-book
+                mdi-progress-check
             </template>
             <template v-slot:name>
                 MAHASISWA BELUM PUNYA NIM
@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"

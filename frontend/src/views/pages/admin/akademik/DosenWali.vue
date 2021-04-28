@@ -2,7 +2,7 @@
     <AkademikLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-account
+                mdi-teach
             </template>
             <template v-slot:name>
                 DOSEN WALI
@@ -16,7 +16,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"
