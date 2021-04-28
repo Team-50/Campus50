@@ -1,8 +1,5 @@
 <template>
-	<div>
-		<v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V_SYSTEM_BAR_CSS_CLASS')">
-			<strong>Hak Akses Sebagai :</strong> {{ROLE}}
-		</v-system-bar>	
+	<div>	
 		<v-app-bar app>
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']('V_APP_BAR_NAV_ICON_CSS_CLASS')"></v-app-bar-nav-icon>
 			<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
@@ -62,7 +59,13 @@
 		</v-app-bar-nav-icon>            
 	</v-app-bar>    
 		<!-- role sebagai mahasiswabaru dan mahasiswa -->
-		<v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')" :temporary="temporaryleftsidebar" app v-if="dashboard == 'mahasiswabaru'">
+		<v-navigation-drawer
+			v-model="drawer"
+			width="300"
+			dark
+			:class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')"
+			color="#1A237E"
+			app v-if="dashboard == 'mahasiswabaru'">
 			<v-list-item>
 				<v-list-item-avatar>
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
@@ -77,18 +80,21 @@
 				</v-list-item-content>
 			</v-list-item>
 			<v-divider></v-divider>
-			<v-list expand>				 
+			<v-list
+				expand
+				dense
+				rounded>				 
 				<v-list-item :to="{path: '/dashboard/' + $store.getters['auth/AccessToken']}" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-monitor-dashboard</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
-						<v-list-item-title>DASHBOARD</v-list-item-title>
+						<v-list-item-title>MENU UTAMA</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>				
 				<v-list-item link to="/spmb/formulirpendaftaran">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-file-document-edit-outline</v-icon>
+						<v-icon>mdi-numeric-1-circle</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -98,7 +104,7 @@
 				</v-list-item>                    
 				<v-list-item link to="/spmb/persyaratan">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-file-document-edit-outline</v-icon>
+						<v-icon>mdi-numeric-2-circle</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -108,7 +114,7 @@
 				</v-list-item>
 				<v-list-item link to="/keuangan/channelpembayaran">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-triforce</v-icon>
+						<v-icon>mdi-numeric-3-circle</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -118,7 +124,7 @@
 				</v-list-item>
 				<v-list-item link to="/keuangan/konfirmasipembayaran">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-account-cash</v-icon>
+						<v-icon>mdi-numeric-4-circle</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
