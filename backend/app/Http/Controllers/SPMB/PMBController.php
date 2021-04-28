@@ -398,6 +398,7 @@ class PMBController extends Controller {
                                                     ->where('kombi_id',101)
                                                     ->first(); 
             $no_transaksi='N.A';
+            $biaya_pendaftaran = 0;
             if (!is_null($transaksi_detail))
             {
                 $no_transaksi=$transaksi_detail->no_transaksi;
@@ -407,6 +408,7 @@ class PMBController extends Controller {
                                         'pid'=>'fetchdata',                
                                         'formulir'=>$formulir,                                        
                                         'no_transaksi'=>$no_transaksi,
+                                        'biaya_pendaftaran'=>$biaya_pendaftaran,
                                         'message'=>"Formulir Pendaftaran dengan ID ($id) berhasil diperoleh"
                                     ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);     
         }
@@ -538,6 +540,7 @@ class PMBController extends Controller {
                 
                 //buat transaksi keuangan pmb
                 $no_transaksi='N.A';
+                $biaya_pendaftaran=0;
                 $transaksi_detail=TransaksiDetailModel::join('pe3_transaksi','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
                                                         ->where('pe3_transaksi_detail.user_id',$formulir->user_id)
                                                         ->whereRaw('(pe3_transaksi.status=1 OR pe3_transaksi.status=0)')
@@ -583,23 +586,28 @@ class PMBController extends Controller {
                         $transaksi->total=$kombi->biaya;
                         $transaksi->desc=$kombi->nama_kombi;
                         $transaksi->save();
+
+                        $biaya_pendaftaran=$transaksi_detail->sub_total;
                     }                    
                 }
                 else
                 {
                     $no_transaksi=$transaksi_detail->no_transaksi;
+                    $biaya_pendaftaran=$transaksi_detail->sub_total;
                 }
                 $formulir=FormulirPendaftaranModel::find($formulir->user_id);
                 return [
                     'formulir'=>$formulir,
-                    'no_transaksi'=>$no_transaksi
+                    'no_transaksi'=>$no_transaksi,
+                    'biaya_pendaftaran'=>$biaya_pendaftaran,
                 ];
             });
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'store',
                                         'formulir'=>$data_mhs['formulir'],                                                                                                  
-                                        'no_transaksi'=>$data_mhs['no_transaksi'],                                                                                                  
+                                        'no_transaksi'=>$data_mhs['no_transaksi'],   
+                                        'biaya_pendaftaran'=>$data_mhs['biaya_pendaftaran'],
                                         'message'=>'Formulir Pendaftaran Mahasiswa baru berhasil diubah.'
                                     ],200); 
         }
