@@ -132,7 +132,7 @@
 												</li>
 												<li>Pilih Upload Pembayaran</li>
 											</ol>
-											Selesai.
+											Pembayaran Selesai.
 										</v-col>
 									</v-row>
 								</v-container>
