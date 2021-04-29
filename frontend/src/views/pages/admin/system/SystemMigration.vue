@@ -2,7 +2,7 @@
     <SystemMigrationLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-bank-transfer-in
+                mdi-progress-wrench
             </template>
             <template v-slot:name>
                 MIGRASI SISTEM 
@@ -19,7 +19,7 @@
             </template>
             <template v-slot:desc>
                 <v-alert                                        
-                    color="cyan"
+                    color="orange"
                     border="left"                    
                     colored-border
                     type="info"
