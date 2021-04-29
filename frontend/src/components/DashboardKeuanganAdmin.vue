@@ -3,8 +3,8 @@
         <v-row dense>
             <v-col xs="12" sm="4" md="3">
                 <v-card                         
-                    class="clickable green darken-1"
-                    color="#385F73" 
+                    class="clickable"
+                    :color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
                     @click.native="$router.push('/spmb/pendaftaranbaru')"
                     dark>
                     <v-card-title class="headline">
@@ -21,8 +21,8 @@
             <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
             <v-col xs="12" sm="4" md="3">
                 <v-card                         
-                    class="clickable green darken-1"
-                    color="#385F73" 
+                    class="clickable"
+                    :color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
                     @click.native="$router.push('/spmb/pendaftaranbaru')"
                     dark>
                     <v-card-title class="headline">
@@ -39,8 +39,8 @@
             <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
             <v-col xs="12" sm="4" md="3">
                 <v-card                         
-                    class="clickable green darken-1"
-                    color="#385F73" 
+                    class="clickable"
+                    :color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
                     @click.native="$router.push('/spmb/pendaftaranbaru')"
                     dark>
                     <v-card-title class="headline">
@@ -57,8 +57,8 @@
             <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
             <v-col xs="12" sm="4" md="3">
                 <v-card                         
-                    class="clickable green darken-1"
-                    color="#385F73" 
+                    class="clickable"
+                    :color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
                     @click.native="$router.push('/spmb/pendaftaranbaru')"
                     dark>
                     <v-card-title class="headline">

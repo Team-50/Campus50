@@ -2,7 +2,7 @@
     <KemahasiswaanLayout>
         <ModuleHeader>
             <template v-slot:icon>
-                mdi-monitor-dashboard
+                mdi-account-details
             </template>
             <template v-slot:name>
                 KEMAHASISWAAN 
