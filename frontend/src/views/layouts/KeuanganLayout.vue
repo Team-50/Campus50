@@ -8,7 +8,7 @@
 			<v-toolbar-title
 				class="headline clickable"
 				@click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
+				<span class="headline font-weight-bold mx-1">{{APP_NAME}}</span>
 			</v-toolbar-title>
 				<v-spacer></v-spacer>
 				<v-menu 
@@ -78,7 +78,9 @@
 				</v-list-item-avatar>
 				<v-list-item-content>					
 					<v-list-item-title class="title">
+						<span class="headline font-weight-bold mx-1" style="color:#FFFFFF" dark>
 						{{ATTRIBUTE_USER('username')}}
+						</span>
 					</v-list-item-title>
 					<v-list-item-subtitle>
 						[{{DEFAULT_ROLE}}]
@@ -155,7 +157,9 @@
 				</v-list-item-avatar>
 				<v-list-item-content>					
 					<v-list-item-title class="title">
+						<span class="headline font-weight-bold mx-1" style="color:#FFFFFF" dark>
 						{{ATTRIBUTE_USER('username')}}
+						</span>
 					</v-list-item-title>
 					<v-list-item-subtitle>
 						[{{DEFAULT_ROLE}}]

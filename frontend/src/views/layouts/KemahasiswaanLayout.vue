@@ -8,7 +8,7 @@
 					<v-toolbar-title
 						class="headline clickable"
 						@click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
+				<span class="headline font-weight-bold mx-1">{{APP_NAME}}</span>
 			</v-toolbar-title>
 						<v-spacer></v-spacer>            
 						<v-divider
@@ -81,7 +81,9 @@
 				</v-list-item-avatar>
 				<v-list-item-content>					
 					<v-list-item-title class="title">
+						<span class="headline font-weight-bold mx-1" style="color:#FFFFFF" dark>
 						{{ATTRIBUTE_USER('username')}}
+						</span>
 					</v-list-item-title>
 					<v-list-item-subtitle>
 						[{{DEFAULT_ROLE}}]
@@ -166,7 +168,7 @@
 										</v-list-item-content>
 								</v-list-item>
 								<v-divider></v-divider>
-								<v-list-item :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')">
+								<v-list-item class="teal lighten-5 mb-5">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-filter</v-icon>
 										</v-list-item-icon>
@@ -176,7 +178,7 @@
 								</v-list-item>
 								<slot name="filtersidebar"/>		                	
 						</v-list>
-		</v-navigation-drawer>
+				</v-navigation-drawer>
 				<v-main class="mx-4 mb-4">			
 			<slot />
 		</v-main>
