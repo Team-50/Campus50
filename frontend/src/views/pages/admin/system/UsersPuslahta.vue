@@ -16,7 +16,7 @@
 						</template>
 						<template v-slot:desc>
 								<v-alert
-										color="cyan"
+										color="orange"
 										border="left"
 										colored-border
 										type="info"
@@ -74,12 +74,13 @@
 																		v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
 																		SYNC PERMISSION
 																</v-btn>
-																<v-btn color="primary"
-																		class="mb-2"
-																		:loading="btnLoading"
-																		:disabled="btnLoading"
-																		@click.stop="showDialogTambahUserPuslahta">
-																		TAMBAH
+																<v-btn
+																	:loading="btnLoading"
+																	:disabled="btnLoading"
+																	color="#1A237E"
+																	class="mb-2 white--text"
+																	@click.stop="showDialogTambahUserPuslahta">
+																	TAMBAH
 																</v-btn>
 																<v-dialog v-model="dialog" max-width="500px" persistent>
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
