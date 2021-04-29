@@ -1,8 +1,13 @@
 <template>
 	<div>	
-		<v-app-bar app>
+		<v-app-bar
+			app
+			elevation="0"
+			color="#f7f8fd">
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']('V_APP_BAR_NAV_ICON_CSS_CLASS')"></v-app-bar-nav-icon>
-			<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
+			<v-toolbar-title
+				class="headline clickable"
+				@click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
 			</v-toolbar-title>
 				<v-spacer></v-spacer>
@@ -64,7 +69,8 @@
 			width="300"
 			dark
 			:class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')"
-			color="#1A237E"
+			:color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
+			:temporary="temporaryleftsidebar"
 			app v-if="dashboard == 'mahasiswabaru'">
 			<v-list-item>
 				<v-list-item-avatar>
@@ -91,7 +97,18 @@
 					<v-list-item-content>
 						<v-list-item-title>MENU UTAMA</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>				
+				</v-list-item>
+				<v-divider></v-divider>				
+				<v-list-item link to="/keuangan/channelpembayaran">
+					<v-list-item-icon class="mr-2">
+						<v-icon>mdi-numeric-3-circle</v-icon>
+					</v-list-item-icon>
+					<v-list-item-content>
+						<v-list-item-title>
+							CHANNEL PEMBAYARAN
+						</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
 				<v-list-item link to="/spmb/formulirpendaftaran">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-numeric-1-circle</v-icon>
@@ -112,16 +129,6 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
-				<v-list-item link to="/keuangan/channelpembayaran">
-					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-numeric-3-circle</v-icon>
-					</v-list-item-icon>
-					<v-list-item-content>
-						<v-list-item-title>
-							CHANNEL PEMBAYARAN
-						</v-list-item-title>
-					</v-list-item-content>
-				</v-list-item>
 				<v-list-item link to="/keuangan/konfirmasipembayaran">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-numeric-4-circle</v-icon>
@@ -135,7 +142,13 @@
 			</v-list>
 		</v-navigation-drawer>
 		<!-- role selain mahasiswabaru dan mahasiswa -->
-		<v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')" :temporary="temporaryleftsidebar" app v-else>
+		<v-navigation-drawer
+			v-model="drawer" width="300"
+			dark
+			:class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')"
+			:color="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_COLOR')"
+			:temporary="temporaryleftsidebar"
+			app v-else>
 			<v-list-item>
 				<v-list-item-avatar>
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
@@ -150,7 +163,10 @@
 				</v-list-item-content>
 			</v-list-item>
 			<v-divider></v-divider>
-						<v-list expand>
+						<v-list
+							expand
+							dense
+							rounded>
 								<v-list-item :to="{path:'/keuangan'}" link  :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')" v-if="CAN_ACCESS('KEUANGAN-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-monitor-dashboard</v-icon>
@@ -162,7 +178,7 @@
 								<v-subheader>DAFTAR ULANG</v-subheader>
 								<v-list-item link to="/keuangan/channelpembayaran">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-triforce</v-icon>
+												<v-icon>mdi-source-fork</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -172,7 +188,7 @@
 								</v-list-item>                        
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-STATUS-TRANSAKSI_BROWSE')" to="/keuangan/statustransaksi">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-triforce</v-icon>
+												<v-icon>mdi-cash-register</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -182,7 +198,7 @@
 								</v-list-item>                        
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-KOMPONEN-BIAYA_BROWSE')" to="/keuangan/biayakomponen">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-video-input-component</v-icon>
+												<v-icon>mdi-cash-multiple</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -192,7 +208,7 @@
 								</v-list-item>                        
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-BIAYA-KOMPONEN-PERIODE_BROWSE')" to="/keuangan/biayakomponenperiode">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-triforce</v-icon>
+												<v-icon>mdi-note-multiple</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -203,7 +219,7 @@
 								<v-subheader v-if="dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">METODE PEMBAYARAN</v-subheader>
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-METODE-TRANSFER-BANK_BROWSE')" to="/keuangan/transferbank">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account-cash</v-icon>
+												<v-icon>mdi-bank-transfer</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -214,7 +230,7 @@
 								<v-subheader>TRANSAKSI</v-subheader>
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE')" to="/keuangan/konfirmasipembayaran">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account-cash</v-icon>
+												<v-icon>mdi-eye-check</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -224,7 +240,7 @@
 								</v-list-item>        
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI_BROWSE')" to="/keuangan/transaksi">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account-cash</v-icon>
+												<v-icon>mdi-file-document</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -235,7 +251,7 @@
 								<v-divider/>
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-REGISTRASIKRS_BROWSE')" to="/keuangan/transaksi-registrasikrs">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account-cash</v-icon>
+												<v-icon>mdi-book-open</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -245,7 +261,7 @@
 								</v-list-item>                                                     
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-SPP_BROWSE')" to="/keuangan/transaksi-spp">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account-cash</v-icon>
+												<v-icon>mdi-calendar-account</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
