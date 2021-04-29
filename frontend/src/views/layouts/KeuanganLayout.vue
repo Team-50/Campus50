@@ -175,7 +175,7 @@
 												<v-list-item-title>BOARD KEUANGAN</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item>   
-								<v-subheader>DAFTAR ULANG</v-subheader>
+								<v-subheader style="color:#f0935c">DAFTAR ULANG</v-subheader>
 								<v-list-item link to="/keuangan/channelpembayaran">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-source-fork</v-icon>
@@ -216,7 +216,7 @@
 												</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item>                        
-								<v-subheader v-if="dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">METODE PEMBAYARAN</v-subheader>
+								<v-subheader v-if="dashboard!='mahasiswabaru' && dashboard!='mahasiswa'" style="color:#f0935c">METODE PEMBAYARAN</v-subheader>
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-METODE-TRANSFER-BANK_BROWSE')" to="/keuangan/transferbank">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-bank-transfer</v-icon>
@@ -227,7 +227,7 @@
 												</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item> 
-								<v-subheader>TRANSAKSI</v-subheader>
+								<v-subheader style="color:#f0935c">TRANSAKSI</v-subheader>
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE')" to="/keuangan/konfirmasipembayaran">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-eye-check</v-icon>

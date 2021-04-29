@@ -95,7 +95,7 @@
 							rounded>
 								<v-list-item :to="{path:'/kemahasiswaan'}" v-if="CAN_ACCESS('SYSTEM-USERS-GROUP')" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account</v-icon>
+												<v-icon>mdi-account-cog</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>PROFILE MAHASISWA</v-list-item-title>
@@ -103,7 +103,7 @@
 								</v-list-item>
 								<v-list-item link to="/system-users/profil">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account</v-icon>
+												<v-icon>mdi-book-account-outline</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>DAFTAR MAHASISWA</v-list-item-title>
@@ -129,7 +129,7 @@
 								<v-divider v-if="CAN_ACCESS('SYSTEM-SETTING-ROLES')"/>
 								<v-list-item link v-if="CAN_ACCESS('SYSTEM-USERS-SUPERADMIN_BROWSE')" to="/system-users/superadmin">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account</v-icon>
+												<v-icon>mdi-card-account-details</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>CALON MAHASISWA</v-list-item-title>
@@ -137,7 +137,7 @@
 								</v-list-item>    
 								<v-list-item link v-if="CAN_ACCESS('SYSTEM-USERS-KEUANGAN_BROWSE')" to="/system-users/keuangan">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account</v-icon>
+												<v-icon>mdi-account-convert</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>PINDAH KELAS</v-list-item-title>
@@ -145,7 +145,7 @@
 								</v-list-item>    
 								<v-list-item link v-if="CAN_ACCESS('SYSTEM-USERS-PMB_BROWSE')" to="/system-users/pmb">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-account</v-icon>
+												<v-icon>mdi-account-multiple</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>PERWALIAN</v-list-item-title>
