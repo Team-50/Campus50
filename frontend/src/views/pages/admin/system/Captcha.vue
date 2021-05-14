@@ -81,7 +81,7 @@ export default {
                 text:'KONFIGURASI SISTEM',
                 disabled:false,
                 href:'/system-setting'
-            },  
+            },
             {
                 text:'SERVER - CAPTCHA',
                 disabled:true,
@@ -91,72 +91,72 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],
+        breadcrumbs: [],
         datatableLoading:false,
-        btnLoading:false,
+        btnLoading: false,
         //form
         form_valid:true,
         formdata: {
-            siteKey:'',
-            privateKey:''
+            siteKey: "",
+            privateKey: ""
         },
         //form rules
-        rule_site_key:[
-            value => !!value||"Mohon untuk di isi site key !!!",
+        rule_site_key: [
+            value => !!value || "Mohon untuk di isi site key !!!",
         ],
-        rule_private_key:[
-            value => !!value||"Mohon untuk di isi private key !!!",
+        rule_private_key: [
+            value => !!value || "Mohon untuk di isi private key !!!",
         ],
     }),
     methods: {
-        initialize:async function ()
+        initialize:async function()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data }) => {
                 let setting = data.setting;
                 this.formdata.siteKey=setting.CAPTCHA_SITE_KEY;
                 this.formdata.privateKey=setting.CAPTCHA_PRIVATE_KEY;
             });
 
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 this.$ajax.post('/system/setting/variables',
                     {
                         '_method':'PUT',
                         'pid':'captcha google',
                         setting:JSON.stringify({
-                            901:this.formdata.siteKey,
-                            902:this.formdata.privateKey,
+                            901: this.formdata.siteKey,
+                            902: this.formdata.privateKey,
                         }),
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{
-                    this.btnLoading=false;
-                }).catch(()=>{
-                    this.btnLoading=false;
+                ).then(() => {
+                    this.btnLoading = false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });
             }
         }
     },
-    computed:{
+    computed: {
         ...mapGetters('auth',{
             ACCESS_TOKEN:'AccessToken',
             TOKEN:'Token',
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
         ModuleHeader,
 	}

@@ -22,26 +22,26 @@ export default {
     created()
     {
         this.daftar_fakultas=this.$store.getters['uiadmin/getDaftarFakultas'];  
-        this.fakultas_id=this.$store.getters['uiadmin/getFakultasID'];                                    
+        this.fakultas_id=this.$store.getters['uiadmin/getFakultasID'];                        
         
         this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
         this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran']; 
     },
     data:()=>({
         firstloading:true,
-        daftar_fakultas:[],
+        daftar_fakultas: [],
         fakultas_id:null,
 
-        daftar_ta:[],
+        daftar_ta: [],
         tahun_pendaftaran:null
     }),
-    methods:{
+    methods: {
         setFirstTimeLoading (bool)
         {
             this.firstloading=bool;
         }
     },
-    watch:{
+    watch: {
         tahun_pendaftaran(val)
         {
             if (!this.firstloading)

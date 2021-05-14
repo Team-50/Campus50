@@ -30,19 +30,19 @@ export default {
     data:()=>({
         firstloading:true,
         
-        daftar_ta:[],
+        daftar_ta: [],
         tahun_akademik:null,
 
-        daftar_semester:[],
+        daftar_semester: [],
         semester_akademik:null
     }),
-    methods:{
+    methods: {
         setFirstTimeLoading (bool)
         {
             this.firstloading=bool;
         }
     },
-    watch:{
+    watch: {
         tahun_akademik(val)
         {
             if (!this.firstloading)
@@ -50,12 +50,12 @@ export default {
                 this.$store.dispatch('uiadmin/updateTahunAkademik',val);  
                 this.$emit('changeTahunAkademik',val);          
             }            
-        },        
+        },      
         semester_akademik(val)
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateSemesterAkademik',val);                  
+                this.$store.dispatch('uiadmin/updateSemesterAkademik',val);      
                 this.$emit('changeSemesterAkademik',val);          
             }
         },

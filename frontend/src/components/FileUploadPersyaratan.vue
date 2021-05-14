@@ -1,7 +1,7 @@
 <template>
     <v-form v-model="form_valid" ref="frmpersyaratan" lazy-validation>
         <v-card class="mx-auto" max-width="400">               
-            <v-img class="white--text align-end" height="200px" :src="photoPersyaratan"></v-img>                            
+            <v-img class="white--text align-end" height="200px" :src="photoPersyaratan"></v-img> 
             <v-card-text class="text--primary">
                 <div>
                     <v-file-input 
@@ -37,7 +37,7 @@
                     @click="upload(index,item)"
                     :loading="btnLoading"                                
                     :disabled="btnLoading||btnSimpan"
-                    v-if="verified == 0">                                   
+                    v-if="verified == 0">        
                     Simpan
                 </v-btn>
                 <v-btn
@@ -70,7 +70,7 @@ export default {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         if (this.item.path == null || this.item.persyaratan_pmb_id==null)
         {            
-            this.image_prev=this.item.path;            
+            this.image_prev=this.item.path;
         }
         else
         {            
@@ -80,16 +80,16 @@ export default {
             this.badgeIcon=this.item.verified;
         }        
     },
-    props:{
-        user_id:{
+    props: {
+        user_id: {
             type:String,
             required:true
         },
-        index:{
+        index: {
             type:Number,
             required:true
         },
-        item:{
+        item: {
             type:Object,
             required:true
         }
@@ -97,19 +97,19 @@ export default {
     data:()=>({     
         dashboard:null,
 
-        btnSimpan:true,  
-        btnHapus:true,  
-        btnVerifikasi:true,       
-        btnLoading:false,
+        btnSimpan:true,
+        btnHapus:true,
+        btnVerifikasi:true,     
+        btnLoading: false,
         image_prev:null,
 
         //form
         verified:0,
         form_valid:true,
-        filepersyaratan:[],
+        filepersyaratan: [],
         //form rules  
-        rule_foto:[
-            value => !!value||"Mohon pilih foto !!!",  
+        rule_foto: [
+            value => !!value || "Mohon pilih foto !!!",
             value =>  !value || value.size < 2000000 || 'File foto harus kurang dari 2MB.'                
         ],
     }),
@@ -138,26 +138,26 @@ export default {
             {
                 if (typeof this.filepersyaratan[index] !== 'undefined')
                 {
-                    this.btnLoading=true;
-                    var formdata = new FormData();                    
+                    this.btnLoading = true;
+                    var formdata = new FormData();        
                     formdata.append('nama_persyaratan',data.nama_persyaratan);
                     formdata.append('persyaratan_id',data.persyaratan_id);
                     formdata.append('persyaratan_pmb_id',data.persyaratan_pmb_id);
                     formdata.append('foto',this.filepersyaratan[index]);
-                    await this.$ajax.post('/spmb/pmbpersyaratan/upload/'+this.user_id,formdata,                    
+                    await this.$ajax.post('/spmb/pmbpersyaratan/upload/'+this.user_id,formdata,
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token'],
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token'],
                                 'Content-Type': 'multipart/form-data'                      
                             }
                         }
-                    ).then(()=>{                                                   
+                    ).then(() => {                                                   
                         this.btnHapus=false;
                         this.btnSimpan=true;
-                        this.btnLoading=false;                        
-                    }).catch(()=>{
-                        this.btnLoading=false;
-                    });                    
+                        this.btnLoading = false;            
+                    }).catch(() => {
+                        this.btnLoading = false;
+                    });        
                 }               
             }            
         },
@@ -169,18 +169,18 @@ export default {
                     this.$ajax.post('/spmb/pmbpersyaratan/hapusfilepersyaratan/'+item.persyaratan_pmb_id,
                         {
                             _method:'DELETE'
-                        },                    
+                        },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']                
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']                
                             }
                         }
-                    ).then(()=>{                   
+                    ).then(() => {                   
                         this.btnHapus=true;
                         this.photoPersyaratan=require('@/assets/no-image.png');        
-                        this.btnLoading=false;                        
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;            
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });  
                 }
             });
@@ -203,29 +203,29 @@ export default {
         },
         verifikasipersyaratan: async function (item)
         {
-            this.btnLoading=true;                    
+            this.btnLoading = true;        
             await this.$ajax.post('/spmb/pmbpersyaratan/verifikasipersyaratan/'+item.persyaratan_pmb_id,
             {                    
                 
             },
             {
-                headers:{
-                    Authorization:this.$store.getters['auth/Token']
+                headers: {
+                    Authorization: this.$store.getters['auth/Token']
                 }
             }
-            ).then(({data})=>{   
-                this.badgeColor=data.persyaratan.verified;              
-                this.badgeIcon=data.persyaratan.verified;              
+            ).then(({ data }) => {   
+                this.badgeColor=data.persyaratan.verified;  
+                this.badgeIcon=data.persyaratan.verified;  
                 this.btnHapus=true;          
                 this.btnVerifikasi=true;     
-                this.btnLoading=false;                        
+                this.btnLoading = false;            
             }).catch(() => {                                                   
-                this.btnLoading=false;
-            });                             
+                this.btnLoading = false;
+            });                 
         }
     },
     computed: {
-        photoPersyaratan:{
+        photoPersyaratan: {
             get ()
             {   
                 if (this.image_prev==null)
@@ -243,7 +243,7 @@ export default {
             }
             
         },
-        badgeColor:{
+        badgeColor: {
             get()
             {
                 return this.verified == 1 ? 'success':'error'
@@ -254,7 +254,7 @@ export default {
             }
             
         },
-        badgeIcon:{
+        badgeIcon: {
             get()
             {
                 return this.verified == 1 ? 'mdi-check-bold':'mdi-close-thick';
@@ -264,7 +264,7 @@ export default {
                 return this.verified=val;
             }
             
-        },  
+        },
     }
 }
 </script>

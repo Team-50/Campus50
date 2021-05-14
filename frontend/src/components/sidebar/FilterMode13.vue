@@ -25,24 +25,24 @@ export default {
         this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];  
 
         this.daftar_kelas=this.$store.getters['uiadmin/getDaftarKelas'];  
-        this.idkelas=this.$store.getters['uiadmin/getIDKelas'];                                            
+        this.idkelas=this.$store.getters['uiadmin/getIDKelas'];                                
     },
     data:()=>({
         firstloading:true,
         
-        daftar_kelas:[],
+        daftar_kelas: [],
         idkelas:null,
 
-        daftar_ta:[],
+        daftar_ta: [],
         tahun_pendaftaran:null
     }),
-    methods:{
+    methods: {
         setFirstTimeLoading (bool)
         {
             this.firstloading=bool;
         }
     },
-    watch:{
+    watch: {
         tahun_pendaftaran(val)
         {
             if (!this.firstloading)

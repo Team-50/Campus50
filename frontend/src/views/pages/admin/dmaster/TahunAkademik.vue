@@ -70,7 +70,7 @@
                                     <template v-slot:activator="{ on }">
                                         <v-btn color="primary" icon outlined small class="ma-2" v-on="on">
                                             <v-icon>mdi-plus</v-icon>
-                                        </v-btn>                                        
+                                        </v-btn>             
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -135,7 +135,7 @@
                                                             </v-date-picker>
                                                         </v-menu>
                                                     </v-col>
-                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                    
+                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                         
                                                 </v-row>
                                                 <v-row no-gutters>
                                                     <v-col xs="12" sm="12" md="12">
@@ -173,7 +173,7 @@
                                                             </v-date-picker>
                                                         </v-menu>
                                                     </v-col>
-                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                    
+                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                         
                                                 </v-row>
                                             </v-card-text>
                                             <v-card-actions>
@@ -341,7 +341,7 @@ import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
     name:'TahunAkademik',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -364,13 +364,13 @@ export default {
     data()
     {
         let d = new Date();
-        let semester_ganjil = [d.getFullYear()+'-09-01',(d.getFullYear()+1)+'-02-28'];                
-        let semester_genap = [(d.getFullYear()+1)+'-03-01',(d.getFullYear()+1)+'-08-31'];                
+        let semester_ganjil = [d.getFullYear()+'-09-01',(d.getFullYear()+1)+'-02-28'];    
+        let semester_genap = [(d.getFullYear()+1)+'-03-01',(d.getFullYear()+1)+'-08-31'];    
         return {
-            btnLoading:false,
+            btnLoading: false,
             datatableLoading:false,
-            expanded:[],
-            datatable:[],
+            expanded: [],
+            datatable: [],
             headers: [
                 { text: 'TA', value: 'tahun', width:50 },
                 { text: 'TAHUN AKADEMIK', value: 'tahun_akademik',width:150 },
@@ -382,46 +382,46 @@ export default {
                 { text: 'AKHIR PENDEK', value: 'akhir_pendek',width:50 },
                 { text: 'AKSI', value: 'actions', sortable: false,width:100 },
             ],
-            search:'',
+            search: "",
 
             //dialog
             dialogfrm:false,
             dialogdetailitem:false,
 
             //form data
-            old_tahun:'',
+            old_tahun: "",
             form_valid:true,
-            menuSemesterGanjil:false,        
+            menuSemesterGanjil:false,      
             semester_ganjil:semester_ganjil,
-            menuSemesterGenap:false,        
+            menuSemesterGenap:false,      
             semester_genap:semester_genap,
 
             formdata: {
-                tahun:'',
-                tahun_akademik:'',
-                awal_ganjil:'',
-                akhir_ganjil:'',
-                awal_genap:'',
-                akhir_genap:'',
-                awal_pendek:'',
-                akhir_pendek:'',  
+                tahun: "",
+                tahun_akademik: "",
+                awal_ganjil: "",
+                akhir_ganjil: "",
+                awal_genap: "",
+                akhir_genap: "",
+                awal_pendek: "",
+                akhir_pendek: "",
             },
             formdefault: {
-                tahun:'',
-                tahun_akademik:'',
-                awal_ganjil:'',
-                akhir_ganjil:'',
-                awal_genap:'',
-                akhir_genap:'',
-                awal_pendek:'',
-                akhir_pendek:'',  
+                tahun: "",
+                tahun_akademik: "",
+                awal_ganjil: "",
+                akhir_ganjil: "",
+                awal_genap: "",
+                akhir_genap: "",
+                awal_pendek: "",
+                akhir_pendek: "",
             },
             editedIndex: -1,
 
             //form rules
-            rule_tahun:[
-                value => !!value||"Tahun Akademik mohon untuk diisi Misalnya 2020 !!!",
-                value => /^[0-9]+$/.test(value) || 'Tahun Akademik hanya boleh angka',                
+            rule_tahun: [
+                value => !!value || "Tahun Akademik mohon untuk diisi Misalnya 2020 !!!",
+                value => /^[0-9]+$/.test(value) || 'Tahun Akademik hanya boleh angka',              
                 value => {                    
                     if (value && typeof value !== 'undefined' && value.length > 0){
                         return value.length == 4 || 'Tahun Akademik hanya boleh 4 karakter';
@@ -432,23 +432,23 @@ export default {
                     }                    
                 }
             ],
-            rule_tahun_akademik:[                
-                value => !!value||"Mohon untuk di isi nama tahun akademik !!!",
-            ],            
+            rule_tahun_akademik: [                
+                value => !!value || "Mohon untuk di isi nama tahun akademik !!!",
+            ],          
         }
     },
     methods: {
-        initialize:async function ()
+        initialize:async function()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/tahunakademik',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data }) => {
                 this.datatable = data.ta;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });
         },
@@ -477,56 +477,56 @@ export default {
             this.old_tahun=item.tahun;
             this.dialogfrm = true
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1)
                 {
                     await this.$ajax.post('/datamaster/tahunakademik/'+this.old_tahun,
                         {
                             '_method':'PUT',
-                            tahun:this.formdata.tahun,
-                            tahun_akademik:this.formdata.tahun_akademik,
-                            awal_ganjil:this.semester_ganjil[0],
-                            akhir_ganjil:this.semester_ganjil[1],
-                            awal_genap:this.semester_genap[0],
-                            akhir_genap:this.semester_genap[1],
+                            tahun: this.formdata.tahun,
+                            tahun_akademik: this.formdata.tahun_akademik,
+                            awal_ganjil: this.semester_ganjil[0],
+                            akhir_ganjil: this.semester_ganjil[1],
+                            awal_genap: this.semester_genap[0],
+                            akhir_genap: this.semester_genap[1],
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data }) => {
                         Object.assign(this.datatable[this.editedIndex], data.ta);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
 
                 } else {
                     await this.$ajax.post('/datamaster/tahunakademik/store',
                         {
-                            tahun:this.formdata.tahun,
-                            tahun_akademik:this.formdata.tahun_akademik,
-                            awal_ganjil:this.semester_ganjil[0],
-                            akhir_ganjil:this.semester_ganjil[1],
-                            awal_genap:this.semester_genap[0],
-                            akhir_genap:this.semester_genap[1],
+                            tahun: this.formdata.tahun,
+                            tahun_akademik: this.formdata.tahun_akademik,
+                            awal_ganjil: this.semester_ganjil[0],
+                            akhir_ganjil: this.semester_ganjil[1],
+                            awal_genap: this.semester_genap[0],
+                            akhir_genap: this.semester_genap[1],
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data }) => {
                         this.datatable.push(data.ta);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -535,27 +535,27 @@ export default {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.tahun+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/datamaster/tahunakademik/'+item.tahun,
                         {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             });
         },
-        closedialogdetailitem () {
+        closedialogdetailitem() {
             this.dialogdetailitem = false;
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
@@ -563,7 +563,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);
@@ -578,7 +578,7 @@ export default {
             ACCESS_TOKEN:'AccessToken',
             TOKEN:'Token',
         }),
-        formTitle () {
+        formTitle() {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
         },
         semesterGanjilText : {
@@ -591,7 +591,7 @@ export default {
                 return this.semester_ganjil.join(' ~ ');
             }
         },
-        semesterGenapText:{
+        semesterGenapText: {
             set()
             {
 
@@ -600,9 +600,9 @@ export default {
             {
                   return this.semester_genap.join(' ~ ');
             }
-        },           
+        },         
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,
     },

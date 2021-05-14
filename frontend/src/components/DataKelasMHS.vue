@@ -66,11 +66,11 @@
 <script>
 export default {
     name:'DataMatakuliahPenyelenggaraan',
-    props:{
-        datakelas:{
+    props: {
+        datakelas: {
             default:null,
-            type:Object,            
+            type:Object,          
         }
-    },    
+    },  
 }
 </script>

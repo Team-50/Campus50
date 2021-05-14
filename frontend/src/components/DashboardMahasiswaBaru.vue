@@ -240,7 +240,7 @@
 		},
 		data:()=>({
 			btnLoading: false,
-			datatableLoading: false,        
+			datatableLoading: false,      
 			datatable: [],
 			headers: [                                        
 				{ text: "NAMA UJIAN", value: "nama_kegiatan", sortable: true,width:300 },
@@ -259,7 +259,7 @@
 			keterangan_ujian: "",
 		}),
 			methods: {
-				initialize: async function () {
+				initialize: async function() {
 					await this.$ajax.get(
 						"/spmb/ujianonline/peserta/"+this.$store.getters["auth/AttributeUser"]("id"), {
 							headers: {
@@ -269,7 +269,7 @@
 						.then(({ data }) => {
 							if (data.status == 1) {
 								this.status_ujian=true;
-								this.peserta = data.peserta;                       
+								this.peserta = data.peserta;           
 								this.jadwal_ujian = data.jadwal_ujian;      
 								this.ismulai=this.jadwal_ujian.status_ujian == 0 ?true: false;
 								if (this.peserta.isfinish==1) {
@@ -284,7 +284,7 @@
 			showPilihJadwal: async function() {
 				this.dialogpilihjadwal = true;  
 				let tahun_pendaftaran=this.$store.getters["auth/AttributeUser"]("ta");        
-				let semester_pendaftaran=this.$store.getters["auth/AttributeUser"]("idsmt");                                
+				let semester_pendaftaran=this.$store.getters["auth/AttributeUser"]("idsmt");                    
 
 				this.datatableLoading=true;
 				await this.$ajax
@@ -306,7 +306,7 @@
 					});
 			},
 			pilihJadwal: async function(item) {
-				this.btnLoading=true;
+				this.btnLoading = true;
 				await this.$ajax
 					.post(
 						"/spmb/ujianonline/daftar",
@@ -340,7 +340,7 @@
 					"/spmb/ujianonline/mulaiujian",
 					{
 							_method: "put",
-							user_id: this.$store.getters["auth/AttributeUser"]("id"),                
+							user_id: this.$store.getters["auth/AttributeUser"]("id"),              
 					},
 					{
 						headers: {
@@ -349,19 +349,19 @@
 					})
 					.then(({ data }) => {     
 						this.btnLoading = false;
-						this.$store.dispatch("uiadmin/addToPages",{
+						this.$store.dispatch("uiadmin/addToPages", {
 							name: "ujianonline",
 							data_ujian: this.jadwal_ujian,
-							data_peserta: data.peserta,                
+							data_peserta: data.peserta,              
 						});
-						this.$router.push("/spmb/ujianonline");                
+						this.$router.push("/spmb/ujianonline");    
 					})
 					.catch(() => {
 						this.btnLoading = false;
-					});              
+					});  
 			},
-			closedialogfrm () {
-				this.dialogpilihjadwal = false;                        
+			closedialogfrm() {
+				this.dialogpilihjadwal = false;            
 			},
 		},
 	};

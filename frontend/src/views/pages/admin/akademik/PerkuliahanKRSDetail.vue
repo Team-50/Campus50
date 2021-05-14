@@ -101,10 +101,10 @@
                     <v-card>
                         <v-card-title>
                             DAFTAR MATAKULIAH
-                            <v-spacer></v-spacer>                            
+                            <v-spacer></v-spacer> 
                             <v-btn color="primary" icon outlined small class="ma-2" :to="{path:'/akademik/perkuliahan/krs/'+this.krs_id+'/tambahmatkul'}">
                                 <v-icon>mdi-plus</v-icon>
-                            </v-btn>                                        
+                            </v-btn>             
                         </v-card-title>
                         <v-card-text>
                             <v-data-table        
@@ -115,8 +115,8 @@
                                 :disable-pagination="true"
                                 :hide-default-footer="true"                                                                
                                 :loading="datatableLoading"
-                                loading-text="Loading... Please wait">                                
-                                <template v-slot:item.actions="{ item }">                                    
+                                loading-text="Loading... Please wait">     
+                                <template v-slot:item.actions="{ item }">         
                                     <v-btn
                                         small
                                         icon
@@ -162,7 +162,7 @@ import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
     name: 'PerkuliahanKRSDetail',
-    created () {
+    created() {
         this.krs_id=this.$route.params.krsid;        
         this.breadcrumbs = [
             {
@@ -191,55 +191,55 @@ export default {
                 href:'#'
             },
         ];
-        this.fetchKRS();               
-    },  
+        this.fetchKRS();   
+    },
     data: () => ({ 
-        firstloading:true,        
+        firstloading:true,      
         nama_prodi:null,
-        tahun_akademik:null,        
+        tahun_akademik:null,      
         semester_akademik:null,
     
-        btnLoading:false, 
+        btnLoading: false, 
         btnLoadingTable:false,
 
         //formdata
         krs_id:null,
-        datakrs:{},
+        datakrs: {},
         
         //table        
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
-            { text: 'SKS', value: 'sks', sortable:false,width:50 },                           
-            { text: 'SMT', value: 'semester', sortable:false,width:50 },                           
-            { text: 'KELAS', value: 'nama_kelas', sortable:false,width:200 },                           
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable:false,width:200 },                           
-            { text: 'AKSI', value: 'actions', sortable:false,width:50 },                           
-        ],  
+            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  }, 
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },             
+            { text: 'SKS', value: 'sks', sortable:false,width:50 },       
+            { text: 'SMT', value: 'semester', sortable:false,width:50 },       
+            { text: 'KELAS', value: 'nama_kelas', sortable:false,width:200 },       
+            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable:false,width:200 },       
+            { text: 'AKSI', value: 'actions', sortable:false,width:50 },       
+        ],
     }),
     methods: {          
         async fetchKRS()
         {
-            await this.$ajax.get('/akademik/perkuliahan/krs/'+this.krs_id,                        
+            await this.$ajax.get('/akademik/perkuliahan/krs/'+this.krs_id,    
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                                               
-                this.datakrs=data.krs;                
-                this.datatable=data.krsmatkul;                
+            }).then(({ data }) => {                                               
+                this.datakrs=data.krs;    
+                this.datatable=data.krsmatkul;    
                 if (Object.keys(this.datakrs).length)
                 {
-                    let prodi_id=this.datakrs.kjur;                    
-                    this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);                
-                    this.tahun_akademik=this.datakrs.tahun;                                                      
-                    this.semester_akademik=this.datakrs.idsmt;                        
+                    let prodi_id=this.datakrs.kjur;        
+                    this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);    
+                    this.tahun_akademik=this.datakrs.tahun;                                          
+                    this.semester_akademik=this.datakrs.idsmt;            
                 }
             })  
-        },     
+        },   
         deleteItem (item)
         {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data yang terkait dengan matkul ini.' }).then((confirm) => {
@@ -251,25 +251,25 @@ export default {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }                
             });
-        },           
+        },         
     },
-    computed:{
+    computed: {
         totalMatkul()
         {
-            return this.datatable.length;            
+            return this.datatable.length;
         },
         totalSKS()
         {
@@ -282,9 +282,9 @@ export default {
             return total;
         }
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,            
+        ModuleHeader,          
     },
 }
 </script>

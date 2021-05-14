@@ -48,7 +48,7 @@
                                 :loading="btnLoading"
                                 :disabled="btnLoading || !data_mhs.hasOwnProperty('user_id')">
                                 <v-icon>mdi-printer</v-icon>
-                            </v-btn>                            
+                            </v-btn> 
                         </v-card-title>
                         <v-card-text>
                             <v-data-table        
@@ -59,8 +59,8 @@
                                 :disable-pagination="true"
                                 :hide-default-footer="true"                                                                
                                 :loading="datatableLoading"
-                                loading-text="Loading... Please wait">                                                                
-                                <template v-slot:body.append v-if="datatable.length > 0">                                   
+                                loading-text="Loading... Please wait">                                     
+                                <template v-slot:body.append v-if="datatable.length > 0">        
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="3">JUMLAH</td>
                                         <td></td> 
@@ -68,7 +68,7 @@
                                         <td></td>
                                         <td>{{totalAM}}</td>
                                         <td>{{totalSKS}}</td>
-                                        <td>{{totalM}}</td>                                        
+                                        <td>{{totalM}}</td>             
                                     </tr>
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="3">IPK SEMENTARA</td>
@@ -77,7 +77,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>                                        
+                                        <td></td>             
                                     </tr>
                                 </template>   
                                 <template v-slot:no-data>
@@ -98,13 +98,13 @@
                     <v-btn
                         color="green"
                         text
-                        :href="$api.storageURL+'/'+file_pdf">                            
+                        :href="$api.storageURL+'/'+file_pdf"> 
                         Download
-                    </v-btn>                           
+                    </v-btn>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>                            
+                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn> 
                 </v-card-actions>
             </v-card>            
         </v-dialog>
@@ -117,7 +117,7 @@ import ProfilMahasiswa from '@/components/ProfilMahasiswaLama';
 
 export default {
     name: 'DulangMahasiswaBaru',
-    created () {
+    created() {
         this.user_id=this.$route.params.user_id;        
         this.breadcrumbs = [
             {
@@ -149,9 +149,9 @@ export default {
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id=prodi_id;
         this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];    
         this.initialize()
-    },  
+    },
     data: () => ({ 
         user_id:null,
         firstloading:true,
@@ -159,25 +159,25 @@ export default {
         nama_prodi:null,
         tahun_pendaftaran:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [            
-            { text: 'NO', value: 'no', sortable:true,width:100  },               
-            { text: 'MATAKULIAH', value: 'nmatkul',sortable:true },                           
-            { text: 'KODE', value: 'kmatkul',sortable:true,width:120, },                           
-            { text: 'SEMESTER', value: 'semester',sortable:true,width:120, },                           
-            { text: 'KELOMPOK', value: 'group_alias',sortable:true,width:120, },                           
-            { text: 'HM', value: 'HM',sortable:false,width:100, },                           
-            { text: 'AM', value: 'AM',sortable:false,width:100, },                           
-            { text: 'K', value: 'sks',sortable:true,width:100, },                           
+            { text: 'NO', value: 'no', sortable:true,width:100  },             
+            { text: 'MATAKULIAH', value: 'nmatkul',sortable:true },       
+            { text: 'KODE', value: 'kmatkul',sortable:true,width:120, },       
+            { text: 'SEMESTER', value: 'semester',sortable:true,width:120, },       
+            { text: 'KELOMPOK', value: 'group_alias',sortable:true,width:120, },       
+            { text: 'HM', value: 'HM',sortable:false,width:100, },       
+            { text: 'AM', value: 'AM',sortable:false,width:100, },       
+            { text: 'K', value: 'sks',sortable:true,width:100, },       
             { text: 'M', value: 'M', sortable: false,width:100 },
-        ],  
-        search:'', 
+        ],
+        search: "", 
 
-        data_mhs:{},
+        data_mhs: {},
         totalSKS:0, 
         totalM:0, 
         totalAM:0, 
@@ -195,15 +195,15 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
-            await this.$ajax.get('/akademik/nilai/transkripkurikulum/'+this.user_id,           
+            await this.$ajax.get('/akademik/nilai/transkripkurikulum/'+this.user_id,         
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                              
+            }).then(({ data }) => {                              
                 this.data_mhs=data.mahasiswa;
                 
                 this.totalSKS=data.jumlah_sks;
@@ -213,41 +213,41 @@ export default {
 
                 this.datatable=data.nilai_matakuliah;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
-            this.firstloading=false;                        
+            this.firstloading=false;            
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
                 this.expanded=[item];
             }               
-        },        
+        },      
         async printpdf()
         {
-            this.btnLoading=true;
-            await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf/'+this.data_mhs.user_id,                
+            this.btnLoading = true;
+            await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf/'+this.data_mhs.user_id,              
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token']
                     },
                     
                 }
-            ).then(({data})=>{                              
+            ).then(({ data }) => {                              
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
-                this.btnLoading=false;
-            }).catch(()=>{
-                this.btnLoading=false;
-            });                 
+                this.btnLoading = false;
+            }).catch(() => {
+                this.btnLoading = false;
+            });     
         },
-        closedialogprintpdf () {                  
+        closedialogprintpdf() {                  
             setTimeout(() => {
                 this.file_pdf=null;
                 this.dialogprintpdf = false;      
@@ -255,9 +255,9 @@ export default {
             );
         }, 
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,          
+        ModuleHeader,        
         ProfilMahasiswa  
     },
 }

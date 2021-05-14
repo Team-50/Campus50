@@ -58,7 +58,7 @@
                             </v-card-text>
                         </v-card>
                     </v-form>
-                    <v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">                                    
+                    <v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">         
                         <v-card color="grey lighten-4">
                             <v-toolbar 
                                 elevation="2"> 
@@ -74,7 +74,7 @@
                                     mdi-close-thick
                                 </v-icon>
                             </v-toolbar>
-                            <v-card-text>                                            
+                            <v-card-text>                 
                                 <v-row>
                                     <v-col cols="12">
                                         <v-card flat>
@@ -95,18 +95,18 @@
                                                 {{data_mhs.nama_mhs}}
                                             </v-card-subtitle>
                                         </v-card>
-                                    </v-col>                                                
+                                    </v-col>                     
                                 </v-row>
                                 <v-row>
                                     <v-col cols="12">
                                         <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-                                            <v-card>                                                            
+                                            <v-card>                                 
                                                 <v-card-text>            
                                                     <v-text-field 
                                                         v-model="formdata.nim"
                                                         label="NIM"   
                                                         :rules="rule_nim"                                                                  
-                                                        outlined />                                                                 
+                                                        outlined />                                      
                                                     <v-select
                                                         label="DOSEN WALI :"
                                                         v-model="formdata.dosen_id"
@@ -133,7 +133,7 @@
                                     </v-col>
                                 </v-row>
                             </v-card-text>
-                        </v-card>                                
+                        </v-card>     
                     </v-dialog>
                 </v-col>
             </v-row>
@@ -197,7 +197,7 @@
                                     <strong>id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -215,7 +215,7 @@ import ModuleHeader from '@/components/ModuleHeader';
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
     name: 'DulangMahasiswaBaru',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -241,57 +241,57 @@ export default {
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id=prodi_id;
         this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];    
         this.initialize()
-    },  
+    },
     data: () => ({ 
         firstloading:true,
         prodi_id:null,
         nama_prodi:null,
         tahun_pendaftaran:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  },   
-            { text: 'NIM', value: 'nim', sortable:true,width:150  },   
-            { text: 'NIRM', value: 'nirm', sortable:true,width:150  },   
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },                           
-            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                           
+            { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  }, 
+            { text: 'NIM', value: 'nim', sortable:true,width:150  }, 
+            { text: 'NIRM', value: 'nirm', sortable:true,width:150  }, 
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },       
+            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },       
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
-        ],  
-        search:'', 
+        ],
+        search: "", 
 
-        data_mhs:{},  
+        data_mhs: {},
 
         //formdata
-        form_valid:true,   
+        form_valid:true, 
         dialogfrm:false, 
-        daftar_dw:[],     
+        daftar_dw: [],   
 
         formdata: {                        
-            nim:'',
-            nirm:'',
-            dosen_id:''           
+            nim: "",
+            nirm: "",
+            dosen_id: ""           
         },
         formdefault: {                        
-            nim:'',
-            nirm:'',
-            dosen_id:''           
+            nim: "",
+            nirm: "",
+            dosen_id: ""           
         },
-        rule_nim:[
-            value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
+        rule_nim: [
+            value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
-        rule_nirm:[
-            value => !!value||"Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
+        rule_nirm: [
+            value => !!value || "Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka',
         ], 
-        rule_dw:[
-            value => !!value||"Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
+        rule_dw: [
+            value => !!value || "Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
         ],
 
     }),
@@ -304,22 +304,22 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/dulang/mhsbaru',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_pendaftaran
+                prodi_id: this.prodi_id,
+                ta: this.tahun_pendaftaran
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
+            }).then(({ data }) => {               
                 this.datatable = data.mahasiswa;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
             this.firstloading=false;
@@ -329,7 +329,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -344,17 +344,17 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                                  
+            }).then(({ data }) => {                                  
                 console.log(data);
             });   
 
             // await this.$ajax.get('/akademik/dosenwali',{
             //     headers: {
-            //         Authorization:this.$store.getters['auth/Token']
+            //         Authorization: this.$store.getters['auth/Token']
             //     }
-            // }).then(({data})=>{                                  
+            // }).then(({ data }) => {                                  
             //     this.dialogfrm=true;
             //     this.daftar_dw = data.users; 
             // });   
@@ -371,30 +371,30 @@ export default {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }                
             });
         },
-        closedialogfrm () {            
-            this.dialogfrm = false;            
+        closedialogfrm() {            
+            this.dialogfrm = false;
             setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                    
                 this.data_mhs = Object.assign({}, {});   
                 }, 300
             );
         },
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -411,9 +411,9 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,  
         Filter7               
     },
 }

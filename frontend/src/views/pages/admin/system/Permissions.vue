@@ -161,10 +161,10 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],
+        breadcrumbs: [],
         datatableLoading:false,
-        btnLoading:false,
-        expanded:[],
+        btnLoading: false,
+        expanded: [],
         daftar_permissions: [],
         //tables
         headers: [
@@ -172,7 +172,7 @@ export default {
             { text: 'GUARD', value: 'guard_name' },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',
+        search: "",
         //form
         form_valid:true,
         dialog: false,
@@ -192,9 +192,9 @@ export default {
             updated_at: '',
         },
         //form rules
-        rule_permission_name:[
-            value => !!value||"Mohon untuk di isi nama Permission !!!",
-            value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || 'Nama Permission hanya boleh angka,huruf,dan tanda -',                
+        rule_permission_name: [
+            value => !!value || "Mohon untuk di isi nama Permission !!!",
+            value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || 'Nama Permission hanya boleh angka,huruf,dan tanda -',              
         ],
     }),
     methods: {
@@ -203,9 +203,9 @@ export default {
             this.datatableLoading=true;
             this.$ajax.get('/system/setting/permissions',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data }) => {
                 this.daftar_permissions = data.permissions;
                 this.datatableLoading=false;
             });
@@ -227,8 +227,8 @@ export default {
             this.editedItem = Object.assign({}, item)
             this.dialog = true
         },
-        close () {
-            this.btnLoading=false;
+        close() {
+            this.btnLoading = false;
             this.dialog = false;
             this.$refs.frmdata.reset();
             setTimeout(() => {
@@ -237,26 +237,26 @@ export default {
                 }, 300
             );
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
                 if (!(this.editedIndex > -1))
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/system/setting/permissions/store',
                         {
-                            name:this.editedItem.name.toLowerCase()
+                            name: this.editedItem.name.toLowerCase()
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         this.initialize();
                         this.close();
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -265,29 +265,29 @@ export default {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus permission '+item.name+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/system/setting/permissions/'+item.id,
                     {
                         '_method':'DELETE',
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
-                    ).then(()=>{
+                    ).then(() => {
                         const index = this.daftar_permissions.indexOf(item);
                         this.daftar_permissions.splice(index, 1);
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             });
         },
     },
-    computed:{
-        formTitle () {
+    computed: {
+        formTitle() {
             return this.editedIndex === -1 ? 'TAMBAH PERMISSION' : 'EDIT PERMISSION'
         },
         ...mapGetters('auth',{
@@ -302,7 +302,7 @@ export default {
             val || this.close()
         },
     },
-    components:{
+    components: {
 		SystemUserLayout,
 		ModuleHeader,
 	}

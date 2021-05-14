@@ -71,8 +71,8 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                                    
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />                                    
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">         
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />         
                                 </v-dialog>
                                 <v-dialog v-model="dialogfrm" persistent v-if="dialogfrm">
                                     <v-card color="grey lighten-4">
@@ -99,7 +99,7 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                     
                                                 <v-col xs="12" sm="3" md="3">
                                                     <v-card flat>
                                                         <v-card-title>NAMA MAHASISWA :</v-card-title>
@@ -108,7 +108,7 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                     
                                                 <v-col xs="12" sm="3" md="3">
                                                     <v-card flat>
                                                         <v-card-title>NOMOR HP :</v-card-title>
@@ -127,18 +127,18 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>                                                
+                                            </v-row>                     
                                             <v-row>
                                                 <v-col cols="12">
                                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-                                                        <v-card>                                                            
-                                                            <v-card-text>                                                                      
+                                                        <v-card>                                 
+                                                            <v-card-text>                                           
                                                                 <v-currency-field 
                                                                     label="NILAI UJIAN:" 
                                                                     :min="null"
                                                                     :max="null"                                            
                                                                     outlined                                                                    
-                                                                    v-model="formdata.nilai">                                        
+                                                                    v-model="formdata.nilai">             
                                                                 </v-currency-field> 
                                                                 <v-select
                                                                     label="DITERIMA DI PROGRAM STUDI :"
@@ -187,9 +187,9 @@
                                     :icon="badgeIcon(item)"
                                     overlap
                                 >                
-                                    <v-avatar size="30">                                        
-                                        <v-img :src="$api.storageURL+'/'+item.foto" />                                                                     
-                                    </v-avatar>                                                                                                  
+                                    <v-avatar size="30">             
+                                        <v-img :src="$api.storageURL+'/'+item.foto" />                                          
+                                    </v-avatar>                                                                       
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -223,7 +223,7 @@
                                         class="mb-2" 
                                         :disabled="btnLoading" 
                                         :loading="btnLoading">ULANG UJIAN </v-btn>
-                                </v-col>                            
+                                </v-col> 
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -271,9 +271,9 @@ export default {
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id=prodi_id;
         this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];    
         this.initialize()   
-    },  
+    },
     data: () => ({
         firstloading:true,
         prodi_id:null,
@@ -283,15 +283,15 @@ export default {
         dialogprofilmhsbaru:false,
         dialogfrm:false,
 
-        breadcrumbs:[],        
+        breadcrumbs: [],      
         dashboard:null,
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        expanded: [],
+        datatable: [],
         headers: [                        
-            { text: '', value: 'foto', width:70 },               
+            { text: '', value: 'foto', width:70 },             
             { text: 'NO.FORMULIR', value: 'no_formulir',width:120,sortable:true },
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
@@ -300,18 +300,18 @@ export default {
             { text: 'STATUS', value: 'status',width:100,sortable:true },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',  
+        search: "",
         
-        datamhsbaru:{},
+        datamhsbaru: {},
 
         //form data   
-        form_valid:true,   
+        form_valid:true, 
 
-        data_mhs:{},
+        data_mhs: {},
         
-        daftar_prodi:[],
+        daftar_prodi: [],
 
-        daftar_status:[
+        daftar_status: [
             {
                 value:'0',
                 text:'TIDAK LULUS',
@@ -322,44 +322,44 @@ export default {
             },
         ],
         formdata: {            
-            user_id:'',            
-            jadwal_ujian_id:null,            
-            jumlah_soal:null,            
-            jawaban_benar:null,            
-            jawaban_salah:null,            
-            soal_tidak_terjawab:null,            
-            passing_grade_1:null,            
-            passing_grade_2:null,            
-            nilai:0,            
-            ket_lulus:'',            
-            kjur:null,            
-            desc:'',            
-            created_at:'',            
-            updated_at:'',            
+            user_id: "",          
+            jadwal_ujian_id:null,          
+            jumlah_soal:null,          
+            jawaban_benar:null,          
+            jawaban_salah:null,          
+            soal_tidak_terjawab:null,          
+            passing_grade_1:null,          
+            passing_grade_2:null,          
+            nilai:0,          
+            ket_lulus: "",          
+            kjur:null,          
+            desc: "",          
+            created_at: "",          
+            updated_at: "",          
         },
         formdefault: {            
-            user_id:'',            
-            jadwal_ujian_id:null,            
-            jumlah_soal:null,            
-            jawaban_benar:null,            
-            jawaban_salah:null,            
-            soal_tidak_terjawab:null,            
-            passing_grade_1:null,            
-            passing_grade_2:null,            
-            nilai:0,            
-            ket_lulus:'',            
-            kjur:null,            
-            desc:'',            
-            created_at:'',            
-            updated_at:'',            
+            user_id: "",          
+            jadwal_ujian_id:null,          
+            jumlah_soal:null,          
+            jawaban_benar:null,          
+            jawaban_salah:null,          
+            soal_tidak_terjawab:null,          
+            passing_grade_1:null,          
+            passing_grade_2:null,          
+            nilai:0,          
+            ket_lulus: "",          
+            kjur:null,          
+            desc: "",          
+            created_at: "",          
+            updated_at: "",          
         },
         editedItem:-1,
 
-        rule_prodi:[
-            value => !!value||"Mohon dipilih Prodi Mahasiswa ini !!!"
+        rule_prodi: [
+            value => !!value || "Mohon dipilih Prodi Mahasiswa ini !!!"
         ], 
-        rule_status:[
-            value => !!value||"Mohon dipilih status kelulusan mahasiswan ini !!!"
+        rule_status: [
+            value => !!value || "Mohon dipilih status kelulusan mahasiswan ini !!!"
         ], 
     }),
     methods : {
@@ -379,18 +379,18 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading=true;            
+                    this.datatableLoading=true;
                     await this.$ajax.post('/spmb/nilaiujian',
                     {
-                        TA:this.tahun_pendaftaran,
-                        prodi_id:this.prodi_id,
+                        TA: this.tahun_pendaftaran,
+                        prodi_id: this.prodi_id,
                     },
                     {
                         headers: {
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters['auth/Token']
                         }
-                    }).then(({data})=>{               
-                        this.datatable = data.pmb;                
+                    }).then(({ data }) => {               
+                        this.datatable = data.pmb;    
                         this.datatableLoading=false;
                     });         
                     this.firstloading=false;
@@ -402,7 +402,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -416,7 +416,7 @@ export default {
         badgeIcon(item)
         {
             return item.active == 1 ? 'mdi-check-bold':'mdi-close-thick'
-        },     
+        },   
         viewItem(item)
         {
             this.datamhsbaru = item;
@@ -427,14 +427,14 @@ export default {
             await this.$ajax.get('/spmb/nilaiujian/'+item.id,
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{   
+            }).then(({ data }) => {   
                 if (data.transaksi_status==1)
                 {
                     this.dialogfrm=true;        
                     this.data_mhs=item;
-                    this.data_mhs['no_transaksi']=data.no_transaksi;                                        
+                    this.data_mhs['no_transaksi']=data.no_transaksi;                            
                     this.daftar_prodi=data.daftar_prodi;
                     if (JSON.stringify(data.data_nilai_ujian)=='{}')
                     {
@@ -453,58 +453,58 @@ export default {
                 {
                     this.$root.$confirm.open('Warning', 'Mahasiswa ini belum melakukan pembayaran PMB', { color: 'warning',width:400,action:'ok' });
                 }         
-            });              
+            });  
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                      
+                this.btnLoading = true;          
                 if (this.editedItem > 0)
                 {
                     this.$ajax.post('/spmb/nilaiujian/'+this.formdata.user_id,
                     {
                         _method:'put',
-                        no_transaksi:this.data_mhs.no_transaksi,
-                        nilai:this.formdata.nilai,
-                        kjur:this.formdata.kjur,
-                        ket_lulus:this.formdata.ket_lulus,
-                        desc:this.formdata.desc,
-                    },                    
+                        no_transaksi: this.data_mhs.no_transaksi,
+                        nilai: this.formdata.nilai,
+                        kjur: this.formdata.kjur,
+                        ket_lulus: this.formdata.ket_lulus,
+                        desc: this.formdata.desc,
+                    },
                     {
-                        headers:{
-                            Authorization:this.$store.getters['auth/Token'],                        
+                        headers: {
+                            Authorization: this.$store.getters['auth/Token'],    
                         }
                     }
-                    ).then(()=>{               
-                        this.btnLoading=false;          
+                    ).then(() => {               
+                        this.btnLoading = false;          
                         this.closedialogfrm();
                         this.initialize();
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });   
                 }
                 else
                 {
                     this.$ajax.post('/spmb/nilaiujian/store',
                     {
-                        no_transaksi:this.data_mhs.no_transaksi,
-                        user_id:this.data_mhs.id,
-                        nilai:this.formdata.nilai,
-                        kjur:this.formdata.kjur,
-                        ket_lulus:this.formdata.ket_lulus,
-                        desc:this.formdata.desc,
-                    },                    
+                        no_transaksi: this.data_mhs.no_transaksi,
+                        user_id: this.data_mhs.id,
+                        nilai: this.formdata.nilai,
+                        kjur: this.formdata.kjur,
+                        ket_lulus: this.formdata.ket_lulus,
+                        desc: this.formdata.desc,
+                    },
                     {
-                        headers:{
-                            Authorization:this.$store.getters['auth/Token'],                        
+                        headers: {
+                            Authorization: this.$store.getters['auth/Token'],    
                         }
                     }
-                    ).then(()=>{               
-                        this.btnLoading=false;          
+                    ).then(() => {               
+                        this.btnLoading = false;          
                         this.closedialogfrm();
                         this.initialize();
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });   
                 }                
             
@@ -518,37 +518,37 @@ export default {
                     this.$ajax.post('/spmb/nilaiujian/'+item.id,
                     {
                         '_method':'DELETE',
-                    },                    
+                    },
                     {
-                        headers:{
-                            Authorization:this.$store.getters['auth/Token'],                        
+                        headers: {
+                            Authorization: this.$store.getters['auth/Token'],    
                         }
                     }
-                    ).then(()=>{               
-                        this.btnLoading=false;                          
+                    ).then(() => {               
+                        this.btnLoading = false;              
                         this.initialize();
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });   
                 }
             });
         },
-        closedialogfrm () {            
-            this.dialogfrm = false;            
+        closedialogfrm() {            
+            this.dialogfrm = false;
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                    
                 this.data_mhs = Object.assign({}, {});   
-                this.editedItem=-1;                               
+                this.editedItem=-1;                   
                 }, 300
             );
         },
         closeProfilMahasiswaBaru ()
         {
             this.dialogprofilmhsbaru = false;         
-            this.editedItem=-1;                                   
+            this.editedItem=-1;                       
         }        
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -565,9 +565,9 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         SPMBLayout,
-        ModuleHeader,        
+        ModuleHeader,      
         FormMhsBaru,
         ProfilMahasiswaBaru,
         Filter7    

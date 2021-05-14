@@ -64,10 +64,10 @@
                                             :rules="rule_tahun_pendaftaran"/>            
                                     </v-col>
                                     <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
-                                </v-row>                                                                                                                            
+                                </v-row>                                                                                                 
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>     
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -100,7 +100,7 @@ export default {
                 text:'KONFIGURASI SISTEM',
                 disabled:false,
                 href:'/system-setting'
-            },  
+            },
             {
                 text:'PERGURUAN TINGGI',
                 disabled:false,
@@ -117,80 +117,80 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],        
-        btnLoading:false,   
+        breadcrumbs: [],      
+        btnLoading: false, 
         //form
-        form_valid:true,   
-        daftar_ta:[],
-        daftar_semester:[],
+        form_valid:true, 
+        daftar_ta: [],
+        daftar_semester: [],
         formdata: {
-            default_ta:'',
-            default_semester:'',            
+            default_ta: "",
+            default_semester: "",          
             tahun_pendaftaran:0,
         },
         //form rules        
-        rule_default_ta:[
-            value => !!value||"Mohon untuk dipilih Tahun Akademik !!!",             
+        rule_default_ta: [
+            value => !!value || "Mohon untuk dipilih Tahun Akademik !!!",           
         ], 
-        rule_default_semester:[
-            value => !!value||"Mohon untuk diisi Semester !!!",             
+        rule_default_semester: [
+            value => !!value || "Mohon untuk diisi Semester !!!",           
         ],
-        rule_tahun_pendaftaran:[
-            value => !!value||"Mohon untuk dipilih Tahun Pendaftaran !!!",                                 
+        rule_tahun_pendaftaran: [
+            value => !!value || "Mohon untuk dipilih Tahun Pendaftaran !!!",             
         ]
     }),
     methods: {
-        initialize:async function () 
+        initialize:async function() 
         {
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
-                let setting = data.setting;                           
+            }).then(({ data }) => {  
+                let setting = data.setting;               
                 this.formdata.default_ta=setting.DEFAULT_TA;
-                this.formdata.default_semester=setting.DEFAULT_SEMESTER;                
+                this.formdata.default_semester=setting.DEFAULT_SEMESTER;    
                 this.formdata.tahun_pendaftaran=setting.DEFAULT_TAHUN_PENDAFTARAN;
             });          
             
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                
+                this.btnLoading = true;    
                 this.$ajax.post('/system/setting/variables',
                     {
                         '_method':'PUT', 
                         'pid':'Variable default sistem',
                         setting:JSON.stringify({
-                            201:this.formdata.default_ta,
-                            202:this.formdata.default_semester,                            
-                            203:this.formdata.tahun_pendaftaran,
-                        }),                                                                                                                            
+                            201: this.formdata.default_ta,
+                            202: this.formdata.default_semester,        
+                            203: this.formdata.tahun_pendaftaran,
+                        }),                                                                                                        
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{                       
-                    this.btnLoading=false;
-                }).catch(()=>{
-                    this.btnLoading=false;
+                ).then(() => {                       
+                    this.btnLoading = false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });        
             }
         }
     },
-    computed:{ 
+    computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN:'AccessToken',        
+            TOKEN:'Token',              
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
-        ModuleHeader,        
+        ModuleHeader,      
 	}
 }
 </script>

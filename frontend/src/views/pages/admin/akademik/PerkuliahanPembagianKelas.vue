@@ -71,14 +71,14 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>     
                                 <v-btn color="primary" icon outlined small class="ma-2" to="/akademik/perkuliahan/pembagiankelas/tambah" v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PEMGBAGIAN-KELAS_STORE')">
                                     <v-icon>mdi-plus</v-icon>
                                 </v-btn>
                                 <v-btn color="primary" icon outlined small class="ma-2">
                                     <v-icon>mdi-printer</v-icon>
                                 </v-btn>
-                                <v-dialog v-model="dialogfrm" max-width="750px" persistent>                                    
+                                <v-dialog v-model="dialogfrm" max-width="750px" persistent>         
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
@@ -189,7 +189,7 @@
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -210,7 +210,7 @@ import {mapGetters} from 'vuex';
 
 export default {
     name: 'PerkuliahanPembagianKelas',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -233,39 +233,39 @@ export default {
                 href:'#'
             }
         ];        
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];    
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];    
         this.initialize()
-    },  
+    },
     data: () => ({ 
-        firstloading:true,        
+        firstloading:true,      
         tahun_akademik:null,
         semester_akademik:null,
 
-        btnLoading:false,
-        btnLoadingTable:false,        
+        btnLoading: false,
+        btnLoadingTable:false,      
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },   
-            { text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable:true  },   
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable:true  },                           
-            { text: 'HARI', value: 'nama_hari', sortable:true, width:100 },               
-            { text: 'JAM', value: 'jam_masuk',sortable:true, width:100 },                           
-            { text: 'RUANG', value: 'namaruang',sortable:true, width:100},                           
-            { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable:true, width:100},                           
+            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  }, 
+            { text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable:true  }, 
+            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable:true  },       
+            { text: 'HARI', value: 'nama_hari', sortable:true, width:100 },             
+            { text: 'JAM', value: 'jam_masuk',sortable:true, width:100 },       
+            { text: 'RUANG', value: 'namaruang',sortable:true, width:100},       
+            { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable:true, width:100},       
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
-        ],  
-        search:'',
+        ],
+        search: "",
         
         //dialog
         dialogfrm:false,
 
         //formdata
         form_valid:true, 
-        daftar_ruang_kelas:[],
-        daftar_hari:[
+        daftar_ruang_kelas: [],
+        daftar_hari: [
             {
                 text:'SENIN',
                 value:1,
@@ -291,41 +291,41 @@ export default {
                 value:6,
             },
         ],
-        daftar_zoom:[],
-        formdata:{            
-            id:'',
-            zoom_id:'',
-            idkelas:'',            
-            hari:'',            
-            jam_masuk:'',
-            jam_keluar:'',
-            penyelenggaraan_dosen_id:'',
-            ruang_kelas_id:'',            
+        daftar_zoom: [],
+        formdata: {            
+            id: "",
+            zoom_id: "",
+            idkelas: "",          
+            hari: "",          
+            jam_masuk: "",
+            jam_keluar: "",
+            penyelenggaraan_dosen_id: "",
+            ruang_kelas_id: "",          
         }, 
-        formdefault:{            
-            id:'',
-            zoom_id:'',
-            idkelas:'',            
-            hari:'',            
-            jam_masuk:'',
-            jam_keluar:'',
-            penyelenggaraan_dosen_id:'',
-            ruang_kelas_id:'',            
-        },         
+        formdefault: {            
+            id: "",
+            zoom_id: "",
+            idkelas: "",          
+            hari: "",          
+            jam_masuk: "",
+            jam_keluar: "",
+            penyelenggaraan_dosen_id: "",
+            ruang_kelas_id: "",          
+        },       
 
-        rule_hari:[
-            value => !!value||"Mohon dipilih hari mengajar!!!"
+        rule_hari: [
+            value => !!value || "Mohon dipilih hari mengajar!!!"
         ],
-        rule_jam_masuk:[
-            value => !!value||"Mohon diisi jam masuk mengajar!!!",
-            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(value) || 'Format jam masuk mengajar hh:mm, misalnya 15:30'
+        rule_jam_masuk: [
+            value => !!value || "Mohon diisi jam masuk mengajar!!!",
+            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam masuk mengajar hh:mm, misalnya 15:30'
         ],
-        rule_jam_keluar:[
-            value => !!value||"Mohon diisi jam keluar mengajar!!!",
-            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(value) || 'Format jam keluar mengajar hh:mm, misalnya 15:00'
+        rule_jam_keluar: [
+            value => !!value || "Mohon diisi jam keluar mengajar!!!",
+            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam keluar mengajar hh:mm, misalnya 15:00'
         ],
-        rule_ruang_kelas:[
-            value => !!value||"Mohon dipilih ruang kelas mengajar!!!"
+        rule_ruang_kelas: [
+            value => !!value || "Mohon dipilih ruang kelas mengajar!!!"
         ],
 
     }),
@@ -337,23 +337,23 @@ export default {
         changeSemesterAkademik (semester)
         {
             this.semester_akademik=semester;
-        },        
-        initialize:async function () 
+        },      
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
             {
-                ta:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                ta: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                               
+            }).then(({ data }) => {                               
                 this.datatable = data.pembagiankelas;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
             this.firstloading=false;
@@ -363,59 +363,59 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
                 this.expanded=[item];
             }               
-        },        
+        },      
         async editItem (item) {
             await this.$ajax.get('/datamaster/ruangankelas',{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{
-                this.daftar_ruang_kelas = data.ruangan;                 
+            }).then(({ data }) => {
+                this.daftar_ruang_kelas = data.ruangan;     
                 this.formdata = Object.assign({}, item);
-                this.dialogfrm = true;               
+                this.dialogfrm = true;   
             });
-            await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',       
+            await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',     
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                                               
-                this.daftar_zoom = data.zoom;                
+            }).then(({ data }) => {                                               
+                this.daftar_zoom = data.zoom;    
             });
-        },    
-        save:async function () {
+        },  
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/'+this.formdata.id,
                     {
-                        '_method':'PUT',                        
-                        hari:this.formdata.hari,                            
-                        jam_masuk:this.formdata.jam_masuk,
-                        jam_keluar:this.formdata.jam_keluar,                        
-                        ruang_kelas_id:this.formdata.ruang_kelas_id,                            
+                        '_method':'PUT',    
+                        hari: this.formdata.hari,        
+                        jam_masuk: this.formdata.jam_masuk,
+                        jam_keluar: this.formdata.jam_keluar,    
+                        ruang_kelas_id: this.formdata.ruang_kelas_id,        
                     },
                     {
-                        headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                        headers: {
+                            Authorization: this.$store.getters['auth/Token']
                         }
                     }
-                ).then(()=>{
-                    this.btnLoading=false;
+                ).then(() => {
+                    this.btnLoading = false;
                     this.closedialogfrm();
                     this.initialize();
-                }).catch(()=>{
-                    this.btnLoading=false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });
             }
-        },            
+        },          
         deleteItem (item)
         {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus pembagian kelas matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc':'proses ini membuat mahasiswa tidak memiliki kelas.' }).then((confirm) => {
@@ -427,30 +427,30 @@ export default {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }                
             });
         },
-        closedialogfrm () {
-            this.dialogfrm = false;            
+        closedialogfrm() {
+            this.dialogfrm = false;
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                    
                 this.$refs.frmdata.reset(); 
                 }, 300
             );
         },
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -464,16 +464,16 @@ export default {
             {
                 this.initialize();
             }            
-        },        
+        },      
     },
-    computed:{
+    computed: {
         ...mapGetters('auth',{            
-            CAN_ACCESS:'can',                     
+            CAN_ACCESS:'can', 
         }),
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,  
         Filter2               
     },
 }

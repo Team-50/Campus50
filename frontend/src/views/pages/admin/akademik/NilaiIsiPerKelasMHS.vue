@@ -71,7 +71,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>     
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nmatkul="{item}">
@@ -93,14 +93,14 @@
                             <span v-else>
                                 N.A
                             </span>
-                        </template>                                   
+                        </template>        
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -121,7 +121,7 @@ import {mapGetters} from 'vuex';
 
 export default {
     name: 'NilaiIsiPerKelasMHS',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -144,31 +144,31 @@ export default {
                 href:'#'
             }
         ];
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];    
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];    
         this.initialize()
-    },  
+    },
     data: () => ({ 
-        firstloading:true,        
-        daftar_ta:[],
+        firstloading:true,      
+        daftar_ta: [],
         tahun_akademik:null,
         semester_akademik:null,
 
         btnLoadingTable:false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },   
-            { text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable:true  },   
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable:true  },                           
-            { text: 'HARI', value: 'nama_hari', sortable:true, width:100 },               
-            { text: 'JAM', value: 'jam_masuk',sortable:true, width:100 },                           
-            { text: 'RUANG', value: 'namaruang',sortable:true, width:100},                           
-            { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable:true, width:100},                           
+            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  }, 
+            { text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable:true  }, 
+            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable:true  },       
+            { text: 'HARI', value: 'nama_hari', sortable:true, width:100 },             
+            { text: 'JAM', value: 'jam_masuk',sortable:true, width:100 },       
+            { text: 'RUANG', value: 'namaruang',sortable:true, width:100},       
+            { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable:true, width:100},       
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
-        ],  
-        search:'', 
+        ],
+        search: "", 
 
     }),
     methods: {
@@ -179,23 +179,23 @@ export default {
         changeSemesterAkademik (semester)
         {
             this.semester_akademik=semester;
-        },        
-        initialize:async function () 
+        },      
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
             {
-                ta:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                ta: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                               
+            }).then(({ data }) => {                               
                 this.datatable = data.pembagiankelas;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
             this.firstloading=false;
@@ -205,15 +205,15 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
                 this.expanded=[item];
             }               
-        },                
+        },              
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -227,16 +227,16 @@ export default {
             {
                 this.initialize();
             }            
-        },        
+        },      
     },
-    computed:{
+    computed: {
         ...mapGetters('auth',{            
-            CAN_ACCESS:'can',                     
+            CAN_ACCESS:'can', 
         }),
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,  
         Filter2               
     },
 }

@@ -28,7 +28,7 @@ Vue.filter('formatUang', function(value)
 
 //mixin
 Vue.mixin({
-	methods:{
+	methods: {
 		
 	}
 })
