@@ -71,7 +71,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>     
                                 <v-btn color="primary" icon outlined small class="ma-2" to="/akademik/perkuliahan/penyelenggaraan/tambah" v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_STORE')">
                                     <v-icon>mdi-plus</v-icon>
                                 </v-btn>
@@ -112,7 +112,7 @@
                                     <strong>penyelenggaraan_id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -133,7 +133,7 @@ import {mapGetters} from 'vuex';
 
 export default {
     name: 'PerkuliahanPenyelenggaraan',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -159,33 +159,33 @@ export default {
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id=prodi_id;
         this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];    
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];    
         this.initialize()
-    },  
+    },
     data: () => ({ 
         firstloading:true,
         prodi_id:null,
-        nama_prodi:null,        
+        nama_prodi:null,      
         tahun_akademik:null,
         semester_akademik:null,
 
         btnLoadingTable:false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul', sortable:true  },   
-            { text: 'SKS', value: 'sks', sortable:true, width:50  },               
-            { text: 'SMT. MATKUL', value: 'semester', sortable:true, width:50  },               
-            { text: 'TAHUN MATKUL', value: 'ta_matkul', sortable:true, width:50 },               
-            { text: 'KETUA GROUP', value: 'nama_dosen', sortable:true },               
-            { text: 'JUMLAH DOSEN', value: 'jumlah_dosen',sortable:true, width:50 },                           
-            { text: 'JUMLAH MHS', value: 'jumlah_mhs',sortable:true, width:50},                           
+            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  }, 
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul', sortable:true  }, 
+            { text: 'SKS', value: 'sks', sortable:true, width:50  },             
+            { text: 'SMT. MATKUL', value: 'semester', sortable:true, width:50  },             
+            { text: 'TAHUN MATKUL', value: 'ta_matkul', sortable:true, width:50 },             
+            { text: 'KETUA GROUP', value: 'nama_dosen', sortable:true },             
+            { text: 'JUMLAH DOSEN', value: 'jumlah_dosen',sortable:true, width:50 },       
+            { text: 'JUMLAH MHS', value: 'jumlah_mhs',sortable:true, width:50},       
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
-        ],  
-        search:'', 
+        ],
+        search: "", 
 
     }),
     methods: {
@@ -201,23 +201,23 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                prodi_id: this.prodi_id,
+                ta: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
+            }).then(({ data }) => {               
                 this.datatable = data.penyelenggaraan;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
             this.firstloading=false;
@@ -227,13 +227,13 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
                 this.expanded=[item];
             }               
-        },        
+        },      
         deleteItem (item)
         {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus penyelenggaraan matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data kontrak matakuliah MHS.' }).then((confirm) => {
@@ -245,22 +245,22 @@ export default {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }                
             });
         },
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -284,14 +284,14 @@ export default {
             }            
         }
     },
-    computed:{
+    computed: {
         ...mapGetters('auth',{            
-            CAN_ACCESS:'can',                     
+            CAN_ACCESS:'can', 
         }),
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,  
         Filter6               
     },
 }

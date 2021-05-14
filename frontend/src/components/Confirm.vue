@@ -66,7 +66,7 @@ export default {
         dialog: false,
         resolve: null,
         reject: null,
-        message: null,        
+        message: null,      
         title: null,
 
         options: {

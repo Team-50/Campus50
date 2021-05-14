@@ -92,18 +92,18 @@
                             :hide-default-footer="true"
                             :headers="headers"
                             :items="kombi_ganjil_paid"> 
-                            <template v-slot:item.jumlah="{ item }">                            
+                            <template v-slot:item.jumlah="{ item }"> 
                                 {{  item.jumlah|formatUang }}
                             </template>    
                             <template v-slot:body.append v-if="kombi_ganjil_paid.length > 0">
                                 <tr class="grey lighten-4 font-weight-black">
                                     <td class="text-right">TOTAL</td>
-                                    <td class="text-right">{{totalKombiGanjilPaid|formatUang}}</td>                                                                                
+                                    <td class="text-right">{{totalKombiGanjilPaid|formatUang}}</td>                                                     
                                 </tr>
                             </template>
-                            <template v-slot:no-data>                            
+                            <template v-slot:no-data> 
                                 belum ada transaksi dengan status PAID.
-                            </template>                           
+                            </template>
                         </v-data-table>
                     </v-card-text>
                 </v-card>                    
@@ -126,18 +126,18 @@
                             :hide-default-footer="true"
                             :headers="headers"
                             :items="kombi_genap_paid"> 
-                            <template v-slot:item.jumlah="{ item }">                            
+                            <template v-slot:item.jumlah="{ item }"> 
                                 {{  item.jumlah|formatUang }}
                             </template>    
                             <template v-slot:body.append v-if="kombi_genap_paid.length > 0">
                                 <tr class="grey lighten-4 font-weight-black">
                                     <td class="text-right">TOTAL</td>
-                                    <td class="text-right">{{totalKombiGenapPaid|formatUang}}</td>                                                                                
+                                    <td class="text-right">{{totalKombiGenapPaid|formatUang}}</td>                                                     
                                 </tr>
                             </template>
-                            <template v-slot:no-data>                            
+                            <template v-slot:no-data> 
                                 belum ada transaksi dengan status PAID.
-                            </template>                           
+                            </template>
                         </v-data-table>
                     </v-card-text>
                 </v-card>
@@ -157,18 +157,18 @@ export default {
         datatableLoading:false,
 
         //daftar komponen biaya
-        kombi_ganjil_unpaid:[],       
-        kombi_genap_unpaid:[],       
+        kombi_ganjil_unpaid: [],     
+        kombi_genap_unpaid: [],     
 
-        kombi_ganjil_paid:[],       
-        kombi_genap_paid:[],       
+        kombi_ganjil_paid: [],     
+        kombi_genap_paid: [],     
 
-        kombi_ganjil_cancelled:[],       
-        kombi_genap_cancelled:[],       
+        kombi_ganjil_cancelled: [],     
+        kombi_genap_cancelled: [],     
 
         headers: [                        
-            { text: 'NAMA KOMPONEN', value: 'nama_kombi', sortable:false},               
-            { text: 'JUMLAH', align:'end',value: 'jumlah',width:250, sortable:false},                
+            { text: 'NAMA KOMPONEN', value: 'nama_kombi', sortable:false},             
+            { text: 'JUMLAH', align:'end',value: 'jumlah',width:250, sortable:false},              
         ], 
         //statistik
         total_transaction:0,
@@ -176,25 +176,25 @@ export default {
         total_transaction_unpaid:0,
         total_transaction_cancelled:0
     }),
-    props:{
-        ta:{
+    props: {
+        ta: {
             type:Number,
             required:true
         }
     },
-    methods:{
+    methods: {
         initialize:async function()
 		{	
-            this.datatableLoading=true;            
+            this.datatableLoading=true;
             await this.$ajax.post('/dashboard/keuangan',
             {
-                TA:this.ta,                
+                TA: this.ta,              
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                 
+            }).then(({ data }) => {                 
                 this.total_transaction=data.total_transaction;
                 this.total_transaction_paid=data.total_transaction_paid;          
                 this.total_transaction_unpaid=data.total_transaction_unpaid;          
@@ -210,19 +210,19 @@ export default {
                 this.kombi_genap_cancelled=data.kombi_genap_cancelled;
                 
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
-            });             
+            }); 
 
         }
     },
-    computed:{        
+    computed: {        
         totalKombiGanjilPaid()
         {
-            var total = 0;            
+            var total = 0;
             for (var i =0; i < this.kombi_ganjil_paid.length; i++)
             {
-                var item = this.kombi_ganjil_paid[i];                                
+                var item = this.kombi_ganjil_paid[i];                    
                 total=total+parseFloat(item.jumlah);
             }           
             return total;
@@ -237,8 +237,8 @@ export default {
             }
             return total;
         }
-    },    
-    watch:{
+    },  
+    watch: {
         ta ()
         {
             this.initialize();

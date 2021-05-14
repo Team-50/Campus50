@@ -167,7 +167,7 @@
                                             <v-row>
                                                 <v-col cols="12">
                                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-                                                        <v-card>                                                            
+                                                        <v-card>                                 
                                                             <v-card-text>  
                                                                 <v-select
                                                                     label="PEMBAYARAN MELALUI :"
@@ -183,7 +183,7 @@
                                                                     :min="null"
                                                                     :max="null"                                            
                                                                     outlined                                                                    
-                                                                    v-model="formdata.total_bayar">                                        
+                                                                    v-model="formdata.total_bayar">             
                                                                 </v-currency-field>
                                                                 <v-text-field 
                                                                     v-model="formdata.nomor_rekening_pengirim"
@@ -242,7 +242,7 @@
                                                                     v-model="formdata.bukti_bayar"
                                                                     @change="previewImage">
                                                                 </v-file-input> 
-                                                                <v-img class="white--text align-end" :src="buktiBayar"></v-img>                                                                               
+                                                                <v-img class="white--text align-end" :src="buktiBayar"></v-img>                                                    
                                                             </v-card-text>
                                                             <v-card-actions>
                                                                 <v-spacer></v-spacer>
@@ -316,7 +316,7 @@
                                                             {{$date(data_konfirmasi.tanggal_bayar).format('DD/MM/YYYY')}}
                                                         </v-card-subtitle>
                                                     </v-card>
-                                                </v-col>                                                
+                                                </v-col>                     
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                             </v-row>
                                             <v-row>
@@ -327,7 +327,7 @@
                                                             {{data_konfirmasi.nomor_rekening_pengirim}}
                                                         </v-card-subtitle>
                                                     </v-card>
-                                                </v-col>                                                
+                                                </v-col>                     
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -380,11 +380,11 @@
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                             </v-row>
-                                            <v-img class="white--text align-end" :src="buktiBayar"></v-img>                                                                               
+                                            <v-img class="white--text align-end" :src="buktiBayar"></v-img>                                                    
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
-                                            <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">BATAL</v-btn>                                            
+                                            <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">BATAL</v-btn>                 
                                         </v-card-actions>
                                     </v-card>
                                 </v-dialog>
@@ -412,7 +412,7 @@
                                 @click.stop="addItem(item)"
                                 v-if="item.status_konfirmasi=='N.A'">
                                 mdi-send
-                            </v-icon>                           
+                            </v-icon>
                             <v-icon
                                 small
                                 class="mr-2"
@@ -463,7 +463,7 @@
                                         :loading="btnLoading">
                                         BATALKAN
                                     </v-btn>
-                                </v-col>                               
+                                </v-col>    
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -484,7 +484,7 @@ import ModuleHeader from '@/components/ModuleHeader';
 import Filter1 from '@/components/sidebar/FilterMode1';
 export default {
     name: 'KonfirmasiPembayaran', 
-    created () {
+    created() {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];        
         this.breadcrumbs = [
             {
@@ -504,19 +504,19 @@ export default {
             }
         ];
         this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=='mahasiswa');
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];    
         this.initialize()
-    },   
+    }, 
     data: () => ({         
         firstloading:true,
-        breadcrumbs:[],        
+        breadcrumbs: [],      
         dashboard:null,
-        btnLoading:false,     
+        btnLoading: false,   
         tahun_akademik:null,
 
         //tables
         datatableLoading:false,
-        datatable:[],
+        datatable: [],
         headers: [                                                
             { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable:true },
             { text: 'NO.REF', value: 'no_faktur',width:100,sortable:true },
@@ -525,12 +525,12 @@ export default {
             { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true,width:250 },
             { text: 'SMT', value: 'idsmt',width:100,sortable:true },
             { text: 'TOTAL', value: 'total',width:100,sortable:true },
-            { text: 'STATUS TRANSAKSI', value: 'nama_status',width:50,sortable:true },            
-            { text: 'KONFIRM.', value: 'status_konfirmasi',width:50,sortable:true },            
+            { text: 'STATUS TRANSAKSI', value: 'nama_status',width:50,sortable:true },          
+            { text: 'KONFIRM.', value: 'status_konfirmasi',width:50,sortable:true },          
             { text: 'AKSI', value: 'actions', sortable: false,width:82 },
-        ],   
-        expanded:[],
-        search:'',
+        ], 
+        expanded: [],
+        search: "",
 
         //dialog        
         dialogfrm:false,
@@ -538,53 +538,53 @@ export default {
         dialogcanceltransaksi:false,
         
         //form data   
-        form_valid:true,   
-        menuTanggalBayar:false,  
-        image_prev:null,            
+        form_valid:true, 
+        menuTanggalBayar:false,
+        image_prev:null,          
         data_transaksi: {
             
-        },   
-        data_konfirmasi:{},
-        daftar_channel:[],
+        }, 
+        data_konfirmasi: {},
+        daftar_channel: [],
         formdata: {            
             id_channel:1,
             total_bayar:0,
-            nomor_rekening_pengirim:'',
-            nama_rekening_pengirim:'',
-            nama_bank_pengirim:'',
-            desc:'',
-            tanggal_bayar:'',
-            bukti_bayar:[],
+            nomor_rekening_pengirim: "",
+            nama_rekening_pengirim: "",
+            nama_bank_pengirim: "",
+            desc: "",
+            tanggal_bayar: "",
+            bukti_bayar: [],
         },
         formdefault: {            
             id_channel:1,
             total_bayar:0,
-            nomor_rekening_pengirim:'',
-            nama_rekening_pengirim:'',
-            nama_bank_pengirim:'',
-            desc:'',
-            tanggal_bayar:'',
-            bukti_bayar:[],
-        },    
+            nomor_rekening_pengirim: "",
+            nama_rekening_pengirim: "",
+            nama_bank_pengirim: "",
+            desc: "",
+            tanggal_bayar: "",
+            bukti_bayar: [],
+        },  
         //form rules  
-        rule_channel_pembayaran:[
-            value => !!value||"Mohon dipilih Channel Pembayaran mohon untuk dipilih !!!"
+        rule_channel_pembayaran: [
+            value => !!value || "Mohon dipilih Channel Pembayaran mohon untuk dipilih !!!"
         ], 
-        rule_nama_pengirim:[
-            value => !!value||"Mohon diisi nama pengirim !!!"
-        ],        
-        rule_nomor_rekening:[
-            value => !!value||"Mohon diisi nomor rekening pengirim !!!",
+        rule_nama_pengirim: [
+            value => !!value || "Mohon diisi nama pengirim !!!"
+        ],      
+        rule_nomor_rekening: [
+            value => !!value || "Mohon diisi nomor rekening pengirim !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Rekening hanya boleh angka',
         ],
-        rule_nama_bank:[
-            value => !!value||"Mohon diisi nama bank !!!"
+        rule_nama_bank: [
+            value => !!value || "Mohon diisi nama bank !!!"
         ],
-        rule_tanggal_bayar:[
-            value => !!value||"Tanggal Bayar mohon untuk diisi !!!"
+        rule_tanggal_bayar: [
+            value => !!value || "Tanggal Bayar mohon untuk diisi !!!"
         ], 
-        rule_bukti_bayar:[
-            value => !!value||"Mohon pilih foto !!!",  
+        rule_bukti_bayar: [
+            value => !!value || "Mohon pilih foto !!!",
             value =>  !value || value.size < 2000000 || 'File Bukti Bayar harus kurang dari 2MB.'                
         ],
     }),
@@ -593,21 +593,21 @@ export default {
         {
             this.tahun_akademik=tahun;
         },
-        initialize:async function () 
+        initialize:async function() 
         {
-            this.datatableLoading=true;            
-            await this.$ajax.post('/keuangan/konfirmasipembayaran',            
+            this.datatableLoading=true;
+            await this.$ajax.post('/keuangan/konfirmasipembayaran',          
             {
-                TA:this.tahun_akademik,
+                TA: this.tahun_akademik,
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
-                this.datatable = data.transaksi;                
+            }).then(({ data }) => {               
+                this.datatable = data.transaksi;    
                 this.datatableLoading=false;
-            });                                 
+            });                     
             this.firstloading=false;
             this.$refs.filter1.setFirstTimeLoading(this.firstloading); 
         },
@@ -615,7 +615,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -627,13 +627,13 @@ export default {
             await this.$ajax.get('/keuangan/channelpembayaran',
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{   
-                this.daftar_channel=data.channel;            
-                this.data_transaksi=item;            
+            }).then(({ data }) => {   
+                this.daftar_channel=data.channel;
+                this.data_transaksi=item;
                 this.dialogfrm=true;
-            });            
+            });
             
         },
         async viewItem (item)
@@ -641,20 +641,20 @@ export default {
             await this.$ajax.get('/keuangan/konfirmasipembayaran/'+item.id,
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                              
+            }).then(({ data }) => {                              
                 this.data_konfirmasi=data.konfirmasi;   
                 this.image_prev=this.$api.storageURL+'/'+data.konfirmasi.bukti_bayar;         
                 this.dialogdetailitem=true;
-            });            
+            });
             
         },
         previewImage (e)
         {
             if (typeof e === 'undefined')
             {
-                this.image_prev=null;                
+                this.image_prev=null;    
             }
             else
             {
@@ -665,11 +665,11 @@ export default {
                 }                
             }          
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;      
-                var data = new FormData();                    
+                this.btnLoading = true;      
+                var data = new FormData();        
                 data.append('transaksi_id',this.data_transaksi.id);
                 data.append('id_channel',this.formdata.id_channel);
                 data.append('total_bayar',this.formdata.total_bayar);
@@ -680,19 +680,19 @@ export default {
                 data.append('tanggal_bayar',this.formdata.tanggal_bayar);
                 data.append('bukti_bayar',this.formdata.bukti_bayar);
 
-                this.$ajax.post('/keuangan/konfirmasipembayaran/store',data,                    
+                this.$ajax.post('/keuangan/konfirmasipembayaran/store',data,
                     {
-                        headers:{
-                            Authorization:this.$store.getters['auth/Token'],
+                        headers: {
+                            Authorization: this.$store.getters['auth/Token'],
                             'Content-Type': 'multipart/form-data'
                         }
                     }
-                ).then(()=>{               
-                    this.btnLoading=false;          
+                ).then(() => {               
+                    this.btnLoading = false;          
                     this.closedialogfrm();
                     this.initialize();
-                }).catch(()=>{
-                    this.btnLoading=false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });
             
             }
@@ -702,63 +702,63 @@ export default {
             this.$root.$confirm.open('Konfirmasi Pembayaran', 'Apakah sudah benar data bukti bayar kode billing '+item.no_transaksi+' ?', { color: 'primary' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/keuangan/transaksi/verifikasi/'+item.id,
                         {
                             _method:'put'            
-                        },                    
+                        },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token'],                        
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token'],    
                             }
                         }
-                    ).then(()=>{                                       
+                    ).then(() => {                                       
                         this.initialize();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }                
-            });            
+            });
         },
         async cancel(item)
         {
             this.$root.$confirm.open('Batalkan Transaksi', 'Apakah Anda ingin membatalkan transaksi dengan kode billing '+item.no_transaksi+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/keuangan/transaksi/cancel',
                         {
                             transaksi_id:item.id            
-                        },                    
+                        },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token'],                        
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token'],    
                             }
                         }
-                    ).then(()=>{                                       
+                    ).then(() => {                                       
                         this.initialize();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }                
-            });            
+            });
         },
-        closedialogfrm () {            
-            this.dialogfrm = false;            
+        closedialogfrm() {            
+            this.dialogfrm = false;
             setTimeout(() => {
                 this.buktiBayar=null;
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                    
                 this.data_transaksi = Object.assign({}, {});
-                this.data_konfirmasi = Object.assign({}, {});                  
+                this.data_konfirmasi = Object.assign({}, {});      
                 }, 300
             );
         },
-        closedialogdetailitem () {
-            this.dialogdetailitem = false;            
+        closedialogdetailitem() {
+            this.dialogdetailitem = false;
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                    
                 this.data_transaksi = Object.assign({}, {}); 
                 this.data_konfirmasi = Object.assign({}, {}); 
                 }, 300
@@ -770,7 +770,7 @@ export default {
         {
             return this.$store.getters['uiadmin/getTahunPendaftaran'];
         },
-        buktiBayar:{
+        buktiBayar: {
             get ()
             {   
                 if (this.image_prev==null)
@@ -789,7 +789,7 @@ export default {
             
         },
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -798,7 +798,7 @@ export default {
             }            
         },
     },
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader, 
         Filter1        

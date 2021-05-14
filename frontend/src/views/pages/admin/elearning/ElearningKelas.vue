@@ -118,7 +118,7 @@ export default {
 				href:'#'
 			}
         ];				
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];    
         this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];        
     },
     mounted()
@@ -128,8 +128,8 @@ export default {
     data: () => ({
         datatableLoading:false,
         firstloading:true,
-        breadcrumbs:[],        
-        datatable:[],      
+        breadcrumbs: [],      
+        datatable: [],    
         tahun_akademik:null,
         semester_akademik:null,
         
@@ -143,29 +143,29 @@ export default {
         {
             this.semester_akademik=semester;
         },
-		initialize:async function () 
+		initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
             {
-                ta:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                ta: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                               
+            }).then(({ data }) => {                               
                 this.datatable = data.pembagiankelas;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
             this.firstloading=false;
             this.$refs.filter2.setFirstTimeLoading(this.firstloading); 
         },
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -181,10 +181,10 @@ export default {
             }            
         },
     },
-    components:{
+    components: {
         ElearningLayout,
-        ModuleHeader,           
-        Filter2,        
+        ModuleHeader,         
+        Filter2,      
     },
 }
 </script>

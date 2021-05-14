@@ -8,7 +8,7 @@ const routes = [
 	{
 		path: '/',
 		name: 'FrontDashboard',
-		meta:{
+		meta: {
 			title: "DASHBOARD"
 		},
 		component: () => import('../views/pages/front/Home.vue')
@@ -16,7 +16,7 @@ const routes = [
 	{
 		path: '/pmb',
 		name: 'FrontPMB',
-		meta:{
+		meta: {
 			title: "PENDAFTARAN MAHASISWA BARU"
 		},
 		component: () => import('../views/pages/front/PMB.vue')
@@ -32,7 +32,7 @@ const routes = [
 	{
 		path: '/login',
 		name: 'FrontLogin',
-		meta:{
+		meta: {
 			title: "LOGIN"
 		},
 		component: () => import('../views/pages/front/Login.vue')
@@ -40,7 +40,7 @@ const routes = [
 	{
 		path: '/dashboard/:token',
 		name: 'AdminDashboard',
-		meta:{
+		meta: {
 			title: "DASHBOARD",			
         },
 		component: () => import('../views/pages/admin/Dashboard.vue'),		
@@ -49,7 +49,7 @@ const routes = [
 	{
 		path: '/dmaster',
 		name: 'DMaster',
-		meta:{
+		meta: {
 			title: "DATA MASTER",
 			requiresAuth:true,
         },
@@ -58,7 +58,7 @@ const routes = [
 	{
 		path: '/dmaster/ruangkelas',
 		name: 'DMasterRuangKelas',
-		meta:{
+		meta: {
 			title: "DATA MASTER - RUANG KELAS",
 			requiresAuth:true,
         },
@@ -67,7 +67,7 @@ const routes = [
 	{
 		path: '/dmaster/kelas',
 		name: 'DMasterKelas',
-		meta:{
+		meta: {
 			title: "DATA MASTER - KELAS",
 			requiresAuth:true,
         },
@@ -77,7 +77,7 @@ const routes = [
 	{
 		path: '/dmaster/persyaratanpmb',
 		name: 'DMasterPersyaratanPMB',
-		meta:{
+		meta: {
 			title: "DATA MASTER - PERSYARATAN PMB",
 			requiresAuth:true,
         },
@@ -86,7 +86,7 @@ const routes = [
 	{
 		path: '/dmaster/jabatanakademik',
 		name: 'DMasterJabatanAkademik',
-		meta:{
+		meta: {
 			title: "DATA MASTER - JABATAN AKADEMIK",
 			requiresAuth:true,
         },
@@ -95,7 +95,7 @@ const routes = [
 	{
 		path: '/dmaster/jenjangstudi',
 		name: 'DMasterJenjangStudi',
-		meta:{
+		meta: {
 			title: "DATA MASTER - JENJANG STUDI",
 			requiresAuth:true,
         },
@@ -104,7 +104,7 @@ const routes = [
 	{
 		path: '/dmaster/statusmahasiswa',
 		name: 'DMasterStatusMahasiswa',
-		meta:{
+		meta: {
 			title: "DATA MASTER - STATUS MAHASISWA",
 			requiresAuth:true,
         },
@@ -113,7 +113,7 @@ const routes = [
 	{
 		path: '/dmaster/ta',
 		name: 'DMasterTahunAkademik',
-		meta:{
+		meta: {
 			title: "DATA MASTER - TAHUN AKADEMIK",
 			requiresAuth:true,
         },
@@ -122,7 +122,7 @@ const routes = [
 	{
 		path: '/dmaster/fakultas',
 		name: 'DMasterFakultas',
-		meta:{
+		meta: {
 			title: "DATA MASTER - FAKULTAS",
 			requiresAuth:true,
         },
@@ -141,7 +141,7 @@ const routes = [
 	{
 		path: '/dmaster/programstudi',
 		name: 'DMasterProgramStudi',
-		meta:{
+		meta: {
 			title: "DATA MASTER - PROGRAM STUDI",
 			requiresAuth:true,
         },
@@ -151,7 +151,7 @@ const routes = [
 	{
 		path: '/perencanaan',
 		name: 'Perencanaan',
-		meta:{
+		meta: {
 			title: "PERENCANAAN",
 			requiresAuth:true,
         },
@@ -160,7 +160,7 @@ const routes = [
 	{
 		path: '/perencanaan/renstra/visi',
 		name: 'RenstraVisi',
-		meta:{
+		meta: {
 			title: "RENSTRA - VISI",
 			requiresAuth:true,
         },
@@ -169,7 +169,7 @@ const routes = [
 	{
 		path: '/perencanaan/renstra/misi',
 		name: 'RenstraMisi',
-		meta:{
+		meta: {
 			title: "RENSTRA - MISI",
 			requiresAuth:true,
         },
@@ -179,7 +179,7 @@ const routes = [
 	{
 		path: '/spmb',
 		name: 'SPMB',
-		meta:{
+		meta: {
 			title: "SPMB",
 			requiresAuth:true,
         },
@@ -188,7 +188,7 @@ const routes = [
 	{
 		path: '/spmb/soalpmb',
 		name: 'SPMBSoal',
-		meta:{
+		meta: {
 			title: "SPMB - SOAL PMB",
 			requiresAuth:true,
         },
@@ -197,7 +197,7 @@ const routes = [
 	{
 		path: '/spmb/pendaftaranbaru',
 		name: 'SPMBPendaftaranBaru',
-		meta:{
+		meta: {
 			title: "SPMB - PENDAFTARAN BARU",
 			requiresAuth:true,
         },
@@ -206,7 +206,7 @@ const routes = [
 	{
 		path: '/spmb/formulirpendaftaran',
 		name: 'SPMBFormulirPendaftaran',
-		meta:{
+		meta: {
 			title: "SPMB - FORMULIR PENDAFTARAN",
 			requiresAuth:true,
         },
@@ -215,7 +215,7 @@ const routes = [
 	{
 		path: '/spmb/formulirpendaftaran/:user_id/edit',
 		name: 'SPMBFormulirPendaftaranEdit',
-		meta:{
+		meta: {
 			title: "SPMB - FORMULIR PENDAFTARAN",
 			requiresAuth:true,
         },
@@ -224,7 +224,7 @@ const routes = [
 	{
 		path: '/spmb/persyaratan',
 		name: 'SPMBPersyaratan',
-		meta:{
+		meta: {
 			title: "SPMB - PERSYARATAN",
 			requiresAuth:true,
         },
@@ -233,7 +233,7 @@ const routes = [
 	{
 		path: '/spmb/jadwalujianpmb',
 		name: 'SPMBJadwalUjianPMB',
-		meta:{
+		meta: {
 			title: "SPMB - JADWAL UJIAN PMB",
 			requiresAuth:true,
         },
@@ -251,7 +251,7 @@ const routes = [
 	{
 		path: '/spmb/ujianonline',
 		name: 'SPMBUjianOnline',
-		meta:{
+		meta: {
 			title: "SPMB - UJIAN ONLINE",
 			requiresAuth:true,
         },
@@ -260,7 +260,7 @@ const routes = [
 	{
 		path: '/spmb/nilaiujian',
 		name: 'SPMBNilaiUjian',
-		meta:{
+		meta: {
 			title: "SPMB - NILAI UJIAN",
 			requiresAuth:true,
         },
@@ -269,7 +269,7 @@ const routes = [
 	{
 		path: '/spmb/jadwalujianpmb/passinggrade/:idjadwalujian',
 		name: 'SPMBPassingGrade',
-		meta:{
+		meta: {
 			title: "SPMB - PASSING GRADE",
 			requiresAuth:true,
         },
@@ -278,7 +278,7 @@ const routes = [
 	{
 		path: '/spmb/laporanfakultas',
 		name: 'SPMBReportFakultas',
-		meta:{
+		meta: {
 			title: "SPMB - LAPORAN FAKULTAS",
 			requiresAuth:true,
         },
@@ -287,7 +287,7 @@ const routes = [
 	{
 		path: '/spmb/laporanprodi',
 		name: 'SPMBReportProdi',
-		meta:{
+		meta: {
 			title: "SPMB - LAPORAN PROGRAM STUDI",
 			requiresAuth:true,
         },
@@ -296,7 +296,7 @@ const routes = [
 	{
 		path: '/spmb/laporankelulusan',
 		name: 'SPMBReportKelulusan',
-		meta:{
+		meta: {
 			title: "SPMB - LAPORAN KELULUSAN",
 			requiresAuth:true,
         },
@@ -307,7 +307,7 @@ const routes = [
 	{
 		path: '/keuangan',
 		name: 'Keuangan',
-		meta:{
+		meta: {
 			title: "KEUANGAN",
 			requiresAuth:true,
         },
@@ -316,7 +316,7 @@ const routes = [
 	{
 		path: '/keuangan/channelpembayaran',
 		name: 'KeuanganChanelPembayaran',
-		meta:{
+		meta: {
 			title: "KEUANGAN - CHANNEL PEMBAYARAN",
 			requiresAuth:true,
         },
@@ -325,7 +325,7 @@ const routes = [
 	{
 		path: '/keuangan/statustransaksi',
 		name: 'KeuanganStatusTransaksi',
-		meta:{
+		meta: {
 			title: "KEUANGAN - STATUS TRANSAKSI",
 			requiresAuth:true,
         },
@@ -334,7 +334,7 @@ const routes = [
 	{
 		path: '/keuangan/biayakomponen',
 		name: 'KeuanganBiayaKomponen',
-		meta:{
+		meta: {
 			title: "KEUANGAN - BIAYA KOMPONEN",
 			requiresAuth:true,
         },
@@ -343,7 +343,7 @@ const routes = [
 	{
 		path: '/keuangan/biayakomponenperiode',
 		name: 'KeuanganBiayaKomponenPeriode',
-		meta:{
+		meta: {
 			title: "KEUANGAN - BIAYA KOMPONEN PERIODE",
 			requiresAuth:true,
         },
@@ -352,7 +352,7 @@ const routes = [
 	{
 		path: '/keuangan/transferbank',
 		name: 'KeuanganTransferBank',
-		meta:{
+		meta: {
 			title: "KEUANGAN - TRANSFER BANK",
 			requiresAuth:true,
         },
@@ -361,7 +361,7 @@ const routes = [
 	{
 		path: '/keuangan/transaksi',
 		name: 'KeuanganTransaksi',
-		meta:{
+		meta: {
 			title: "KEUANGAN - TRANSAKSI",
 			requiresAuth:true,
         },
@@ -370,7 +370,7 @@ const routes = [
 	{
 		path: '/keuangan/transaksi-spp',
 		name: 'KeuanganTransaksiSPP',
-		meta:{
+		meta: {
 			title: "KEUANGAN - TRANSAKSI SPP",
 			requiresAuth:true,
         },
@@ -379,7 +379,7 @@ const routes = [
 	{
 		path: '/keuangan/transaksi-spp/:transaksi_id',
 		name: 'KeuanganTransaksiSPPDetail',
-		meta:{
+		meta: {
 			title: "KEUANGAN - TRANSAKSI SPP",
 			requiresAuth:true,
         },
@@ -388,7 +388,7 @@ const routes = [
 	{
 		path: '/keuangan/transaksi-spp/tambah/:transaksi_id',
 		name: 'KeuanganTransaksiSPPTambah',
-		meta:{
+		meta: {
 			title: "KEUANGAN - TRANSAKSI SPP",
 			requiresAuth:true,
         },
@@ -397,7 +397,7 @@ const routes = [
 	{
 		path: '/keuangan/transaksi-registrasikrs',
 		name: 'KeuanganTransaksiRegistrasiKRS',
-		meta:{
+		meta: {
 			title: "KEUANGAN - TRANSAKSI REGISTRASI KRS",
 			requiresAuth:true,
         },
@@ -406,7 +406,7 @@ const routes = [
 	{
 		path: '/keuangan/transaksi-registrasikrs/:transaksi_id',
 		name: 'KeuanganTransaksiRegistrasiKRSDetail',
-		meta:{
+		meta: {
 			title: "KEUANGAN - TRANSAKSI REGISTRASI KRS",
 			requiresAuth:true,
         },
@@ -415,7 +415,7 @@ const routes = [
 	{
 		path: '/keuangan/konfirmasipembayaran',
 		name: 'KeuanganKonfirmasiPembayaran',
-		meta:{
+		meta: {
 			title: "KEUANGAN - KONFIRMASI PEMBAYARAN",
 			requiresAuth:true,
         },
@@ -426,7 +426,7 @@ const routes = [
 	{
 		path: '/akademik',
 		name: 'AKADEMIK',
-		meta:{
+		meta: {
 			title: "AKADEMIK",
 			requiresAuth:true,
         },
@@ -435,7 +435,7 @@ const routes = [
 	{
 		path: '/akademik/matakuliah',
 		name: 'AkademikMatakuliah',
-		meta:{
+		meta: {
 			title: "AKADEMIK - MATAKULIAH",
 			requiresAuth:true,
         },
@@ -444,7 +444,7 @@ const routes = [
 	{
 		path: '/akademik/dosenwali',
 		name: 'AkademikDosenWali',
-		meta:{
+		meta: {
 			title: "AKADEMIK - DOSEN WALI",
 			requiresAuth:true,
         },
@@ -454,7 +454,7 @@ const routes = [
 	{
 		path: '/akademik/dulang/mhsbelumpunyanim',
 		name: 'AkademikDulangMHSBelumPunyaNIM',
-		meta:{
+		meta: {
 			title: "AKADEMIK - MHS. BARU BELUM PUNYA NIM",
 			requiresAuth:true,
         },
@@ -463,7 +463,7 @@ const routes = [
 	{
 		path: '/akademik/dulang/mahasiswabaru',
 		name: 'AkademikDulangMHSBaru',
-		meta:{
+		meta: {
 			title: "AKADEMIK - DAFTAR ULANG MAHASISWA BARU",
 			requiresAuth:true,
         },
@@ -472,7 +472,7 @@ const routes = [
 	{
 		path: '/akademik/dulang/mahasiswalama',
 		name: 'AkademikDulangMHSLama',
-		meta:{
+		meta: {
 			title: "AKADEMIK - DAFTAR ULANG MAHASISWA LAMA",
 			requiresAuth:true,
         },
@@ -483,7 +483,7 @@ const routes = [
 	{
 		path: '/akademik/kemahasiswaan/daftarmahasiswa',
 		name: 'KemahasiswaanDaftarMahasiswa',
-		meta:{
+		meta: {
 			title: "AKADEMIK - DAFTAR MAHASISWA",
 			requiresAuth:true,
         },
@@ -494,7 +494,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/penyelenggaraan/daftar',
 		name: 'PerkuliahanPenyelenggaraan',
-		meta:{
+		meta: {
 			title: "AKADEMIK - PENYELENGGARAAN MATAKULIAH",
 			requiresAuth:true,
         },
@@ -503,7 +503,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/penyelenggaraan/tambah',
 		name: 'PerkuliahanPenyelenggaraanTambah',
-		meta:{
+		meta: {
 			title: "AKADEMIK - PENYELENGGARAAN MATAKULIAH",
 			requiresAuth:true,
         },
@@ -512,7 +512,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/penyelenggaraan/:idpenyelenggaraan/dosenpengampu/',
 		name: 'PerkuliahanPenyelenggaraanDosenPengampu',
-		meta:{
+		meta: {
 			title: "AKADEMIK - PENYELENGGARAAN MATAKULIAH",
 			requiresAuth:true,
         },
@@ -523,7 +523,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/krs/daftar',
 		name: 'PerkuliahanKRS',
-		meta:{
+		meta: {
 			title: "AKADEMIK - KRS",
 			requiresAuth:true,
         },
@@ -532,7 +532,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/krs/:krsid/detail',
 		name: 'PerkuliahanKRSDetail',
-		meta:{
+		meta: {
 			title: "AKADEMIK - KRS",
 			requiresAuth:true,
         },
@@ -541,7 +541,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/krs/tambah',
 		name: 'PerkuliahanKRSTambah',
-		meta:{
+		meta: {
 			title: "AKADEMIK - KRS",
 			requiresAuth:true,
         },
@@ -550,7 +550,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/krs/:krsid/tambahmatkul',
 		name: 'PerkuliahanKRSTambahMatkul',
-		meta:{
+		meta: {
 			title: "AKADEMIK - KRS",
 			requiresAuth:true,
         },
@@ -560,7 +560,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/pembagiankelas/daftar',
 		name: 'PerkuliahanPembagianKelas',
-		meta:{
+		meta: {
 			title: "AKADEMIK - PEMBAGIAN KELAS",
 			requiresAuth:true,
         },
@@ -569,7 +569,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/pembagiankelas/tambah',
 		name: 'PerkuliahanPembagianKelasTambah',
-		meta:{
+		meta: {
 			title: "AKADEMIK - PEMBAGIAN KELAS",
 			requiresAuth:true,
         },
@@ -578,7 +578,7 @@ const routes = [
 	{
 		path: '/akademik/perkuliahan/pembagiankelas/:kelas_mhs_id/peserta',
 		name: 'PerkuliahanPembagianKelasPeserta',
-		meta:{
+		meta: {
 			title: "AKADEMIK - PEMBAGIAN KELAS",
 			requiresAuth:true,
         },
@@ -588,7 +588,7 @@ const routes = [
 	{
 		path: '/akademik/nilai/matakuliah/isiperkelasmhs',
 		name: 'AkademikNilaiIsiPerKelasMHS',
-		meta:{
+		meta: {
 			title: "AKADEMIK - ISI NILAI MATAKULIAH PER KELAS",
 			requiresAuth:true,
         },
@@ -597,7 +597,7 @@ const routes = [
 	{
 		path: '/akademik/nilai/matakuliah/isiperkelasmhs/:kelas_mhs_id',
 		name: 'AkademikNilaiIsiPerKelasMHSDetail',
-		meta:{
+		meta: {
 			title: "AKADEMIK - ISI NILAI MATAKULIAH PER KELAS",
 			requiresAuth:true,
         },
@@ -606,7 +606,7 @@ const routes = [
 	{
 		path: '/akademik/nilai/matakuliah/isiperkrs',
 		name: 'AkademikNilaiIsiPerKRS',
-		meta:{
+		meta: {
 			title: "AKADEMIK - ISI NILAI MATAKULIAH PER KRS",
 			requiresAuth:true,
         },
@@ -615,7 +615,7 @@ const routes = [
 	{
 		path: '/akademik/nilai/matakuliah/isiperkrs/:krsid',
 		name: 'AkademikNilaiIsiPerKRSMHSDetail',
-		meta:{
+		meta: {
 			title: "AKADEMIK - ISI NILAI MATAKULIAH PER KRS",
 			requiresAuth:true,
         },
@@ -624,7 +624,7 @@ const routes = [
 	{
 		path: '/akademik/nilai/khs',
 		name: 'NilaiKHS',
-		meta:{
+		meta: {
 			title: "AKADEMIK - NILAI KHS",
 			requiresAuth:true,
         },
@@ -633,7 +633,7 @@ const routes = [
 	{
 		path: '/akademik/nilai/khs/:krs_id',
 		name: 'NilaiKHSDetail',
-		meta:{
+		meta: {
 			title: "AKADEMIK - NILAI KHS",
 			requiresAuth:true,
         },
@@ -642,7 +642,7 @@ const routes = [
 	{
 		path: '/akademik/nilai/transkripkurikulum',
 		name: 'TranskripNilaiKurikulum',
-		meta:{
+		meta: {
 			title: "AKADEMIK - TRANSKRIP KURIKULUM",
 			requiresAuth:true,
         },
@@ -651,7 +651,7 @@ const routes = [
 	{
 		path: '/akademik/nilai/transkripkurikulum/:user_id',
 		name: 'TranskripNilaiKurikulumDetail',
-		meta:{
+		meta: {
 			title: "AKADEMIK - TRANSKRIP KURIKULUM",
 			requiresAuth:true,
         },
@@ -662,7 +662,7 @@ const routes = [
 	{
 		path: '/elearning',
 		name: 'Elearning',
-		meta:{
+		meta: {
 			title: "E-LEARNING",
 			requiresAuth:true,
         },
@@ -671,7 +671,7 @@ const routes = [
 	{
 		path: '/elearning/kelas',
 		name: 'Elearning Kelas',
-		meta:{
+		meta: {
 			title: "E-LEARNING - KELAS",
 			requiresAuth:true,
         },
@@ -682,7 +682,7 @@ const routes = [
 	{
 		path: '/system-setting',
 		name: 'SystemSetting',
-		meta:{
+		meta: {
 			title: "SETTING - SISTEM",
 			requiresAuth:true,
         },
@@ -691,7 +691,7 @@ const routes = [
 	{
 		path: '/system-setting/identitasdiri',
 		name: 'IdentitasDiri',
-		meta:{
+		meta: {
 			title: "SETTING - IDENTITAS DIRI",
 			requiresAuth:true,
         },
@@ -700,7 +700,7 @@ const routes = [
 	{
 		path: '/system-setting/variables',
 		name: 'Variables',
-		meta:{
+		meta: {
 			title: "SETTING - VARIABLES",
 			requiresAuth:true,
         },
@@ -709,7 +709,7 @@ const routes = [
 	{
 		path: '/system-setting/headerlaporan',
 		name: 'HeaderLaporan',
-		meta:{
+		meta: {
 			title: "SETTING - HEADER LAPORAN",
 			requiresAuth:true,
         },
@@ -718,7 +718,7 @@ const routes = [
 	{
 		path: '/system-setting/zoom',
 		name: 'SettingZoom',
-		meta:{
+		meta: {
 			title: "SETTING - ZOOM",
 			requiresAuth:true,
         },
@@ -727,7 +727,7 @@ const routes = [
 	{
 		path: '/system-setting/captcha',
 		name: 'SettingCaptcha',
-		meta:{
+		meta: {
 			title: "SETTING - CAPTCHA",
 			requiresAuth:true,
         },
@@ -736,7 +736,7 @@ const routes = [
 	{
 		path: '/system-setting/email',
 		name: 'SettingEmail',
-		meta:{
+		meta: {
 			title: "SETTING - EMAIL",
 			requiresAuth:true,
         },
@@ -745,7 +745,7 @@ const routes = [
 	{
 		path: '/system-setting/themes/colordashboard',
 		name: 'SettingThemesColorDashboard',
-		meta:{
+		meta: {
 			title: "SETTING - THEMES - WARNA DASHBOARD",
 			requiresAuth:true,
         },
@@ -754,7 +754,7 @@ const routes = [
 	{
 		path: '/system-setting/themes/layout',
 		name: 'SettingThemesLayout',
-		meta:{
+		meta: {
 			title: "SETTING - THEMES - LAYOUT",
 			requiresAuth:true,
         },
@@ -763,7 +763,7 @@ const routes = [
 	{
 		path: '/system-users',
 		name: 'SystemUsers',
-		meta:{
+		meta: {
 			title: "SYSTEM - USERS",
 			requiresAuth:true,
         },
@@ -772,7 +772,7 @@ const routes = [
 	{
 		path: '/system-users/permissions',
 		name: 'UsersPermissions',
-		meta:{
+		meta: {
 			title: "USERS - PERMISSIONS",
 			requiresAuth:true,
         },
@@ -781,7 +781,7 @@ const routes = [
 	{
 		path: '/system-users/roles',
 		name: 'UsersRoles',
-		meta:{
+		meta: {
 			title: "USERS - ROLES",
 			requiresAuth:true,
         },
@@ -790,7 +790,7 @@ const routes = [
 	{
 		path: '/system-users/superadmin',
 		name: 'UsersSuperadmin',
-		meta:{
+		meta: {
 			title: "USERS - SUPER ADMIN",
 			requiresAuth:true,
         },
@@ -799,7 +799,7 @@ const routes = [
 	{
 		path: '/system-users/pmb',
 		name: 'UsersPMB',
-		meta:{
+		meta: {
 			title: "USERS - PMB",
 			requiresAuth:true,
         },
@@ -808,7 +808,7 @@ const routes = [
 	{
 		path: '/system-users/akademik',
 		name: 'UsersAkademik',
-		meta:{
+		meta: {
 			title: "USERS - AKADEMIK",
 			requiresAuth:true,
         },
@@ -817,7 +817,7 @@ const routes = [
 	{
 		path: '/system-users/prodi',
 		name: 'UsersProdi',
-		meta:{
+		meta: {
 			title: "USERS - PROGRAM STUDI",
 			requiresAuth:true,
         },
@@ -826,7 +826,7 @@ const routes = [
 	{
 		path: '/system-users/puslahta',
 		name: 'UsersPuslahta',
-		meta:{
+		meta: {
 			title: "USERS - PUSLAHTA",
 			requiresAuth:true,
         },
@@ -835,7 +835,7 @@ const routes = [
 	{
 		path: '/system-users/dosen',
 		name: 'UsersDosen',
-		meta:{
+		meta: {
 			title: "USERS - DOSEN",
 			requiresAuth:true,
         },
@@ -844,7 +844,7 @@ const routes = [
 	{
 		path: '/system-users/keuangan',
 		name: 'UsersKeuangan',
-		meta:{
+		meta: {
 			title: "USERS - KEUANGAN",
 			requiresAuth:true,
         },
@@ -853,7 +853,7 @@ const routes = [
 	{
 		path: '/system-users/profil',
 		name: 'UsersProfil',
-		meta:{
+		meta: {
 			title: "USERS - PROFILE",
 			requiresAuth:true,
         },
@@ -863,7 +863,7 @@ const routes = [
 	{
 		path: '/system-users/biodatadiridosen',
 		name: 'BiodataDiriDosen',
-		meta:{
+		meta: {
 			title: "USERS - BIODATA DIRI DOSEN",
 			requiresAuth:true,
         },
@@ -872,7 +872,7 @@ const routes = [
 	{
 		path: '/system-migration',
 		name: 'SystemMigration',
-		meta:{
+		meta: {
 			title: "MIGRASI SISTEM",
 			requiresAuth:true,
         },
@@ -881,7 +881,7 @@ const routes = [
 	{
 		path: '/404',
 		name: 'NotFoundComponent',
-		meta:{
+		meta: {
             title: "PAGE NOT FOUND"
         },
 		component: NotFoundComponent
@@ -891,7 +891,7 @@ const routes = [
 	{
 		path: '/kemahasiswaan',
 		name: 'Kemahasiswaan',
-		meta:{
+		meta: {
 			title: "KEMAHASISWAAN",
 			requiresAuth:true,
         },

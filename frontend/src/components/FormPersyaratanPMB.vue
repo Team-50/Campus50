@@ -14,7 +14,7 @@ export default {
     {
         this.initialize();
     },
-    props:{
+    props: {
         user_id: {
             type:String,
             required:true
@@ -22,23 +22,23 @@ export default {
     },
     data:()=>({
         //form        
-        daftar_persyaratan:[],        
-    }),    
+        daftar_persyaratan: [],      
+    }),  
     methods: {
-        initialize:async function ()
+        initialize:async function()
         {
-            await this.$ajax.get('/spmb/pmbpersyaratan/'+this.user_id,             
+            await this.$ajax.get('/spmb/pmbpersyaratan/'+this.user_id,           
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
-            ).then(({data})=>{                   
+            ).then(({ data }) => {                   
                 this.daftar_persyaratan=data.persyaratan;
             })
-        },                
+        },              
     },
-    components:{
+    components: {
         FileUpload
     }
 }

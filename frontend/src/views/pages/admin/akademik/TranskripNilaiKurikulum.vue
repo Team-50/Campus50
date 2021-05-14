@@ -88,8 +88,8 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
-                                    <strong>user_id:</strong>{{ item.user_id }}                                              
-                                </v-col>                                
+                                    <strong>user_id:</strong>{{ item.user_id }}                   
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -107,7 +107,7 @@ import ModuleHeader from '@/components/ModuleHeader';
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
     name: 'DulangMahasiswaBaru',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -133,32 +133,32 @@ export default {
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id=prodi_id;
         this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];    
         this.initialize()
-    },  
+    },
     data: () => ({ 
         firstloading:true,
         prodi_id:null,
         nama_prodi:null,
         tahun_pendaftaran:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [            
-            { text: 'NIM', value: 'nim', sortable:true,width:100  },               
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },                           
-            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                           
-            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable:false,width:100, },                           
-            { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable:false,width:100, },                           
-            { text: 'IPK SEMENTARA', value: 'ipk',sortable:true,width:100, },                           
+            { text: 'NIM', value: 'nim', sortable:true,width:100  },             
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },       
+            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },       
+            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable:false,width:100, },       
+            { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable:false,width:100, },       
+            { text: 'IPK SEMENTARA', value: 'ipk',sortable:true,width:100, },       
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
-        ],  
-        search:'', 
+        ],
+        search: "", 
 
-        data_mhs:{}, 
+        data_mhs: {}, 
     }),
     methods: {
         changeTahunPendaftaran (tahun)
@@ -169,22 +169,22 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/nilai/transkripkurikulum',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_pendaftaran
+                prodi_id: this.prodi_id,
+                ta: this.tahun_pendaftaran
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
+            }).then(({ data }) => {               
                 this.datatable = data.mahasiswa;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
             this.firstloading=false;
@@ -194,7 +194,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -206,7 +206,7 @@ export default {
             this.$router.push('/akademik/nilai/transkripkurikulum/'+item.user_id);
         }
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -223,9 +223,9 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,  
         Filter7               
     },
 }

@@ -49,7 +49,7 @@ class GroupMatakuliahTableSeeder extends Seeder
 
         \DB::table('pe3_group_matakuliah')->insert([
             'id_group'=>5,
-            'nama_group'=>'MATAKULIAH BERKEHIDUPAN BERMASYARAKATA',
+            'nama_group'=>'MATAKULIAH BERKEHIDUPAN BERMASYARAKAT',
             'group_alias'=>'MBB',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()

@@ -7,8 +7,8 @@
 import PerencanaanLayout from '@/views/layouts/PerencanaanLayout';
 export default {
     name:'Perencanaan',
-    components:{
-        PerencanaanLayout,      
+    components: {
+        PerencanaanLayout,    
     },
 }
 </script>

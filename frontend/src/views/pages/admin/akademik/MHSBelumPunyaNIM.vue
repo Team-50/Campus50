@@ -68,7 +68,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">                                    
+                                <v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">         
                                     <v-card color="grey lighten-4">
                                         <v-toolbar elevation="2"> 
                                             <v-toolbar-title>SETTING NIM !!!</v-toolbar-title>
@@ -110,12 +110,12 @@
                                                             {{data_mhs.nama_mhs}}
                                                         </v-card-subtitle>
                                                     </v-card>
-                                                </v-col>                                                
+                                                </v-col>                     
                                             </v-row>
                                             <v-row>
                                                 <v-col cols="12">
                                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-                                                        <v-card>                                                            
+                                                        <v-card>                                 
                                                             <v-card-text>            
                                                                 <v-text-field 
                                                                     v-model="formdata.nim"
@@ -165,7 +165,7 @@
                             <v-icon
                                 small
                                 class="mr-2"
-                                @click.stop="addItem(item)">                                
+                                @click.stop="addItem(item)">     
                                 mdi-send
                             </v-icon>     
                         </template>           
@@ -175,7 +175,7 @@
                                     <strong>userid:</strong>{{ item.user_id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -197,7 +197,7 @@ import ModuleHeader from '@/components/ModuleHeader';
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
     name:'MHSBelumPunyaNIM',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -223,56 +223,56 @@ export default {
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id=prodi_id;
         this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];    
         this.initialize()
-    },  
+    },
     data: () => ({ 
         firstloading:true,
         prodi_id:null,
         nama_prodi:null,
-        tahun_pendaftaran:null,        
+        tahun_pendaftaran:null,      
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  },   
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },               
-            { text: 'TELP. HP', value: 'telp_hp', sortable:true,width:150 },               
-            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                           
+            { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  }, 
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },             
+            { text: 'TELP. HP', value: 'telp_hp', sortable:true,width:150 },             
+            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },       
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
-        ],  
-        search:'', 
+        ],
+        search: "", 
         
-        data_mhs:{},  
+        data_mhs: {},
 
         //formdata
-        form_valid:true,   
+        form_valid:true, 
         dialogfrm:false, 
-        daftar_dw:[],     
+        daftar_dw: [],   
         
         formdata: {                        
-            nim:'',
-            nirm:'',
-            dosen_id:''           
+            nim: "",
+            nirm: "",
+            dosen_id: ""           
         },
         formdefault: {                        
-            nim:'',
-            nirm:'',
-            dosen_id:''           
+            nim: "",
+            nirm: "",
+            dosen_id: ""           
         },
-        rule_nim:[
-            value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
+        rule_nim: [
+            value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
-        rule_nirm:[
-            value => !!value||"Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
+        rule_nirm: [
+            value => !!value || "Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka',
         ], 
-        rule_dw:[
-            value => !!value||"Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
-        ],         
+        rule_dw: [
+            value => !!value || "Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
+        ],       
     }),
     methods: {
         changeTahunPendaftaran (tahun)
@@ -283,22 +283,22 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/dulang/mhsbelumpunyanim',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_pendaftaran
+                prodi_id: this.prodi_id,
+                ta: this.tahun_pendaftaran
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
+            }).then(({ data }) => {               
                 this.datatable = data.mahasiswa;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
             this.firstloading=false;
@@ -308,7 +308,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -319,49 +319,49 @@ export default {
         {
             await this.$ajax.get('/akademik/dosenwali',{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                  
+            }).then(({ data }) => {                  
                 this.data_mhs = item;
                 this.dialogfrm=true;
                 this.daftar_dw = data.users; 
             });     
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;  
+                this.btnLoading = true;  
                 this.$ajax.post('/akademik/dulang/mhsbelumpunyanim/store',
                 {
-                    user_id:this.data_mhs.user_id,
-                    nim:this.formdata.nim,
-                    nirm:this.formdata.nirm,
-                    dosen_id:this.formdata.dosen_id,                       
-                },                    
+                    user_id: this.data_mhs.user_id,
+                    nim: this.formdata.nim,
+                    nirm: this.formdata.nirm,
+                    dosen_id: this.formdata.dosen_id,   
+                },
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token'],                        
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token'],    
                     }
                 }
-                ).then(()=>{               
-                    this.btnLoading=false;
+                ).then(() => {               
+                    this.btnLoading = false;
                     this.initialize();          
-                    this.closedialogfrm();                        
-                }).catch(()=>{
-                    this.btnLoading=false;
+                    this.closedialogfrm();            
+                }).catch(() => {
+                    this.btnLoading = false;
                 });   
             }
         },
-        closedialogfrm () {            
-            this.dialogfrm = false;            
+        closedialogfrm() {            
+            this.dialogfrm = false;
             setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                    
                 this.data_mhs = Object.assign({}, {});   
                 }, 300
             );
         },
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -378,7 +378,7 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,
         Filter7        

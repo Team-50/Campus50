@@ -30,12 +30,12 @@
         </ModuleHeader>        
         <v-container fluid v-if="data_kelas_mhs">        
             <v-row>
-                <v-col cols="12">                            
+                <v-col cols="12"> 
                     <DataKelasMHS :datakelas="data_kelas_mhs" />
                 </v-col>
             </v-row>
             <v-row>
-                <v-col cols="12">                            
+                <v-col cols="12"> 
                     <v-data-table
                         :headers="headers"
                         :items="datatable"                        
@@ -55,7 +55,7 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer> 
                                 <v-tooltip bottom>             
-                                    <template v-slot:activator="{ on, attrs }">                                             
+                                    <template v-slot:activator="{ on, attrs }">                  
                                         <v-btn 
                                             v-bind="attrs"
                                             v-on="on"
@@ -68,7 +68,7 @@
                                             <v-icon>mdi-plus</v-icon>
                                         </v-btn>     
                                     </template>
-                                    <span>Tambah Matakuliah</span>                                   
+                                    <span>Tambah Matakuliah</span>        
                                 </v-tooltip>
                             </v-toolbar>
                         </template>
@@ -81,7 +81,7 @@
                         <template v-slot:item.kjur="{item}">
                             {{$store.getters['uiadmin/getProdiName'](item.kjur)}}
                         </template>
-                        <template v-slot:item.actions="{ item }">                              
+                        <template v-slot:item.actions="{ item }">   
                             <v-btn
                                 small
                                 icon
@@ -92,7 +92,7 @@
                                     mdi-delete
                                 </v-icon>
                             </v-btn>   
-                        </template>                                                           
+                        </template>                                
                         <template v-slot:no-data>
                             Data belum tersedia
                         </template>   
@@ -101,7 +101,7 @@
             </v-row>
             <v-row>
                 <v-col cols="12">          
-                    <v-dialog v-model="showdialogmatakuliah" max-width="800px" persistent>                                    
+                    <v-dialog v-model="showdialogmatakuliah" max-width="800px" persistent>         
                         <v-form ref="frmdatamatkul" v-model="form_valid" lazy-validation>
                             <v-card>
                                 <v-card-title>
@@ -119,7 +119,7 @@
                                         outlined
                                         item-text="nmatkul"
                                         item-value="id">
-                                    </v-select>                                
+                                    </v-select>     
                                 </v-card-text>
                                 <v-card-actions>
                                     <v-spacer></v-spacer>
@@ -136,7 +136,7 @@
                             </v-card>
                         </v-form>
                     </v-dialog>                  
-                    <v-dialog v-model="showdialogpeserta" max-width="800px" persistent>                                    
+                    <v-dialog v-model="showdialogpeserta" max-width="800px" persistent>         
                         <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                             <v-card>
                                 <v-card-title>
@@ -156,14 +156,14 @@
 
                                         <template v-slot:item.id="{ item }">    
                                             {{item.id}}
-                                        </template>                                        
+                                        </template>             
                                         <template v-slot:expanded-item="{ headers, item }">
                                             <td :colspan="headers.length" class="text-center">
                                                 <v-col cols="12">
                                                     <strong>ID:</strong>{{ item.id }}
                                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                                </v-col>                                
+                                                </v-col>     
                                             </td>
                                         </template>
                                         <template v-slot:no-data>
@@ -203,9 +203,9 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>     
                                 <v-tooltip bottom>             
-                                    <template v-slot:activator="{ on, attrs }">                                             
+                                    <template v-slot:activator="{ on, attrs }">                  
                                         <v-btn 
                                             v-bind="attrs"
                                             v-on="on"
@@ -219,7 +219,7 @@
                                             <v-icon>mdi-plus</v-icon>
                                         </v-btn>     
                                     </template>
-                                    <span>Tambah Peserta Kelas</span>                                   
+                                    <span>Tambah Peserta Kelas</span>        
                                 </v-tooltip>
                             </v-toolbar>
                         </template>                        
@@ -229,7 +229,7 @@
                         <template v-slot:item.kjur="{item}">
                             {{$store.getters['uiadmin/getProdiName'](item.kjur)}}
                         </template>
-                        <template v-slot:item.actions="{ item }">                              
+                        <template v-slot:item.actions="{ item }">   
                             <v-btn
                                 small
                                 icon
@@ -240,7 +240,7 @@
                                     mdi-delete
                                 </v-icon>
                             </v-btn>   
-                        </template>                                                           
+                        </template>                                
                         <template v-slot:no-data>
                             Data belum tersedia
                         </template>   
@@ -257,7 +257,7 @@ import DataKelasMHS from '@/components/DataKelasMHS';
 
 export default {
     name: 'PerkuliahanPembagianKelasTambah',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -286,10 +286,10 @@ export default {
             }
         ];        
         this.kelas_mhs_id=this.$route.params.kelas_mhs_id;        
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];    
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];    
         this.initialize()
-    },  
+    },
     data: () => ({ 
         kelas_mhs_id:null,
         data_kelas_mhs:null,
@@ -298,164 +298,164 @@ export default {
 
         btnLoadingTable:false,
         datatableLoading:false,
-        btnLoading:false,  
+        btnLoading: false,
         
-        datatable:[],    
-        daftar_matakuliah:[],     
-        datatable_peserta:[], 
-        datatable_members:[],          
+        datatable: [],  
+        daftar_matakuliah: [],   
+        datatable_peserta: [], 
+        datatable_members: [],        
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:false,width:100  },   
-            { text: 'NAMA', value: 'nmatkul', sortable:false  },   
-            { text: 'SKS', value: 'sks', sortable:false  },                           
-            { text: 'PROGRAM STUDI', value: 'kjur', sortable:false, width:200 },                           
-            { text: 'JUMLAH MHS DI KRS', value: 'jumlah_mhs', sortable:false, width:100 },                           
+            { text: 'KODE', value: 'kmatkul', sortable:false,width:100  }, 
+            { text: 'NAMA', value: 'nmatkul', sortable:false  }, 
+            { text: 'SKS', value: 'sks', sortable:false  },       
+            { text: 'PROGRAM STUDI', value: 'kjur', sortable:false, width:200 },       
+            { text: 'JUMLAH MHS DI KRS', value: 'jumlah_mhs', sortable:false, width:100 },       
             { text: 'AKSI', value: 'actions', sortable: false,width:60 },
-        ],  
+        ],
         headers_peserta: [
-            { text: 'NIM', value: 'nim', sortable:false,width:100  },   
-            { text: 'NAMA', value: 'nama_mhs', sortable:false  },   
-            { text: 'PROGRAM STUDI', value: 'kjur', sortable:false  },   
-            { text: 'KELAS', value: 'idkelas', sortable:false  },                           
-            { text: 'TAHUN MASUK', value: 'tahun', sortable:false },                                       
+            { text: 'NIM', value: 'nim', sortable:false,width:100  }, 
+            { text: 'NAMA', value: 'nama_mhs', sortable:false  }, 
+            { text: 'PROGRAM STUDI', value: 'kjur', sortable:false  }, 
+            { text: 'KELAS', value: 'idkelas', sortable:false  },       
+            { text: 'TAHUN MASUK', value: 'tahun', sortable:false },                   
             { text: 'AKSI', value: 'actions', sortable: false,width:60 },
-        ],  
+        ],
         headers_members: [
-            { text: 'NIM', value: 'nim', sortable:false,width:100  },   
-            { text: 'NAMA', value: 'nama_mhs', sortable:false  },   
-            { text: 'KELAS', value: 'idkelas', sortable:false  },                           
-            { text: 'TAHUN MASUK', value: 'tahun', sortable:false },                                                   
-        ],  
-        search_members:'',    
+            { text: 'NIM', value: 'nim', sortable:false,width:100  }, 
+            { text: 'NAMA', value: 'nama_mhs', sortable:false  }, 
+            { text: 'KELAS', value: 'idkelas', sortable:false  },       
+            { text: 'TAHUN MASUK', value: 'tahun', sortable:false },                               
+        ],
+        search_members: "",  
 
-        showdialogmatakuliah:false,      
-        showdialogpeserta:false,      
+        showdialogmatakuliah:false,    
+        showdialogpeserta:false,    
 
         //formdata
-        form_valid:true,  
-        members_selected:[],
-        formdata:{                        
-            penyelenggaraan_dosen_id:'',                        
-        },  
+        form_valid:true,
+        members_selected: [],
+        formdata: {                        
+            penyelenggaraan_dosen_id: "",    
+        },
         
     }),
     methods: {        
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
-            await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,            
+            await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,          
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{           
+            }).then(({ data }) => {           
                 this.data_kelas_mhs=data.pembagiankelas;    
-                this.datatable=data.penyelenggaraan;                                
-                this.datatable_peserta=data.peserta;                                
+                this.datatable=data.penyelenggaraan;                    
+                this.datatable_peserta=data.peserta;                    
                 this.datatableLoading=false;
             })       
         },
         async fetchMatkul()
         {
             this.datatableLoading=true;
-            await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/matakuliah/'+this.kelas_mhs_id,            
+            await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/matakuliah/'+this.kelas_mhs_id,          
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                                                      
-                this.datatable=data.penyelenggaraan;                                
+            }).then(({ data }) => {                                                      
+                this.datatable=data.penyelenggaraan;                    
                 this.datatableLoading=false;
             })   
         },
         async fetchPeserta()
         {
             this.datatableLoading=true;
-            await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/peserta/'+this.kelas_mhs_id,            
+            await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/peserta/'+this.kelas_mhs_id,          
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                                                      
-                this.datatable_peserta=data.peserta;                                
+            }).then(({ data }) => {                                                      
+                this.datatable_peserta=data.peserta;                    
                 this.datatableLoading=false;
             })   
         },
         async tambahMatakuliah()
         {
-            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',            
+            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',          
             {
-                user_id:this.data_kelas_mhs.user_id,
-                ta:this.data_kelas_mhs.tahun,                
-                semester_akademik:this.data_kelas_mhs.idsmt,                
+                user_id: this.data_kelas_mhs.user_id,
+                ta: this.data_kelas_mhs.tahun,              
+                semester_akademik: this.data_kelas_mhs.idsmt,              
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                                                               
+            }).then(({ data }) => {                                                               
                 this.daftar_matakuliah = data.matakuliah; 
-                this.showdialogmatakuliah=true;                      
+                this.showdialogmatakuliah=true;          
             })  
         },
         async tambahPeserta()
         {
-            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/members',            
+            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/members',          
             {
                 pid:'belumterdaftar',
-                kelas_mhs_id:this.kelas_mhs_id,
+                kelas_mhs_id: this.kelas_mhs_id,
                 penyelenggaraan:JSON.stringify(Object.assign({},this.datatable))
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{           
-                this.datatable_members=data.members;                
+            }).then(({ data }) => {           
+                this.datatable_members=data.members;    
                 this.showdialogpeserta=true;
             })             
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/storepeserta',
                     {
-                        kelas_mhs_id:this.kelas_mhs_id,                        
-                        members_selected:JSON.stringify(Object.assign({},this.members_selected)),                                                                    
+                        kelas_mhs_id: this.kelas_mhs_id,    
+                        members_selected:JSON.stringify(Object.assign({},this.members_selected)),                                                
                     },
                     {
-                        headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                        headers: {
+                            Authorization: this.$store.getters['auth/Token']
                         }
                     }
-                ).then(()=>{                       
-                    this.btnLoading=false;
+                ).then(() => {                       
+                    this.btnLoading = false;
                     this.closedialogpeserta();
-                }).catch(()=>{
-                    this.btnLoading=false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });
             }            
         },
-        savematakuliah:async function () {
+        savematakuliah:async function() {
             if (this.$refs.frmdatamatkul.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/storematakuliah',
                     {
-                        kelas_mhs_id:this.kelas_mhs_id,                        
+                        kelas_mhs_id: this.kelas_mhs_id,    
                         penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
                     },
                     {
-                        headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                        headers: {
+                            Authorization: this.$store.getters['auth/Token']
                         }
                     }
-                ).then(()=>{                       
-                    this.btnLoading=false;
+                ).then(() => {                       
+                    this.btnLoading = false;
                     this.closedialogmatakuliah();
-                }).catch(()=>{
-                    this.btnLoading=false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });
             }            
         },
@@ -464,51 +464,51 @@ export default {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data matakuliah di kelas ini dengan ID '+item.id+' ?', { color: 'red', width:600,'desc':'proses ini juga menghapus seluruh mahasiswa yang mengontrak matakuliah di kelas ini.' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/akademik/perkuliahan/pembagiankelas/deletematkul/'+item.id,
                         {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{                           
-                        this.btnLoading=false;
+                    ).then(() => {                           
+                        this.btnLoading = false;
                         this.$router.go();
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }                
             });
-        },       
+        },     
         deletePeserta(item)
         {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data mahasiswa di kelas ini dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/akademik/perkuliahan/pembagiankelas/deletepeserta/'+item.id,
                         {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{                           
-                        this.btnLoading=false;
+                    ).then(() => {                           
+                        this.btnLoading = false;
                         this.$router.go();
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }                
             });
-        },       
-        closedialogpeserta () {
-            this.showdialogpeserta = false;            
+        },     
+        closedialogpeserta() {
+            this.showdialogpeserta = false;
             setTimeout(() => {                
                 this.members_selected=[];
                 this.fetchPeserta();
@@ -516,8 +516,8 @@ export default {
                 }, 300
             );
         },
-        closedialogmatakuliah () {
-            this.showdialogmatakuliah = false;            
+        closedialogmatakuliah() {
+            this.showdialogmatakuliah = false;
             setTimeout(() => {                                
                 this.fetchMatkul();
                 this.$refs.frmdatamatkul.reset(); 
@@ -525,12 +525,12 @@ export default {
             );
         },
     },
-    watch:{
+    watch: {
         
-    },    
-    components:{
+    },  
+    components: {
         AkademikLayout,
-        ModuleHeader,     
+        ModuleHeader,   
         DataKelasMHS       
     },
 }

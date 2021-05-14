@@ -293,7 +293,7 @@ import ModuleHeader from '@/components/ModuleHeader';
 import UserPermissions from '@/views/pages/admin/system/UserPermissions';
 export default {
 		name: 'UsersProgramStudi',
-		created () {
+		created() {
 				this.breadcrumbs = [
 						{
 								text:'HOME',
@@ -317,7 +317,7 @@ export default {
 		data: () => ({
 				role_id:0,
 				datatableLoading:false,
-				btnLoading:false,
+				btnLoading: false,
 				//tables
 				headers: [
 						{ text: '', value: 'foto' },
@@ -327,29 +327,29 @@ export default {
 						{ text: 'NOMOR HP', value: 'nomor_hp',sortable:true },
 						{ text: 'AKSI', value: 'actions', sortable: false,width:100 },
 				],
-				expanded:[],
-				search:'',
+				expanded: [],
+				search: "",
 				daftar_users: [],
 				daftar_permissions: [],
 				permissions_selected: [],
 
 				//form
 				form_valid:true,
-				daftar_roles:[],
+				daftar_roles: [],
 				dialog: false,
 				dialogEdit: false,
 				dialogUserPermission: false,
 				editedIndex: -1,
-				daftar_prodi:[],
+				daftar_prodi: [],
 				editedItem: {
 						id:0,
 						username: '',
 						password: '',
 						name: '',
 						email: '',
-						nomor_hp:'',
-						prodi_id:[],
-						role_id:['programstudi'],
+						nomor_hp: "",
+						prodi_id: [],
+						role_id: ['programstudi'],
 						created_at: '',
 						updated_at: '',
 				},
@@ -360,30 +360,30 @@ export default {
 						name: '',
 						email: '',
 						nomor_hp: '',
-						prodi_id:[],
-						role_id:['programstudi'],
+						prodi_id: [],
+						role_id: ['programstudi'],
 						created_at: '',
 						updated_at: '',
 				},
 				//form rules
-				rule_user_name:[
-						value => !!value||"Mohon untuk di isi nama User !!!",
+				rule_user_name: [
+						value => !!value || "Mohon untuk di isi nama User !!!",
 						value => /^[A-Za-z\s]*$/.test(value) || 'Nama User hanya boleh string dan spasi',
 				],
-				rule_user_email:[
-						value => !!value||"Mohon untuk di isi email User !!!",
+				rule_user_email: [
+						value => !!value || "Mohon untuk di isi email User !!!",
 						value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',
 				],
-				rule_user_nomorhp:[
-						value => !!value||"Nomor HP mohon untuk diisi !!!",
+				rule_user_nomorhp: [
+						value => !!value || "Nomor HP mohon untuk diisi !!!",
 						value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
 				],
-				rule_user_username:[
-						value => !!value||"Mohon untuk di isi username User !!!",
+				rule_user_username: [
+						value => !!value || "Mohon untuk di isi username User !!!",
 						value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',
 				],
-				rule_user_password:[
-						value => !!value||"Mohon untuk di isi password User !!!",
+				rule_user_password: [
+						value => !!value || "Mohon untuk di isi password User !!!",
 						value => {
 								if (value && typeof value !== 'undefined' && value.length > 0){
 										return value.length >= 8 || 'Minimial Password 8 karaketer';
@@ -394,7 +394,7 @@ export default {
 								}
 						}
 				],
-				rule_user_passwordEdit:[
+				rule_user_passwordEdit: [
 						value => {
 								if (value && typeof value !== 'undefined' && value.length > 0){
 										return value.length >= 8 || 'Minimial Password 8 karaketer';
@@ -407,14 +407,14 @@ export default {
 				],
 		}),
 		methods: {
-				initialize:async function ()
+				initialize:async function()
 				{
 						this.datatableLoading=true;
 						await this.$ajax.get('/system/usersprodi',{
 								headers: {
-										Authorization:this.TOKEN
+										Authorization: this.TOKEN
 								}
-						}).then(({data})=>{
+						}).then(({ data }) => {
 								this.daftar_users = data.users;
 								this.role_id=data.role.id;
 								this.datatableLoading=false;
@@ -432,31 +432,31 @@ export default {
 								this.expanded=[item];
 						}
 				},
-				syncPermission:async function ()
+				syncPermission:async function()
 				{
-						this.btnLoading=true;
+						this.btnLoading = true;
 						await this.$ajax.post('/system/users/syncallpermissions',
 								{
 										role_name:'programstudi',
 								},
 								{
-										headers:{
-												Authorization:this.$store.getters['auth/Token']
+										headers: {
+												Authorization: this.$store.getters['auth/Token']
 										}
 								}
-						).then(()=>{
-								this.btnLoading=false;
-						}).catch(()=>{
-								this.btnLoading=false;
+						).then(() => {
+								this.btnLoading = false;
+						}).catch(() => {
+								this.btnLoading = false;
 						});
 				},
-				showDialogTambahUserProgramStudi:async function ()
+				showDialogTambahUserProgramStudi:async function()
 				{
 						await this.$ajax.get('/system/setting/roles',{
 								headers: {
-										Authorization:this.TOKEN
+										Authorization: this.TOKEN
 								}
-						}).then(({data})=>{
+						}).then(({ data }) => {
 								let roles = data.roles;
 								var daftar_roles=[];
 								roles.forEach(element => {
@@ -488,11 +488,11 @@ export default {
 
 						await this.$ajax.get('/system/users/'+item.id+'/prodi',
 								{
-										headers:{
-												Authorization:this.TOKEN
+										headers: {
+												Authorization: this.TOKEN
 										}
 								}
-						).then(({data})=>{
+						).then(({ data }) => {
 								let daftar_prodi = data.daftar_prodi;
 								var prodi=[];
 								daftar_prodi.forEach(element => {
@@ -502,9 +502,9 @@ export default {
 						});
 						await this.$ajax.get('/system/setting/roles',{
 								headers: {
-										Authorization:this.TOKEN
+										Authorization: this.TOKEN
 								}
-						}).then(({data})=>{
+						}).then(({ data }) => {
 								let roles = data.roles;
 								var daftar_roles=[];
 								roles.forEach(element => {
@@ -526,47 +526,47 @@ export default {
 								this.daftar_roles=daftar_roles;
 						});
 
-						this.btnLoading=true;
+						this.btnLoading = true;
 						await this.$ajax.get('/system/users/'+item.id+'/roles',
 						{
 								headers: {
-										Authorization:this.TOKEN
+										Authorization: this.TOKEN
 								}
-						}).then(({data})=>{
+						}).then(({ data }) => {
 								this.editedItem.role_id=data.roles;
-								this.btnLoading=false;
+								this.btnLoading = false;
 								this.dialogEdit = true;
 						});
 				},
 				setPermission: async function (item) {
-						this.btnLoading=true;
+						this.btnLoading = true;
 						this.$ajax.get('/system/setting/roles/'+this.role_id+'/permission',{
 								headers: {
-										Authorization:this.TOKEN
+										Authorization: this.TOKEN
 								}
-						}).then(({data})=>{
+						}).then(({ data }) => {
 								this.daftar_permissions = data.permissions;
-						}).catch(()=>{
-								this.btnLoading=false;
+						}).catch(() => {
+								this.btnLoading = false;
 						});
 
 						await this.$ajax.get('/system/users/'+item.id+'/permission',{
 								headers: {
-										Authorization:this.TOKEN
+										Authorization: this.TOKEN
 								}
-						}).then(({data})=>{
+						}).then(({ data }) => {
 								this.permissions_selected = data.permissions;
-								this.btnLoading=false;
+								this.btnLoading = false;
 
-						}).catch(()=>{
-								this.btnLoading=false;
+						}).catch(() => {
+								this.btnLoading = false;
 						});
 						this.dialogUserPermission = true;
 						this.editedItem=item;
 
 				},
-				close () {
-						this.btnLoading=false;
+				close() {
+						this.btnLoading = false;
 						this.dialog = false;
 						this.dialogEdit = false;
 						setTimeout(() => {
@@ -576,61 +576,61 @@ export default {
 								}, 300
 						);
 				},
-				closeUserPermissions () {
-						this.btnLoading=false;
+				closeUserPermissions() {
+						this.btnLoading = false;
 						this.permissions_selected=[];
 						this.dialogUserPermission = false;
 				},
-				save () {
+				save() {
 						if (this.$refs.frmdata.validate())
 						{
-								this.btnLoading=true;
+								this.btnLoading = true;
 								if (this.editedIndex > -1)
 								{
 										this.$ajax.post('/system/usersprodi/'+this.editedItem.id,
 												{
 														'_method':'PUT',
-														name:this.editedItem.name,
-														email:this.editedItem.email,
-														nomor_hp:this.editedItem.nomor_hp,
-														username:this.editedItem.username,
-														password:this.editedItem.password,
+														name: this.editedItem.name,
+														email: this.editedItem.email,
+														nomor_hp: this.editedItem.nomor_hp,
+														username: this.editedItem.username,
+														password: this.editedItem.password,
 														prodi_id:JSON.stringify(Object.assign({},this.editedItem.prodi_id)),
 														role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
 												},
 												{
-														headers:{
-																Authorization:this.TOKEN
+														headers: {
+																Authorization: this.TOKEN
 														}
 												}
-										).then(({data})=>{
+										).then(({ data }) => {
 												Object.assign(this.daftar_users[this.editedIndex], data.user);
 												this.close();
-										}).catch(()=>{
-												this.btnLoading=false;
+										}).catch(() => {
+												this.btnLoading = false;
 										});
 
 								} else {
 										this.$ajax.post('/system/usersprodi/store',
 												{
-														name:this.editedItem.name,
-														email:this.editedItem.email,
-														nomor_hp:this.editedItem.nomor_hp,
-														username:this.editedItem.username,
-														password:this.editedItem.password,
+														name: this.editedItem.name,
+														email: this.editedItem.email,
+														nomor_hp: this.editedItem.nomor_hp,
+														username: this.editedItem.username,
+														password: this.editedItem.password,
 														prodi_id:JSON.stringify(Object.assign({},this.editedItem.prodi_id)),
 														role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
 												},
 												{
-														headers:{
-																Authorization:this.TOKEN
+														headers: {
+																Authorization: this.TOKEN
 														}
 												}
-										).then(({data})=>{
+										).then(({ data }) => {
 												this.daftar_users.push(data.user);
 												this.close();
-										}).catch(()=>{
-												this.btnLoading=false;
+										}).catch(() => {
+												this.btnLoading = false;
 										});
 								}
 						}
@@ -639,29 +639,29 @@ export default {
 						this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus username '+item.username+' ?', { color: 'red' }).then((confirm) => {
 								if (confirm)
 								{
-										this.btnLoading=true;
+										this.btnLoading = true;
 										this.$ajax.post('/system/usersprodi/'+item.id,
 												{
 														'_method':'DELETE',
 												},
 												{
-														headers:{
-																Authorization:this.TOKEN
+														headers: {
+																Authorization: this.TOKEN
 														}
 												}
-										).then(()=>{
+										).then(() => {
 												const index = this.daftar_users.indexOf(item);
 												this.daftar_users.splice(index, 1);
-												this.btnLoading=false;
-										}).catch(()=>{
-												this.btnLoading=false;
+												this.btnLoading = false;
+										}).catch(() => {
+												this.btnLoading = false;
 										});
 								}
 						});
 				},
 		},
 		computed: {
-				formTitle () {
+				formTitle() {
 						return this.editedIndex === -1 ? 'TAMBAH USER PROGRAM STUDI' : 'EDIT USER PROGRAM STUDI'
 				},
 				...mapGetters('auth',{
@@ -678,7 +678,7 @@ export default {
 						val || this.close()
 				},
 		},
-		components:{
+		components: {
 				SystemUserLayout,
 				ModuleHeader,
 				UserPermissions

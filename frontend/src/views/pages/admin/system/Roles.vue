@@ -89,7 +89,7 @@
                                                                 label="NAMA ROLE"
                                                                 :rules="rule_role_name">
                                                             </v-text-field>
-                                                        </v-col>                                            
+                                                        </v-col>                 
                                                     </v-row>
                                                 </v-container>
                                             </v-card-text>
@@ -107,8 +107,8 @@
                                             </v-card-actions>
                                         </v-card>
                                     </v-form>
-                                </v-dialog>                                
-                                <v-dialog v-model="dialogRolePermission" max-width="800px" persistent>                                                                    
+                                </v-dialog>     
+                                <v-dialog v-model="dialogRolePermission" max-width="800px" persistent>                                         
                                     <RolePermissions :role="editedItem" :daftarpermissions="daftar_permissions" :permissionsselected="permissions_selected" v-on:closeRolePermissions="closeRolePermissions" />
                                 </v-dialog>
                             </v-toolbar>
@@ -152,7 +152,7 @@
                         </template>
                     </v-data-table>                    
                 </v-col>
-                <v-dialog v-model="dialogdetail" width="800px">                                    
+                <v-dialog v-model="dialogdetail" width="800px">         
                     <v-card>
                         <v-card-title>
                             <span class="headline">DETAIL ROLE</span>
@@ -218,7 +218,7 @@
                         <v-card-actions>
                             
                         </v-card-actions>
-                    </v-card>                                    
+                    </v-card>         
                 </v-dialog>
             </v-row>
         </v-container>
@@ -251,27 +251,27 @@ export default {
             }
         ];
         this.initialize()
-    },    
+    },  
     data: () => ({
-        breadcrumbs:[],
+        breadcrumbs: [],
         datatableLoading:false,
-        btnLoading:false,          
-        expanded:[],        
+        btnLoading: false,        
+        expanded: [],      
         datatable: [],
         daftar_permissions: [],
         permissions_selected: [],
         //tables
         headers: [                        
             { text: 'NAMA ROLE', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },            
+            { text: 'GUARD', value: 'guard_name' },          
             { text: 'AKSI', value: 'actions', sortable: false,width:130 },
         ],
         //tables
         headersdetail: [                        
             { text: 'NAMA PERMISSION', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },                          
+            { text: 'GUARD', value: 'guard_name' },      
         ],
-        search:'',
+        search: "",
         //form
         form_valid:true,
         dialog: false,
@@ -280,24 +280,24 @@ export default {
         editedIndex: -1,
         editedItem: {
             id:0,
-            name: '',           
-            guard: '',           
-            created_at: '',           
-            updated_at: '',           
+            name: '',         
+            guard: '',         
+            created_at: '',         
+            updated_at: '',         
         },
         defaultItem: {
             id:0,
-            name: '',           
-            guard: 'api',           
-            created_at: '',           
-            updated_at: '',           
+            name: '',         
+            guard: 'api',         
+            created_at: '',         
+            updated_at: '',         
         },
         //form rules        
-        rule_role_name:[
-            value => !!value||"Mohon untuk di isi nama Role !!!",  
-            value => /^[A-Za-z]*$/.test(value) || 'Nama Role hanya boleh string',                
+        rule_role_name: [
+            value => !!value || "Mohon untuk di isi nama Role !!!",
+            value => /^[A-Za-z]*$/.test(value) || 'Nama Role hanya boleh string',              
         ], 
-        form_error_message:''
+        form_error_message: ""
     }),
     methods: {
         initialize () 
@@ -305,9 +305,9 @@ export default {
             this.datatableLoading=true;
             this.$ajax.get('/system/setting/roles',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data,status})=>{
+            }).then(({data,status}) => {
                 if (status==200)
                 {
                     this.datatable = data.roles;
@@ -321,7 +321,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -334,9 +334,9 @@ export default {
 
             this.$ajax.get('/system/setting/roles/'+item.id+'/permission',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data,status})=>{
+            }).then(({data,status}) => {
                 if (status==200)
                 {
                     this.permissions_selected = data.permissions;
@@ -353,9 +353,9 @@ export default {
         setPermission (item) {            
             this.$ajax.get('/system/setting/permissions',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data,status})=>{
+            }).then(({data,status}) => {
                 if (status==200)
                 {
                     this.daftar_permissions = data.permissions;
@@ -364,9 +364,9 @@ export default {
 
             this.$ajax.get('/system/setting/roles/'+item.id+'/permission',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data,status})=>{
+            }).then(({data,status}) => {
                 if (status==200)
                 {
                     this.permissions_selected = data.permissions;
@@ -376,8 +376,8 @@ export default {
             this.editedItem=item;
         
         },
-        close () {
-            this.btnLoading=false;
+        close() {
+            this.btnLoading = false;
             this.dialog = false;
             this.$refs.frmdata.reset(); 
             this.form_error_message='';           
@@ -387,69 +387,69 @@ export default {
                 }, 300
             );
         },
-        closeRolePermissions () {    
+        closeRolePermissions() {    
             this.permissions_selected=[];
             this.dialogRolePermission = false;  
         },
-        save () {
+        save() {
             this.form_error_message='';
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     this.$ajax.post('/system/setting/roles/'+this.editedItem.id,
                         {
                             '_method':'PUT',
-                            name:this.editedItem.name.toLowerCase(),
+                            name: this.editedItem.name.toLowerCase(),
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data }) => {   
                         Object.assign(this.datatable[this.editedIndex], data.roles);
                         this.close();
-                    }).catch(()=>{
-                        this.btnLoading=false;
-                    });                    
+                    }).catch(() => {
+                        this.btnLoading = false;
+                    });        
                     
                 } else {
                     this.$ajax.post('/system/setting/roles/store',
                         {
-                            name:this.editedItem.name.toLowerCase()
+                            name: this.editedItem.name.toLowerCase()
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data }) => {   
                         this.datatable.push(data.roles);
                         this.close();
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             }
-        },        
+        },      
     },
-    computed:{        
-        formTitle () {
+    computed: {        
+        formTitle() {
             return this.editedIndex === -1 ? 'TAMBAH ROLE' : 'EDIT ROLE'
         },
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN:'AccessToken',        
+            TOKEN:'Token',              
         }),
     },
     watch: {
         dialog (val) {
             val || this.close()
         },
-    },   
-    components:{
+    }, 
+    components: {
 		SystemUserLayout,
         ModuleHeader,
         RolePermissions

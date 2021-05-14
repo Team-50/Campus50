@@ -14,20 +14,20 @@
 <script>
 export default {
 		name:'DialogPrintoutKeuangan',
-		props:{
-				pid:{
+		props: {
+				pid: {
 						type:String,
 						required:true
-				},        
-				title:{
+				},      
+				title: {
 						type:String,
-						default:''
-				},        
+						default: ""
+				},      
 		},
 		data: () => ({
 				dialog:false
 		}),
-		methods:{
+		methods: {
 				open()
 				{
 						this.dialog=true;

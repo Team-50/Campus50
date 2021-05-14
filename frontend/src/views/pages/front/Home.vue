@@ -10,7 +10,7 @@
                             v-for="(slide, i) in slides"
                             :key="i"
                             :src="$api.storageURL+'/'+slide.src"
-                            style="width:auto;">                            
+                            style="width:auto;"> 
                         </v-carousel-item>
                     </v-carousel>-->
                     <v-img

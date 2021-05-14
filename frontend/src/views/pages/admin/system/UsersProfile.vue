@@ -30,7 +30,7 @@
                 <v-col cols="12">
                     <v-card color="grey lighten-4">
                         <v-toolbar elevation="2"> 
-                            <v-toolbar-title>DATA USER</v-toolbar-title>                                                        
+                            <v-toolbar-title>DATA USER</v-toolbar-title>                             
                         </v-toolbar>
                         <v-card-text>
                             <v-row>
@@ -180,7 +180,7 @@
                                 </v-text-field> 
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>     
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -201,7 +201,7 @@ import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
     name:'UsersProfile',
-    created () {
+    created() {
         this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
         this.formdata=this.$store.getters['auth/User'];
         this.breadcrumbs = [
@@ -231,56 +231,56 @@ export default {
         return {
             dashboard:null,
 
-            btnLoading:false,
-            datatable:[],
+            btnLoading: false,
+            datatable: [],
             avatar : null,
 
             //form data        
-            data_mhs:{
+            data_mhs: {
                 nim:'N.A',
                 nirm:'N.A',
                 nama_prodi:'N.A',
                 nama_kelas:'N.A',
                 dosen_wali:'N.A',
-            },       
-            form_valid:true,         
+            },     
+            form_valid:true,       
             formdata: {
-                id:0,                        
-                username:'',         
-                password: '',                
-                name:'',                        
-                email:'',                        
-                nomor_hp:'',                        
-                theme:'',                                        
-                foto:'',  
-                active:'',                                                                                               
-                default_role:'',                                        
-                locked:'',                                        
-                created_at: '',           
-                updated_at: '',           
+                id:0,    
+                username: "",       
+                password: '',              
+                name: "",    
+                email: "",    
+                nomor_hp: "",    
+                theme: "",                    
+                foto: "",
+                active: "",                                                                           
+                default_role: "",                    
+                locked: "",                    
+                created_at: '',         
+                updated_at: '',         
             },
             formdefault: {
-                id:0,                        
-                username:'',         
-                password: '',                
-                name:'',                        
-                email:'',                        
-                nomor_hp:'',                        
-                theme:'',                                        
-                foto:'',  
-                active:'',                                                                                               
-                default_role:'',                                        
-                locked:'',                                        
-                created_at: '',           
-                updated_at: '',           
+                id:0,    
+                username: "",       
+                password: '',              
+                name: "",    
+                email: "",    
+                nomor_hp: "",    
+                theme: "",                    
+                foto: "",
+                active: "",                                                                           
+                default_role: "",                    
+                locked: "",                    
+                created_at: '',         
+                updated_at: '',         
             },
             //form rules  
-            rule_foto:[
-                value => !!value||"Mohon pilih gambar !!!",  
+            rule_foto: [
+                value => !!value || "Mohon pilih gambar !!!",
                 value =>  !value || value.size < 2000000 || 'File foto harus kurang dari 2MB.'                
             ], 
-            rule_user_password:[
-                value => !!value||"Mohon untuk di isi password User !!!",
+            rule_user_password: [
+                value => !!value || "Mohon untuk di isi password User !!!",
                 value => {
                     if (value && typeof value !== 'undefined' && value.length > 0){
                         return value.length >= 8 || 'Minimial Password 8 karaketer';
@@ -298,25 +298,25 @@ export default {
         {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 this.$ajax.post('/system/users/updatepassword/'+this.$store.getters['auth/AttributeUser']('id'),
                     {
-                        '_method':'PUT',                        
-                        password:this.formdata.password,                           
+                        '_method':'PUT',    
+                        password: this.formdata.password,       
                     },
                     {
-                        headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                        headers: {
+                            Authorization: this.$store.getters['auth/Token']
                         }
                     }
-                ).then(({data})=>{                                                                            
+                ).then(({ data }) => {                                                                            
                     this.$refs.frmdata.reset(); 
                     this.formdata.foto=data.foto;       
                     this.formdata=this.formdefault; 
-                    this.btnLoading=false;
-                }).catch(()=>{
-                    this.btnLoading=false;
-                });                     
+                    this.btnLoading = false;
+                }).catch(() => {
+                    this.btnLoading = false;
+                });         
             }
         },
         previewImage (e)
@@ -335,63 +335,63 @@ export default {
             }            
             
         },
-        uploadFoto:async function () 
+        uploadFoto:async function() 
         {
             if (this.$refs.frmuploadfoto.validate())
             {
                 if (this.formdata.foto)
                 {                
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     var formdata = new FormData();
                     formdata.append('foto',this.formdata.foto);
-                    await this.$ajax.post('/setting/users/uploadfoto/'+this.$store.getters.User.id,formdata,                    
+                    await this.$ajax.post('/setting/users/uploadfoto/'+this.$store.getters.User.id,formdata,
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token'],  
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token'],
                                 'Content-Type': 'multipart/form-data'                      
                             }
                         }
-                    ).then(({data})=>{                           
-                        this.btnLoading=false;
-                        this.$store.dispatch('updateFoto',data.user.foto);                        
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                    ).then(({ data }) => {                           
+                        this.btnLoading = false;
+                        this.$store.dispatch('updateFoto',data.user.foto);            
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });    
                     this.$refs.frmdata.reset(); 
                 }   
             }
         },
-        resetFoto:async function () 
+        resetFoto:async function() 
         {
-            this.btnLoading=true;
-            await this.$ajax.post('/setting/users/resetfoto/'+this.$store.getters.User.id,{},                    
+            this.btnLoading = true;
+            await this.$ajax.post('/setting/users/resetfoto/'+this.$store.getters.User.id,{},
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token'],                              
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token'],          
                     }
                 }
-            ).then(({data})=>{                           
-                this.btnLoading=false;
+            ).then(({ data }) => {                           
+                this.btnLoading = false;
                 this.$store.dispatch('updateFoto',data.user.foto);
-            }).catch(()=>{
-                this.btnLoading=false;
+            }).catch(() => {
+                this.btnLoading = false;
             });    
         },
         async fetchMahasiswa()
         {
-            await this.$ajax.get('/akademik/kemahasiswaan/biodatamhs1/'+this.$store.getters['auth/AttributeUser']('id'),                    
+            await this.$ajax.get('/akademik/kemahasiswaan/biodatamhs1/'+this.$store.getters['auth/AttributeUser']('id'),
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token'],                              
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token'],          
                     }
                 }
-            ).then(({data})=>{                           
-                this.data_mhs=data.mahasiswa;            
+            ).then(({ data }) => {                           
+                this.data_mhs=data.mahasiswa;
             })
         }
         
     },
-    computed:{        
+    computed: {        
 		photoUser: {
             get()
             {
@@ -416,7 +416,7 @@ export default {
             return this.formdata.active == 1 ?'green':'red';
         }
     },
-    components:{
+    components: {
         SystemUserLayout,
         ModuleHeader,
     },

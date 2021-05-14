@@ -39,7 +39,7 @@
                                     label="NAMA PERGURUAN TINGGI"
                                     outlined
                                     :rules="rule_nama_pt">
-                                </v-text-field>                                                                                               
+                                </v-text-field>                                                                    
                                 <v-text-field 
                                     v-model="formdata.nama_alias_pt" 
                                     label="NAMA SINGKATAN PERGURUAN TINGGI"
@@ -56,10 +56,10 @@
                                     label="KODE PERGURUAN TINGGI (SESUAI FORLAP)"
                                     outlined
                                     :rules="rule_kode_pt">
-                                </v-text-field>                                                                                               
+                                </v-text-field>                                                                    
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>     
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -92,7 +92,7 @@ export default {
                 text:'KONFIGURASI SISTEM',
                 disabled:false,
                 href:'/system-setting'
-            },  
+            },
             {
                 text:'PERGURUAN TINGGI',
                 disabled:false,
@@ -107,38 +107,38 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],        
-        btnLoading:false,   
+        breadcrumbs: [],      
+        btnLoading: false, 
         //form
-        form_valid:true,   
+        form_valid:true, 
         formdata: {
-            nama_pt:'',
-            nama_alias_pt:'',
-            bentuk_pt:'',
+            nama_pt: "",
+            nama_alias_pt: "",
+            bentuk_pt: "",
             kode_pt:0,
         },
         //form rules        
-        rule_nama_pt:[
-            value => !!value||"Mohon untuk di isi Nama Perguruan Tinggi !!!",             
+        rule_nama_pt: [
+            value => !!value || "Mohon untuk di isi Nama Perguruan Tinggi !!!",           
         ], 
-        rule_nama_singkatan_pt:[
-            value => !!value||"Mohon untuk di isi Nama Alias Perguruan Tinggi !!!",             
+        rule_nama_singkatan_pt: [
+            value => !!value || "Mohon untuk di isi Nama Alias Perguruan Tinggi !!!",           
         ],
-        rule_kode_pt:[
-            value => !!value||"Mohon untuk di isi Kode Perguruan Tinggi !!!",                     
+        rule_kode_pt: [
+            value => !!value || "Mohon untuk di isi Kode Perguruan Tinggi !!!", 
             value => /^[0-9]+$/.test(value) || 'Kode Perguruan Tinggi hanya boleh angka',
         ]
     }),
     methods: {
-        initialize:async function () 
+        initialize:async function() 
         {
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
-                let setting = data.setting;                           
+            }).then(({ data }) => {  
+                let setting = data.setting;               
                 this.formdata.nama_pt=setting.NAMA_PT;
                 this.formdata.nama_alias_pt=setting.NAMA_PT_ALIAS;
                 this.formdata.bentuk_pt=setting.BENTUK_PT;
@@ -146,43 +146,43 @@ export default {
             });          
             
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                
+                this.btnLoading = true;    
                 this.$ajax.post('/system/setting/variables',
                     {
                         '_method':'PUT', 
                         'pid':'Identitas Perguruan Tinggi',
                         setting:JSON.stringify({
-                            101:this.formdata.nama_pt,
-                            102:this.formdata.nama_alias_pt,
-                            103:this.formdata.bentuk_pt,
-                            104:this.formdata.kode_pt,
-                        }),                                                                                                                            
+                            101: this.formdata.nama_pt,
+                            102: this.formdata.nama_alias_pt,
+                            103: this.formdata.bentuk_pt,
+                            104: this.formdata.kode_pt,
+                        }),                                                                                                        
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{                       
-                    this.btnLoading=false;
-                }).catch(()=>{
-                    this.btnLoading=false;
+                ).then(() => {                       
+                    this.btnLoading = false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });        
             }
         }
     },
-    computed:{ 
+    computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN:'AccessToken',        
+            TOKEN:'Token',              
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
-        ModuleHeader,        
+        ModuleHeader,      
 	}
 }
 </script>

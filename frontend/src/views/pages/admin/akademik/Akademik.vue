@@ -65,7 +65,7 @@ export default {
     data: () => ({
         datatableLoading:false,
         firstloading:true,
-        breadcrumbs:[],        
+        breadcrumbs: [],      
         tahun_akademik:0,
         
     }),
@@ -76,14 +76,14 @@ export default {
         },
 		initialize:async function()
 		{	
-            this.datatableLoading=true;            
+            this.datatableLoading=true;
             
-            this.firstloading=false;            
+            this.firstloading=false;
             this.$refs.filter1.setFirstTimeLoading(this.firstloading); 
 
         }
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -92,10 +92,10 @@ export default {
             }            
         },
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,           
-        Filter1,        
+        ModuleHeader,         
+        Filter1,      
     },
 }
 </script>

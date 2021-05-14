@@ -106,7 +106,7 @@
                                     label="ROLES"
                                     :items="daftar_role"
                                     v-model="role_name"
-                                >                                    
+                                >         
                                 </v-select>
                                 <v-text-field
                                     v-model="search"
@@ -132,7 +132,7 @@
                             show-select
                             class="elevation-1"
                         >
-                        <template v-slot:item.actions="{ item }">                            
+                        <template v-slot:item.actions="{ item }"> 
                             <v-icon
                                 small
                                 :loading="btnLoading"
@@ -170,81 +170,81 @@ export default {
         this.initialize();
     },
     data: () => ({
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         //tables
         headers: [                        
             { text: 'NAMA PERMISSION', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },   
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },         
+            { text: 'GUARD', value: 'guard_name' }, 
+            { text: 'AKSI', value: 'actions', sortable: false,width:100 },       
         ],
-        search:'',
+        search: "",
 
         role_name:null,
-        daftar_role:[],
+        daftar_role: [],
 
         daftar_permissions: [],
         permissions_selected: [],
 
     }),
-    props:{                        
-        user:{
+    props: {                        
+        user: {
             type:Object,
             required:true
         },
-        role_default:{
+        role_default: {
             required:true
         }
     },
     methods: {
         initialize()
         {
-            this.$ajax.get('/system/users/'+this.user.id+'/roles',                
+            this.$ajax.get('/system/users/'+this.user.id+'/roles',              
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
-            ).then(({data})=>{   
+            ).then(({ data }) => {   
                 this.daftar_role=data.roles;
-            });            
+            });
         }, 
         save()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             this.$ajax.post('/system/users/storeuserpermissions',
                 {
-                    user_id:this.user.id,
-                    chkpermission:this.permissions_selected
+                    user_id: this.user.id,
+                    chkpermission: this.permissions_selected
                 },
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
-            ).then(()=>{   
-                this.exit();                
-            }).catch(()=>{
-                this.btnLoading=false;
+            ).then(() => {   
+                this.exit();    
+            }).catch(() => {
+                this.btnLoading = false;
             });
         },
         revoke(item)
         {   
-            this.btnLoading=true;         
+            this.btnLoading = true;         
             this.$ajax.post('/system/users/revokeuserpermissions',
                 {
-                    user_id:this.user.id,
+                    user_id: this.user.id,
                     name:item.name
                 },
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
-            ).then(()=>{   
-                this.exit();                
-            }).catch(()=>{
-                this.btnLoading=false;
+            ).then(() => {   
+                this.exit();    
+            }).catch(() => {
+                this.btnLoading = false;
             });
         },
         exit()
@@ -252,13 +252,13 @@ export default {
             this.$emit('closeUserPermissions');           
         }
     },
-    computed:{
+    computed: {
         role_user()
         {
             return this.daftar_role.join(',').toUpperCase();
         }
     },
-    watch:{
+    watch: {
         async role_name(val)
         {
             if(val)
@@ -266,17 +266,17 @@ export default {
                 this.datatableLoading=true;
                 await this.$ajax.get('/system/setting/rolesbyname/'+this.role_name+'/permission',{
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     }
-                }).then(({data})=>{
+                }).then(({ data }) => {
                     this.daftar_permissions = data.permissions;
                 });
                 await this.$ajax.get('/system/users/'+this.user.id+'/permission',{
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     }
-                }).then(({data})=>{
-                    this.permissions_selected = data.permissions;                    
+                }).then(({ data }) => {
+                    this.permissions_selected = data.permissions;        
                 });
                 this.datatableLoading=false;
             }
