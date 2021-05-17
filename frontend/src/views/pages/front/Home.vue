@@ -1,8 +1,8 @@
 <template>
     <FrontLayout>
-        <v-container fluid>
+        <v-container fluid class="green">
             <v-row class="grey lighten-5">
-                <v-col cols="12" class="hidden-sm-and-down">
+                <v-col cols="12" class="hidden-sm-and-down pa-0">
                     <!--<v-carousel
                         cycle                                                
                         show-arrows-on-hover>
@@ -16,7 +16,7 @@
                     <v-img
                         class="hidden-sm-and-down"
                         lazy-src="$api.storageURL/storage/images/sliders/banner1.jpg"
-                        max-height=""
+                        max-height="auto"
                         max-width="100%"
                         :src="$api.url+'/storage/images/sliders/banner1.jpg'"
                     ></v-img>
