@@ -39,40 +39,40 @@
 																		label="CLASS CSS SYSTEM BAR"
 																		outlined
 																		:rules="rule_required">
-																</v-text-field>                                                                                               
+																</v-text-field>                                                                    
 																<v-text-field 
 																		v-model="formdata.V_APP_BAR_NAV_ICON_CSS_CLASS" 
 																		label="CLASS CSS APPLICATION BAR"
 																		outlined
 																		:rules="rule_required">
-																</v-text-field>                                
+																</v-text-field>     
 																<v-text-field 
 																		v-model="formdata.V_NAVIGATION_DRAWER_CSS_CLASS" 
 																		label="CLASS CSS NAVIGATION DRAWER"
 																		outlined
 																		:rules="rule_required">
-																</v-text-field>                                
+																</v-text-field>     
 																<v-text-field 
 																		v-model="formdata.V_NAVIGATION_DRAWER_COLOR" 
 																		label="COLOR CODE NAVIGATION DRAWER"
 																		outlined
 																		:rules="rule_required">
-																</v-text-field>                                
+																</v-text-field>     
 																<v-text-field 
 																		v-model="formdata.V_LIST_ITEM_BOARD_CSS_CLASS" 
 																		label="CLASS CSS LIST ITEM BOARD"
 																		outlined
 																		:rules="rule_required">
-																</v-text-field>                                
+																</v-text-field>     
 																<v-text-field 
 																		v-model="formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS" 
 																		label="CLASS CSS LIST ITEM ACTIVE"
 																		outlined
 																		:rules="rule_required">
-																</v-text-field>                                
+																</v-text-field>     
 														</v-card-text>
 														<v-card-actions>
-																<v-spacer></v-spacer>                                
+																<v-spacer></v-spacer>     
 																<v-btn 
 																		color="blue darken-1" 
 																		text 
@@ -105,7 +105,7 @@ export default {
 								text:'KONFIGURASI SISTEM',
 								disabled:false,
 								href:'/system-setting'
-						},  
+						},
 						{
 								text:'THEMES',
 								disabled:false,
@@ -120,11 +120,11 @@ export default {
 				this.initialize();
 		},
 		data: () => ({
-				breadcrumbs:[],
+				breadcrumbs: [],
 				datatableLoading:false,
-				btnLoading:false,   
+				btnLoading: false, 
 				//form
-				form_valid:true,   
+				form_valid:true, 
 				formdata: {
 						V_SYSTEM_BAR_CSS_CLASS: "",
 						V_APP_BAR_NAV_ICON_CSS_CLASS: "",
@@ -134,21 +134,21 @@ export default {
 						V_LIST_ITEM_ACTIVE_CSS_CLASS: "",
 				},
 				//form rules        
-				rule_required:[
-						value => !!value||"Mohon untuk diisi dengan nama class !!!",             
+				rule_required: [
+						value => !!value || "Mohon untuk diisi dengan nama class !!!",           
 				], 
 		}),
 		methods: {
-				initialize:async function () 
+				initialize:async function() 
 				{
 						this.datatableLoading=true;
 						await this.$ajax.get('/system/setting/variables',
 						{
 								headers: {
-										Authorization:this.TOKEN
+										Authorization: this.TOKEN
 								}
-						}).then(({data})=>{  
-								let setting = data.setting;                           
+						}).then(({ data }) => {  
+								let setting = data.setting;               
 								this.formdata.V_SYSTEM_BAR_CSS_CLASS=setting.V_SYSTEM_BAR_CSS_CLASS;
 								this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS=setting.V_APP_BAR_NAV_ICON_CSS_CLASS;
 								this.formdata.V_NAVIGATION_DRAWER_CSS_CLASS=setting.V_NAVIGATION_DRAWER_CSS_CLASS;
@@ -158,47 +158,47 @@ export default {
 						});          
 						
 				},
-				save () {
+				save() {
 						if (this.$refs.frmdata.validate())
 						{
-								this.btnLoading=true;                
+								this.btnLoading = true;    
 								this.$ajax.post('/system/setting/variables',
 										{
 												'_method':'PUT', 
 												'pid':'Class Css Layout',
 												setting:JSON.stringify({
-														801:this.formdata.V_SYSTEM_BAR_CSS_CLASS,
-														802:this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS,
-														803:this.formdata.V_NAVIGATION_DRAWER_CSS_CLASS,
-														808:this.formdata.V_NAVIGATION_DRAWER_COLOR,
-														804:this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS,
-														805:this.formdata.V_LIST_ITEM_BOARD_COLOR,
-														806:this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS,
-												}),                                                                                                                            
+														801: this.formdata.V_SYSTEM_BAR_CSS_CLASS,
+														802: this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS,
+														803: this.formdata.V_NAVIGATION_DRAWER_CSS_CLASS,
+														808: this.formdata.V_NAVIGATION_DRAWER_COLOR,
+														804: this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS,
+														805: this.formdata.V_LIST_ITEM_BOARD_COLOR,
+														806: this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS,
+												}),                                                                                                        
 										},
 										{
-												headers:{
-														Authorization:this.TOKEN
+												headers: {
+														Authorization: this.TOKEN
 												}
 										}
-								).then(()=>{                       
-										this.btnLoading=false;
-								}).catch(()=>{
-										this.btnLoading=false;
+								).then(() => {                       
+										this.btnLoading = false;
+								}).catch(() => {
+										this.btnLoading = false;
 								});        
 								this.$store.dispatch('uiadmin/init',this.$ajax); 
 						}
 				}
 		},
-		computed:{ 
+		computed: { 
 				...mapGetters('auth',{            
-						ACCESS_TOKEN:'AccessToken',          
-						TOKEN:'Token',                                  
+						ACCESS_TOKEN:'AccessToken',        
+						TOKEN:'Token',              
 				}),
 		},
-		components:{
+		components: {
 		SystemConfigLayout,
-				ModuleHeader,        
+				ModuleHeader,      
 	}
 }
 </script>

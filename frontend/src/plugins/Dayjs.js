@@ -4,7 +4,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 Object.defineProperties(Vue.prototype,{
-    $date:{
+    $date: {
         get ()
         {
             return dayjs;

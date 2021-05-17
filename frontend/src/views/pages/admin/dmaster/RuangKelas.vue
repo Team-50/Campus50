@@ -67,10 +67,10 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-dialog v-model="dialogfrm" max-width="600px" persistent>
-                                    <template v-slot:activator="{ on }">                                        
+                                    <template v-slot:activator="{ on }">             
                                         <v-btn color="primary" icon outlined small class="ma-2" v-on="on">
                                             <v-icon>mdi-plus</v-icon>
-                                        </v-btn>                                        
+                                        </v-btn>             
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -186,7 +186,7 @@ import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
     name:'TahunAkademik',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -207,16 +207,16 @@ export default {
         this.initialize()
     },
     data: () => ({
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        expanded: [],
+        datatable: [],
         headers: [
             { text: 'NAMA RUANG', value: 'namaruang' },
             { text: 'KAPASITAS', value: 'kapasitas' },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',
+        search: "",
 
         //dialog
         dialogfrm:false,
@@ -225,38 +225,38 @@ export default {
         //form data        
         form_valid:true,
         formdata: {
-            id:'',
-            namaruang:'',
+            id: "",
+            namaruang: "",
             kapasitas:0,
         },
         formdefault: {
-            id:'',
-            namaruang:'',
+            id: "",
+            namaruang: "",
             kapasitas:0,
         },
         editedIndex: -1,
 
         //form rules
-        rule_nama_ruang:[
-            value => !!value||"Mohon untuk di isi nama ruang !!!",
+        rule_nama_ruang: [
+            value => !!value || "Mohon untuk di isi nama ruang !!!",
         ],
-        rule_kapasitas:[
-            value => !!value||"Kapasitas Ruangan mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Kapasitas Ruangan Kelas hanya boleh angka',            
-        ],        
+        rule_kapasitas: [
+            value => !!value || "Kapasitas Ruangan mohon untuk diisi !!!",
+            value => /^[0-9]+$/.test(value) || 'Kapasitas Ruangan Kelas hanya boleh angka',          
+        ],      
     }),
     methods: {
-        initialize:async function ()
+        initialize:async function()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/ruangankelas',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data }) => {
                 this.datatable = data.ruangan;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });
         },
@@ -277,51 +277,51 @@ export default {
         },
         editItem (item) {
             this.editedIndex = this.datatable.indexOf(item);
-            this.formdata = Object.assign({}, item);            
+            this.formdata = Object.assign({}, item);
             this.dialogfrm = true
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1)
                 {
                     await this.$ajax.post('/datamaster/ruangankelas/'+this.formdata.id,
                         {
                             '_method':'PUT',
-                            namaruang:this.formdata.namaruang,
-                            kapasitas:this.formdata.kapasitas,
+                            namaruang: this.formdata.namaruang,
+                            kapasitas: this.formdata.kapasitas,
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data }) => {
                         Object.assign(this.datatable[this.editedIndex], data.ruangan);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
 
                 } else {
                     await this.$ajax.post('/datamaster/ruangankelas/store',
                         {
-                            namaruang:this.formdata.namaruang,
-                            kapasitas:this.formdata.kapasitas,
+                            namaruang: this.formdata.namaruang,
+                            kapasitas: this.formdata.kapasitas,
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data }) => {
                         this.datatable.push(data.ruangan);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -330,27 +330,27 @@ export default {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/datamaster/ruangankelas/'+item.id,
                         {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             });
         },
-        closedialogdetailitem () {
+        closedialogdetailitem() {
             this.dialogdetailitem = false;
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
@@ -358,7 +358,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);
@@ -373,11 +373,11 @@ export default {
             ACCESS_TOKEN:'AccessToken',
             TOKEN:'Token',
         }),
-        formTitle () {
+        formTitle() {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
         },
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,
     },

@@ -71,11 +71,11 @@
                                         <v-card>
                                             <v-card-title>
                                                 <span class="headline">Alihkan Mahasiswa</span>
-                                            </v-card-title>                                            
+                                            </v-card-title>                 
                                             <v-card-subtitle>
                                                 Alihkan Mahasiswa dari Dosen wali ini ke Dosen wali lain.
-                                            </v-card-subtitle>                                            
-                                            <v-card-text>                                                                                                
+                                            </v-card-subtitle>                 
+                                            <v-card-text>                                                                     
                                                                                                                                 
                                             </v-card-text>
                                             <v-card-actions>
@@ -90,7 +90,7 @@
                                             </v-card-actions>
                                         </v-card>
                                     </v-form>
-                                </v-dialog>                                
+                                </v-dialog>     
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
@@ -99,7 +99,7 @@
                         <template v-slot:item.is_dw="{ item }">
                             {{item.is_dw == false ? 'BUKAN':'YA'}}
                         </template>
-                        <template v-slot:item.actions="{ item }">                            
+                        <template v-slot:item.actions="{ item }"> 
                             <v-icon
                                 small
                                 class="mr-2"
@@ -118,10 +118,10 @@
                                 mdi-delete
                             </v-icon>
                         </template>
-                        <template v-slot:item.foto="{ item }">                            
+                        <template v-slot:item.foto="{ item }"> 
                             <v-avatar size="30">
-                                <v-img :src="$api.storageURL+'/'+item.foto" />                                
-                            </v-avatar>                                                                                                  
+                                <v-img :src="$api.storageURL+'/'+item.foto" />     
+                            </v-avatar>                                                                       
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
@@ -130,7 +130,7 @@
                                     <strong>Email:</strong>{{ item.email }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -148,8 +148,8 @@ import {mapGetters} from 'vuex';
 import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name: 'DosenWali',  
-    created () {
+    name: 'DosenWali',
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -168,80 +168,80 @@ export default {
             }
         ];
         this.initialize()
-    },  
+    },
    
     data: () => ({ 
         role_id:0,
         datatableLoading:false,
-        btnLoading:false,      
+        btnLoading: false,    
         //tables
         headers: [                        
             { text: '', value: 'foto' },
             { text: 'USERNAME', value: 'username',sortable:true },
             { text: 'NAMA DOSEN', value: 'name',sortable:true },
-            { text: 'NIDN', value: 'nidn',sortable:true },     
-            { text: 'NIPY', value: 'nipy',sortable:true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },     
-            { text: 'DW', value: 'is_dw',sortable:true },     
+            { text: 'NIDN', value: 'nidn',sortable:true },   
+            { text: 'NIPY', value: 'nipy',sortable:true },   
+            { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },   
+            { text: 'DW', value: 'is_dw',sortable:true },   
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        expanded:[],
-        search:'',
-        daftar_users: [],        
+        expanded: [],
+        search: "",
+        daftar_users: [],      
 
         //form
         form_valid:true,
         dialog: false,
-        dialogAlihkan: false,        
-        editedIndex: -1,        
+        dialogAlihkan: false,      
+        editedIndex: -1,      
         editedItem: {
             id:0,
-            username: '',           
-            password: '',           
-            name: '',      
-            nidn:'',   
-            nipy:'',         
-            email: '',           
-            nomor_hp:'',                 
-            is_dw:false,      
-            created_at: '',           
-            updated_at: '',   
+            username: '',         
+            password: '',         
+            name: '',    
+            nidn: "", 
+            nipy: "",       
+            email: '',         
+            nomor_hp: "",               
+            is_dw:false,    
+            created_at: '',         
+            updated_at: '', 
         },
         defaultItem: {
             id:0,
-            username: '',           
-            password: '',           
-            name: '',    
-            nidn:'',
-            nipy:'',       
-            email: '',           
-            nomor_hp: '',          
-            is_dw:false,    
-            created_at: '',           
-            updated_at: '',        
+            username: '',         
+            password: '',         
+            name: '',  
+            nidn: "",
+            nipy: "",     
+            email: '',         
+            nomor_hp: '',        
+            is_dw:false,  
+            created_at: '',         
+            updated_at: '',      
         },
         //form rules        
-        rule_user_name:[
-            value => !!value||"Mohon untuk di isi nama Dosen !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',                
-        ],         
-        rule_nipy:[
-            value => !!value||"Mohon untuk di isi Nomor Induk Pegawai Yayasan (NIPY) dari User ini !!!",                          
+        rule_user_name: [
+            value => !!value || "Mohon untuk di isi nama Dosen !!!",
+            value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',              
+        ],       
+        rule_nipy: [
+            value => !!value || "Mohon untuk di isi Nomor Induk Pegawai Yayasan (NIPY) dari User ini !!!",      
         ], 
-        rule_user_email:[
-            value => !!value||"Mohon untuk di isi email User !!!",  
-            value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
+        rule_user_email: [
+            value => !!value || "Mohon untuk di isi email User !!!",
+            value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',     
         ], 
-        rule_user_nomorhp:[
-            value => !!value||"Nomor HP mohon untuk diisi !!!",
+        rule_user_nomorhp: [
+            value => !!value || "Nomor HP mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
         ], 
-        rule_user_username:[
-            value => !!value||"Mohon untuk di isi username User !!!",  
-            value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',                    
+        rule_user_username: [
+            value => !!value || "Mohon untuk di isi username User !!!",
+            value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',
         ], 
-        rule_user_password:[
-            value => !!value||"Mohon untuk di isi password User !!!",
+        rule_user_password: [
+            value => !!value || "Mohon untuk di isi password User !!!",
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
                     return value.length >= 8 || 'Minimial Password 8 karaketer';
@@ -252,7 +252,7 @@ export default {
                 }
             }
         ], 
-        rule_user_passwordEdit:[
+        rule_user_passwordEdit: [
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
                     return value.length >= 8 || 'Minimial Password 8 karaketer';
@@ -265,14 +265,14 @@ export default {
         ],
     }),
     methods: {
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/dosenwali',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data }) => {               
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
                 this.datatableLoading=false;
@@ -283,77 +283,77 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
                 this.expanded=[item];
             }               
-        },        
-        showDialogTambahUserDosen:async function ()
+        },      
+        showDialogTambahUserDosen:async function()
         {
-            this.dialog = true;            
+            this.dialog = true;
         },
         editItem:async function (item) {
             this.editedIndex = this.daftar_users.indexOf(item)
-            item.password='';            
-            this.editedItem = Object.assign({}, item);                              
+            item.password='';
+            this.editedItem = Object.assign({}, item);                  
             this.dialogAlihkan = true;
-        },        
-        close () {            
-            this.btnLoading=false;
+        },      
+        close() {            
+            this.btnLoading = false;
             this.dialog = false;
-            this.dialogAlihkan = false;            
+            this.dialogAlihkan = false;
             setTimeout(() => {
                 this.editedItem = Object.assign({}, this.defaultItem)
                 this.editedIndex = -1
                 this.$refs.frmdata.resetValidation(); 
                 }, 300
             );
-        },    
-        alihkan () {
+        },  
+        alihkan() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 this.$ajax.post('/akademik/dosenwali/'+this.editedItem.id,
                     {
                         '_method':'PUT',
-                        user_id:this.editedItem.id,                            
+                        user_id: this.editedItem.id,        
                         pid:'alihkan_mhs'
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{   
+                ).then(() => {   
                     this.initialize();
                     this.close();
-                }).catch(()=>{
-                    this.btnLoading=false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });           
             }
-        },        
+        },      
         deleteItem (item) {           
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus dosen wali '+item.username+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/akademik/dosenwali/'+item.id,
                         {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.daftar_users.indexOf(item);
                         this.daftar_users.splice(index, 1);
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             });
@@ -361,8 +361,8 @@ export default {
     },
     computed: {        
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN:'AccessToken',        
+            TOKEN:'Token',              
         }),
     },
     watch: {
@@ -371,11 +371,11 @@ export default {
         },
         dialogAlihkan (val) {
             val || this.close()
-        },        
-    },    
-    components:{
+        },      
+    },  
+    components: {
         AkademikLayout,
-        ModuleHeader,        
+        ModuleHeader,      
     },
 }
 </script>

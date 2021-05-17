@@ -30,7 +30,7 @@
 														<v-list-item-title class="title">
 																{{ATTRIBUTE_USER('username')}}
 														</v-list-item-title>
-														<v-list-item-subtitle>                                
+														<v-list-item-subtitle>     
 																[{{DEFAULT_ROLE}}]
 														</v-list-item-subtitle>
 												</v-list-item-content>
@@ -130,13 +130,13 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
-		name:'SystemMigrationLayout',    
-		props:{
-				showrightsidebar:{
+		name:'SystemMigrationLayout',  
+		props: {
+				showrightsidebar: {
 						type:Boolean,
 						default:true
 				},
-				temporaryleftsidebar:{
+				temporaryleftsidebar: {
 						type:Boolean,
 						default:false
 				},
@@ -151,7 +151,7 @@ export default {
 				drawerRight:null, 
 				
 				dashboard:null,
-		}),       
+		}),     
 		methods: {        
 				logout ()
 				{
@@ -159,8 +159,8 @@ export default {
 						this.$ajax.post('/auth/logout',
 								{},
 								{
-										headers:{
-												'Authorization': this.TOKEN,
+										headers: {
+												Authorization: this.TOKEN,
 										}
 								}
 						).then(()=> {     
@@ -181,15 +181,15 @@ export default {
 						return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true:false;
 				}
 	},
-		computed:{
+		computed: {
 				...mapGetters('auth',{
-						AUTHENTICATED:'Authenticated',  
-						ACCESS_TOKEN:'AccessToken',          
-						TOKEN:'Token',     
-						DEFAULT_ROLE:'DefaultRole',     
+						AUTHENTICATED:'Authenticated',
+						ACCESS_TOKEN:'AccessToken',        
+						TOKEN:'Token',   
+						DEFAULT_ROLE:'DefaultRole',   
 						ROLE:'Role',
-						CAN_ACCESS:'can',         
-						ATTRIBUTE_USER:'AttributeUser',               
+						CAN_ACCESS:'can',       
+						ATTRIBUTE_USER:'AttributeUser',             
 				}),
 				APP_NAME ()
 				{
@@ -208,17 +208,17 @@ export default {
 				photo = this.$api.storageURL+'/'+img;	
 			}
 			return photo;
-				},     
+				},   
 		},
 		watch: {
-				loginTime:{
+				loginTime: {
 						handler(value)
 						{
 								
 								if (value >= 0)
 								{
 										setTimeout(() => { 
-												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                         
 					}, 1000);
 								}
 								else
@@ -228,7 +228,7 @@ export default {
 								}
 						},
 						immediate:true
-				},        
+				},      
 		}
 }
 </script>

@@ -33,7 +33,7 @@
 								<v-list-item-title class="title">
 									{{ATTRIBUTE_USER('username')}}
 								</v-list-item-title>
-								<v-list-item-subtitle>                                
+								<v-list-item-subtitle>     
 									[{{DEFAULT_ROLE}}]
 								</v-list-item-subtitle>
 							</v-list-item-content>
@@ -262,7 +262,7 @@
 														TRANSAKSI REGISTRASI KRS
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                                                     
+								</v-list-item>                          
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-SPP_BROWSE')" to="/keuangan/transaksi-spp">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-calendar-account</v-icon>
@@ -272,7 +272,7 @@
 														TRANSAKSI SPP
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                                                     
+								</v-list-item>                          
 						</v-list>
 				</v-navigation-drawer>
 				<v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
@@ -307,7 +307,7 @@
 <script>
 	import {mapGetters} from "vuex";
 	export default {
-		name: "KeuanganLayout",     
+		name: "KeuanganLayout",   
 		created()
 		{
 				this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];        
@@ -356,10 +356,10 @@
 		}
 	},
 		computed: {
-			...mapGetters("auth",{
-				AUTHENTICATED: "Authenticated",  
-				ACCESS_TOKEN: "AccessToken",  
-				TOKEN: "Token",  
+			...mapGetters("auth", {
+				AUTHENTICATED: "Authenticated",
+				ACCESS_TOKEN: "AccessToken",
+				TOKEN: "Token",
 				DEFAULT_ROLE: "DefaultRole",
 				ROLE: "Role",
 				CAN_ACCESS: "can", 

@@ -47,10 +47,10 @@
                         loading-text="Loading... Please wait">     
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                                    
+                                <v-col cols="12">         
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -89,37 +89,37 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],  
+        breadcrumbs: [],
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        expanded: [],
+        datatable: [],
         headers: [                                            
             { text: 'ID', value: 'id',width:10,sortable:false },
             { text: 'NAMA KOMPONEN', value: 'nama',sortable:false},
-            { text: 'PERIODE', value: 'periode',width:150,sortable:false },            
-        ],        
+            { text: 'PERIODE', value: 'periode',width:150,sortable:false },          
+        ],      
     }),
     methods : {
         initialize:async function()
 		{
-            this.datatableLoading=true;            
-            await this.$ajax.get('/keuangan/komponenbiaya',            
+            this.datatableLoading=true;
+            await this.$ajax.get('/keuangan/komponenbiaya',          
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
-                this.datatable = data.kombi;                
+            }).then(({ data }) => {               
+                this.datatable = data.kombi;    
                 this.datatableLoading=false;
-            });                     
+            });         
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -127,9 +127,9 @@ export default {
             }               
         },
     },
-    components:{
+    components: {
         KeuanganLayout,
-        ModuleHeader,        
+        ModuleHeader,      
     },
 }
 </script>

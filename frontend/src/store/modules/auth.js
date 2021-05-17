@@ -40,7 +40,7 @@ const getters= {
     DefaultRole:state=>{
         if (state.user===null || typeof state.user === 'undefined')
         {
-            return 'N.A';            
+            return 'N.A';
         }
         else
         {
@@ -89,8 +89,8 @@ const getters= {
         }
         else
         {
-            let permissions = state.user.permissions;                
-            return name in permissions ? true : false;                
+            let permissions = state.user.permissions;    
+            return name in permissions ? true : false;    
         }
     }
 }
@@ -107,7 +107,7 @@ const actions = {
 }
 export default {
     namespaced: true,
-    state,        
+    state,      
     mutations,
     getters,
     actions

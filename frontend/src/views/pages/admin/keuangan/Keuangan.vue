@@ -62,12 +62,12 @@ export default {
     },
     mounted()
     {
-        this.firstloading=false;            
+        this.firstloading=false;
         this.$refs.filter1.setFirstTimeLoading(this.firstloading);
     },
     data: () => ({
         firstloading:true,
-        breadcrumbs:[],        
+        breadcrumbs: [],      
         tahun_akademik:0,
 
         dashboard:null
@@ -77,11 +77,11 @@ export default {
         {
             this.tahun_akademik=tahun;
         },		
-    },    
-    components:{
+    },  
+    components: {
         KeuanganLayout,
-        ModuleHeader,           
-        Filter1,      
+        ModuleHeader,         
+        Filter1,    
         DashboardKeuanganMHS,
         DashboardKeuanganAdmin 
     },

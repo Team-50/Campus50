@@ -20,16 +20,16 @@ export default {
     data:()=>({
         firstloading:true,
         
-        daftar_ta:[],
+        daftar_ta: [],
         tahun_pendaftaran:null
     }),
-    methods:{
+    methods: {
         setFirstTimeLoading (bool)
         {
             this.firstloading=bool;
         }
     },
-    watch:{
+    watch: {
         tahun_pendaftaran(val)
         {
             if (!this.firstloading)

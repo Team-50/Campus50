@@ -141,16 +141,16 @@
                                         inset
                                         vertical
                                     ></v-divider>
-                                    <v-spacer></v-spacer>                                        
+                                    <v-spacer></v-spacer>             
                                     <v-btn color="primary" icon outlined small class="ma-2" :to="{path:'/keuangan/transaksi-spp/tambah/'+transaksi_id}" :disabled="data_transaksi.status==1 || data_transaksi.status==2">
                                         <v-icon>mdi-plus</v-icon>
-                                    </v-btn>                                        
+                                    </v-btn>             
                                 </v-toolbar>
                             </template>   
                             <template v-slot:item.biaya_kombi="{ item }">  
                                 {{item.biaya_kombi|formatUang}}
                             </template>
-                            <template v-slot:item.actions="{ item }">                             
+                            <template v-slot:item.actions="{ item }">  
                                 <v-icon
                                     small
                                     :loading="btnLoading"
@@ -165,8 +165,8 @@
                                     <td>{{totalBulan}} Bulan</td> 
                                     <td></td>
                                     <td>{{totalBiayaKombi|formatUang}}</td>   
-                                    <td></td>                             
-                                </tr>                            
+                                    <td></td>  
+                                </tr> 
                             </template>   
                             <template v-slot:no-data>
                                 daftar bulan yang akan dibayar belum tersedia; silahkan pilih bulan di bawah ini.
@@ -208,28 +208,28 @@ export default {
                 disabled:true,
                 href:'#'
             }
-        ];                          
+        ];              
         this.initialize();
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];  
-    },    
+    },  
     data: () => ({
         transaksi_id:null,
         data_transaksi:null,
-        item_selected:[],
+        item_selected: [],
 
-        breadcrumbs:[],     
+        breadcrumbs: [],   
         tahun_akademik:0,
-        btnLoading:false,              
+        btnLoading: false,            
         //tables
-        datatableLoading:false,       
-        datatable:[], 
+        datatableLoading:false,     
+        datatable: [], 
         headers: [                                                
             { text: 'NO. BULAN', value: 'no_bulan',width:120,sortable:false },
-            { text: 'BULAN', value: 'nama_bulan',sortable:false },            
-            { text: 'TAHUN', value: 'tahun',sortable:false },            
-            { text: 'BIAYA KOMBI', value: 'biaya_kombi',sortable:false },    
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },        
-        ],              
+            { text: 'BULAN', value: 'nama_bulan',sortable:false },          
+            { text: 'TAHUN', value: 'tahun',sortable:false },          
+            { text: 'BIAYA KOMBI', value: 'biaya_kombi',sortable:false },  
+            { text: 'AKSI', value: 'actions', sortable: false,width:100 },      
+        ],            
         //form
         form_valid:true  
     }),
@@ -238,40 +238,40 @@ export default {
         {
             this.tahun_akademik=tahun;
         },
-        initialize:async function () 
+        initialize:async function() 
         {
-            this.datatableLoading=true;            
-            await this.$ajax.get('/keuangan/transaksi-spp/'+this.transaksi_id,                        
+            this.datatableLoading=true;
+            await this.$ajax.get('/keuangan/transaksi-spp/'+this.transaksi_id,    
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{       
-                this.data_transaksi=data.transaksi;                                       
-                this.item_selected = data.item_selected;                
+            }).then(({ data }) => {       
+                this.data_transaksi=data.transaksi;                           
+                this.item_selected = data.item_selected;    
                 this.datatableLoading=false;
-            });                     
+            });         
         }, 
         deleteItem (item) {           
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/keuangan/transaksi-spp/'+item.id,
                         {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.datatable.indexOf(item);
                         this.item_selected.splice(index, 1);
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -281,14 +281,14 @@ export default {
             this.$router.push('/keuangan/transaksi-spp');
         },
     }, 
-    computed:{
+    computed: {
         enrichedDataTable()
         {
             return this.datatable.map(x => ({ ...x, isSelectable: x.status ==0 }));
         },
         totalBulan()
         {
-            return this.item_selected.length;            
+            return this.item_selected.length;
         },
         totalBiayaKombi()
         {
@@ -301,9 +301,9 @@ export default {
             return total;
         }
     },
-    components:{
+    components: {
         KeuanganLayout,
-        ModuleHeader,             
+        ModuleHeader,           
     },
 }
 </script>

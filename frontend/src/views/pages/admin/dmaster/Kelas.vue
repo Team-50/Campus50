@@ -67,10 +67,10 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-dialog v-model="dialogfrm" max-width="500px" persistent>
-                                    <template v-slot:activator="{ on }">                                        
+                                    <template v-slot:activator="{ on }">             
                                         <v-btn color="primary" icon outlined small class="ma-2" v-on="on">
                                             <v-icon>mdi-plus</v-icon>
-                                        </v-btn>                                        
+                                        </v-btn>             
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -184,7 +184,7 @@ import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
     name:'Kelas',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -205,56 +205,56 @@ export default {
         this.initialize()
     },
     data: () => ({
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        expanded: [],
+        datatable: [],
         headers: [
             { text: 'KODE KELAS', value: 'idkelas',width:150 },
             { text: 'NAMA KELAS', value: 'nkelas' },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',
+        search: "",
 
         //dialog
         dialogfrm:false,
         dialogdetailitem:false,
 
         //form data
-        old_idkelas:'',
+        old_idkelas: "",
         form_valid:true,
         formdata: {
-            idkelas:'',
-            nkelas:'',
+            idkelas: "",
+            nkelas: "",
         },
         formdefault: {
-           idkelas:'',
-            nkelas:'',
+           idkelas: "",
+            nkelas: "",
         },
         editedIndex: -1,
 
         //form rules
-        rule_kode_kelas:[
-            value => !!value||"ID Kelas mohon untuk diisi !!!",
+        rule_kode_kelas: [
+            value => !!value || "ID Kelas mohon untuk diisi !!!",
             value => /^[A-Z]*$/.test(value) || 'Name hanya boleh string dan huruf besar',
             value => (value && value.length == 1) || 'Kode kelas hanya boleh 1 karakter'
         ],
-        rule_nama_kelas:[
-            value => !!value||"Mohon untuk di isi nama kelas !!!",            
+        rule_nama_kelas: [
+            value => !!value || "Mohon untuk di isi nama kelas !!!",          
         ],
     }),
     methods: {
-        initialize:async function ()
+        initialize:async function()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/kelas',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data }) => {
                 this.datatable = data.kelas;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });
         },
@@ -279,48 +279,48 @@ export default {
             this.old_idkelas=item.idkelas;
             this.dialogfrm = true
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1)
                 {
                     await this.$ajax.post('/datamaster/kelas/'+this.old_idkelas,
                         {
                             '_method':'PUT',
-                            idkelas:this.formdata.idkelas,
-                            nkelas:this.formdata.nkelas,
+                            idkelas: this.formdata.idkelas,
+                            nkelas: this.formdata.nkelas,
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data }) => {
                         Object.assign(this.datatable[this.editedIndex], data.kelas);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
 
                 } else {
                     await this.$ajax.post('/datamaster/kelas/store',
                         {
-                            idkelas:this.formdata.idkelas,
-                            nkelas:this.formdata.nkelas,
+                            idkelas: this.formdata.idkelas,
+                            nkelas: this.formdata.nkelas,
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data }) => {
                         this.datatable.push(data.kelas);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -329,27 +329,27 @@ export default {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.idkelas+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/datamaster/kelas/'+item.idkelas,
                         {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             });
         },
-        closedialogdetailitem () {
+        closedialogdetailitem() {
             this.dialogdetailitem = false;
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
@@ -357,7 +357,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);
@@ -372,11 +372,11 @@ export default {
             ACCESS_TOKEN:'AccessToken',
             TOKEN:'Token',
         }),
-        formTitle () {
+        formTitle() {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
         },
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,
     },

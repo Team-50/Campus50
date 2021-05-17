@@ -28,7 +28,7 @@
                                         </v-card>
                                    </v-col>
                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                </v-row>                           
+                                </v-row>
                                 <v-row no-gutters>
                                    <v-col xs="12" sm="6" md="6">
                                        <v-card flat>
@@ -93,7 +93,7 @@
                                             <v-icon small>
                                                 mdi-delete
                                             </v-icon>
-                                        </v-btn>                                                                          
+                                        </v-btn>                                               
                                     </template>
                                     <span>Hapus Permission dari Role ini</span>  
                                 </v-tooltip>
@@ -122,72 +122,72 @@ import {mapGetters} from 'vuex';
 export default {
     name: 'RolePermissions',
     data: () => ({
-        btnLoading:false,
+        btnLoading: false,
         //tables
         headers: [                        
             { text: 'NAMA PERMISSION', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },      
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },          
+            { text: 'GUARD', value: 'guard_name' },    
+            { text: 'AKSI', value: 'actions', sortable: false,width:100 },        
         ],
-        search:'',        
-        perm_selected:[]
+        search: "",      
+        perm_selected: []
     }),
     methods: {
         save()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             this.$ajax.post('/system/setting/roles/storerolepermissions',
                 {
-                    role_id:this.role.id,
-                    chkpermission:this.permissions_selected
+                    role_id: this.role.id,
+                    chkpermission: this.permissions_selected
                 },
                 {
-                    headers:{
-                        Authorization:this.TOKEN
+                    headers: {
+                        Authorization: this.TOKEN
                     }
                 }
-            ).then(()=>{   
-                this.btnLoading=false;
-                this.close();                
-            }).catch(()=>{
-                this.btnLoading=false;
+            ).then(() => {   
+                this.btnLoading = false;
+                this.close();    
+            }).catch(() => {
+                this.btnLoading = false;
             });
         },
         revoke(item)
         {   
-            this.btnLoading=true;         
+            this.btnLoading = true;         
             this.$ajax.post('/system/setting/roles/revokerolepermissions',
                 {
-                    role_id:this.role.id,
+                    role_id: this.role.id,
                     name:item.name
                 },
                 {
-                    headers:{
-                        Authorization:this.TOKEN
+                    headers: {
+                        Authorization: this.TOKEN
                     }
                 }
-            ).then(()=>{   
-                this.btnLoading=false;
-                this.close();                
-            }).catch(()=>{
-                this.btnLoading=false;
+            ).then(() => {   
+                this.btnLoading = false;
+                this.close();    
+            }).catch(() => {
+                this.btnLoading = false;
             });
         },
         close()
         {
-            this.btnLoading=false;
+            this.btnLoading = false;
             this.permissions_selected=[];
             this.$emit('closeRolePermissions',this.role.id);
         }
     },
-    props:{
+    props: {
         role:Object,
         daftarpermissions:Array,
         permissionsselected:Array,
     },
     computed: {
         ...mapGetters('auth',{                             
-            TOKEN:'Token',                                  
+            TOKEN:'Token',              
         }),
         daftar_permissions()
         {
@@ -207,7 +207,7 @@ export default {
             },
             set (val)
             {                
-                this.perm_selected=val;                
+                this.perm_selected=val;    
             }
         }
     }

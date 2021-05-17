@@ -50,7 +50,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>     
                             </v-toolbar>
                         </template>                          
                         <template v-slot:expanded-item="{ headers, item }">
@@ -59,7 +59,7 @@
                                     <strong>ID:</strong>{{ item.id_channel }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -97,51 +97,51 @@ export default {
             }
         ];        
         this.initialize();
-    },  
+    },
     data: () => ({
         firstloading:true,
-        breadcrumbs:[],         
+        breadcrumbs: [],       
         
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        expanded: [],
+        datatable: [],
         headers: [            
-            { text: 'ID', value: 'id_channel',width:10,sortable:false },                                           
-            { text: 'NAMA CHANNEL', value: 'nama_channel',sortable:false},                                   
-        ],      
+            { text: 'ID', value: 'id_channel',width:10,sortable:false },                       
+            { text: 'NAMA CHANNEL', value: 'nama_channel',sortable:false},               
+        ],    
         
     }),
     methods : {        
         initialize:async function()
 		{
-            this.datatableLoading=true;            
+            this.datatableLoading=true;
             await this.$ajax.get('/keuangan/channelpembayaran',
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
-                this.datatable = data.channel;                
+            }).then(({ data }) => {               
+                this.datatable = data.channel;    
                 this.datatableLoading=false;
-            });                     
-            this.firstloading=false;                        
+            });         
+            this.firstloading=false;            
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
                 this.expanded=[item];
             }               
-        },                
-    },   
-    components:{
+        },              
+    }, 
+    components: {
         KeuanganLayout,
-        ModuleHeader,            
+        ModuleHeader,          
     },
 }
 </script>

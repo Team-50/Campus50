@@ -60,13 +60,13 @@ export default {
     data: () => ({
         dashboard:null,
         firstloading:true,
-        breadcrumbs:[],     
+        breadcrumbs: [],   
         
-        data_transaksi:{}
+        data_transaksi: {}
     }),
-    components:{
+    components: {
         KeuanganLayout,
-        ModuleHeader,                   
+        ModuleHeader,                 
     },
 }
 </script>

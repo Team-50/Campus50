@@ -55,7 +55,7 @@
                                     label="DAFTAR ULANG"                                            
                                     class="mr-2"
                                     :rules="rule_dulang"
-                                    outlined/>                                 
+                                    outlined/>      
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -81,7 +81,7 @@ import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
     name: 'PerkuliahanKRSTambah',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -113,16 +113,16 @@ export default {
         this.prodi_id=prodi_id;
         this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
         this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];          
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];    
         this.ta_matkul=this.tahun_akademik;
         this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];          
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];    
         if (this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa')
         {
             this.formdata.nim=this.$store.getters['auth/AttributeUser']('username');
             this.fetchDulang();
         }
-    },  
+    },
     data: () => ({ 
         firstloading:true,
         prodi_id:null,
@@ -131,51 +131,51 @@ export default {
         ta_matkul:null,
         semester_akademik:null,
 
-        btnLoading:false,        
+        btnLoading: false,      
 
         //table
         dialogdetailitem:false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
-            { text: 'KELOMPOK', value: 'group_alias', sortable:true,width:120 },               
-            { text: 'SKS', value: 'sks',sortable:true,width:80, align:'center' },               
-            { text: 'SMT', value: 'semester', sortable:true,width:80 },               
+            { text: 'KODE', value: 'kmatkul', sortable:true,width:120  }, 
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },             
+            { text: 'KELOMPOK', value: 'group_alias', sortable:true,width:120 },             
+            { text: 'SKS', value: 'sks',sortable:true,width:80, align:'center' },             
+            { text: 'SMT', value: 'semester', sortable:true,width:80 },             
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
-        ],  
-        search:'',    
+        ],
+        search: "",  
 
         //formdata
-        form_valid:true,   
-        daftar_dulang:[],
-        formdata:{
-            nim:'',
-            dulang_id:''
-        },        
-        rule_nim:[
-            value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
+        form_valid:true, 
+        daftar_dulang: [],
+        formdata: {
+            nim: "",
+            dulang_id: ""
+        },      
+        rule_nim: [
+            value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
-        rule_dulang:[
-            value => !!value||"Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
-        ],         
+        rule_dulang: [
+            value => !!value || "Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
+        ],       
     }),
     methods: {          
         async fetchDulang()
         {
             await this.$ajax.post('/akademik/dulang/dulangnotinkrs',
             {
-                nim:this.formdata.nim,                
+                nim: this.formdata.nim,              
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                               
-                this.daftar_dulang=data.daftar_dulang;                
+            }).then(({ data }) => {                               
+                this.daftar_dulang=data.daftar_dulang;    
             })
         }, 
         cekNIM ()
@@ -185,39 +185,39 @@ export default {
                 this.fetchDulang();
             }
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post('/akademik/perkuliahan/krs/store',
                 {
-                    nim:this.formdata.nim,
-                    dulang_id:this.formdata.dulang_id,                    
+                    nim: this.formdata.nim,
+                    dulang_id: this.formdata.dulang_id,
                 },
                 {
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     }
-                }).then(({data})=>{               
+                }).then(({ data }) => {               
                     this.$router.push('/akademik/perkuliahan/krs/'+data.krs.id+'/detail');
-                    this.btnLoading=false;
-                }).catch(()=>{
-                    this.btnLoading=false;
-                });                  
+                    this.btnLoading = false;
+                }).catch(() => {
+                    this.btnLoading = false;
+                });      
             }
         },
-        closedialogfrm () {                             
+        closedialogfrm() {                             
             setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                    
                 this.$router.push('/akademik/perkuliahan/krs/daftar');
                 }, 300
             );
         },
     },
     
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,            
+        ModuleHeader,          
     },
 }
 </script>

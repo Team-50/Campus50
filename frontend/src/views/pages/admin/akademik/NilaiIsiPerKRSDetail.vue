@@ -102,7 +102,7 @@
                         <v-card>
                             <v-card-title>
                                 DAFTAR MATAKULIAH
-                                <v-spacer></v-spacer>                            
+                                <v-spacer></v-spacer> 
                             </v-card-title>
                             <v-card-text>
                                 <v-data-table        
@@ -113,8 +113,8 @@
                                     :disable-pagination="true"
                                     :hide-default-footer="true"                                                                
                                     :loading="datatableLoading"
-                                    loading-text="Loading... Please wait">                                
-                                    <template v-slot:item.n_kuan="props">                                    
+                                    loading-text="Loading... Please wait">     
+                                    <template v-slot:item.n_kuan="props">         
                                         <v-numeric                
                                             v-model="props.item.n_kuan"
                                             text
@@ -130,7 +130,7 @@
                                         </v-numeric> 
                                         <v-chip color="primary" class="ma-2" outlined label v-if="props.item.n_kuan != null">{{props.item.n_kuan}}</v-chip>
                                     </template> 
-                                    <template v-slot:item.n_kual="props">                                    
+                                    <template v-slot:item.n_kual="props">         
                                         <v-select 
                                             :items="$store.getters['uiadmin/getSkalaNilai']" 
                                             v-model="props.item.n_kual"
@@ -145,7 +145,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>                                            
+                                            <td></td>                 
                                         </tr>
                                         <tr class="grey lighten-4 font-weight-black">
                                             <td class="text-right" colspan="2">TOTAL SKS</td>
@@ -153,7 +153,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>                                            
+                                            <td></td>                 
                                         </tr>
                                     </template>   
                                     <template v-slot:no-data>
@@ -185,7 +185,7 @@ import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
     name: 'NilaiIsiPerKRSDetail',
-    created () {
+    created() {
         this.krs_id=this.$route.params.krsid;        
         this.breadcrumbs = [
             {
@@ -209,59 +209,59 @@ export default {
                 href:'#'
             }
         ];  
-        this.fetchKRS();               
-    },  
+        this.fetchKRS();   
+    },
     data: () => ({ 
         test:100,
-        firstloading:true,        
+        firstloading:true,      
         nama_prodi:null,
-        tahun_akademik:null,        
+        tahun_akademik:null,      
         semester_akademik:null,
     
-        btnLoading:false, 
+        btnLoading: false, 
         btnLoadingTable:false,
 
         //formdata
         krs_id:null,
-        datakrs:{},
+        datakrs: {},
         
         //table        
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
-            { text: 'SKS', value: 'sks', sortable:false,width:120 },                           
-            { text: 'SMT', value: 'semester', sortable:false,width:120 },                           
-            { text: 'KELAS', value: 'nama_kelas', sortable:false,width:120 },                           
-            { text: 'NILAI ANGKA (0 s.d 100)', value: 'n_kuan', sortable:false,width:100 },                           
-            { text: 'NILAI HURUF', value: 'n_kual', sortable:false,width:100 },                           
+            { text: 'KODE', value: 'kmatkul', sortable:true,width:120  }, 
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },             
+            { text: 'SKS', value: 'sks', sortable:false,width:120 },       
+            { text: 'SMT', value: 'semester', sortable:false,width:120 },       
+            { text: 'KELAS', value: 'nama_kelas', sortable:false,width:120 },       
+            { text: 'NILAI ANGKA (0 s.d 100)', value: 'n_kuan', sortable:false,width:100 },       
+            { text: 'NILAI HURUF', value: 'n_kual', sortable:false,width:100 },       
                                    
-        ],  
+        ],
         //formdata
-        form_valid:true,                 
+        form_valid:true,               
     }),
     methods: {          
         async fetchKRS()
         {
-            await this.$ajax.get('/akademik/nilai/matakuliah/perkrs/'+this.krs_id,                        
+            await this.$ajax.get('/akademik/nilai/matakuliah/perkrs/'+this.krs_id,    
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                                               
-                this.datakrs=data.krs;                
-                this.datatable=data.krsmatkul;                
+            }).then(({ data }) => {                                               
+                this.datakrs=data.krs;    
+                this.datatable=data.krsmatkul;    
                 if (Object.keys(this.datakrs).length)
                 {
-                    let prodi_id=this.datakrs.kjur;                    
-                    this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);                
-                    this.tahun_akademik=this.datakrs.tahun;                                                      
-                    this.semester_akademik=this.datakrs.idsmt;                        
+                    let prodi_id=this.datakrs.kjur;        
+                    this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);    
+                    this.tahun_akademik=this.datakrs.tahun;                                          
+                    this.semester_akademik=this.datakrs.idsmt;            
                 }
             })  
-        },     
+        },   
         async save ()
         {           
             this.btnLoadingTable=true;
@@ -273,28 +273,28 @@ export default {
                     n_kuan:item.n_kuan,
                     n_kual:item.n_kual
                 });
-            });            
+            });
             await this.$ajax.post('/akademik/nilai/matakuliah/perkrs/storeperkrs',
                 {
-                    krs_id:this.krs_id,
-                    daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
+                    krs_id: this.krs_id,
+                    daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),
                 },
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
-            ).then(()=>{                   
+            ).then(() => {                   
                 this.$router.go();
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoadingTable=false;
             });
-        },           
+        },         
     },
-    computed:{
+    computed: {
         totalMatkul()
         {
-            return this.datatable.length;            
+            return this.datatable.length;
         },
         totalSKS()
         {
@@ -307,9 +307,9 @@ export default {
             return total;
         }
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,            
+        ModuleHeader,          
     },
 }
 </script>

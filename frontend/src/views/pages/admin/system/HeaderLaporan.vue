@@ -36,7 +36,7 @@
                                     v-model="formdata.header_1" 
                                     label="HEADER 1"
                                     outlined>
-                                </v-text-field>                                                                                                                                                                                                                          
+                                </v-text-field>                                                                                                                                                                                               
                                 <v-text-field 
                                     v-model="formdata.header_2" 
                                     label="HEADER 2"
@@ -59,7 +59,7 @@
                                 </v-text-field>
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>     
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -92,7 +92,7 @@ export default {
                 text:'KONFIGURASI SISTEM',
                 disabled:false,
                 href:'/system-setting'
-            },  
+            },
             {
                 text:'PERGURUAN TINGGI',
                 disabled:false,
@@ -107,30 +107,30 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],
+        breadcrumbs: [],
         datatableLoading:false,
-        btnLoading:false,   
+        btnLoading: false, 
         //form
-        form_valid:true,   
+        form_valid:true, 
         formdata: {
             header_1:null,
             header_2:null,
             header_3:null,
             header_4:null,
             header_address:null,
-        },        
+        },      
     }),
     methods: {
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
-                let setting = data.setting;                           
+            }).then(({ data }) => {  
+                let setting = data.setting;               
                 this.formdata.header_1=setting.HEADER_1;
                 this.formdata.header_2=setting.HEADER_2;
                 this.formdata.header_3=setting.HEADER_3;
@@ -139,44 +139,44 @@ export default {
             });          
             
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                
+                this.btnLoading = true;    
                 this.$ajax.post('/system/setting/variables',
                     {
                         '_method':'PUT', 
                         'pid':'Header Laporan',
                         setting:JSON.stringify({
-                            701:this.formdata.header_1,
-                            702:this.formdata.header_2,
-                            703:this.formdata.header_3,
-                            704:this.formdata.header_4,
-                            705:this.formdata.header_address,
-                        }),                                                                                                                            
+                            701: this.formdata.header_1,
+                            702: this.formdata.header_2,
+                            703: this.formdata.header_3,
+                            704: this.formdata.header_4,
+                            705: this.formdata.header_address,
+                        }),                                                                                                        
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{                       
-                    this.btnLoading=false;
-                }).catch(()=>{
-                    this.btnLoading=false;
+                ).then(() => {                       
+                    this.btnLoading = false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });        
             }
         }
     },
-    computed:{ 
+    computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN:'AccessToken',        
+            TOKEN:'Token',              
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
-        ModuleHeader,        
+        ModuleHeader,      
 	}
 }
 </script>

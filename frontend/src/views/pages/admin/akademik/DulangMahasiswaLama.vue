@@ -92,7 +92,7 @@
                                     <strong>id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -110,7 +110,7 @@ import ModuleHeader from '@/components/ModuleHeader';
 import Filter6 from '@/components/sidebar/FilterMode6';
 export default {
     name: 'DulangMahasiswaBaru',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -139,7 +139,7 @@ export default {
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
         this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];   
         this.initialize()
-    },  
+    },
     data: () => ({ 
         firstloading:true,
         prodi_id:null,
@@ -147,21 +147,21 @@ export default {
         tahun_akademik:null,
         semester_akademik:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  },   
-            { text: 'NIM', value: 'nim', sortable:true,width:150  },   
-            { text: 'NIRM', value: 'nirm', sortable:true,width:150  },   
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },                           
-            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                           
-            { text: 'STATUS', value: 'n_status',sortable:true,width:120, },                           
+            { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  }, 
+            { text: 'NIM', value: 'nim', sortable:true,width:150  }, 
+            { text: 'NIRM', value: 'nirm', sortable:true,width:150  }, 
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },       
+            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },       
+            { text: 'STATUS', value: 'n_status',sortable:true,width:120, },       
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
-        ],  
-        search:'', 
+        ],
+        search: "", 
     }),
     methods: {
         changeTahunAkademik (tahun)
@@ -176,23 +176,23 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/dulang/mhslama',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_akademik,
-                idsmt:this.semester_akademik,
+                prodi_id: this.prodi_id,
+                ta: this.tahun_akademik,
+                idsmt: this.semester_akademik,
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
+            }).then(({ data }) => {               
                 this.datatable = data.mahasiswa;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
             this.firstloading=false;
@@ -202,13 +202,13 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
                 this.expanded=[item];
             }               
-        },        
+        },      
         deleteItem (item)
         {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA.' }).then((confirm) => {
@@ -220,30 +220,30 @@ export default {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }                
             });
         },
-        closedialogfrm () {            
-            this.dialogfrm = false;            
+        closedialogfrm() {            
+            this.dialogfrm = false;
             setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                    
                 this.data_mhs = Object.assign({}, {});   
                 }, 300
             );
         },
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -267,9 +267,9 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,  
         Filter6               
     },
 }

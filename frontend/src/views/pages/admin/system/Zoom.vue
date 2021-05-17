@@ -111,7 +111,7 @@
                                                     label="JWT TOKEN"
                                                     outlined
                                                     :disabled="true">
-                                                </v-text-field>                                    
+                                                </v-text-field>         
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -233,7 +233,7 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <!-- <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                        -->
+                                                <!-- <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>             -->
                                             </v-row>
 
                                         </v-card-text>
@@ -241,7 +241,7 @@
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>                                    
+                                    </v-card>         
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -301,7 +301,7 @@ import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
     name:'Zoom',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -320,12 +320,12 @@ export default {
             }
         ];
         this.initialize()
-    },  
+    },
     data: () => ({ 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        expanded: [],
+        datatable: [],
         headers: [         
             { text: 'ZOOM ID', value: 'zoom_id' },
             { text: 'EMAIL ZOOM', value: 'email' },
@@ -334,70 +334,70 @@ export default {
             { text: 'KETERANGAN', value: 'desc' },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',    
+        search: "",  
 
         //dialog
         dialogfrm:false,
         dialogdetailitem:false,
 
         //form data   
-        form_valid:true,         
+        form_valid:true,       
         formdata: {
             id:0,
-            zoom_id:'',                        
-            email:'',                        
-            api_key:'',
-            api_secret:'',
-            im_token:'',
-            jwt_token:'',
-            status:'',
-            desc:'',                        
-            created_at: '',           
-            updated_at: '',           
+            zoom_id: "",    
+            email: "",    
+            api_key: "",
+            api_secret: "",
+            im_token: "",
+            jwt_token: "",
+            status: "",
+            desc: "",    
+            created_at: '',         
+            updated_at: '',         
 
         },
         formdefault: {
             id:0,
-            zoom_id:'',                        
-            email:'',                        
-            api_key:'',
-            api_secret:'',
-            im_token:'',
-            jwt_token:'',
-            status:'',
-            desc:'',                        
-            created_at: '',           
-            updated_at: '',         
+            zoom_id: "",    
+            email: "",    
+            api_key: "",
+            api_secret: "",
+            im_token: "",
+            jwt_token: "",
+            status: "",
+            desc: "",    
+            created_at: '',         
+            updated_at: '',       
         },
         editedIndex: -1,
 
         //form rules  
-        rule_email:[
-            value => !!value||"Mohon untuk mengisi Email !!!",
+        rule_email: [
+            value => !!value || "Mohon untuk mengisi Email !!!",
             v => /.+@.+\..+/.test(v) || 'Format E-mail mohon di isi dengan benar',
         ], 
-        rule_api_key:[
-            value => !!value||"Mohon untuk mengisi API Key !!!",  
+        rule_api_key: [
+            value => !!value || "Mohon untuk mengisi API Key !!!",
         ], 
-        rule_api_secret:[
-            value => !!value||"Mohon untuk mengisi API Secret !!!",  
+        rule_api_secret: [
+            value => !!value || "Mohon untuk mengisi API Secret !!!",
         ],
-        rule_im_token:[
-            value => !!value||"Mohon mengisi IM Token !!!",  
+        rule_im_token: [
+            value => !!value || "Mohon mengisi IM Token !!!",
         ],
     }),
     methods: {
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
+            }).then(({ data }) => {               
                 this.datatable = data.zoom;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
         },
@@ -405,7 +405,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -414,66 +414,66 @@ export default {
         },
         viewItem (item) {
             this.formdata=item;      
-            this.dialogdetailitem=true;              
+            this.dialogdetailitem=true;  
             // this.$ajax.get('/path/'+item.id,{
             //     headers: {
-            //         Authorization:this.$store.getters['auth/Token']
+            //         Authorization: this.$store.getters['auth/Token']
             //     }
-            // }).then(({data})=>{               
+            // }).then(({ data }) => {               
                                            
-            // });                      
-        },    
+            // });          
+        },  
         editItem (item) {
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);
             this.dialogfrm = true;
-        },    
-        save:async function () {
+        },  
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     await this.$ajax.post(process.env.VUE_APP_API_HOST+'/h2h/zoom/'+this.formdata.id,
                         {
                             '_method':'PUT',
-                            email:this.formdata.email,                            
-                            api_key:this.formdata.api_key, 
-                            api_secret:this.formdata.api_secret,                            
-                            im_token:this.formdata.im_token, 
+                            email: this.formdata.email,        
+                            api_key: this.formdata.api_key, 
+                            api_secret: this.formdata.api_secret,        
+                            im_token: this.formdata.im_token, 
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data }) => {   
                         Object.assign(this.datatable[this.editedIndex], data.zoom);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
-                    });                 
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
+                    });     
                      
                 } else {
                     await this.$ajax.post(process.env.VUE_APP_API_HOST+'/h2h/zoom/store',
                         {
-                            email:this.formdata.email,                            
-                            api_key:this.formdata.api_key, 
-                            api_secret:this.formdata.api_secret,                            
-                            im_token:this.formdata.im_token,                                                       
+                            email: this.formdata.email,        
+                            api_key: this.formdata.api_key, 
+                            api_secret: this.formdata.api_secret,        
+                            im_token: this.formdata.im_token,                                   
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data }) => {   
                         this.datatable.push(data.zoom);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -482,18 +482,18 @@ export default {
             this.$root.$confirm.open('Sinkronisasi', 'Sinkronasi Akun Zoom dengan ID '+item.id+' ?', { color: 'yellow' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom/sync/'+item.id,
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         this.$router.go();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -502,38 +502,38 @@ export default {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus Akun Zoom dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post(process.env.VUE_APP_API_HOST+'/h2h/zoom/'+item.id,
                         {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }                
             });
         },
-        closedialogdetailitem () {
-            this.dialogdetailitem = false;            
+        closedialogdetailitem() {
+            this.dialogdetailitem = false;
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
                 this.editedIndex = -1
                 }, 300
             );
         },
-        closedialogfrm () {
-            this.dialogfrm = false;            
+        closedialogfrm() {
+            this.dialogfrm = false;
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                
+                this.formdata = Object.assign({}, this.formdefault);    
                 this.editedIndex = -1
                 this.$refs.frmdata.reset(); 
                 }, 300
@@ -541,13 +541,13 @@ export default {
         },
     },
     computed: {        
-        formTitle () {
+        formTitle() {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
-        },        
+        },      
     },
-    components:{
+    components: {
         SystemConfigLayout,
-        ModuleHeader,        
+        ModuleHeader,      
     },
 
 }

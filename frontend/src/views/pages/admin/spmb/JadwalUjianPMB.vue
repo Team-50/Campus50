@@ -225,7 +225,7 @@
 											</v-card-actions>
 										</v-card>
 									</v-form>
-								</v-dialog>                                
+								</v-dialog>     
 							</v-toolbar>
 						</template>
 						<template v-slot:item.tanggal_ujian="{ item }">
@@ -440,11 +440,11 @@
 			getStatusJadwanUjian(item) {
 				switch(item.status_ujian){
 						case 0:
-							return "BELUM MULAI";						
+							return "BELUM MULAI";	
 						case 1:
-							return "BERJALAN";						
+							return "BERJALAN";	
 						case 2:
-							return "SELESAI";						
+							return "SELESAI";	
 						default: 
 							return "N.A";
 					}
@@ -581,7 +581,7 @@
 					}                
 				});
 			},			
-			closedialogfrm () {
+			closedialogfrm() {
 				this.dialogfrm = false;
 				setTimeout(() => {
 					this.formdata = Object.assign({}, this.formdefault);

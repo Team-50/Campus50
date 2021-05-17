@@ -93,7 +93,7 @@
                                                     label="NAME"
                                                     outlined
                                                     :rules="rule_name">
-                                                </v-text-field>                                             
+                                                </v-text-field>                  
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -161,7 +161,7 @@
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>                                    
+                                    </v-card>         
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -195,7 +195,7 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -212,7 +212,7 @@ import AdminLayout from '@/views/layouts/AdminLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
     name:'PAGE',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -231,61 +231,61 @@ export default {
             }
         ];
         this.initialize()
-    },  
+    },
     data: () => ({ 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        expanded: [],
+        datatable: [],
         headers: [                        
-            { text: 'ID', value: 'id' },   
+            { text: 'ID', value: 'id' }, 
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',    
+        search: "",  
 
         //dialog
         dialogfrm:false,
         dialogdetailitem:false,
 
         //form data   
-        form_valid:true,         
+        form_valid:true,       
         formdata: {
-            id:0,                        
-            name:'',                        
-            created_at: '',           
-            updated_at: '',           
+            id:0,    
+            name: "",    
+            created_at: '',         
+            updated_at: '',         
 
         },
         formdefault: {
-            id:0,           
-            name:'',                                     
-            created_at: '',           
-            updated_at: '',       
+            id:0,         
+            name: "",                 
+            created_at: '',         
+            updated_at: '',     
         },
         editedIndex: -1,
 
         //form rules  
-        rule_user_nomorhp:[
-            value => !!value||"Kode mohon untuk diisi !!!",
+        rule_user_nomorhp: [
+            value => !!value || "Kode mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Kode hanya boleh angka',
         ], 
-        rule_name:[
-            value => !!value||"Mohon untuk di isi name !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Name hanya boleh string dan spasi',                
+        rule_name: [
+            value => !!value || "Mohon untuk di isi name !!!",
+            value => /^[A-Za-z\s]*$/.test(value) || 'Name hanya boleh string dan spasi',              
         ], 
     }),
     methods: {
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/path',{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
+            }).then(({ data }) => {               
                 this.datatable = data.object;
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
             });  
         },
@@ -293,7 +293,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -302,60 +302,60 @@ export default {
         },
         viewItem (item) {
             this.formdata=item;      
-            this.dialogdetailitem=true;              
+            this.dialogdetailitem=true;  
             // this.$ajax.get('/path/'+item.id,{
             //     headers: {
-            //         Authorization:this.$store.getters['auth/Token']
+            //         Authorization: this.$store.getters['auth/Token']
             //     }
-            // }).then(({data})=>{               
+            // }).then(({ data }) => {               
                                            
-            // });                      
-        },    
+            // });          
+        },  
         editItem (item) {
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);
             this.dialogfrm = true;
-        },    
-        save:async function () {
+        },  
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     await this.$ajax.post('/path/'+this.formdata.id,
                         {
                             '_method':'PUT',
-                            name:this.formdata.name,                       
+                            name: this.formdata.name,   
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data }) => {   
                         Object.assign(this.datatable[this.editedIndex], data.object);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
-                    });                 
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
+                    });     
                     
                 } else {
                     await this.$ajax.post('/path/store',
                         {
-                            name:this.formdata.name,                            
+                            name: this.formdata.name,        
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data }) => {   
                         this.datatable.push(data.object);
                         this.closedialogfrm();
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -364,38 +364,38 @@ export default {
             this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post('/path/'+item.id,
                         {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
-                    }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
                     });
                 }                
             });
         },
-        closedialogdetailitem () {
-            this.dialogdetailitem = false;            
+        closedialogdetailitem() {
+            this.dialogdetailitem = false;
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
                 this.editedIndex = -1
                 }, 300
             );
         },
-        closedialogfrm () {
-            this.dialogfrm = false;            
+        closedialogfrm() {
+            this.dialogfrm = false;
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                
+                this.formdata = Object.assign({}, this.formdefault);    
                 this.editedIndex = -1
                 this.$refs.frmdata.reset(); 
                 }, 300
@@ -403,13 +403,13 @@ export default {
         },
     },
     computed: {        
-        formTitle () {
+        formTitle() {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
-        },        
+        },      
     },
-    components:{
+    components: {
         AdminLayout,
-        ModuleHeader,        
+        ModuleHeader,      
     },
 
 }

@@ -54,7 +54,7 @@
                                 <v-switch
                                     v-model="formdata.is_ketua"
                                     label="SEBAGAI KETUA GROUP DOSEN PENGAMPU">
-                                </v-switch>                                                                              
+                                </v-switch>                                                   
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -91,14 +91,14 @@
                                 class="elevation-1"
                                 :loading="datatableLoading"
                                 loading-text="Loading... Please wait">
-                                <template v-slot:item.is_ketua="{ item }">                                    
+                                <template v-slot:item.is_ketua="{ item }">         
                                     <v-switch
                                         v-model="item.is_ketua"
                                         :label="item.is_ketua == 1?'YA':'TIDAK'"
                                         @change="updateketua(item)">
                                     </v-switch>  
                                 </template>
-                                <template v-slot:item.actions="{ item }">                                    
+                                <template v-slot:item.actions="{ item }">         
                                     <v-btn
                                         small
                                         icon
@@ -127,7 +127,7 @@ import ModuleHeader from '@/components/ModuleHeader';
 import DataMatakuliahPenyelenggaraan from '@/components/DataMatakuliahPenyelenggaraan';
 export default {
     name: 'PerkuliahanPenyelenggaraanDosenPengampu',
-    created () {
+    created() {
         this.breadcrumbs = [
             {
                 text:'HOME',
@@ -159,8 +159,8 @@ export default {
         this.prodi_id=prodi_id;
         this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
         this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];          
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                        
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];            
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];    
         this.formdata.idpenyelenggaraan=this.$route.params.idpenyelenggaraan;
         this.initialize();
     }, 
@@ -173,109 +173,109 @@ export default {
         firstloading:true,
         prodi_id:null,
         nama_prodi:null,
-        tahun_akademik:null,        
+        tahun_akademik:null,      
         semester_akademik:null,
 
-        btnLoading:false,        
+        btnLoading: false,      
         btnLoadingTable:false,
 
         //table        
         datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        expanded: [],
+        datatable: [],    
         headers: [
-            { text: 'NIDN', value: 'nidn', sortable:false,width:120  },   
-            { text: 'NAMA DOSEN', value: 'nama_dosen',sortable:false },               
-            { text: 'KETUA', value: 'is_ketua', sortable:false,width:120 },                           
-            { text: 'AKSI', value: 'actions', sortable:false,width:120 },                           
-        ],  
+            { text: 'NIDN', value: 'nidn', sortable:false,width:120  }, 
+            { text: 'NAMA DOSEN', value: 'nama_dosen',sortable:false },             
+            { text: 'KETUA', value: 'is_ketua', sortable:false,width:120 },       
+            { text: 'AKSI', value: 'actions', sortable:false,width:120 },       
+        ],
         
         //formdata
         form_valid:true, 
-        data_matkul:null,  
-        daftar_dosen:[],
+        data_matkul:null,
+        daftar_dosen: [],
 
        
-        formdata:{
+        formdata: {
             idpenyelenggaraan:null,
             dosen_id:null,
             is_ketua:false,
-        },        
-        formdefault:{
+        },      
+        formdefault: {
             idpenyelenggaraan:null,
             dosen_id:null,
             is_ketua:false,
-        },        
-        rule_dosen:[
-            value => !!value||"Mohon dipilih Dosen untuk matakuliah ini !!!"
+        },      
+        rule_dosen: [
+            value => !!value || "Mohon dipilih Dosen untuk matakuliah ini !!!"
         ],
     }),
     methods: {   
         async initialize ()
         {
-            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',            
+            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',          
             {
-                idpenyelenggaraan:this.formdata.idpenyelenggaraan,
+                idpenyelenggaraan: this.formdata.idpenyelenggaraan,
                 pid:'terdaftar'
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                               
-                this.datatable = data.dosen;                
+            }).then(({ data }) => {                               
+                this.datatable = data.dosen;    
             })  
         },
         async fetchMatkul ()
         {
-            await this.$ajax.get('/akademik/perkuliahan/penyelenggaraanmatakuliah/'+this.formdata.idpenyelenggaraan,            
+            await this.$ajax.get('/akademik/perkuliahan/penyelenggaraanmatakuliah/'+this.formdata.idpenyelenggaraan,          
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                               
-                this.data_matkul = data.penyelenggaraan;                
+            }).then(({ data }) => {                               
+                this.data_matkul = data.penyelenggaraan;    
             })  
         },
         async fetchDosenPengampu ()
         {
-            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',            
+            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',          
             {
-                idpenyelenggaraan:this.formdata.idpenyelenggaraan,
+                idpenyelenggaraan: this.formdata.idpenyelenggaraan,
                 pid:'belumterdaftar'
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                               
-                this.daftar_dosen = data.dosen;                
+            }).then(({ data }) => {                               
+                this.daftar_dosen = data.dosen;    
             })  
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/storedosenpengampu',
                     {
-                        penyelenggaraan_id:this.formdata.idpenyelenggaraan, 
-                        dosen_id:this.formdata.dosen_id,                                                    
-                        is_ketua:this.formdata.is_ketua,                                                                                                                               
+                        penyelenggaraan_id: this.formdata.idpenyelenggaraan, 
+                        dosen_id: this.formdata.dosen_id,                                
+                        is_ketua: this.formdata.is_ketua,                                                                                                           
                     },
                     {
-                        headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                        headers: {
+                            Authorization: this.$store.getters['auth/Token']
                         }
                     }
-                ).then(()=>{   
+                ).then(() => {   
                     setTimeout(() => {
-                        this.btnLoading=false;                    
-                        this.$router.go();                                 
+                        this.btnLoading = false;        
+                        this.$router.go();                     
                         }, 500
                     );
                     
-                }).catch(()=>{
-                    this.btnLoading=false;
+                }).catch(() => {
+                    this.btnLoading = false;
                 });
             }
         },
@@ -290,46 +290,46 @@ export default {
                             '_method':'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                            headers: {
+                                Authorization: this.$store.getters['auth/Token']
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }                
             });
-        },        
+        },      
         async updateketua(item)
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/updateketua/'+item.id,
                 {
                     _method:'put',
-                    penyelenggaraan_id:item.penyelenggaraan_id,                                                                                                                               
-                    is_ketua:item.is_ketua,                                                                                                                               
+                    penyelenggaraan_id:item.penyelenggaraan_id,                                                                                                           
+                    is_ketua:item.is_ketua,                                                                                                           
                 },
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
-            ).then(()=>{   
+            ).then(() => {   
                 setTimeout(() => {                                     
-                    this.initialize();                                 
+                    this.initialize();                     
                     }, 500
                 );
                 
-            }).catch(()=>{
-                this.btnLoading=false;
+            }).catch(() => {
+                this.btnLoading = false;
             });
         }
     },
    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader, 
         DataMatakuliahPenyelenggaraan           

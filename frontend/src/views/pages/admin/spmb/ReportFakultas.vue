@@ -77,7 +77,7 @@
                                     <v-icon>
                                         mdi-printer
                                     </v-icon>
-                                </v-btn>                              
+                                </v-btn>   
                             </v-toolbar>
                         </template>
                         <template v-slot:item.foto="{ item }">    
@@ -87,9 +87,9 @@
                                     :icon="badgeIcon(item)"
                                     overlap
                                 >                
-                                    <v-avatar size="30">                                        
-                                        <v-img :src="$api.storageURL+'/'+item.foto" />                                                                     
-                                    </v-avatar>                                                                                                  
+                                    <v-avatar size="30">             
+                                        <v-img :src="$api.storageURL+'/'+item.foto" />                                          
+                                    </v-avatar>                                                                       
                             </v-badge>
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
@@ -98,7 +98,7 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                </v-col>     
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -142,9 +142,9 @@ export default {
         let fakultas_id=this.$store.getters['uiadmin/getFakultasID'];
         this.fakultas_id=fakultas_id;
         this.nama_fakultas=this.$store.getters['uiadmin/getFakultasName'](fakultas_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];    
         this.initialize()   
-    },  
+    },
     data: () => ({
         firstloading:true,
         fakultas_id:null,
@@ -152,22 +152,22 @@ export default {
         nama_fakultas:null,
 
         dialogprofilmhsbaru:false,
-        breadcrumbs:[],        
+        breadcrumbs: [],      
         dashboard:null,
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        expanded: [],
+        datatable: [],
         headers: [                        
-            { text: '', value: 'foto', width:70 },               
+            { text: '', value: 'foto', width:70 },             
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
-            { text: 'KELAS', value: 'nkelas',width:100,sortable:true },            
+            { text: 'KELAS', value: 'nkelas',width:100,sortable:true },          
         ],
-        search:'',  
+        search: "",
         
-        datamhsbaru:{}
+        datamhsbaru: {}
     }),
     methods : {
         changeTahunPendaftaran (tahun)
@@ -186,18 +186,18 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading=true;            
+                    this.datatableLoading=true;
                     await this.$ajax.post('/spmb/reportspmbfakultas',
                     {
-                        TA:this.tahun_pendaftaran,
-                        fakultas_id:this.fakultas_id,
+                        TA: this.tahun_pendaftaran,
+                        fakultas_id: this.fakultas_id,
                     },
                     {
                         headers: {
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters['auth/Token']
                         }
-                    }).then(({data})=>{               
-                        this.datatable = data.pmb;                
+                    }).then(({ data }) => {               
+                        this.datatable = data.pmb;    
                         this.datatableLoading=false;
                     });         
             }
@@ -208,7 +208,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded=[];    
             }
             else
             {
@@ -223,37 +223,37 @@ export default {
         {
             return item.active == 1 ? 'mdi-check-bold':'mdi-close-thick'
         },
-        printtoexcel:async function ()
+        printtoexcel:async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post('/spmb/reportspmbfakultas/printtoexcel',
                 {
-                    TA:this.tahun_pendaftaran,                                                                
-                    fakultas_id:this.fakultas_id,    
-                    nama_fakultas:this.nama_fakultas,                 
+                    TA: this.tahun_pendaftaran,                                            
+                    fakultas_id: this.fakultas_id,  
+                    nama_fakultas: this.nama_fakultas,               
                 },
                 {
-                    headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                    headers: {
+                        Authorization: this.$store.getters['auth/Token']
                     },
                     responseType:'arraybuffer'
                 }
-            ).then(({data})=>{              
+            ).then(({ data }) => {              
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement('a');
                 link.href = url;
                 link.setAttribute('download', 'laporan_fakultas_'+Date.now()+'.xlsx');
-                link.setAttribute('id', 'download_laporan');                
+                link.setAttribute('id', 'download_laporan');    
                 document.body.appendChild(link);
-                link.click();                   
+                link.click();       
                 document.body.removeChild(link);  
-                this.btnLoading=false;
-            }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
+            }).catch(() => {
+                this.btnLoading = false;
             });     
         }     
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -265,14 +265,14 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_fakultas=this.$store.getters['uiadmin/getFakultasName'](val);                
+                this.nama_fakultas=this.$store.getters['uiadmin/getFakultasName'](val);    
                 this.initialize();
             }            
         }
     },
-    components:{
+    components: {
         SPMBLayout,
-        ModuleHeader,                
+        ModuleHeader,              
         Filter20    
     },
 }
