@@ -19,8 +19,8 @@
 										color="white"
 										>
 												<v-img
-														max-width="900px"
-														max-height="480px"
+														max-width="100%"
+														max-height="auto"
 														:src="$api.url+'/storage/images/gambar_login.jpg'"
 														>
 												</v-img>
