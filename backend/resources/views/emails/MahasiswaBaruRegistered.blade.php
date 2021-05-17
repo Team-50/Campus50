@@ -12,7 +12,7 @@
         </tr>
         <tr>
             <td style="padding:0;padding-top:25px;font-family:'Segoe UI',Tahoma,Verdana,Arial,sans-serif;font-size:14px;color:#2a2a2a">
-                Selamat Emailnya telah terverifikasi, selanjutnya silahkan untuk melakukan login melengkapi data-datalainnya
+                Selamat Emailnya telah terverifikasi, selanjutnya silahkan untuk melakukan login melengkapi data-data lainnya.
             </td>
         </tr>        
         <tr>
