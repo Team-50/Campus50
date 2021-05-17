@@ -107,7 +107,7 @@
 				</v-list-item>
 				<v-list-item link to="/keuangan/channelpembayaran">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-numeric-3-circle</v-icon>
+						<v-icon>mdi-numeric-1-circle</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -118,7 +118,7 @@
 				<v-divider></v-divider>
 				<v-list-item link to="/spmb/formulirpendaftaran">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-numeric-1-circle</v-icon>
+						<v-icon>mdi-numeric-2-circle</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -128,7 +128,7 @@
 				</v-list-item>                    
 				<v-list-item link to="/spmb/persyaratan">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-numeric-2-circle</v-icon>
+						<v-icon>mdi-numeric-3-circle</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
