@@ -353,6 +353,11 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->get('/akademik/nilai/transkripkurikulum/printpdf1/{id}',['uses'=>'Akademik\TranskripKurikulumController@printpdf1','as'=>'transkripkurikulum.printpdf1']);
     $router->get('/akademik/nilai/transkripkurikulum/printpdf2/{id}',['uses'=>'Akademik\TranskripKurikulumController@printpdf2','as'=>'transkripkurikulum.printpdf2']);
 
+    // kemahasiswaan - profil mahasiswa
+    $router->post('/kemahasiswaan/profil/search',['uses'=>'Kemahasiswaan\KemahasiswaanProfilController@search','as'=>'profilmhs.search']);
+    $router->post('/kemahasiswaan/profil/searchnonampulan',['uses'=>'Kemahasiswaan\KemahasiswaanProfilController@searchnonampulan','as'=>'profilmhs.searchnonampulan']);
+    $router->post('/kemahasiswaan/profil/resetpassword',['uses'=>'Kemahasiswaan\KemahasiswaanProfilController@resetpassword','as'=>'profilmhs.resetpassword']);
+
     //setting - permissions
     $router->get('/system/setting/permissions',['middleware'=>['role:superadmin|akademik|pmb'],'uses'=>'System\PermissionsController@index','as'=>'permissions.index']);
     $router->post('/system/setting/permissions/store',['middleware'=>['role:superadmin'],'uses'=>'System\PermissionsController@store','as'=>'permissions.store']);
