@@ -353,10 +353,14 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->get('/akademik/nilai/transkripkurikulum/printpdf1/{id}',['uses'=>'Akademik\TranskripKurikulumController@printpdf1','as'=>'transkripkurikulum.printpdf1']);
     $router->get('/akademik/nilai/transkripkurikulum/printpdf2/{id}',['uses'=>'Akademik\TranskripKurikulumController@printpdf2','as'=>'transkripkurikulum.printpdf2']);
 
-    // kemahasiswaan - profil mahasiswa
-    $router->post('/kemahasiswaan/profil/search',['uses'=>'Kemahasiswaan\KemahasiswaanProfilController@search','as'=>'profilmhs.search']);
-    $router->post('/kemahasiswaan/profil/searchnonampulan',['uses'=>'Kemahasiswaan\KemahasiswaanProfilController@searchnonampulan','as'=>'profilmhs.searchnonampulan']);
-    $router->post('/kemahasiswaan/profil/resetpassword',['uses'=>'Kemahasiswaan\KemahasiswaanProfilController@resetpassword','as'=>'profilmhs.resetpassword']);
+    //kemahasiswaan - profil mahasiswa
+    $router->post('/kemahasiswaan/profil/search',['uses'=>'Kemahasiswaan\KemahasiswaanProfilController@search','as'=>'kemahasiswaan-profilmhs.search']);
+    $router->post('/kemahasiswaan/profil/searchnonampulan',['uses'=>'Kemahasiswaan\KemahasiswaanProfilController@searchnonampulan','as'=>'kemahasiswaan-profilmhs.searchnonampulan']);
+    $router->post('/kemahasiswaan/profil/resetpassword',['uses'=>'Kemahasiswaan\KemahasiswaanProfilController@resetpassword','as'=>'kemahasiswaan-profilmhs.resetpassword']);
+
+    //kemahasiswaan - daftar mahasiswa
+    $router->post('/kemahasiswaan/daftarmhs',['middleware'=>['role:superadmin|akademik|programstudi|puslahta|keuangan'],'uses'=>'Kemahasiswaan\KemahasiswaanDaftarMahasiswaController@index','as'=>'kemahasiswaan-daftarmhs.index']);
+    $router->post('/kemahasiswaan/daftarmhs/printtoexcel',['middleware'=>['role:superadmin|akademik|programstudi|puslahta|keuangan'],'uses'=>'Kemahasiswaan\KemahasiswaanDaftarMahasiswaController@printtoexcel','as'=>'kemahasiswaan-daftarmhs.printtoexcel']);
 
     //setting - permissions
     $router->get('/system/setting/permissions',['middleware'=>['role:superadmin|akademik|pmb'],'uses'=>'System\PermissionsController@index','as'=>'permissions.index']);

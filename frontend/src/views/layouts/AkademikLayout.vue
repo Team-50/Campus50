@@ -144,18 +144,7 @@
 														MAHASISWA LAMA
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                
-								<v-subheader style="color:#f0935c">KEMAHASISWAAN</v-subheader>
-								<v-list-item link to="/akademik/kemahasiswaan/daftarmahasiswa" v-if="CAN_ACCESS('AKADEMIK-KEMAHASISWAAN-DAFTAR-MAHASISWA_BROWSE')">
-										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-playlist-check</v-icon>
-										</v-list-item-icon>
-										<v-list-item-content>
-												<v-list-item-title>
-														DAFTAR MAHASISWA
-												</v-list-item-title>
-										</v-list-item-content>
-								</v-list-item>              
+								</v-list-item>                								
 								<v-subheader style="color:#f0935c">PERKULIAHAN</v-subheader>    
 								<v-list-item link to="/akademik/matakuliah" v-if="CAN_ACCESS('AKADEMIK-MATAKULIAH_BROWSE')">
 										<v-list-item-icon class="mr-2">
