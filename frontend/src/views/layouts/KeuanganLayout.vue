@@ -251,8 +251,7 @@
 														DAFTAR TRANSAKSI
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item> 
-								<v-divider/>
+								</v-list-item>
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-REGISTRASIKRS_BROWSE')" to="/keuangan/transaksi-registrasikrs">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-book-open</v-icon>

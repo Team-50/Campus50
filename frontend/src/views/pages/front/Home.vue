@@ -1,7 +1,7 @@
 <template>
     <FrontLayout>
-        <v-container fluid class="green">
-            <v-row class="grey lighten-5">
+        <v-container fluid>
+            <v-row class="white lighten-2">
                 <v-col cols="12" class="hidden-sm-and-down pa-0">
                     <!--<v-carousel
                         cycle                                                
@@ -15,17 +15,26 @@
                     </v-carousel>-->
                     <v-img
                         class="hidden-sm-and-down"
-                        lazy-src="$api.storageURL/storage/images/sliders/banner1.jpg"
+                        lazy-src="$api.storageURL/storage/images/sliders/banner3.jpg"
                         max-height="auto"
                         max-width="100%"
-                        :src="$api.url+'/storage/images/sliders/banner1.jpg'"
+                        :src="$api.url+'/storage/images/sliders/banner3.jpg'"
                     ></v-img>
+                    <br/>
                     <v-img
-                        class="hidden-md-and-up" v-if="$vuetify.breakpoint.xsOnly"
-                        lazy-src="$api.storageURL/storage/images/sliders/banner2.jpg"
-                        max-height=""
+                        class="hidden-sm-and-down"
+                        lazy-src="$api.storageURL/storage/images/sliders/banner4.jpg"
+                        max-height="auto"
                         max-width="100%"
-                        :src="$api.url+'/storage/images/sliders/banner1.jpg'"
+                        :src="$api.url+'/storage/images/sliders/banner4.jpg'"
+                    ></v-img>
+                    <br/>
+                    <v-img
+                        class="hidden-sm-and-down"
+                        lazy-src="$api.storageURL/storage/images/sliders/banner5.jpg"
+                        max-height="auto"
+                        max-width="100%"
+                        :src="$api.url+'/storage/images/sliders/banner5.jpg'"
                     ></v-img>
                 </v-col>
             </v-row>
