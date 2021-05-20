@@ -208,8 +208,8 @@
 																										<v-card flat>
 																												<v-card-title>CREATED/UPDATED :</v-card-title>
 																												<v-card-subtitle>
-																														{{$date(formdata.created_at).format('DD/MM/YYYY HH:mm')}} /  
-																														{{$date(formdata.updated_at).format('DD/MM/YYYY HH:mm')}}
+																														{{$date(formdata.created_at).format("DD/MM/YYYY HH:mm")}} /  
+																														{{$date(formdata.updated_at).format("DD/MM/YYYY HH:mm")}}
 																												</v-card-subtitle>
 																										</v-card>
 																								</v-col>
@@ -238,7 +238,7 @@
 														</v-toolbar>
 												</template>
 												<template v-slot:item.nomor_hp="{ item }">    
-														{{ item.nomor_hp == null || item.nomor_hp == ''? 'N.A' : '+'+item.nomor_hp}}
+														{{ item.nomor_hp == null || item.nomor_hp == ""? "N.A" : "+" + item.nomor_hp}}
 												</template>
 												<template v-slot:item.actions="{ item }">
 														<v-icon
@@ -280,14 +280,14 @@
 														</v-badge>
 												</template>
 												<template v-slot:item.created_at="{ item }"> 
-														{{$date(item.created_at).format('DD/MM/YYYY HH:mm')}}
+														{{$date(item.created_at).format("DD/MM/YYYY HH:mm")}}
 												</template>
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
 																<v-col cols="12">
-																		<strong>ID:</strong>{{ item.id }}         
-																		<strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-																		<strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+																		<strong>ID:</strong>{{ item.id }}
+																		<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+																		<strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
 																</v-col>
 																<v-col cols="12" v-if="item.active==0">
 																		<v-btn 
@@ -324,37 +324,37 @@
 		</SPMBLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
-import ModuleHeader from '@/components/ModuleHeader';
-import Filter7 from '@/components/sidebar/FilterMode7';
+import SPMBLayout from "@/views/layouts/SPMBLayout";
+import ModuleHeader from "@/components/ModuleHeader";
+import Filter7 from "@/components/sidebar/FilterMode7";
 export default {
-		name: 'PendaftaranBaru',
+		name: "PendaftaranBaru",
 		created()
 		{
-				this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];      
+				this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
 				this.breadcrumbs = [
 						{
-								text:'HOME',
+								text: "HOME",
 								disabled:false,
-								href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+								href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
 						},
 						{
-								text:'SPMB',
+								text: "SPMB",
 								disabled:false,
-								href:'/spmb'
+								href: "/spmb"
 						},
 						{
-								text:'PENDAFTAR BARU',
+								text: "PENDAFTAR BARU",
 								disabled:true,
-								href:'#'
+								href: "#"
 						}
-				];   
-				this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=='mahasiswa');
+				];
+				this.breadcrumbs[1].disabled=(this.dashboard=="mahasiswabaru"||this.dashboard=="mahasiswa");
 
-				let prodi_id=this.$store.getters['uiadmin/getProdiID'];
+				let prodi_id=this.$store.getters["uiadmin/getProdiID"];
 				this.prodi_id=prodi_id;
-				this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-				this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];        
+				this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](prodi_id);
+				this.tahun_pendaftaran=this.$store.getters["uiadmin/getTahunPendaftaran"];
 				this.initialize();
 		},
 		data: () => ({ 
@@ -366,18 +366,18 @@ export default {
 				breadcrumbs: [],
 				dashboard:null,
 				datatableLoading:false,
-				btnLoading: false,  
+				btnLoading: false,
 				btnLoadingFakultas:false,
 									
 				//tables
 				headers: [                        
-						{ text: '', value: 'foto', width:70 },          
-						{ text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
-						{ text: 'USERNAME', value: 'username',sortable:true },
-						{ text: 'EMAIL', value: 'email',sortable:true },   
-						{ text: 'NOMOR HP', value: 'nomor_hp',sortable:false,width:130 },              
-						{ text: 'TGL.DAFTAR', value: 'created_at',sortable:true,width:100 },   
-						{ text: 'AKSI', value: 'actions', sortable: false,width:100 },
+						{ text: "", value: "foto", width:70 },
+						{ text: "NAMA MAHASISWA", value: "name",width:350,sortable:true },
+						{ text: "USERNAME", value: "username",sortable:true },
+						{ text: "EMAIL", value: "email",sortable:true }, 
+						{ text: "NOMOR HP", value: "nomor_hp",sortable:false,width:130 },
+						{ text: "TGL.DAFTAR", value: "created_at",sortable:true,width:100 }, 
+						{ text: "AKSI", value: "actions", sortable: false,width:100 },
 				],
 				expanded: [],
 				search: "",
@@ -393,49 +393,49 @@ export default {
 				daftar_fakultas: [],
 				kode_fakultas: "",
 				daftar_prodi: [], 
-				daftar_ta: [],       
+				daftar_ta: [], 
 				formdata: {
 						name: "",
-						email: "",          
+						email: "",
 						nomor_hp: "",
 						username: "",
 						password: "", 
 						prodi_id: "", 
 						ta: "", 
-						created_at: '',         
-						updated_at: '',   
-				},   
+						created_at: "", 
+						updated_at: "", 
+				}, 
 				formdefault: {
 						name: "",
-						email: "",          
+						email: "",
 						nomor_hp: "",
 						username: "",
 						password: "",
 						prodi_id: "",
 						ta: "",
-						created_at: '',         
-						updated_at: '',            
-				},  
+						created_at: "", 
+						updated_at: "",
+				},
 				editedIndex: -1,
 
 				rule_name: [
 						value => !!value || "Nama Mahasiswa mohon untuk diisi !!!",
-						value => /^[A-Za-z\s\\,\\.]*$/.test(value) || 'Nama Mahasiswa hanya boleh string dan spasi',
+						value => /^[A-Za-z\s\\,\\.]*$/.test(value) || "Nama Mahasiswa hanya boleh string dan spasi",
 				], 
 				rule_nomorhp: [
 						value => !!value || "Nomor HP mohon untuk diisi !!!",
-						value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
+						value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
 				], 
 				rule_email: [
 						value => !!value || "Email mohon untuk diisi !!!",
-						v => /.+@.+\..+/.test(v) || 'Format E-mail mohon di isi dengan benar',
+						v => /.+@.+\..+/.test(v) || "Format E-mail mohon di isi dengan benar",
 				], 
 				rule_fakultas: [
 						value => !!value || "Fakultas mohon untuk dipilih !!!"
 				], 
 				rule_prodi: [
 						value => !!value || "Program studi mohon untuk dipilih !!!"
-				],    
+				],
 				rule_username: [
 						value => !!value || "Username mohon untuk diisi !!!"
 				], 
@@ -444,305 +444,304 @@ export default {
 				], 
 		}),
 		methods: {
-				changeTahunPendaftaran (tahun)
-				{
-						this.tahun_pendaftaran=tahun;
+				changeTahunPendaftaran(tahun) {
+					this.tahun_pendaftaran = tahun;
 				},
-				changeProdi (id)
-				{
-						this.prodi_id=id;
+				changeProdi(id) {
+					this.prodi_id = id;
 				},
-				initialize:async function() 
-				{
-						this.datatableLoading=true;
-						await this.$ajax.post('/spmb/pmb',
-						{
-								TA: this.tahun_pendaftaran,
-								prodi_id: this.prodi_id,
-						},
-						{
-								headers: {
-										Authorization: this.$store.getters['auth/Token']
-								}
-						}).then(({ data }) => {               
-								this.datatable = data.pmb;    
-								this.datatableLoading=false;
-						});          
-						this.firstloading=false;
-						this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
+				initialize: async function() {
+					this.datatableLoading=true;
+					await this.$ajax.post("/spmb/pmb",
+					{
+							TA: this.tahun_pendaftaran,
+							prodi_id: this.prodi_id,
+					},
+					{
+							headers: {
+									Authorization: this.$store.getters["auth/Token"]
+							}
+					}).then(({ data }) => { 
+							this.datatable = data.pmb;
+							this.datatableLoading=false;
+					});
+					this.firstloading=false;
+					this.$refs.filter7.setFirstTimeLoading(this.firstloading);
 				},
 				badgeColor(item)
 				{
-						return item.active == 1 ? 'success':'error'
+						return item.active == 1 ? "success": "error"
 				},
 				badgeIcon(item)
 				{
-						return item.active == 1 ? 'mdi-check-bold':'mdi-close-thick'
-				},    
+						return item.active == 1 ? "mdi-check-bold": "mdi-close-thick"
+				},
 				dataTableRowClicked(item)
 				{
 						if ( item === this.expanded[0])
 						{
-								this.expanded=[];    
+								this.expanded=[];
 						}
 						else
 						{
 								this.expanded=[item];
-						}               
+						}
 				},
 				aktifkan(id)
 				{
 						this.btnLoading = true;
-						this.$ajax.post('/akademik/kemahasiswaan/updatestatus/'+id,
+						this.$ajax.post("/akademik/kemahasiswaan/updatestatus/"+id,
 								{
-										'active':1
+										"active":1
 								},
 								{
 										headers: {
-												Authorization: this.$store.getters['auth/Token']
+												Authorization: this.$store.getters["auth/Token"]
 										}
 								}
-						).then(() => {   
+						).then(() => {
 								this.initialize();
 								this.btnLoading = false;
 						}).catch(() => {
 								this.btnLoading = false;
 						});
 				},
-				syncPermission:async function()
+				syncPermission: async function()
 				{
 						this.btnLoading = true;
-						await this.$ajax.post('/system/users/syncallpermissions',
+						await this.$ajax.post("/system/users/syncallpermissions",
 								{
-										role_name:'mahasiswabaru',
+										role_name: "mahasiswabaru",
 										TA: this.tahun_pendaftaran,
 										prodi_id: this.prodi_id                     
 								},
 								{
 										headers: {
-												Authorization: this.$store.getters['auth/Token']
+												Authorization: this.$store.getters["auth/Token"]
 										}
 								}
-						).then(() => {                   
+						).then(() => {
 								this.btnLoading = false;
 						}).catch(() => {
 								this.btnLoading = false;
-						});     
+						});
 				},
 				async addItem ()
 				{
-						this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
+						this.daftar_ta=this.$store.getters["uiadmin/getDaftarTA"];
 						this.formdata.ta=this.tahun_pendaftaran;
 						this.formdata.prodi_id=this.prodi_id;
 
-						if (this.$store.getters['uifront/getBentukPT']=='universitas')
-						{                
-								await this.$ajax.get('/datamaster/fakultas').then(({ data }) => {                    
+						if (this.$store.getters["uifront/getBentukPT"]=="universitas")
+						{
+								await this.$ajax.get("/datamaster/fakultas").then(({ data }) => { 
 										this.daftar_fakultas=data.fakultas;
 								});
 						}
 						else
 						{
-								await this.$ajax.get('/datamaster/programstudi').then(({ data }) => {
-										this.daftar_prodi=data.prodi;
-								});
-						}   
-						this.dialogfrm = true;           
-				},
-				save:async function() {
-						if (this.$refs.frmdata.validate())
-						{
-								this.btnLoading = true;
-								if (this.editedIndex > -1) 
-								{
-										await this.$ajax.post('/spmb/pmb/updatependaftar/'+this.formdata.id,
-												{
-														'_method':'PUT',
-														name: this.formdata.name,
-														email: this.formdata.email,
-														nomor_hp: this.formdata.nomor_hp,
-														prodi_id: this.formdata.prodi_id,
-														tahun_pendaftaran: this.formdata.ta,
-														username: this.formdata.username,                                              
-														password: this.formdata.password, 
-												},
-												{
-														headers: {
-																Authorization: this.$store.getters['auth/Token']
-														}
-												}
-										).then(() => {   
-												this.initialize();
-												this.closedialogfrm();
-												this.btnLoading = false;
-										}).catch(() => {
-												this.btnLoading = false;
-										});     
-										
-								} else {
-										await this.$ajax.post('/spmb/pmb/storependaftar',
-												{
-														name: this.formdata.name,
-														email: this.formdata.email,
-														nomor_hp: this.formdata.nomor_hp,
-														username: this.formdata.username,                  
-														prodi_id: this.formdata.prodi_id,        
-														tahun_pendaftaran: this.formdata.ta,
-														password: this.formdata.password,        
-												},
-												{
-														headers: {
-																Authorization: this.$store.getters['auth/Token']
-														}
-												}
-										).then(({ data }) => {                           
-												this.datatable.push(data.pendaftar);
-												this.closedialogfrm();
-												this.btnLoading = false;            
-										}).catch(() => {
-												this.btnLoading = false;
-										});
-								}
-						}
-				},
-				async resend(id)
-				{
-						this.btnLoading = true;
-						await this.$ajax.post('/spmb/pmb/resend',
-								{
-										id:id,
-								},
-								{
-										headers: {
-												Authorization: this.$store.getters['auth/Token']
-										}
-								}
-						).then(() => {                                           
-								this.closedialogdetailitem();
-								this.btnLoading = false;
-						}).catch(() => {
-								this.btnLoading = false;
-						});
-				},
-				viewItem (item) {           
-						this.formdata=item;      
-						this.dialogdetailitem=true;
-				},
-				async editItem (item) {
-						this.editedIndex = this.datatable.indexOf(item);
-						this.formdata = Object.assign({}, item);
-						this.formdata.nomor_hp='+'+this.formdata.nomor_hp;
-						this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
-						if (this.$store.getters['uifront/getBentukPT']=='universitas')
-						{                
-								await this.$ajax.get('/datamaster/fakultas').then(({ data }) => {                    
-										this.daftar_fakultas=data.fakultas;
-								});
-								await this.$ajax.get('/datamaster/programstudi').then(({ data }) => {
+								await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
 										this.daftar_prodi=data.prodi;
 								});
 						}
-						else
-						{
-								await this.$ajax.get('/datamaster/programstudi').then(({ data }) => {
-										this.daftar_prodi=data.prodi;
-								});
-						}   
-						await this.$ajax.get('/akademik/kemahasiswaan/biodatamhs2/'+item.id,              
-								{
-										headers: {
-												Authorization: this.$store.getters['auth/Token']
+						this.dialogfrm = true;
+				},
+					save: async function() {
+						if (this.$refs.frmdata.validate()) {
+							this.btnLoading = true;
+							if (this.editedIndex > -1) {
+								await this.$ajax
+									.post(
+										"/spmb/pmb/updatependaftar/" + this.formdata.id,
+										{
+											"_method": "PUT",
+											name: this.formdata.name,
+											email: this.formdata.email,
+											nomor_hp: this.formdata.nomor_hp,
+											prodi_id: this.formdata.prodi_id,
+											tahun_pendaftaran: this.formdata.ta,
+											username: this.formdata.username,
+											password: this.formdata.password, 
+										},
+										{
+											headers: {
+												Authorization: this.$store.getters["auth/Token"],
+											},
 										}
-								}
-						).then(({ data }) => {           
-								this.registered = data.status==1;                            
-								this.dialogfrm = true; 
+									)
+									.then(() => {
+										this.initialize();
+										this.closedialogfrm();
+										this.btnLoading = false;
+									})
+									.catch(() => {
+										this.btnLoading = false;
+									});
+									
+							} else {
+								await this.$ajax.post("/spmb/pmb/storependaftar",
+										{
+											name: this.formdata.name,
+											email: this.formdata.email,
+											nomor_hp: this.formdata.nomor_hp,
+											username: this.formdata.username,
+											prodi_id: this.formdata.prodi_id,
+											tahun_pendaftaran: this.formdata.ta,
+											password: this.formdata.password,
+										},
+										{
+											headers: {
+												Authorization: this.$store.getters["auth/Token"],
+											},
+										}
+									)
+									.then(({ data }) => {
+										this.datatable.push(data.pendaftar);
+										this.closedialogfrm();
+										this.btnLoading = false;
+									})
+									.catch(() => {
+										this.btnLoading = false;
+									});
+							}
+						}
+					},
+			async resend(id) {
+				this.btnLoading = true;
+				await this.$ajax
+					.post(
+						"/spmb/pmb/resend",
+						{
+							id: id,
+						},
+						{
+							headers: {
+								Authorization: this.$store.getters["auth/Token"],
+							},
+						}
+					)
+					.then(() => {
+						this.closedialogdetailitem();
+						this.btnLoading = false;
+					})
+					.catch(() => {
+						this.btnLoading = false;
+					});
+			},
+			viewItem(item) {
+				this.formdata = item;
+				this.dialogdetailitem = true;
+			},
+			async editItem(item) {
+				this.editedIndex = this.datatable.indexOf(item);
+				this.formdata = Object.assign({}, item);
+				this.formdata.nomor_hp = "+" + this.formdata.nomor_hp;
+				this.daftar_ta = this.$store.getters["uiadmin/getDaftarTA"];
+				if (this.$store.getters["uifront/getBentukPT"] == "universitas") {
+					await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {
+						this.daftar_fakultas = data.fakultas;
+					});
+					await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
+						this.daftar_prodi = data.prodi;
+					});
+				} else {
+					await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
+						this.daftar_prodi = data.prodi;
+					});
+				}
+				await this.$ajax
+					.get("/akademik/kemahasiswaan/biodatamhs2/" + item.id, {
+						headers: {
+							Authorization: this.$store.getters["auth/Token"],
+						},
+					})
+					.then(({ data }) => {
+						this.registered = data.status == 1;
 						this.dialogfrm = true;
-								this.dialogfrm = true; 
-						this.dialogfrm = true;
-								this.dialogfrm = true; 
-						});
-				}, 
-				deleteItem (item) {           
-						this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus MAHASISWA BARU '+item.name+' ?', { color: 'red' }).then((confirm) => {
-								if (confirm)
-								{
-										this.btnLoading = true;
-										this.$ajax.post('/spmb/pmb/'+item.id,
-												{
-														'_method':'DELETE',
-												},
-												{
-														headers: {
-																Authorization: this.$store.getters['auth/Token']
-														}
-												}
-										).then(() => {   
-												const index = this.datatable.indexOf(item);
-												this.datatable.splice(index, 1);
-												this.btnLoading = false;
-										}).catch(() => {
-												this.btnLoading = false;
-										});
-								}
-						});
-				},
-				closedialogdetailitem() {
-						this.dialogdetailitem = false;
-						setTimeout(() => {
-								this.formdata = Object.assign({}, this.formdefault)
-								this.editedIndex = -1;
-								}, 300
-						);
-				},
-				closedialogfrm() {
-						this.dialogfrm = false;
-						setTimeout(() => {
-								this.formdata = Object.assign({}, this.formdefault);    
-								this.editedIndex = -1;
-								this.$refs.frmdata.reset(); 
-								}, 300
-						);
-				},
+					});
+			},
+			deleteItem(item) {
+				this.$root.$confirm
+					.open(
+						"Delete",
+						"Apakah Anda ingin menghapus MAHASISWA BARU " + item.name + " ?",
+						{ color: "red" }
+					)
+					.then(confirm => {
+						if (confirm) {
+							this.btnLoading = true;
+							this.$ajax
+								.post(
+									"/spmb/pmb/" + item.id,
+									{
+										_method: "DELETE",
+									},
+									{
+										headers: {
+											Authorization: this.$store.getters["auth/Token"],
+										},
+									}
+								)
+								.then(() => {
+									const index = this.datatable.indexOf(item);
+									this.datatable.splice(index, 1);
+									this.btnLoading = false;
+								})
+								.catch(() => {
+									this.btnLoading = false;
+								});
+						}
+					});
+			},
+			closedialogdetailitem() {
+				this.dialogdetailitem = false;
+				setTimeout(() => {
+					this.formdata = Object.assign({}, this.formdefault);
+					this.editedIndex = -1;
+				}, 300);
+			},
+			closedialogfrm() {
+				this.dialogfrm = false;
+				setTimeout(() => {
+					this.formdata = Object.assign({}, this.formdefault);
+					this.editedIndex = -1;
+					this.$refs.frmdata.reset();
+				}, 300);
+			},
 		},
 		watch: {
-				tahun_pendaftaran()
-				{
-						if (!this.firstloading)
-						{
-								this.initialize();
-						}            
-				},
-				kode_fakultas (val)
-				{
-						if (val != null && val != '')
-						{
-								this.btnLoadingFakultas=true;
-								this.$ajax.get('/datamaster/fakultas/'+val+'/programstudi').then(({ data }) => {                                
-										this.daftar_prodi=data.programstudi;
-										this.btnLoadingFakultas=false;
-								});
-						}            
-				},
-				prodi_id(val)
-				{
-						if (!this.firstloading)
-						{
-								this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
-								this.initialize();
-						}            
-				},      
+			tahun_pendaftaran() {
+				if (!this.firstloading) {
+					this.initialize();
+				}
+			},
+			kode_fakultas(val) {
+				if (val != null && val != "") {
+					this.btnLoadingFakultas = true;
+					this.$ajax
+						.get("/datamaster/fakultas/" + val + "/programstudi")
+						.then(({ data }) => {
+							this.daftar_prodi = data.programstudi;
+							this.btnLoadingFakultas = false;
+						});
+				}
+			},
+			prodi_id(val) {
+				if (!this.firstloading) {
+					this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
+					this.initialize();
+				}
+			},
 		},
-		computed: {        
-				formTitle() {
-						return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
-				},      
+		computed: {
+			formTitle() {
+				return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA";
+			},
 		},
-		
 		components: {
-				SPMBLayout,
-				ModuleHeader,  
-				Filter7    
+			SPMBLayout,
+			ModuleHeader,
+			Filter7,
 		},
-}
+	};
 </script>
