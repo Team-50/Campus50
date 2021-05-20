@@ -256,6 +256,7 @@
 			status_ujian: false,
 			jadwal_ujian: null,
 			peserta: null,
+			nilai: {},
 			keterangan_ujian: "",
 		}),
 			methods: {
@@ -275,6 +276,7 @@
 								if (this.peserta.isfinish==1) {
 									this.ismulai=true;
 									this.keterangan_ujian="SELESAI UJIAN";
+									this.nilai = data.nilai;
 								} else {
 									this.keterangan_ujian="BELUM UJIAN";
 								}

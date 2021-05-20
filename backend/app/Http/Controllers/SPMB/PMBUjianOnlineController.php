@@ -159,13 +159,13 @@ class PMBUjianOnlineController extends Controller {
             'jadwal_ujian_id'=>'required|exists:pe3_jadwal_ujian_pmb,id',                    
         ]);
         
-        $is_bayar = \DB::table('pe3_transaksi')
-                        ->join('pe3_transaksi_detail','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
-                        ->where('kombi_id',101)
-                        ->where('status',1)
-                        ->where('pe3_transaksi_detail.user_id', $request->input('user_id'))
-                        ->exists();
-        
+        // $is_bayar = \DB::table('pe3_transaksi')
+        //                 ->join('pe3_transaksi_detail','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
+        //                 ->where('kombi_id',101)
+        //                 ->where('status',1)
+        //                 ->where('pe3_transaksi_detail.user_id', $request->input('user_id'))
+        //                 ->exists();
+        $is_bayar = true;
         if ($is_bayar)
         {
             $jadwal_ujian_id=$request->input('jadwal_ujian_id');
