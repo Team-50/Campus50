@@ -101,7 +101,7 @@
 								</v-btn>
 							</v-card-text>                    
 						</v-card>
-					</v-timeline-item>                								
+					</v-timeline-item>
 					<v-timeline-item
 						color="green lighten-1"
 						icon="mdi-airballoon"

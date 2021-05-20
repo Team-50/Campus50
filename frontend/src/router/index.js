@@ -478,17 +478,6 @@ const routes = [
 		},
 		component: () => import("../views/pages/admin/akademik/DulangMahasiswaLama.vue"),
 	},
-
-	//akademik - daftar mahasiswa
-	{
-		path: "/akademik/kemahasiswaan/daftarmahasiswa",
-		name: "KemahasiswaanDaftarMahasiswa",
-		meta: {
-			title: "AKADEMIK - DAFTAR MAHASISWA",
-			requiresAuth: true,
-		},
-		component: () => import("../views/pages/admin/akademik/KemahasiswaanDaftarMahasiswa.vue"),
-	},
 	
 	//akademik - perkuliahan - penyelenggaraan
 	{
