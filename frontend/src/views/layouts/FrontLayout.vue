@@ -50,7 +50,7 @@
 				<v-main>
 						<slot/>
 				</v-main>    
-				<v-footer app absolute padless>
+				<v-footer app relative padless class="mt-0">
 						<v-card flat tile class="flex">
 								<v-card-text class="indigo darken-3 white--text text-center pa-5" v-if="$route.name!='FrontPMB'">
 										<v-btn

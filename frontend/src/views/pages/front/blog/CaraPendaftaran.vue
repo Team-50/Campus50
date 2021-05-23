@@ -5,7 +5,7 @@
 				<v-col
 					class="hidden-sm-and-down"
 					sm="12"
-					md="6"
+					md="4"
 					align="center">
 					<v-card
 						class="pa-0 rounded-0"
@@ -21,7 +21,7 @@
 
 				<v-col
 					sm="12"
-					md="6">
+					md="8">
 					<v-card
 						class="pa-0 rounded-0"
 						elevation="0"
@@ -150,9 +150,31 @@
 
 					</v-card>
 				</v-col>
-
 			</v-row>
+			<v-container fluid class="pa-0 ma-0 mt-4 mb-0">
+				<v-alert
+					text
+					color="primary"
+					icon="mdi-phone pt-2"
+					class="white--text"
+					>
+						<h3 class="headline font-weight-bold">
+							Informasi dan Pendaftaran
+						</h3>
+						<br>
+						<p class="text-left">
+							Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum jelas di nomor kontak WhatsApp berikut.
+						</p>
+						<h3 class="font-weight-black">
+							Tim Marketing
+						</h3>
+						<v-icon color="blue darken-2">mdi-cellphone-message</v-icon>
+						<strong> Hendi - 0878-3934-3009 | Vivi - 0812-1188-9515 | Iim - 0812-6164-4329</strong>
+				</v-alert>
+			</v-container>
 		</v-container>
+
+		
 	</FrontLayout>
 </template>
 <script>

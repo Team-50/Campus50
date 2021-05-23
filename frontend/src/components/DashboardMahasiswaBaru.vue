@@ -1,168 +1,261 @@
 <template>
-		<v-container>
+		<v-container fluid class="pa-0 mt-14">
+			<v-alert
+				dense
+				text
+				color="primary"
+				class="text-center"
+				>
+				Hak akses sebagai : <strong>{{$store.getters["auth/Role"]}}</strong>.
+			</v-alert>
 			<v-row no-gutters>
-				<v-col cols="12">
-					<v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">				
-						<v-timeline-item color="purple darken-1" icon="mdi-book-variant" fill-dot>
-							<v-card color="purple darken-1" dark>
-								<v-card-title class="title">Formulir Pendaftaran</v-card-title>
-								<v-card-text class="white text--primary">														
-									Isi formulir pendaftaran dan lengkapi persyaratannya yaitu:
-									<ul>
-										<li>Scan Pas Foto</li>
-										<li>Scan Ijazah Terakhir</li>
-										<li>Scan KTP</li>
-										<li>Scan Kartu Keluarga</li>
-									</ul>												
-									<v-btn
-										color="purple darken-1"
-										class="mx-0 mr-2"
-										outlined
-										to="/spmb/formulirpendaftaran"
-									>
-										Isi Formulir
-									</v-btn>
-									<v-btn
-										color="purple darken-1"
-										class="mx-0"
-										outlined
-										to="/spmb/persyaratan"
-									>
-										Upload Persyaratan
-									</v-btn>
-								</v-card-text>                    
-							</v-card>
-						</v-timeline-item>
-						<v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-if="status_ujian">
-							<v-card color="indigo">
-								<v-card-title class="title white--text">Ujian Online</v-card-title>
-								<v-card-text class="white text--primary">
-									<table width="100%">
-										<tbody>
-											<tr>
-												<td width="25%">No. Peserta</td>
-												<td>: {{peserta.no_peserta}}</td>
-											</tr>
-											<tr>
-												<td width="25%">Tanggal Daftar</td>
-												<td>: {{$date(peserta.created_at).format("DD/MM/YYYY HH:mm")}}</td>
-											</tr>
-											<tr>
-												<td width="25%">Tanggal Ujian</td>
-												<td>: {{$date(jadwal_ujian.tanggal_ujian).format("DD/MM/YYYY")}}</td>
-											</tr>
-											<tr>
-												<td width="25%">Waktu Ujian</td>
-												<td>: {{jadwal_ujian.jam_mulai_ujian}} - {{jadwal_ujian.jam_selesai_ujian}} ({{durasiUjian(jadwal_ujian)}})</td>
-											</tr>
-											<tr>
-												<td width="25%">Keterangan</td>
-											<td>: {{keterangan_ujian}}</td>
-										</tr>
-									</tbody>
-								</table>
-								<v-btn
-									color="indigo"
-									class="mx-0"
-									@click.stop="mulaiUjian"
-									:disabled="ismulai"
-									outlined>
-									Mulai
-								</v-btn>
-							</v-card-text>                    
-						</v-card>
-					</v-timeline-item>
-					<v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-else>
-						<v-card color="indigo">
-							<v-card-title class="title white--text">Ujian Online</v-card-title>
-							<v-card-text class="white text--primary">
-								<p>Untuk mengikuti ujian online, silahkan pilih jadwal terlebih dahulu</p>
-								<v-btn
-									color="indigo"
-									class="mx-0 mr-2"
-									@click.stop="showPilihJadwal"
-									outlined>
-									Pilih Jadwal Ujian
-								</v-btn>
-							</v-card-text>                    
-						</v-card>                    
-					</v-timeline-item>
-					<v-timeline-item color="red lighten-2" icon="mdi-account-cash" fill-dot>
-						<v-card color="red lighten-2" dark>
-							<v-card-title class="title">Konfirmasi Pembayaran</v-card-title>
-							<v-card-text class="white text--primary">
-								<p>Konfirmasi Pembayaran Biaya Pendaftaran.</p>
-								<v-btn
-									color="red lighten-2"
-									class="mx-0"
-									outlined
-									to="/keuangan/konfirmasipembayaran">
-									Konfirmasi
-								</v-btn>
-							</v-card-text>                    
-						</v-card>
-					</v-timeline-item>
-					<v-timeline-item
-						color="green lighten-1"
-						icon="mdi-airballoon"
-						fill-dot
-						v-if="status_ujian"
-					>
-						<v-card color="green lighten-1">
-							<v-card-title class="title white--text">
-								Surat Keterangan Lulus
-							</v-card-title>
-							<v-card-text class="white text--primary">
-								<p>
-									Silahkan download Surat Keterangan Kelulusan kemudian cetak
-									dan dibawa ke kampus saat daftar ulang beserta persyaratan
-									ASLI lainnya.
-								</p>
-								<v-btn
-									color="green lighten-1"
-									class="mx-0"
-									outlined
-									:disabled="
-										btnLoading ||
-											(nilai.ket_lulus == 0 &&
-												(nilai.kjur == null || nilai.kjur == 0))
-									"
-									@click.stop="printpdf"
-								>
-									Download
-								</v-btn>
-							</v-card-text>
-						</v-card>
-					</v-timeline-item>
-					<v-timeline-item
-						color="green lighten-1"
-						icon="mdi-airballoon"
-						fill-dot
-						v-else
-					>
-						<v-card color="green lighten-1">
-							<v-card-title class="title white--text">
-								Surat Keterangan Lulus
-							</v-card-title>
-							<v-card-text class="white text--primary">
-								<p>
-									Silahkan download Surat Keterangan Kelulusan kemudian cetak
-									dan dibawa ke kampus saat daftar ulang beserta persyaratan
-									ASLI lainnya.
-								</p>
-								<v-btn
-									color="green lighten-1"
-									class="mx-0"
-									:disabled="true"
-									outlined
-								>
-									Download
-								</v-btn>
-							</v-card-text>
-						</v-card>
-					</v-timeline-item>
-						</v-timeline>
+				<v-col
+					class="hidden-sm-and-down"
+					sm="12"
+					md="4"
+					align="left">
+					<v-card
+						class="pa-0 rounded-0"
+						elevation="0"
+						color="white">
+							<v-img
+								max-width="100%"
+								max-height="100%"
+								:src="$api.url+'/storage/images/petunjuk_pendaftaran.png'">
+							</v-img>
+					</v-card>
 				</v-col>
+
+				<v-col
+					sm="12"
+					md="8">
+					<v-card
+						class="pa-0 rounded-0"
+						elevation="0"
+						color="white">
+
+						<v-timeline dense>
+								<v-slide-x-reverse-transition
+									group
+									hide-on-leave
+								>
+
+								<v-timeline-item
+										key="item.id"
+										color="green darken-3"
+										small
+										fill-dot
+									>
+										<v-alert
+											type="success"
+											color="green darken-3"
+											icon="mdi-note-text pt-2"
+											class="white--text"
+										>
+											<h2 class="headline font-weight-bold">
+												Formulir Pendaftaran
+											</h2>
+											<br>
+											<p class="text-left">
+												Isi formulir pendaftaran dan lengkapi persyaratannya yaitu :
+											</p>
+											<ul>
+												<li>Scan Pas Foto.</li>
+												<li>Scan Ijazah Terakhir.</li>
+												<li>Scan KTP.</li>
+												<li>Scan Kartu Keluarga.</li>
+											</ul>
+											<v-btn
+												color="white"
+												dark
+												class="ma-2 mx-2 mr-2 green--text"
+												elevation="0"
+												to="/spmb/formulirpendaftaran"
+											>
+												Isi Formulir
+											</v-btn>
+											<v-btn
+												color="white"
+												dark
+												class="ma-2 mx-2 mr-2 green--text"
+												elevation="0"
+												to="/spmb/persyaratan"
+											>
+												Upload Persyaratan
+											</v-btn>
+										</v-alert>
+									</v-timeline-item>
+
+								<v-timeline-item
+										key="item.id"
+										color="yellow darken-3"
+										small
+										fill-dot
+										v-if="status_ujian"
+									>
+									<v-alert
+											type="success"
+											color="yellow darken-3"
+											icon="mdi-beaker-question pt-2"
+											class="white--text"
+										>
+											<h2 class="headline font-weight-bold">
+												Ujian Online
+											</h2>
+											<br>
+											<ol>
+												<li>No. Peserta : {{peserta.no_peserta}}</li>
+												<li>Tanggal Daftar : {{$date(peserta.created_at).format("DD/MM/YYYY HH:mm")}}</li>
+												<li>Tanggal Ujian : {{$date(jadwal_ujian.tanggal_ujian).format("DD/MM/YYYY")}}</li>
+												<li>Waktu Ujian : {{jadwal_ujian.jam_mulai_ujian}} - {{jadwal_ujian.jam_selesai_ujian}} ({{durasiUjian(jadwal_ujian)}})</li>
+												<li>Keterangan : {{keterangan_ujian}}</li>
+											</ol>
+											<v-btn
+												color="white"
+												dark
+												class="ma-2 mx-2 mr-2 green--text"
+												elevation="0"
+												@click.stop="mulaiUjian"
+												:disabled="ismulai"
+											>
+												Mulai
+											</v-btn>
+									</v-alert>
+								</v-timeline-item>
+
+								<v-timeline-item
+										key="item.id"
+										color="yellow darken-3"
+										small
+										fill-dot
+										v-else
+									>
+									<v-alert
+											type="success"
+											color="yellow darken-3"
+											icon="mdi-beaker-question pt-2"
+											class="white--text"
+										>
+											<h2 class="headline font-weight-bold">
+												Ujian Online
+											</h2>
+											<br>
+											<p class="text-left">
+												Untuk mengikuti ujian online, silahkan pilih jadwal terlebih dahulu.
+											</p>
+											<v-btn
+												color="white"
+												dark
+												class="mx-0 mr-2 orange--text"
+												elevation="0"
+												@click.stop="showPilihJadwal"
+											>
+												Pilih Jadwal Ujian
+											</v-btn>
+									</v-alert>
+								</v-timeline-item>
+
+								<v-timeline-item
+										key="item.id"
+										color="indigo darken-3"
+										small
+										fill-dot
+									>
+									<v-alert
+											type="success"
+											color="indigo darken-3"
+											icon="mdi-beaker-question pt-2"
+											class="white--text"
+										>
+											<h2 class="headline font-weight-bold">
+												Konfirmasi Pembayaran
+											</h2>
+											<br>
+											<p class="text-left">
+												Konfirmasi pembayaran Biaya Pendaftaran.
+											</p>
+											<v-btn
+												color="white"
+												dark
+												class="mx-0 mr-2 indigo--text"
+												elevation="0"
+												to="/keuangan/konfirmasipembayaran"
+											>
+												Konfirmasi
+											</v-btn>
+									</v-alert>
+								</v-timeline-item>
+
+								<v-timeline-item
+										key="item.id"
+										color="red darken-3"
+										small
+										fill-dot
+										v-if="status_ujian"
+									>
+									<v-alert
+											type="success"
+											color="red darken-3"
+											icon="mdi-email-newsletter pt-2"
+											class="white--text"
+										>
+											<h2 class="headline font-weight-bold">
+												Surat Keterangan Lulus
+											</h2>
+											<br>
+											<p class="text-left">
+												Silahkan download Surat Keterangan Kelulusan kemudian cetak dan dibawa ke kampus saat daftar ulang beserta persyaratan asli lainnya.
+											</p>
+											<v-btn
+												color="white"
+												dark
+												class="mx-0 mr-2 red--text"
+												elevation="0"
+												:disabled="btnLoading || (nilai.ket_lulus == 0 && (nilai.kjur == null || nilai.kjur == 0))"
+												@click.stop="printpdf"
+											>
+												Download
+											</v-btn>
+									</v-alert>
+								</v-timeline-item>
+
+								<v-timeline-item
+										key="item.id"
+										color="red darken-3"
+										small
+										fill-dot
+										v-else
+									>
+									<v-alert
+											type="success"
+											color="red darken-3"
+											icon="mdi-email-newsletter pt-2"
+											class="white--text"
+										>
+											<h2 class="headline font-weight-bold">
+												Surat Keterangan Lulus
+											</h2>
+											<br>
+											<p class="text-left">
+												Silahkan download Surat Keterangan Kelulusan kemudian cetak dan dibawa ke kampus saat daftar ulang beserta persyaratan asli lainnya.
+											</p>
+											<v-btn
+												color="white"
+												dark
+												class="mx-0 mr-2 red--text"
+												elevation="0"
+												:disabled="true"
+											>
+												Download
+											</v-btn>
+									</v-alert>
+								</v-timeline-item>
+
+								</v-slide-x-reverse-transition>
+						</v-timeline>
+					</v-card>
+				</v-col>
+
 				<v-dialog v-model="dialogpilihjadwal" persistent>                       
 					<v-card>
 						<v-card-title>
@@ -203,32 +296,28 @@
 					</v-card>            
 				</v-dialog>
 			</v-row>
-			<v-row align="center" justify="center" no-gutters>
-				<v-col xs="12" sm="6" md="6">
-					<v-card outlined>
-						<v-card-title class="justify-center">
-							<h3 class="title">INFORMASI PENDAFTARAN</h3>
-						</v-card-title>
-						<v-card-subtitle class="justify-center">
-							<p>
-								Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum
-								jelas di nomor kontak WhatsApp berikut.
-							</p>
-						</v-card-subtitle>
-						<v-card-text class="justify-center">
-							<div>
-								<h3 class="headline pink--text text--accent-2">
-									TIM MARKETING
-								</h3>
-								<div>
-									<v-icon>mdi-cellphone-message</v-icon>
-									Hendi - 0878-3934-3009 | Vivi - 0812-1188-9515 | Iim - 0812-6164-4329
-								</div>
-							</div>
-						</v-card-text>
-					</v-card>
-				</v-col>
-			</v-row>			
+
+			<v-container fluid class="pa-0 mt-4">
+				<v-alert
+					text
+					color="primary"
+					icon="mdi-phone pt-2"
+					class="white--text"
+					>
+						<h3 class="headline font-weight-bold">
+							Informasi dan Pendaftaran
+						</h3>
+						<br>
+						<p class="text-left">
+							Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum jelas di nomor kontak WhatsApp berikut.
+						</p>
+						<h3 class="font-weight-black">
+							Tim Marketing
+						</h3>
+						<v-icon color="blue darken-2">mdi-cellphone-message</v-icon>
+						<strong> Hendi - 0878-3934-3009 | Vivi - 0812-1188-9515 | Iim - 0812-6164-4329</strong>
+				</v-alert>
+			</v-container>			
 	</v-container>
 </template>
 <script>
