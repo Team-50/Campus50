@@ -1,20 +1,12 @@
 <template>
 		<div>
-				<v-system-bar app color="#a4b0be" class="white--text">
-						<strong>Hak Akses Sebagai :</strong> {{ROLE}}
-		</v-system-bar>
-				<v-app-bar app class="white" elevation="0">            
-						<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
-			</v-toolbar-title>
-						<v-spacer></v-spacer>            
-						<v-divider
-								class="mx-4"
-								inset
-								vertical
-						></v-divider>
+				<v-app-bar app class="white" elevation="0">     
+					<v-spacer></v-spacer>     
+					<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
+						<span class="headline font-weight-bold mx-1">{{APP_NAME}} Dashboard</span>
+					</v-toolbar-title>
+					<v-spacer></v-spacer>
 						<v-menu
-
 								:close-on-content-click="true"
 								origin="center center"
 								transition="scale-transition"
@@ -57,9 +49,9 @@
 								</v-list>
 						</v-menu>			
 				</v-app-bar>                    
-				<v-main class="mx-4 mb-4 grey lighten-3">			
-			<slot />
-		</v-main>
+				<v-main class="pa-0">
+					<slot />
+				</v-main>
 		</div>    
 </template>
 <script>
