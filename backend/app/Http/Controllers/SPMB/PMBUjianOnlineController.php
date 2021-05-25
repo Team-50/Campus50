@@ -42,7 +42,7 @@ class PMBUjianOnlineController extends Controller {
         }
         else
         {
-            $soal=SoalPMBModel::select(\DB::raw('id,soal'))
+            $soal=SoalPMBModel::select(\DB::raw('id,soal,gambar'))
                             ->whereNotIn('id',function($query) use ($id){
                                 $query->select('soal_id')
                                         ->from('pe3_jawaban_ujian')
