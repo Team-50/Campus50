@@ -1,5 +1,6 @@
 <template>
-		<v-container fluid class="pa-0 mt-14">
+	<AdminLayout>
+		<v-container fluid class="pa-0 mt-0">
 			<v-alert
 				dense
 				text
@@ -319,8 +320,10 @@
 				</v-alert>
 			</v-container>			
 	</v-container>
+	</AdminLayout>
 </template>
 <script>
+	import AdminLayout from '@/views/layouts/AdminLayout';
 	export default {
 		name: "DashboardMahasiswaBaru",
 		created() {
@@ -371,6 +374,9 @@
 								}
 						}
 				});  
+			},
+			components: {
+				AdminLayout,    
 			},
 			showPilihJadwal: async function() {
 				this.dialogpilihjadwal = true;  
