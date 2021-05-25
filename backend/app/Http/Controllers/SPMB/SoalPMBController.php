@@ -194,13 +194,8 @@ class SoalPMBController extends Controller {
         else
         {
             $this->validate($request, [           
-                'soal'=>'required',
-                // 'gambar'=>'required',
-                // 'jawaban1'=>'required',
-                // 'jawaban2'=>'required',
-                // 'jawaban3'=>'required',
-                // 'jawaban4'=>'required',
-                'jawaban_benar'=>'required',            
+                'soal'=>'required',                
+                'jawaban_benar'=>'required',
             ]);
             $soal->soal=$request->input('soal');
             $soal->save();
@@ -214,9 +209,8 @@ class SoalPMBController extends Controller {
             {
                 $jawaban->status=1;
                 $jawaban->save();
-            }
-            
-            if ($request->filled('gambar'))
+            }                        
+            if ($request->has('gambar'))
             {
                 if ($request->file('gambar')->isValid())
                 {
@@ -233,8 +227,7 @@ class SoalPMBController extends Controller {
                         $soal->save();
                     }
                 }
-            }     
-
+            }  
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'update',  
