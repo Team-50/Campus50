@@ -585,7 +585,7 @@ export default {
         ], 
         rule_bukti_bayar: [
             value => !!value || "Mohon pilih foto !!!",
-            value =>  !value || value.size < 2000000 || 'File Bukti Bayar harus kurang dari 2MB.'                
+            value => !!value || value.size < 2000000 || "File Bukti Bayar harus kurang dari 2MB."
         ],
     }),
     methods: {
