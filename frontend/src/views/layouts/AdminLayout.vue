@@ -1,10 +1,15 @@
 <template>
 		<div>
-				<v-app-bar app class="white" elevation="0">     
-					<v-spacer></v-spacer>     
-					<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-						<span class="headline font-weight-bold mx-1">{{APP_NAME}} Dashboard</span>
-					</v-toolbar-title>
+				<v-app-bar app class="white" elevation="0">
+					<v-toolbar-title @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
+								<span class="hidden-sm-and-down">
+									<v-img
+											max-width="400"
+											:src="$api.storageURL+'/storage/images/applogo.png'"
+											>
+										</v-img>
+								</span>
+						</v-toolbar-title>
 					<v-spacer></v-spacer>
 						<v-menu
 								:close-on-content-click="true"
@@ -49,7 +54,7 @@
 								</v-list>
 						</v-menu>			
 				</v-app-bar>                    
-				<v-main class="pa-0">
+				<v-main>
 					<slot />
 				</v-main>
 		</div>    
