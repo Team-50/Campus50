@@ -9,7 +9,7 @@
 								inset
 								vertical>
 						</v-divider>
-						<strong>Mulai Ujian :</strong> {{$date(this.peserta.mulai_ujian).format('DD/MM/YYYY HH:mm')}}
+						<strong>Mulai Ujian :</strong> {{$date(this.peserta.mulai_ujian).format("DD/MM/YYYY HH:mm")}}
 						<v-divider
 								class="mx-4"
 								inset
@@ -108,12 +108,12 @@
 		</div>
 </template>
 <script>
-import JawabanSoal from '@/components/JawabanSoal';
-export default {
-		name:'UjianOnline',
+	import JawabanSoal from "@/components/JawabanSoal";
+	export default {
+		name: "UjianOnline",
 		created () 
 		{           
-				var page = this.$store.getters['uiadmin/Page']('ujianonline');
+				var page = this.$store.getters["uiadmin/Page"]("ujianonline");
 				this.jadwal_ujian=page.data_ujian;
 				this.peserta=page.data_peserta;        
 				this.initialize();
@@ -129,16 +129,16 @@ export default {
 		methods: {
 				initialize:async function() 
 				{
-						await this.$ajax.get('/spmb/ujianonline/soal/'+this.peserta.user_id,         
+						await this.$ajax.get("/spmb/ujianonline/soal/"+this.peserta.user_id,         
 						{
 								headers: {
-										Authorization: this.$store.getters['auth/Token']
+										Authorization: this.$store.getters["auth/Token"]
 								}
 						}).then(({ data }) => {                       
 								if (data.status==0)
 								{
 										this.isprosesujian=true;
-										this.nama_soal='UJIAN SELESAI ?';
+										this.nama_soal="UJIAN SELESAI ?";
 										this.daftar_jawaban=[];
 								}
 								else
@@ -157,18 +157,18 @@ export default {
 				selesaiUjian:async function()
 				{
 						this.btnLoading = true;
-						await this.$ajax.post('/spmb/ujianonline/selesaiujian',  
+						await this.$ajax.post("/spmb/ujianonline/selesaiujian",  
 						{
-								_method:'put',
+								_method: "put",
 								user_id: this.peserta.user_id
 						},  
 						{
 								headers: {
-										Authorization: this.$store.getters['auth/Token']
+										Authorization: this.$store.getters["auth/Token"]
 								}
 						}).then(() => {                       
 							 this.btnLoading = false;
-							 this.$router.push('/dashboard/'+this.$store.getters['auth/AccessToken']);
+							 this.$router.push("/dashboard/"+this.$store.getters["auth/AccessToken"]);
 						}).catch(() => {
 								this.btnLoading = false;
 						}); 
@@ -177,5 +177,5 @@ export default {
 		components: {
 				JawabanSoal,      
 		},
-}
+	};
 </script>
