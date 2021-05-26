@@ -192,7 +192,12 @@
 								pembayaran biaya pendaftaran (Rp.
 								{{ biaya_pendaftaran | formatUang }}) dengan cara transfer ke
 								rekening berikut :
-								<v-alert type="info">
+								<v-divider
+									class="ma-0"
+									inset
+									vertical>
+								</v-divider>
+								<v-alert type="info" color="amber darken-2">
 									BRI (BANK RAKYAT INDONESIA) <br />
 									NOMOR REKENING : 2147.01.000.129.307 <br />
 									A.N : SEKOLAH TINGGI TEKNOLOGI INDONESIA TANJUNGPINANG<br />
