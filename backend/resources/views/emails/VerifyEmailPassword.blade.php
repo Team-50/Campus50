@@ -14,22 +14,22 @@
         <tr>
             <td>
                 <p>Hi, {{$name}}</p>
-                <p>Terima kasih atas pendaftaran Anda sebagai peserta Ujian, untuk menyelesaikan proses yang telah dilalui Kami ingin memastikan bahwa email ini adalah milik Anda. Untuk memverifikasi email gunakan kode keamanan:</p>
+                <p>Terima kasih atas pendaftaran Anda sebagai peserta ujian, untuk menyelesaikan proses yang telah dilalui kami ingin memastikan bahwa email ini adalah milik Anda. Untuk memverifikasi email gunakan kode keamanan berikut.</p>
             <p>
-                <h2 style="background-color:#FFB300; padding-block: 5px; padding-inline: 5px;">{{$code}}</h2>
+                <h2 style="text-align:center; background-color:#FFB300; padding-block: 5px; padding-inline: 5px;">{{$code}}</h2>
             </p>
             <p>
                 Untuk langkah selanjutnya, yang harus dilakukan adalah :
                 <ol type="1">
-                    <li>Login diSitus PMB menggunakan username dan password tersebut di atas</li>
+                    <li>Login di situs <a href="https://campus50.sttindonesia.ac.id/login">ini</a> menggunakan username dan password tersebut di atas</li>
                     <li>Isi data sesuai petunjuk</li>
-                    <li>Lakukan pembayaran dengan menunjukkan No Billing (Bank) anda</li>
+                    <li>Lakukan pembayaran dengan menunjukkan No Billing (Bank) Anda</li>
                     <li>Upload berkas pendaftaran</li>
                     <li>Cetak Kartu Tanda Peserta secara mandiri</li>
                 </ol>
             </p>
-            <p>Lengkapilah data pribadi Anda sesuai dengan formulir yang telah kami sediakan, lalu silahkan anda melakukan pendaftaran calon peserta ujian STT Indonesia Gelombang XX Tahun XXXX.<br>
-            Jika Anda merasa tidak pernah mendaftar, silahkan Abaikan Email ini.</p>
+            <p>Lengkapilah data pribadi Anda sesuai dengan formulir yang telah kami sediakan, lalu silahkan Anda melakukan pendaftaran calon peserta ujian STT Indonesia Tanjungpinang tahun akademik {{$ta}}.<br>
+            Jika Anda merasa tidak pernah mendaftar, silahkan abaikan email ini.</p>
             </td>
         </tr>
     </table>
@@ -39,8 +39,11 @@
                 <p>
                     Salam,<br>
                     Divisi Humas dan Marketing<br>
-                    {{$nama_pt}}<br>
-                    Telp. (0771) 7002638
+                    {{ucwords($nama_pt)}}<br>
+                    Alamat. Jl. Pompa Air No.28, Km. 2.5, Tanjungpinang - Kepulauan Riau 29122 <br>
+                    Telp. (0771) 317780 <br>
+                    Website. <a href="https://sttindonesia.ac.id">www.sttindonesia.ac.id</a>
+                    Email. info@sttindonesia.ac.id
                 </p>
             </td>
         </tr>

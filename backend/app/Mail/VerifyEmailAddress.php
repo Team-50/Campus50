@@ -36,7 +36,8 @@ class VerifyEmailAddress extends Mailable
         return $this->view('emails.VerifyEmailPassword')->with([
                                                             'nama_pt'=>$config->config_value,
                                                             'name'=>$this->name,
-                                                            'code'=>$this->code
+                                                            'code'=>$this->code,
+                                                            'ta'=>'2021',
                                                         ]);
     }
 }
