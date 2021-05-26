@@ -114,7 +114,7 @@
 											<v-btn
 												color="white"
 												dark
-												class="ma-2 mx-2 mr-2 green--text"
+												class="ma-2 mx-2 mr-2 orange--text"
 												elevation="0"
 												@click.stop="mulaiUjian"
 												:disabled="ismulai"

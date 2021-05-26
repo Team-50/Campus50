@@ -15,7 +15,7 @@
 								inset
 								vertical>
 						</v-divider>
-		</v-system-bar>	
+				</v-system-bar>	
 
 				<v-app-bar 
 						color="#4285F4"
@@ -53,8 +53,15 @@
 										</v-app-bar>
 
 										<p class="font-weight-regular pa-4">
-												{{nama_soal}}
+											{{nama_soal}}
 										</p>
+
+										<v-img
+											v-if="gambar"
+											max-height="50%"
+											max-width="auto"
+											:src="$api.url+'/'+gambar"
+										></v-img>
 										</v-card>
 								</v-col>
 
@@ -124,6 +131,7 @@
 				isprosesujian:false,
 
 				nama_soal: "",
+				gambar: null,
 				daftar_jawaban: []
 		}),
 		methods: {
@@ -144,6 +152,7 @@
 								else
 								{
 										this.nama_soal = data.soal.soal;     
+										this.gambar = data.soal.gambar;     
 										this.daftar_jawaban = data.jawaban;
 								}
 						}).catch(() => {
@@ -167,8 +176,8 @@
 										Authorization: this.$store.getters["auth/Token"]
 								}
 						}).then(() => {                       
-							 this.btnLoading = false;
-							 this.$router.push("/dashboard/"+this.$store.getters["auth/AccessToken"]);
+							this.btnLoading = false;
+							this.$router.push("/dashboard/"+this.$store.getters["auth/AccessToken"]);
 						}).catch(() => {
 								this.btnLoading = false;
 						}); 

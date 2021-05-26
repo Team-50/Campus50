@@ -41,8 +41,8 @@
                     Divisi Humas dan Marketing<br>
                     {{ucwords($nama_pt)}}<br>
                     Alamat. Jl. Pompa Air No.28, Km. 2.5, Tanjungpinang - Kepulauan Riau 29122 <br>
-                    Telp. (0771) 317780 <br>
-                    Website. <a href="https://sttindonesia.ac.id">www.sttindonesia.ac.id</a>
+                    Telp. (0771) 317780, 0811 7002638 <br>
+                    Website. <a href="https://sttindonesia.ac.id">www.sttindonesia.ac.id</a> <br>
                     Email. info@sttindonesia.ac.id
                 </p>
             </td>
