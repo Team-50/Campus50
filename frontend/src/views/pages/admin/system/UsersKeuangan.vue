@@ -20,8 +20,7 @@
 										border="left"                    
 										colored-border
 										type="info"
-										>
-										 User dengan role Keuangan bertanggungjawab terhadap proses keuangan.
+										>User dengan role Keuangan bertanggungjawab terhadap proses keuangan.
 								</v-alert>
 						</template>
 				</ModuleHeader>        
@@ -69,18 +68,22 @@
 																<v-btn color="warning"
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
-																		class="mb-2 mr-2" 
+																		class="mb-2 mr-2"
+																		elevation="0"
+																		small
 																		@click.stop="syncPermission" 
 																		v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
-																		SYNC PERMISSION
+																		SYNC
 																</v-btn>
 																<v-btn
 																	:loading="btnLoading"
 																	:disabled="btnLoading"
-																	color="#1A237E"                                   
-																	class="mb-2 white--text"
+																	color="indigo darken-3"
+																	class="mb-2 primary"
+																	elevation="0"
+																	small
 																	@click.stop="showDialogTambahUserKeuangan">
-																	TAMBAH
+																	<v-icon>mdi-plus-circle</v-icon>
 																</v-btn>
 																<v-dialog v-model="dialog" max-width="500px" persistent>         
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
@@ -313,7 +316,6 @@ export default {
 				];
 				this.initialize()
 		},
-	 
 		data: () => ({ 
 				role_id:0,
 				datatableLoading:false,
@@ -557,7 +559,6 @@ export default {
 						}).then(({ data }) => {
 								this.permissions_selected = data.permissions;
 								this.btnLoading = false;
-									 
 						}).catch(() => {
 								this.btnLoading = false;
 						});  

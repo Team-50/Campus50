@@ -20,8 +20,7 @@
 										border="left"
 										colored-border
 										type="info"
-										>
-										 User dengan role Program Studi bertanggungjawab terhadap proses akademik mahasiswa.
+										>User dengan role Program Studi bertanggungjawab terhadap proses akademik mahasiswa.
 								</v-alert>
 						</template>
 				</ModuleHeader>
@@ -70,17 +69,21 @@
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
 																		class="mb-2 mr-2"
+																		small
+																		elevation="0"
 																		@click.stop="syncPermission"
 																		v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
-																		SYNC PERMISSION
+																		SYNC
 																</v-btn>
 																<v-btn
-																		color="#1A237E"
+																		color="indigo darken-3"
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
-																		class="mb-2 white--text"
+																		class="mb-2 primary"
+																		small
+																		elevation="0"
 																		@click.stop="showDialogTambahUserProgramStudi">
-																		TAMBAH
+																		<v-icon>mdi-plus-circle</v-icon>
 																</v-btn>
 																<v-dialog v-model="dialog" max-width="500px" persistent>
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>

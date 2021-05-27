@@ -20,8 +20,7 @@
 										border="left"                    
 										colored-border
 										type="info"
-										>
-										 User dengan role DOSEN bertanggungjawab terhadap proses pembelajaran mahasiswa.
+										>User dengan role DOSEN bertanggungjawab terhadap proses pembelajaran mahasiswa.
 								</v-alert>
 						</template>
 				</ModuleHeader>        
@@ -69,18 +68,22 @@
 																<v-btn color="warning"
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
-																		class="mb-2 mr-2" 
+																		class="mb-2 mr-2"
+																		small
+																		elevation="0"
 																		@click.stop="syncPermission" 
 																		v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
-																		SYNC PERMISSION
+																		SYNC
 																</v-btn>    
 																<v-btn
-																		color="#1A237E"
-																		class="mb-2 white--text"
+																		color="indigo darken-3"
+																		class="mb-2 primary"
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
+																		small
+																		elevation="0"
 																		@click.stop="showDialogTambahUserDosen">
-																		TAMBAH
+																		<v-icon>mdi-plus-circle</v-icon>
 																</v-btn>
 																<v-dialog v-model="dialog" max-width="500px" persistent>         
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
@@ -332,7 +335,6 @@ export default {
 				];
 				this.initialize()
 		},
-	 
 		data: () => ({         
 				datatableLoading:false,
 				btnLoading: false,    

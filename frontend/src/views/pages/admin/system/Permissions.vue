@@ -68,7 +68,7 @@
                                 <v-spacer></v-spacer>
                                 <v-dialog v-model="dialog" max-width="500px" persistent>
                                     <template v-slot:activator="{ on }">
-                                        <v-btn color="indigo darken-3" class="ma-2 primary" v-on="on" :disabled="!CAN_ACCESS('PERMISSIONS_STORE')">
+                                        <v-btn color="indigo darken-3" small elevation="0" class="ma-2 primary" v-on="on" :disabled="!CAN_ACCESS('PERMISSIONS_STORE')">
                                             <v-icon>mdi-plus-circle</v-icon>
                                         </v-btn>
                                     </template>
