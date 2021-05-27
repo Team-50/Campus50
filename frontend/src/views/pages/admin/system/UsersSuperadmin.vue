@@ -20,8 +20,7 @@
 										border="left"                    
 										colored-border
 										type="info"
-										>
-										 User dengan role Super Admin bertanggungjawab terhadap proses keseluruhan sistem.
+										>User dengan role Super Admin bertanggungjawab terhadap proses keseluruhan sistem.
 								</v-alert>
 						</template>
 				</ModuleHeader>        
@@ -71,6 +70,8 @@
 																		:disabled="btnLoading"
 																		color="indigo darken-3"                                    
 																		class="mb-2 primary"
+																		small
+																		elevation="0"
 																		@click.stop="showDialogTambahUserSuperAdmin">
 																		<v-icon>mdi-plus-circle</v-icon>
 																</v-btn>
@@ -266,7 +267,6 @@ export default {
 				];
 				this.initialize()
 		},
-	 
 		data: () => ({ 
 				role_id:0,
 				datatableLoading:false,

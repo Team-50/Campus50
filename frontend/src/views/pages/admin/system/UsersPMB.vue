@@ -20,8 +20,7 @@
 										border="left"                    
 										colored-border
 										type="info"
-										>
-										 User dengan role PMB bertanggungjawab terhadap proses penerimaan mahasiswa baru.
+										>User dengan role PMB bertanggungjawab terhadap proses penerimaan mahasiswa baru.
 								</v-alert>
 						</template>
 				</ModuleHeader>        
@@ -70,17 +69,21 @@
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
 																		class="mb-2 mr-2" 
-																		@click.stop="syncPermission" 
+																		@click.stop="syncPermission"
+																		small
+																		elevation="0"
 																		v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
-																		SYNC PERMISSION
+																		SYNC
 																</v-btn>
 																<v-btn
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
-																		color="#1A237E"
-																		class="mb-2 white--text"
+																		color="indigo darken-3"
+																		class="mb-2 primary"
+																		small
+																		elevation="0"
 																		@click.stop="showDialogTambahUserPMB">
-																		TAMBAH
+																		<v-icon>mdi-plus-circle</v-icon>
 																</v-btn>
 																<v-dialog v-model="dialog" max-width="500px" persistent>         
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
@@ -313,7 +316,6 @@ export default {
 				];
 				this.initialize()
 		},
-	 
 		data: () => ({ 
 				role_id:0,
 				datatableLoading:false,
@@ -548,8 +550,7 @@ export default {
 								this.daftar_permissions = data.permissions;               
 						}).catch(() => {
 								this.btnLoading = false;
-						});          
-				
+						});
 						await this.$ajax.get('/system/users/'+item.id+'/permission',{
 								headers: {
 										Authorization: this.TOKEN
@@ -557,13 +558,11 @@ export default {
 						}).then(({ data }) => {
 								this.permissions_selected = data.permissions;
 								this.btnLoading = false;
-									 
 						}).catch(() => {
 								this.btnLoading = false;
 						});  
 						this.dialogUserPermission = true;
 						this.editedItem=item;
-				
 				},
 				close() {            
 						this.btnLoading = false;

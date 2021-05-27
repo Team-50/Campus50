@@ -68,7 +68,7 @@
                                 <v-spacer></v-spacer>
                                 <v-dialog v-model="dialogfrm" max-width="600px" persistent>
                                     <template v-slot:activator="{ on }">
-                                        <v-btn color="primary" dark class="mb-2" v-on="on">TAMBAH</v-btn>
+                                        <v-btn color="indigo darken-3" small dark class="mb-2 primary" v-on="on"><v-icon>mdi-plus-circle</v-icon></v-btn>
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
