@@ -42,15 +42,25 @@ class PMBUjianOnlineController extends Controller {
         }
         else
         {
-            $soal=SoalPMBModel::select(\DB::raw('id,soal,gambar'))
-                            ->whereNotIn('id',function($query) use ($id){
-                                $query->select('soal_id')
-                                        ->from('pe3_jawaban_ujian')
-                                        ->where('user_id',$id);
-                            })
-                            ->inRandomOrder()
-                            ->first();
+            $jadwal_ujian=$peserta->jadwalujian;
+            $jumlah_soal=$jadwal_ujian->jumlah_soal;
+
+            $soal=null;
+            $jumlah_soal_terjawab=\DB::table('pe3_jawaban_ujian')
+                                ->where('user_id',$id)
+                                ->count();
             
+            if ($jumlah_soal_terjawab<$jumlah_soal)
+            {
+                $soal=SoalPMBModel::select(\DB::raw('id,soal,gambar'))
+                                ->whereNotIn('id',function($query) use ($id){
+                                    $query->select('soal_id')
+                                            ->from('pe3_jawaban_ujian')
+                                            ->where('user_id',$id);
+                                })
+                                ->inRandomOrder()
+                                ->first();
+            }            
             if (is_null($soal))
             {
                 $status=0;
