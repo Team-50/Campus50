@@ -325,7 +325,7 @@ import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter19 from "@/components/sidebar/FilterMode19";
 export default {
-		name: "SoalPMB", 
+		name: "SoalPMB",
 		created() {
 				this.breadcrumbs = [
 						{
@@ -349,7 +349,7 @@ export default {
 				this.nama_semester_pendaftaran=this.$store.getters["uiadmin/getNamaSemester"](this.semester_pendaftaran);
 						 
 				this.initialize()
-		}, 
+		},
 		data: () => ({         
 				firstloading: true,
 				prodi_id:null,
@@ -364,23 +364,23 @@ export default {
 				expanded: [],
 				datatable: [],
 				headers: [                                    
-						{ text: "NAMA SOAL", value: "soal"}, 
+						{ text: "NAMA SOAL", value: "soal"},
 						{ text: "AKSI", value: "actions", sortable: false,width:100 },
 				],
 				headers_detail: [
-						{ text: "JAWABAN", value: "jawaban", sortable: false,}, 
+						{ text: "JAWABAN", value: "jawaban", sortable: false,},
 						{ text: "KET.", value: "status", sortable: false,width:100 },
 				],
-				search: "",  
+				search: "",
 
 				//dialog        
 				dialogfrm: false,
 				dialogeditfrm: false,
-				dialogdetailitem: false, 
+				dialogdetailitem: false,
 				
 				//form data   
-				form_valid: true, 
-				form_edit_valid: true, 
+				form_valid: true,
+				form_edit_valid: true,
 				menuTanggalBayar: false,
 				image_prev:null,
 				daftar_soal_jawaban: [],
@@ -411,7 +411,7 @@ export default {
 						jawaban3: "",
 						jawaban4: "",
 						jawaban_benar: "",
-						created_at: "",   
+						created_at: "",
 						updated_at: "",
 				},
 				formdefault: {            
@@ -423,20 +423,20 @@ export default {
 					jawaban3: null,
 					jawaban4: null,
 					jawaban_benar: null,
-					created_at: null,   
+					created_at: null,
 					updated_at: null,
-				},  
+				},
 				editedIndex: -1,
 
 				//form rules  
 				rule_soal: [
-					value => !!value || "Mohon untuk di isi soal !!!",  
+					value => !!value || "Mohon untuk di isi soal !!!",
 				],
 				rule_jawaban: [
-					value => !!value || "Mohon isi jawaban dari soal ini",  
-				], 
+					value => !!value || "Mohon isi jawaban dari soal ini",
+				],
 				rule_jawaban_benar: [
-					value => !!value || "Mohon pilih jawaban benar dari soal ini",  
+					value => !!value || "Mohon pilih jawaban benar dari soal ini",
 				],
 				rule_file_gambar: [            
 					value =>  !value || value.size < 2000000 || "File Bukti Bayar harus kurang dari 2MB.",					
@@ -474,19 +474,14 @@ export default {
 						this.$refs.filter19.setFirstTimeLoading(this.firstloading);
 				},
 
-				dataTableRowClicked(item)
-				{
-						if ( item === this.expanded[0])
-						{
-								this.expanded=[];
-						}
-						else
-						{
-								this.expanded=[item];
-						}               
+				dataTableRowClicked(item) {
+					if ( item === this.expanded[0]) {
+						this.expanded=[];
+					} else {
+						this.expanded=[item];
+					}
 				},
-				addItem()
-				{
+				addItem() {
 						this.dialogfrm=true;
 				},
 				editItem:async function (item) {  
@@ -503,7 +498,7 @@ export default {
 										if (element.status==1)
 										{
 												jawaban_benar=element.id;
-										}                     
+										}
 								});
 								this.formdata.jawaban_benar=jawaban_benar; 
 								this.daftar_soal_jawaban=data.soal.jawaban;
@@ -512,7 +507,7 @@ export default {
 								{
 										this.image_prev=this.$api.url+"/"+this.formdata.gambar;
 										this.formdata.gambar = null;
-								}                
+								} 
 						}); 
 				},
 				async viewItem (item)
@@ -544,8 +539,8 @@ export default {
 								reader.readAsDataURL(e);
 								reader.onload = img => {     
 										this.image_prev=img.target.result;
-								}                
-						}          
+								} 
+						} 
 				},
 				save() {
 						if (this.$refs.frmdata.validate()) {
@@ -599,7 +594,7 @@ export default {
 										}).catch(() => {
 												this.btnLoading = false;
 										});
-								}            
+								}
 						}
 				},
 				update() {
@@ -652,9 +647,9 @@ export default {
 										}).catch(() => {
 												this.btnLoading = false;
 										});
-								}                
+								} 
 						}); 
-				},   
+				}, 
 				closedialogfrm() {            
 						this.dialogfrm = false;
 						setTimeout(() => {
@@ -703,34 +698,27 @@ export default {
 				},
 		},
 		watch: {
-				tahun_pendaftaran()
-				{
-						if (!this.firstloading)
-						{
-								this.initialize();
-						}            
-				},
-				semester_pendaftaran (val)
-				{
-						if (!this.firstloading)
-						{
-								this.nama_semester_pendaftaran=this.$store.getters["uiadmin/getNamaSemester"](val); 
-								this.initialize();
-						}            
-				},
-				prodi_id(val)
-				{
-						if (!this.firstloading)
-						{
-								this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
-								this.initialize();
-						}            
+			tahun_pendaftaran() {
+				if (!this.firstloading) {
+					this.initialize();
 				}
-
+			},
+			semester_pendaftaran (val) {
+				if (!this.firstloading) {
+					this.nama_semester_pendaftaran=this.$store.getters["uiadmin/getNamaSemester"](val); 
+					this.initialize();
+				}
+			},
+			prodi_id(val) {
+				if (!this.firstloading) {
+					this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+					this.initialize();
+				}
+			},
 		},
 		components: {
 			SPMBLayout,
-			ModuleHeader, 
+			ModuleHeader,
 			Filter19,
 		},
 	};

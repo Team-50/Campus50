@@ -86,7 +86,7 @@ class PMBUjianOnlineController extends Controller {
         }        
     }  
     /**
-     * digunakan untuk mendapatkan daftar jadwal ujian
+     * digunakan untuk mendapatkan daftar jadwal ujian yang belum selesai
      */
     public function jadwal (Request $request)
     {   
@@ -117,6 +117,7 @@ class PMBUjianOnlineController extends Controller {
                                             ->leftJoin('pe3_ruangkelas','pe3_ruangkelas.id','pe3_jadwal_ujian_pmb.ruangkelas_id')
                                             ->where('ta',$tahun_pendaftaran)
                                             ->where('idsmt',$semester_pendaftaran)
+                                            ->whereRaw('(status_ujian=0 OR status_ujian=1)')
                                             ->whereRaw('CURRENT_DATE() <= pe3_jadwal_ujian_pmb.tanggaL_akhir_daftar')
                                             ->orderBy('tanggal_akhir_daftar','desc')
                                             ->get();
@@ -151,12 +152,20 @@ class PMBUjianOnlineController extends Controller {
         }
         else
         {   
-            $jadwal_ujian=$peserta->jadwalujian;
+            $jadwal_ujian = $peserta->jadwalujian;
+            $nilai = $peserta->nilaiujian;
+
+            if ($peserta->isfinish == 1 && is_null($nilai))
+            {
+                $this->hitungNilaiUjian($peserta->user_id);
+                $nilai = NilaiUjianPMBModel::find($peserta->user_id);                            
+            }
             return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
                                     'peserta'=>$peserta,
                                     'jadwal_ujian'=>$jadwal_ujian,
+                                    'nilai'=>$nilai,
                                     'message'=>'Fetch data peserta ujian pmb berhasil.'
                                 ],200);     
         }

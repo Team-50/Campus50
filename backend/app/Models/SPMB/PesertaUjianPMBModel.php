@@ -48,4 +48,8 @@ class PesertaUjianPMBModel extends Model {
     {
         return $this->belongsTo('App\Models\SPMB\JadwalUjianPMBModel','jadwal_ujian_id','id');
     }
+    public function nilaiujian ()
+    {
+        return $this->belongsTo('App\Models\SPMB\NilaiUjianPMBModel','user_id','user_id');
+    }
 }
