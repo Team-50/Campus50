@@ -62,10 +62,10 @@
 									color="indigo darken-3"
 									small
 									elevation="0"
-									class="ma-2 primary"
+									class="primary"
 									@click.stop="tambahItem"
 								>
-									<v-icon>mdi-plus-circle</v-icon>
+									<v-icon size="21px">mdi-plus-circle</v-icon>
 								</v-btn>
 								<v-dialog v-model="dialogfrm" max-width="500px" persistent>
 									<v-form ref="frmdata" v-model="form_valid" lazy-validation>
