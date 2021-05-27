@@ -68,8 +68,8 @@
                                 <v-spacer></v-spacer>
                                 <v-dialog v-model="dialogfrm" max-width="600px" persistent>
                                     <template v-slot:activator="{ on }">
-                                        <v-btn color="primary" icon outlined small class="ma-2" v-on="on">
-                                            <v-icon>mdi-plus</v-icon>
+                                        <v-btn color="indigo darken-3" small elevation="0" class="ma-2 primary" v-on="on">
+                                            <v-icon>mdi-plus-circle</v-icon>
                                         </v-btn>             
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>

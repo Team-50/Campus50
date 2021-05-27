@@ -61,6 +61,7 @@
 								<v-btn
 									color="indigo darken-3"
 									small
+									elevation="0"
 									class="ma-2 primary"
 									@click.stop="tambahItem"
 								>
