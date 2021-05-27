@@ -70,14 +70,15 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-btn color="#1A237E" dark class="mb-2 mr-2" @click.stop="showDialogCopyPersyaratan" v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">SALIN PERSYARATAN PMB</v-btn>
+                                <v-btn color="warning" small elevation="0" class="mb-2 mr-2 primary" @click.stop="showDialogCopyPersyaratan" v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">SALIN PERSYARATAN PMB</v-btn>
                                 <v-btn 
-                                    color="#1A237E" 
-                                    dark 
-                                    class="mb-2" 
+                                    color="indigo darken-3" 
+                                    small
+                                    elevation="0"
+                                    class="mb-2 primary" 
                                     @click.stop="tambahItem"                                    
                                     v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">
-                                    TAMBAH
+                                    <v-icon>mdi-plus-circle</v-icon>
                                 </v-btn>
                                 <v-dialog v-model="dialogfrm" max-width="500px" persistent>         
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
