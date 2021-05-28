@@ -71,14 +71,13 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>    
                                 <v-btn 
-                                    color="primary" 
-                                    icon 
-                                    outlined 
+                                    color="indigo darken-3" 
+                                    elevation="0"
                                     small 
-                                    class="ma-2" 
+                                    class="primary" 
                                     to="/akademik/perkuliahan/krs/tambah"
                                     v-if="$store.getters['auth/can']('AKADEMIK-PERKULIAHAN-KRS_STORE')">
-                                        <v-icon>mdi-plus</v-icon>
+                                        <v-icon size="21px">mdi-plus-circle</v-icon>
                                 </v-btn>             
                             </v-toolbar>
                             <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                

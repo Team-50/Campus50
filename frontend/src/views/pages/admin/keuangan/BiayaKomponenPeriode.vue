@@ -95,8 +95,10 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-btn 
-                                    color="primary" 
-                                    class="mb-2" 
+                                    color="indigo darken-3" 
+                                    small
+                                    class="primary"
+                                    elevation="0"
                                     :loading="btnLoading"
                                     :disabled="btnLoading"
                                     @click.stop="loadkombiperiode"

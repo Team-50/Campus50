@@ -79,13 +79,14 @@
 								<v-divider class="mx-4" inset vertical></v-divider>
 								<v-spacer></v-spacer>
 								<v-btn
-									color="primary"
-									dark
-									class="mb-2"
+									color="indigo darken-3"
+									small
+									elevation="0"
+									class="primary"
 									@click.stop="tambahItem"
 									v-if="$store.getters['auth/can']('AKADEMIK-MATAKULIAH_STORE')"
 								>
-									TAMBAH
+									<v-icon size="21px">mdi-plus-circle</v-icon>
 								</v-btn>
 								<v-dialog v-model="dialogfrm" max-width="500px" persistent>
 									<v-form ref="frmdata" v-model="form_valid" lazy-validation>

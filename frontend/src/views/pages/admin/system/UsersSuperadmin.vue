@@ -69,11 +69,11 @@
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
 																		color="indigo darken-3"                                    
-																		class="mb-2 primary"
+																		class="primary"
 																		small
 																		elevation="0"
 																		@click.stop="showDialogTambahUserSuperAdmin">
-																		<v-icon>mdi-plus-circle</v-icon>
+																		<v-icon size="21px">mdi-plus-circle</v-icon>
 																</v-btn>
 																<v-dialog v-model="dialog" max-width="500px" persistent>         
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>

@@ -77,14 +77,19 @@
 								<v-btn
 									:disabled="btnLoading"
 									color="warning"
-									class="mb-2 mr-2"
+									small
+									elevation="0"
+									class="mr-2 primary"
 									@click.stop="syncPermission"
 									v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')"
 								>
-									SYNC PERMISSION
+									SYNC
 								</v-btn>
 								<v-btn
-									color="primary"
+									color="indigo darken-3"
+									class="primary"
+									small
+									elevation="0"
 									:disabled="btnLoading"
 									@click.stop="printtoexcel"
 									v-if="
@@ -93,8 +98,7 @@
 										)
 									"
 								>
-									Cetak
-									<v-icon right>mdi-printer</v-icon>
+									<v-icon size="21px">mdi-printer</v-icon>
 								</v-btn>
 							</v-toolbar>
 						</template>

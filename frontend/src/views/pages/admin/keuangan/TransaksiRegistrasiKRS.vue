@@ -71,11 +71,11 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>     
-                                <v-btn color="primary" icon outlined small class="ma-2" @click.stop="addItem">
-                                    <v-icon>mdi-plus</v-icon>
+                                <v-btn color="warning" elevation="0" small class="mr-2 primary">
+                                    <v-icon size="21px">mdi-printer</v-icon>
                                 </v-btn>
-                                <v-btn color="primary" icon outlined small class="ma-2">
-                                    <v-icon>mdi-printer</v-icon>
+                                <v-btn color="indigo darken-3" elevation="0" small class="primary" @click.stop="addItem">
+                                    <v-icon size="21px">mdi-plus-circle</v-icon>
                                 </v-btn>
                                 <v-dialog v-model="dialogfrm" max-width="500px" persistent>         
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>

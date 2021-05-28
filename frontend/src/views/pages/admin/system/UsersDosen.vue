@@ -68,7 +68,7 @@
 																<v-btn color="warning"
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
-																		class="mb-2 mr-2"
+																		class="mr-2"
 																		small
 																		elevation="0"
 																		@click.stop="syncPermission" 
@@ -77,13 +77,13 @@
 																</v-btn>    
 																<v-btn
 																		color="indigo darken-3"
-																		class="mb-2 primary"
+																		class="primary"
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
 																		small
 																		elevation="0"
 																		@click.stop="showDialogTambahUserDosen">
-																		<v-icon>mdi-plus-circle</v-icon>
+																		<v-icon size="21px">mdi-plus-circle</v-icon>
 																</v-btn>
 																<v-dialog v-model="dialog" max-width="500px" persistent>         
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>

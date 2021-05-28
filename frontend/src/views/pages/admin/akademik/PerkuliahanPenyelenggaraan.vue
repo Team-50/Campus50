@@ -72,11 +72,11 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>     
-                                <v-btn color="primary" icon outlined small class="ma-2" to="/akademik/perkuliahan/penyelenggaraan/tambah" v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_STORE')">
-                                    <v-icon>mdi-plus</v-icon>
+                                <v-btn color="warning" elevation="0" small class="mr-2 primary">
+                                    <v-icon size="">mdi-printer</v-icon>
                                 </v-btn>
-                                <v-btn color="primary" icon outlined small class="ma-2">
-                                    <v-icon>mdi-printer</v-icon>
+                                <v-btn color="indigo darken-3" elevation="0" small class="primary" to="/akademik/perkuliahan/penyelenggaraan/tambah" v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_STORE')">
+                                    <v-icon size="21px">mdi-plus-circle</v-icon>
                                 </v-btn>
                             </v-toolbar>
                         </template>

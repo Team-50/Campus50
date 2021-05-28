@@ -72,10 +72,10 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>     
-                                <v-btn color="primary" icon outlined small class="ma-2" to="/akademik/perkuliahan/pembagiankelas/tambah" v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PEMGBAGIAN-KELAS_STORE')">
-                                    <v-icon>mdi-plus</v-icon>
+                                <v-btn color="warning" elevation="0" small class="mr-2 primary" to="/akademik/perkuliahan/pembagiankelas/tambah" v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PEMGBAGIAN-KELAS_STORE')">
+                                    <v-icon size="21px">mdi-plus-circle</v-icon>
                                 </v-btn>
-                                <v-btn color="primary" icon outlined small class="ma-2">
+                                <v-btn color="indigo darken-3" elevation="0" small class="primary">
                                     <v-icon>mdi-printer</v-icon>
                                 </v-btn>
                                 <v-dialog v-model="dialogfrm" max-width="750px" persistent>         
