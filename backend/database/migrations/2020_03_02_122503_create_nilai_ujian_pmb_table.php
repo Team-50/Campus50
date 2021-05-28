@@ -25,7 +25,7 @@ class CreateNilaiUjianPmbTable extends Migration
             $table->smallInteger('passing_grade_2')->nullable();
             $table->decimal('nilai',5,2)->nullable();
             $table->boolean('ket_lulus')->default(0);
-            $table->unsignedInteger('kjur');
+            $table->unsignedInteger('kjur')->nullable();
             $table->string('desc')->nullable();
 
             $table->timestamps();
