@@ -282,20 +282,35 @@ class NilaiUjianController extends Controller {
             return Response()->json([
                                     'status'=>0,
                                     'pid'=>'destroy',                
-                                    'message'=>["Nilai Ujian dengan ID ($id) gagal dihapus"]
+                                    'message'=>["Nilai Ujian dengan ID ($id) gagal dihapus, mungkin karena sudah lulus"]
                                 ],422); 
         }
         else
         {
-            $name=$data_nilai->name;
-            $data_nilai->delete();
+            $data_nilai = \DB::transaction(function () use ($request, $data_nilai) {
+                $mhs_id = $data_nilai->user_id;
+                $name=$data_nilai->name;
+                $data_nilai->delete();
 
-            \App\Models\System\ActivityLog::log($request,[
+                \DB::table('pe3_peserta_ujian_pmb')
+                    ->where('user_id', $mhs_id)
+                    ->update([
+                        'isfinish' => 0
+                    ]);
+
+                \DB::table('pe3_jawaban_ujian')
+                    ->where('user_id', $mhs_id)
+                    ->delete();
+                    
+                \App\Models\System\ActivityLog::log($request, [
                                                                 'object' => $this->guard()->user(), 
                                                                 'object_id' => $this->guard()->user()->id, 
                                                                 'user_id' => $this->getUserid(), 
-                                                                'message' => 'Menghapus Data nilai ujian pmb dengan user id ('.$data_nilai->user_id.') berhasil'
+                                                                'message' => 'Menghapus Data nilai ujian pmb dengan user id ('.$mhs_id.') berhasil'
                                                             ]);
+                
+                return $data_nilai;                
+            });
         
             return Response()->json([
                                         'status'=>1,

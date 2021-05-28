@@ -11,6 +11,7 @@ use App\Models\SPMB\SoalPMBModel;
 use App\Models\SPMB\JawabanUjianPMBModel;
 use App\Models\SPMB\NilaiUjianPMBModel;
 use App\Models\SPMB\PMBPassingGradeModel;
+use App\Models\SPMB\FormulirPendaftaranModel;
 
 use App\Models\Keuangan\TransaksiModel;
 use App\Models\Keuangan\TransaksiDetailModel;
@@ -311,9 +312,33 @@ class PMBUjianOnlineController extends Controller {
             'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',                               
         ]);
         
-        $peserta = \DB::transaction(function () use ($request) {
+        $peserta = $this->hitungNilaiUjian($request->input('user_id'));
 
-            $user_id = $request->input('user_id');
+        return Response()->json([
+                                'status'=>1,
+                                'pid'=>'update',  
+                                'peserta'=>$peserta,
+                                'message'=>'peserta ujian berhasil menyelesaikan ujian pmb.'
+                            ],200);
+    }
+    public function recalculate(Request $request)
+    {
+        $this->validate($request,[
+            'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',                               
+        ]);
+        
+        $peserta = $this->hitungNilaiUjian($request->input('user_id'));
+
+        return Response()->json([
+                                'status'=>1,
+                                'pid'=>'update',  
+                                'peserta'=>$peserta,
+                                'message'=>'peserta ujian berhasil menyelesaikan ujian pmb.'
+                            ],200);
+    }
+    private function hitungNilaiUjian($user_id)
+    {
+        $peserta = \DB::transaction(function () use ($user_id) {
             $peserta = PesertaUjianPMBModel::find($user_id);        
             $jadwalujian = $peserta->jadwalujian;
             
@@ -349,6 +374,16 @@ class PMBUjianOnlineController extends Controller {
             $jumlah_soal = $jadwalujian->jumlah_soal;            
             $nilai = \App\Helpers\Helper::formatPersen($benar,$jumlah_soal);            
             $nilai_passing_grade = is_null($passing_grade)?0:$passing_grade->nilai;
+
+            $formulir = FormulirPendaftaranModel::find($user_id);
+            $kjur = $nilai > $nilai_passing_grade ? $formulir->kjur1 : null;
+            $ket_lulus = $nilai > $nilai_passing_grade;
+
+            $kjur = $nilai > $nilai_passing_grade ? $formulir->kjur1 : null;
+            
+            NilaiUjianPMBModel::where('user_id',$user_id)
+                                ->delete();
+
             NilaiUjianPMBModel::create([
                 'user_id'=>$user_id,
                 'jadwal_ujian_id'=>$jadwal_ujian_id,
@@ -359,118 +394,24 @@ class PMBUjianOnlineController extends Controller {
                 'passing_grade_1'=>$nilai_passing_grade,
                 'passing_grade_2'=>0,
                 'nilai'=>$nilai,
-                'ket_lulus'=>(($nilai>$nilai_passing_grade)?1:0),
-                'desc'=>'Nilai beserta kelulusan dihitung otomatis oleh sistem'
-            ]);           
+                'ket_lulus'=>$ket_lulus,
+                'kjur'=>$kjur,
+                'desc'=>'Dihitung otomatis oleh sistem'
+            ]);
 
             $peserta->selesai_ujian=\Carbon\Carbon::now()->toDateTimeString();
             $peserta->isfinish=1;
             $peserta->save();
-
-            return $peserta;
-        });
-
-        return Response()->json([
-                                'status'=>1,
-                                'pid'=>'update',  
-                                'peserta'=>$peserta,
-                                'message'=>'peserta ujian berhasil menyelesaikan ujian pmb.'
-                            ],200);
-    }
-    public function recalculate(Request $request)
-    {
-        $this->validate($request,[
-            'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',                               
-        ]);
-        
-        $peserta = \DB::transaction(function () use ($request) {
-
-            $user_id = $request->input('user_id');
-            $peserta = PesertaUjianPMBModel::find($user_id);        
-            $jadwalujian = $peserta->jadwalujian;
             
-            $jadwal_ujian_id = $peserta->jadwal_ujian_id;
-
-            $passing_grade = PMBPassingGradeModel::where('jadwal_ujian_id',$jadwal_ujian_id)
-                                                    ->first();
-
-            $jawaban = JawabanUjianPMBModel::select(\DB::raw('
-                                                pe3_jawaban_soal.`status`,
-                                                COUNT(pe3_jawaban_ujian.id) AS jumlah
-                                            '))
-                                            ->join('pe3_jawaban_soal','pe3_jawaban_soal.id','pe3_jawaban_ujian.jawaban_id')
-                                            ->where('user_id',$user_id)
-                                            ->groupBy('pe3_jawaban_soal.status')
-                                            ->orderBy('pe3_jawaban_soal.status','asc')
-                                            ->get();
-
-            $salah = 0;
-            $benar = 0;
-            foreach($jawaban as $v)
-            {
-                switch($v->status)
-                {
-                    case 0:
-                        $salah = $v->jumlah;
-                    break;
-                    case 1:
-                        $benar = $v->jumlah;
-                    break;
-                }
-            }
-            $jumlah_soal = $jadwalujian->jumlah_soal;            
-            $nilai = \App\Helpers\Helper::formatPersen($benar,$jumlah_soal);    
-
-            $formulir = FormulirPendaftaranModel::find($user_id);
-            $kjur = $nilai > $nilai_passing_grade ? $formulir->kjur1 : null;
-            $ket_lulus = $nilai > $nilai_passing_grade;
-
-            if(is_null($nilai_ujian))
-            {
-                NilaiUjianPMBModel::create([
-                    'user_id'=>$user_id,
-                    'jadwal_ujian_id'=>$jadwal_ujian_id,
-                    'jumlah_soal'=>$jumlah_soal,
-                    'jawaban_benar'=>$benar,
-                    'jawaban_salah'=>$salah,
-                    'soal_tidak_terjawab'=>$jumlah_soal - ($benar+$salah),
-                    'passing_grade_1'=>$nilai_passing_grade,
-                    'passing_grade_2'=>0,
-                    'nilai'=>$nilai,
-                    'ket_lulus'=>$ket_lulus,
-                    'desc'=>'Nilai beserta kelulusan dihitung otomatis oleh sistem'
-                ]);           
-            }
-            else
-            {
-                $nilai_ujian->jawaban_benar = $benar;
-                $nilai_ujian->jawaban_salah = $salah;
-                $nilai_ujian->soal_tidak_terjawab = $jumlah_soal - ($benar+$salah);
-                $nilai_ujian->nilai = $nilai;
-                $nilai_ujian->ket_lulus = (($nilai>$nilai_passing_grade)?1:0);
-                $nilai_ujian->desc = 'Nilai beserta kelulusan dihitung otomatis oleh sistem';
-                $nilai_ujian->save();
-            }
-
-            $peserta->selesai_ujian=\Carbon\Carbon::now()->toDateTimeString();
-            $peserta->isfinish=1;
-            $peserta->save();
-
             if ($ket_lulus)
             {
                 $this->createTransaksiDulang($formulir);
                 $this->createTransaksiSPP($formulir);
             }
-
             return $peserta;
         });
 
-        return Response()->json([
-                                'status'=>1,
-                                'pid'=>'update',  
-                                'peserta'=>$peserta,
-                                'message'=>'peserta ujian berhasil menyelesaikan ujian pmb.'
-                            ],200);
+        return $peserta;
     }
     //buat transaksi keuangan daftar ulang 
     private function createTransaksiDulang($formulir)
