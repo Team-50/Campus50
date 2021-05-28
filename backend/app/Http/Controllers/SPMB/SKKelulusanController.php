@@ -146,7 +146,7 @@ class SKKelulusanController extends Controller {
 					$sign_qrcode = Helper::public_path('images/signature/'.$surat_keluar->id.'.svg');
 					QrCode::format('svg');
 					QrCode::size(100);
-					QrCode::generate('https://campus50.sttindonesia.ac.id.ac.id/verifikasi/'.$surat_keluar->id.'/suratkelulusan',$sign_qrcode);	
+					QrCode::generate('https://campus50.sttindonesia.ac.id/verifikasi/'.$surat_keluar->id.'/suratkelulusan',$sign_qrcode);	
 					$surat_keluar->qr_code='storage/images/signature/'.$surat_keluar->id.'.svg';
 					$surat_keluar->save();
 				}
