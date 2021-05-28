@@ -65,17 +65,21 @@
 																<v-btn 
 																		:loading="btnLoading"
 																		:disabled="btnLoading"
-																		color="warning" 
-																		class="mb-2 mr-2" 
+																		color="warning"
+																		small
+																		elevation="0"
+																		class="mr-2"
 																		@click.stop="syncPermission" 
 																		v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
-																		SYNC PERMISSION
+																		SYNC
 																</v-btn>
 																<v-btn
-																		color="#1A237E" 
-																		class="mb-2 white--text" 
+																		color="indigo darken-3"
+																		class="primary"
+																		small
+																		elevation="0"
 																		@click.stop="addItem">
-																				TAMBAH
+																		<v-icon size="21px">mdi-plus-circle</v-icon>
 																</v-btn>
 																<v-dialog v-model="dialogfrm" max-width="500px" persistent>         
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>

@@ -65,13 +65,15 @@
 								></v-divider>
 								<v-spacer></v-spacer>
 								<v-btn 
-									color="#1A237E" 
-									class="mb-2 white--text"
+									color="indigo darken-3"
+									small
+									elevation="0"
+									class="primary"
 									:loading="btnLoading"
 									:disabled="btnLoading"
 									@click.stop="addItem"
 									v-if="dashboard !='mahasiswabaru' && dashboard !='mahasiswa'">
-										TAMBAH
+										<v-icon size="21px">mdi-plus-circle</v-icon>
 								</v-btn>
 								<v-dialog v-model="dialogfrm" max-width="800px" persistent>
 									<v-form ref="frmdata" v-model="form_valid" lazy-validation>
