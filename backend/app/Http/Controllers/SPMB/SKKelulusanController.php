@@ -109,8 +109,10 @@ class SKKelulusanController extends Controller {
 						'id'=>$id,
 						'user_id_created'=>$this->getUserid(),
 						'nama_user_created'=>$this->getName(),
-						'user_id_ttd'=>$config['DEFAULT_USER_ID_TTD_SK_KELULUSAN'],
-						'nama_user_ttd'=>$config['DEFAULT_USER_NAME_TTD_SK_KELULUSAN'],
+						// 'user_id_ttd'=>$config['DEFAULT_USER_ID_TTD_SK_KELULUSAN'],
+						// 'nama_user_ttd'=>$config['DEFAULT_USER_NAME_TTD_SK_KELULUSAN'],
+						'user_id_ttd'=>'f7d76053-b811-4624-8e8e-03475c6439ed',
+						'nama_user_ttd'=>'HENDI SETIAWAN, M.Kom',
 						'nomor_surat'=>$nomor_surat,
 						'no_urut'=>$no_urut,
 						'bulan_surat'=>$bulan_surat,
@@ -121,7 +123,7 @@ class SKKelulusanController extends Controller {
 						'isi_surat'=>'Check ',
 						'keterangan'=>'-',					
 						'tanggal_surat'=>date('Y-m-d'),
-						'qr_code'=>'storages/images/signature/'.$id.'.svg',
+						'qr_code'=>'storage/images/signature/'.$id.'.svg',
 						'path_scanan'=>null,
 						'klasifikasi_surat'=>'sklulus',
 						'ta'=>$formulir->ta
@@ -138,14 +140,14 @@ class SKKelulusanController extends Controller {
 					$bulan_romawi = Helper::getNamaBulanRomawi($bulan_surat);
 					$tahun_surat = $surat_keluar->tahun_surat;
 
-					$nomor_surat = "$nomor_urut/USM/PMB-STMIK.BB/$bulan_romawi/$tahun_surat";
+					$nomor_surat = "$nomor_urut/USM/PMB/$bulan_romawi/$tahun_surat";
 
 					$surat_keluar->nomor_surat=$nomor_surat;
 					$sign_qrcode = Helper::public_path('images/signature/'.$surat_keluar->id.'.svg');
 					QrCode::format('svg');
 					QrCode::size(100);
-					QrCode::generate('https://simak.stmikbandungbali.ac.id/verifikasi/'.$surat_keluar->id.'/suratkelulusan',$sign_qrcode);	
-					$surat_keluar->qr_code='storages/images/signature/'.$surat_keluar->id.'.svg';
+					QrCode::generate('https://campus50.sttindonesia.ac.id.ac.id/verifikasi/'.$surat_keluar->id.'/suratkelulusan',$sign_qrcode);	
+					$surat_keluar->qr_code='storage/images/signature/'.$surat_keluar->id.'.svg';
 					$surat_keluar->save();
 				}
 				$headers=[					
@@ -173,7 +175,7 @@ class SKKelulusanController extends Controller {
 				$file_pdf=Helper::public_path("exported/pdf/sklulus_".$surat_keluar->id.'.pdf');
 				$pdf->save($file_pdf);
 
-				$pdf_file="storages/exported/pdf/sklulus_".$surat_keluar->id.".pdf";
+				$pdf_file="storage/exported/pdf/sklulus_".$surat_keluar->id.".pdf";
 
 				return Response()->json([
 																'status'=>1,
