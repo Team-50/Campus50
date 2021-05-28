@@ -20,7 +20,7 @@ class VariablesController extends Controller {
                                 'pid'=>'fetchdata',
                                 'setting'=>ConfigurationModel::getCache(),
                                 'message'=>'Fetch data seluruh setting variabel'
-                            ],200); 
+                            ], 200)->setEncodingOptions(JSON_NUMERIC_CHECK); 
 
 
     }       
