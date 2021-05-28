@@ -70,12 +70,12 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-btn color="warning" small elevation="0" class="mb-2 mr-2 primary" @click.stop="showDialogCopyPersyaratan" v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">SALIN PERSYARATAN PMB</v-btn>
+                                <v-btn color="warning" small elevation="0" class="ma-2 mr-2 primary" @click.stop="showDialogCopyPersyaratan" v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">SALIN PERSYARATAN PMB</v-btn>
                                 <v-btn 
                                     color="indigo darken-3" 
                                     small
                                     elevation="0"
-                                    class="mb-2 primary" 
+                                    class="ma-2 primary" 
                                     @click.stop="tambahItem"                                    
                                     v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">
                                     <v-icon>mdi-plus-circle</v-icon>

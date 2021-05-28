@@ -48,12 +48,15 @@
                                     label="NIM"   
                                     :rules="rule_nim"                                                                  
                                     outlined />    
-                                <v-btn 
-                                    large                            
+                                <v-btn                            
                                     @click.stop="tambahItem" 
                                     :loading="btnLoading"
+                                    small
+                                    color="indigo darken-3"
+                                    class="primary"
+                                    elevation="0"
                                     :disabled="!form_valid||btnLoading">
-                                        DAFTAR
+                                    <v-icon class="mr-2">mdi-account-plus</v-icon>DAFTAR
                                 </v-btn>
                             </v-card-text>
                         </v-card>
