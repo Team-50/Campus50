@@ -303,30 +303,37 @@
 						</v-card-actions>
 					</v-card>
 				</v-dialog>
-			</v-row>
-			<v-container fluid class="pa-0 mt-4">
-				<v-alert text color="primary" icon="mdi-phone pt-2" class="white--text">
-					<h3 class="headline font-weight-bold">
-						Informasi dan Pendaftaran
-					</h3>
-					<br />
-					<p class="text-left">
-						Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum jelas di nomor kontak WhatsApp berikut.
-					</p>
-					<h3 class="font-weight-black">
-						Tim Marketing
-					</h3>
-					<v-icon color="blue darken-2">mdi-cellphone-message</v-icon>
-					<strong>
-						Hendi - 0878-3934-3009 | Vivi - 0812-1188-9515 | Iim -
-						0812-6164-4329
-					</strong>
-				</v-alert>
-			</v-container>
+			</v-row>			
+			<dialog-printout
+				pid="sklulus"
+				title="SK kelulusan"
+				ref="dialogprint"
+			>
+			</dialog-printout>
+		</v-container>
+		<v-container fluid class="pa-0 mt-4">
+			<v-alert text color="primary" icon="mdi-phone pt-2" class="white--text">
+				<h3 class="headline font-weight-bold">
+					Informasi dan Pendaftaran
+				</h3>
+				<br />
+				<p class="text-left">
+					Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum jelas di nomor kontak WhatsApp berikut.
+				</p>
+				<h3 class="font-weight-black">
+					Tim Marketing
+				</h3>
+				<v-icon color="blue darken-2">mdi-cellphone-message</v-icon>
+				<strong>
+					Hendi - 0878-3934-3009 | Vivi - 0812-1188-9515 | Iim -
+					0812-6164-4329
+				</strong>
+			</v-alert>
 		</v-container>
 	</AdminLayout>
 </template>
 <script>
+	import DialogPrintoutSPMB from "@/components/DialogPrintoutSPMB";
 	import AdminLayout from "@/views/layouts/AdminLayout";
 	export default {
 		name: "DashboardMahasiswaBaru",
@@ -400,9 +407,11 @@
 							this.jadwal_ujian = data.jadwal_ujian;
 							this.ismulai = this.jadwal_ujian.status_ujian == 0 ? true : false;
 							if (this.peserta.isfinish == 1) {
-								this.ismulai = true;
-								this.keterangan_ujian = "SELESAI UJIAN";
 								this.nilai = data.nilai;
+								this.ismulai = true;
+								this.keterangan_ujian = this.nilai.ket_lulus == 1
+									? "SELESAI UJIAN HASIL LULUS"
+									: "SELESAI UJIAN HASIL TIDAK LULUS";
 							} else {
 								this.keterangan_ujian = "BELUM UJIAN";
 							}
@@ -499,12 +508,39 @@
 						this.btnLoading = false;
 					});
 			},
+			async printpdf() {
+				this.btnLoading = true;
+				var user_id = this.$store.getters["auth/AttributeUser"]("id");
+				await this.$ajax
+					.post(
+						"/spmb/skkelulusan/printtopdf1/" + user_id,
+						{},
+						{
+							headers: {
+								Authorization: this.$store.getters["auth/Token"],
+							},
+						}
+					)
+					.then(({ data }) => {
+						this.$refs.dialogprint.open({
+							message:
+								"Silahkah download Formulir Pendaftaran dan SK Kelulusan",
+							file: data.pdf_file,
+							nama_file: "SK KELULUSAN",
+						});
+						this.btnLoading = false;
+					})
+					.catch(() => {
+						this.btnLoading = false;
+					});
+			},
 			closedialogfrm() {
 				this.dialogpilihjadwal = false;
 			},
 		},
 		components: {
 			AdminLayout,
+			"dialog-printout": DialogPrintoutSPMB,
 		},
 	};
 </script>

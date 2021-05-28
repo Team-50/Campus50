@@ -190,6 +190,11 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->post('/spmb/pmbpersyaratan/verifikasipersyaratan/{id}',['middleware'=>['role:superadmin|pmb'],'uses'=>'SPMB\PMBPersyaratanController@verifikasipersyaratan','as'=>'pmbpersyaratan.verifikasipersyaratan']);
     $router->delete('/spmb/pmbpersyaratan/hapusfilepersyaratan/{id}',['middleware'=>['role:superadmin|pmb|mahasiswabaru'],'uses'=>'SPMB\PMBPersyaratanController@hapusfilepersyaratan','as'=>'pmbpersyaratan.hapusfilepersyaratan']);
 
+    //spmb - sk kelulusan
+    $router->post('/spmb/skkelulusan',['middleware'=>['role:superadmin|pmb|keuangan|mahasiswabaru'],'uses'=>'SPMB\SKKelulusanController@index','as'=>'skkelulusan.index']);
+    //id disinis user_id
+    $router->post('/spmb/skkelulusan/printtopdf1/{id}',['middleware'=>['role:superadmin|pmb|keuangan|mahasiswabaru'],'uses'=>'SPMB\SKKelulusanController@printtopdf1','as'=>'skkelulusan.printtopdf1']);
+    
     //keuangan - status transaksi
     $router->get('/keuangan/statustransaksi',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\StatusTransaksiController@index','as'=>'statustransaksi.index']);
     $router->put('/keuangan/statustransaksi/{id}',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\StatusTransaksiController@update','as'=>'statustransaksi.update']);

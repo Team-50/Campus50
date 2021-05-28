@@ -21,6 +21,23 @@ class Helper {
         11=>'November',
         12=>'Desember'
     ];
+    /**
+     * daftar bulan romawi
+     */
+    private static $daftar_bulan_romawi=[
+        1=>'I',
+        2=>'II',
+        3=>'III',
+        4=>'IV',
+        5=>'V',
+        6=>'VI',
+        7=>'VII',
+        8=>'VIII',
+        9=>'IX',
+        10=>'X',
+        11=>'XI',
+        12=>'XII'
+    ];
     /*
      * nama hari dalam bahasa indonesia
      */
@@ -246,5 +263,25 @@ class Helper {
     public static function exported_path()
     {
         return app()->basePath('storage/app/exported/');
+    }
+    public static function formatNomorUrut($number,$length=3)
+    {   
+        $string = substr(str_repeat(0, $length).$number, - $length);
+        return $string;
+    }  
+    public static function getNamaBulanRomawi($no_bulan=null)
+    {
+        if ($no_bulan===null)
+        {
+            return Helper::$daftar_bulan_romawi;
+        }
+        else if ($no_bulan >=1 && $no_bulan <=12)
+        {
+            return Helper::$daftar_bulan_romawi[$no_bulan];
+        }
+        else
+        {
+            return null;
+        }
     }
 }

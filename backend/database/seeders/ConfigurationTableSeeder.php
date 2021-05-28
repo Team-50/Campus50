@@ -117,6 +117,15 @@ class ConfigurationTableSeeder extends Seeder
         ]);
         
         \DB::table('pe3_configuration')->insert([
+			'config_id'=>"207",
+			'config_group'=>'basic',
+			'config_key'=>'DEFAULT_TTD_SK_KELULUSAN',
+			'config_value'=>'{"nama":"Tim Campus50","nidn":"XX","nipy":"XX"}',
+			'created_at'=>Carbon::now(),
+			'updated_at'=>Carbon::now()
+		]);
+
+        \DB::table('pe3_configuration')->insert([
             'config_id'=>"701",
             'config_group'=>'report',
             'config_key'=>'HEADER_1',

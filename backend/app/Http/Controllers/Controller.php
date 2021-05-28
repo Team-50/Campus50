@@ -31,6 +31,13 @@ class Controller extends BaseController
         return $this->guard()->user()->username;
     }
     /**
+     * digunakan untuk mendapatkan name of user
+     */
+    public function getName ()
+    {
+        return $this->guard()->user()->name;
+    }
+    /**
      * @return boolean roles of user in array
      */
     public function getRoleNames() 
