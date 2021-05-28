@@ -69,14 +69,14 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-btn 
-                                    color="primary" 
-                                    icon
+                                    color="indigo darken-3"
+                                    small
+                                    class="primary"
+                                    elevation="0"
                                     @click.stop="printtoexcel"
                                     :loading="btnLoading"
                                     :disabled="btnLoading">
-                                    <v-icon>
-                                        mdi-printer
-                                    </v-icon>
+                                    <v-icon size="21px">mdi-printer</v-icon>
                                 </v-btn>   
                                 <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">         
                                     <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />         

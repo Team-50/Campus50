@@ -60,16 +60,16 @@
 												:loading="datatableLoading"
 												loading-text="Loading... Please wait">
 												<template v-slot:top>
-														<v-toolbar flat color="white">
-																<v-toolbar-title>DAFTAR TRANSAKSI</v-toolbar-title>
+													<v-toolbar flat color="white">
+															<v-toolbar-title>DAFTAR TRANSAKSI</v-toolbar-title>
 																<v-divider
 																		class="mx-4"
 																		inset
 																		vertical
 																></v-divider>
 																<v-spacer></v-spacer>
-																<v-btn color="primary" icon outlined small class="ma-2" @click.stop="addItem">
-																		<v-icon>mdi-plus</v-icon>
+																<v-btn color="indigo darken-3" elevation="0" small class="primary" @click.stop="addItem">
+																		<v-icon size="21px">mdi-plus-circle</v-icon>
 																</v-btn> 
 																<v-dialog v-model="dialogfrm" max-width="750px" persistent>
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
@@ -346,8 +346,7 @@ export default {
 				];
 				this.tahun_pendaftaran=this.$store.getters["uiadmin/getTahunPendaftaran"];
 				this.semester_pendaftaran=this.$store.getters["uiadmin/getSemesterPendaftaran"];
-				this.nama_semester_pendaftaran=this.$store.getters["uiadmin/getNamaSemester"](this.semester_pendaftaran);
-						 
+				this.nama_semester_pendaftaran=this.$store.getters["uiadmin/getNamaSemester"](this.semester_pendaftaran);						 
 				this.initialize()
 		},
 		data: () => ({         
