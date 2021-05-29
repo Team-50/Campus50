@@ -66,14 +66,15 @@ Sebagai kelengkapan proses penerimaan mahasiswa baru, kami harapkan kehadiran Sa
 <p>
   Tanjungpinang, {{$tanggal_lulus}}<br>
   Kepala Bagian Marketing,<br>
-  <img src="{{$sign_qrcode}}" height="150"><br>
+  <img class="center" src="{{$sign_qrcode}}" height="150"><br>
   <u>{{$signature->nama}}</u><br>  
   NIPY. {{$signature->nik}}
 </p>
 <htmlpagefooter name="page-footer">
   <hr>
   Jl. Pompa Air No.28<br>
-  Email: info@sttindonesia.ac.id Web: https://www.sttindonesia.ac.id
+  Email: info@sttindonesia.ac.id
+  Web: https://www.sttindonesia.ac.id
 </htmlpagefooter>
 </body>
 </html>
