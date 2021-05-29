@@ -4,7 +4,7 @@
 						<DashboardMB />
 				</v-container>        
 				<v-container fluid v-else color="#f1f2f6">
-						<v-row>
+						<v-row class="mt-n5">
 								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('DMASTER-GROUP')">
 										<v-card

@@ -4,9 +4,49 @@
 			<v-container class="fill-height" v-if="sk_id">
 				<v-row align="center" justify="center" no-gutters>
 					<v-col xs="12" sm="6" md="4">
-						<pre>{{data_surat}}</pre>
+						<v-img
+							class="mb-3"
+							max-width="400"
+							max-height="auto"
+							:src="$api.storageURL+'/storage/images/applogosuratkelulusan.png'"
+							>
+						</v-img>
+						<v-alert dense text color="primary" class="text-center">
+							Menyatakan bahwa :
+							<br>
+							<h3>
+							{{data_surat.kepada}}
+							</h3>
+						</v-alert>
+						<p class="text-center">
+							Telah mengikuti tes masuk sebagai calon mahasiswa
+							Sekolah Tinggi Teknologi Indonesia Tanjungpinang
+							dan dinyatakan :
+						</p>
+						<v-alert dense text color="success" class="text-center">
+							<h3><strong>LULUS</strong></h3>
+						</v-alert>
+						<p class="text-center">
+							Dengan nomor surat : {{data_surat.nomor_surat}}
+							Tanggal : {{data_surat.tanggal_surat}}
+						</p>
+						<v-alert dense text color="error" class="text-center">
+							Tertanda :
+							<br>
+							<h3>
+							{{data_surat.nama_user_ttd}}
+							</h3>
+						</v-alert>
 					</v-col>
 				</v-row>
+			</v-container>
+
+			<v-container class="fill-height" v-else>
+				<v-alert dense text color="error" class="text-center">
+					<h3>
+						Maaf, resources ini tidak ada.
+					</h3>
+				</v-alert>
 			</v-container>
 		</v-main>
 	</v-app>
@@ -20,7 +60,14 @@
 		},
 		data: () => ({
 			sk_id: null,
-			data_surat: {},
+			data_surat: {
+				id: "",   
+				nama_user_ttd:"",
+				nomor_surat:"",
+				tanggal_surat: "",    
+				perihal:"",
+				kepada:"", 
+			},
 		}),
 		methods: {
 			async initialize() {
