@@ -1,6 +1,6 @@
 <template>
 	<AdminLayout>
-		<v-container fluid class="pa-0 mt-0">
+		<v-container fluid class="pa-0 mt-n16">
 			<v-alert dense text color="primary" class="text-center">
 				Hak akses sebagai :
 				<strong>

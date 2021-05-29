@@ -2,7 +2,7 @@
 		<div>
 				<v-app-bar app class="white" elevation="0">
 					<v-toolbar-title @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-								<span class="hidden-sm-and-down">
+								<span>
 									<v-img
 											max-width="400"
 											:src="$api.storageURL+'/storage/images/applogo.png'"
