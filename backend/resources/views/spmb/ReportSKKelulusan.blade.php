@@ -77,8 +77,8 @@ Sebagai kelengkapan proses penerimaan mahasiswa baru, kami harapkan kehadiran Sa
 </p>
 <htmlpagefooter name="page-footer">
   <hr>
-  Jl. Pompa Air No.28<br>
-  Email: info@sttindonesia.ac.id<br>
+  Jl. Pompa Air No.28 <br/>
+  Email: info@sttindonesia.ac.id <br/>
   Web: https://www.sttindonesia.ac.id
 </htmlpagefooter>
 </body>
