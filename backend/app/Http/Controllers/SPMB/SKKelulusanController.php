@@ -161,6 +161,9 @@ class SKKelulusanController extends Controller {
 																																[
 																																	'format'=>'A4',
 																																	'title'=>'SK Kelulusan',
+																																	'margin_left'=> 20,
+																																	'margin_right'=> 20,
+																																	'margin_footer'=> 10,
 																																]);
 
 				$file_pdf=Helper::public_path("exported/pdf/sklulus_".$surat_keluar->id.'.pdf');
