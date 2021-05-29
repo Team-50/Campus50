@@ -8,7 +8,7 @@
 				<v-spacer></v-spacer> 
 				<v-icon>mdi-printer</v-icon> 
 			</v-toolbar>
-			<v-card-text>
+			<v-card-text class="mt-2">
 				{{ message }}<br>				
 				<v-btn
 					color="green"
