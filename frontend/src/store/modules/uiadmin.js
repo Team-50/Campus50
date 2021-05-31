@@ -271,7 +271,7 @@ const actions = {
 					var prodi = [];
 					daftar_prodi.forEach(element => {
 						var nama_prodi =
-							element.konsentrasi == "N.A" || element.konsentrasi == null
+							element.konsentrasi == "N.A" || element.konsentrasi == null || element.konsentrasi == ""
 								? element.nama_prodi + " (" + element.nama_jenjang + ")"
 								: element.nama_prodi +
 									" Kons. " +
