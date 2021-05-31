@@ -7,7 +7,6 @@
             <td style="font-size: 24pt;padding-left: 18px;"><b><p>{{$nama_pt}}</p>
             </td>
         </tr>
-        
     </table>
     <h2 style="text-align:center; background-color: #FFB300; padding-block: 20px; ">Verifikasi Alamat Email</h2>
     <table>
@@ -16,7 +15,7 @@
                 <p>Hi, {{$name}}</p>
                 <p>Terima kasih atas pendaftaran Anda sebagai peserta ujian, untuk menyelesaikan proses yang telah dilalui kami ingin memastikan bahwa email ini adalah milik Anda. Untuk memverifikasi email gunakan kode keamanan berikut.</p>
             <p>
-                <h2 style="text-align:center; background-color:#FFB300; padding-block: 5px; padding-inline: 5px;">{{$code}}</h2>
+                <h2 style="text-align:center; background-color:#FFB300; padding-block: 5px; padding-inline: 5px; font-size: 28px;">{{$code}}</h2>
             </p>
             <p>
                 Untuk langkah selanjutnya, yang harus dilakukan adalah :
