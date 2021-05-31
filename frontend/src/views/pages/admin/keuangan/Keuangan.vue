@@ -24,7 +24,7 @@
                     colored-border
                     type="info"
                     >
-                    dashboard untuk memperoleh ringkasan informasi keuangan perguruan tinggi.
+                    Dashboard untuk memperoleh ringkasan informasi keuangan perguruan tinggi.
                     </v-alert>
             </template>
         </ModuleHeader>

@@ -1,11 +1,12 @@
 <template>
 	<v-app>
 		<v-main>
-			<v-container class="fill-height" v-if="sk_id">
-				<v-row align="center" justify="center" no-gutters>
+			<v-container v-if="sk_id">
+				<v-row align="center" justify="center">
+					<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
 					<v-col xs="12" sm="6" md="4">
 						<v-img
-							class="mb-3"
+							class="mt-3 mb-3"
 							max-width="400"
 							max-height="auto"
 							:src="$api.storageURL+'/storage/images/applogosuratkelulusan.png'"

@@ -92,9 +92,10 @@
 												<li>
 													Setelah login berhasil, upload persyaratan berikut :
 													<ul>a. Scan Pas Foto.</ul>
-													<ul>b. Scan Ijazah Terakhir.</ul>
-													<ul>c. Scan KTP.</ul>
-													<ul>d. Scan Kartu Keluarga.</ul>
+													<ul>b. Scan Ijazah Terakhir atau Surat Keterangan Lulus.</ul>
+													<ul>c. Bagi mahasiswa konversi atau pindahan, Scan Transkrip Nilai.</ul>
+													<ul>d. Scan KTP.</ul>
+													<ul>e. Scan Kartu Keluarga.</ul>
 												</li>
 											</ol>
 											<v-divider class="mt-2 mb-2"></v-divider>
@@ -125,7 +126,7 @@
 											class="white--text"
 										>
 											<h2 class="headline font-weight-bold">
-												Konfirmasi Pembayaran
+												Konfirmasi Pembayaran Pendaftaran
 											</h2>
 											<br>
 											<p class="text-left">
@@ -140,7 +141,7 @@
 											</ol>
 											<br>
 											<p class="text-left">
-												Pembayaran Selesai.
+												Pembayaran selesai.
 											</p>
 										</v-alert>
 									</v-timeline-item>
