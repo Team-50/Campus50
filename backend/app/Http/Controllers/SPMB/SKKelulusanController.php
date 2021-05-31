@@ -97,7 +97,7 @@ class SKKelulusanController extends Controller {
 
 					$sign_qrcode = Helper::public_path('images/signature/'.$id.'.png');
 					QrCode::format('png');
-					QrCode::generate('Make me into a QrCode!',$sign_qrcode);	
+					QrCode::generate('Campus50 QR Code',$sign_qrcode);	
 
 					$surat_keluar=SuratKeluarModel::create([
 						'id'=>$id,
