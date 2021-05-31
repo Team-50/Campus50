@@ -97,7 +97,7 @@ class SKKelulusanController extends Controller {
 
 					$sign_qrcode = Helper::public_path('images/signature/'.$id.'.png');
 					QrCode::format('png');
-					QrCode::generate('Make me into a QrCode!',$sign_qrcode);	
+					QrCode::generate('Campus50 QR Code',$sign_qrcode);	
 
 					$surat_keluar=SuratKeluarModel::create([
 						'id'=>$id,
@@ -161,6 +161,9 @@ class SKKelulusanController extends Controller {
 																																[
 																																	'format'=>'A4',
 																																	'title'=>'SK Kelulusan',
+																																	'margin_left'=> 20,
+																																	'margin_right'=> 20,
+																																	'margin_footer'=> 10,
 																																]);
 
 				$file_pdf=Helper::public_path("exported/pdf/sklulus_".$surat_keluar->id.'.pdf');

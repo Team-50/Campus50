@@ -97,7 +97,7 @@ Dengan ketentuan bahwa pendaftaran sebagai Calon Mahasiswa Baru STT Indonesia T.
   <br>
   Jl. Pompa Air No.28 <br/>
   Email: info@sttindonesia.ac.id <br/>
-  Web: https://www.sttindonesia.ac.idd
+  Web: https://www.sttindonesia.ac.id
 </htmlpagefooter>
 </body>
 </html>
