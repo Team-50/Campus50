@@ -19,21 +19,21 @@ class ChannelPembayaranTableSeeder extends Seeder
         
         \DB::table('pe3_channel_pembayaran')->insert([
             'id_channel'=>1,
-            'nama_channel'=>'TELLER BANK',             
+            'nama_channel'=>'M-BANKING',             
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()         
         ]);               
 
         \DB::table('pe3_channel_pembayaran')->insert([
             'id_channel'=>2,
-            'nama_channel'=>'TRANSFER BANK',             
+            'nama_channel'=>'SETORAN TUNAI',             
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()         
         ]);               
 
         \DB::table('pe3_channel_pembayaran')->insert([
             'id_channel'=>3,
-            'nama_channel'=>'TRANSFER ATM',             
+            'nama_channel'=>'ATM',             
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()         
         ]);               
