@@ -46,7 +46,20 @@ class SKKelulusanController extends Controller {
 	 */
 	public function printtopdf1(Request $request,$id)
 	{
-		$formulir = FormulirPendaftaranModel::find($id);
+		$formulir = FormulirPendaftaranModel::select(\DB::raw('
+									user_id,
+									no_formulir,
+									nama_mhs,
+									kjur1,
+									(CASE WHEN pe3_prodi.konsentrasi IS NULL OR pe3_prodi.konsentrasi = \'N.A\' THEN
+										CONCAT(pe3_prodi.nama_prodi,\' (\',pe3_prodi.nama_jenjang, \')\') 
+									ELSE
+										CONCAT(pe3_prodi.nama_prodi,\' Kons. \',pe3_prodi.konsentrasi,\' (\',pe3_prodi.nama_jenjang, \')\') 
+									END) AS nama_prodi,
+									ta
+							'))
+							->join('pe3_prodi', 'pe3_prodi.id','pe3_formulir_pendaftaran.kjur1')
+							->find($id);
 
 		if (is_null($formulir))
 		{
@@ -62,25 +75,6 @@ class SKKelulusanController extends Controller {
 			if ($nilai_ujian->ket_lulus == 1 && $nilai_ujian->kjur > 0)
 			{
 				$config = ConfigurationModel::getCache();
-				
-				$biaya_pengembangan=BiayaKomponenPeriodeModel::where('tahun',$formulir->ta)
-																											->where('idkelas',$formulir->idkelas)
-																											->where('kjur',$formulir->kjur1)
-																											->where('kombi_id',102)
-																											->value('biaya');
-
-				$jas_almamater=BiayaKomponenPeriodeModel::where('tahun',$formulir->ta)
-																											->where('idkelas',$formulir->idkelas)
-																											->where('kjur',$formulir->kjur1)
-																											->where('kombi_id',103)
-																											->value('biaya');
-
-				$spp=BiayaKomponenPeriodeModel::where('tahun',$formulir->ta)
-																											->where('idkelas',$formulir->idkelas)
-																											->where('kjur',$formulir->kjur1)
-																											->where('kombi_id',201)
-																											->value('biaya');
-				
 
 				$surat_keluar = SuratKeluarModel::where('user_id_kepada',$formulir->user_id)
 															->first();
@@ -97,7 +91,7 @@ class SKKelulusanController extends Controller {
 					$bulan_romawi = Helper::getNamaBulanRomawi($bulan_surat);
 					$tahun_surat = date('Y');
 
-					$nomor_surat = "$nomor_urut/USM/PMB-STMIK.BB/$bulan_romawi/$tahun_surat";
+					$nomor_surat = "$nomor_urut/USM/PMB-STTI.TPI/$bulan_romawi/$tahun_surat";
 
 					$isi_surat = '';
 
@@ -159,10 +153,7 @@ class SKKelulusanController extends Controller {
 																																	'nomor_surat'=>$nomor_surat,
 																																	'formulir'=>$formulir,
 																																	'tanggal_lulus'=>Helper::tanggal('d F Y',$nilai_ujian->updated_at),
-																																	'next_day'=>Helper::nextDay('d F Y',$nilai_ujian->updated_at,7),
-																																	'biaya_pengembangan'=>Helper::formatUang($biaya_pengembangan),
-																																	'jas_almamater'=>Helper::formatUang($jas_almamater),
-																																	'spp'=>Helper::formatUang($spp),
+																																	'next_day'=>Helper::nextDay('d F Y',$nilai_ujian->updated_at,7),																																	
 																																	'sign_qrcode'=>$sign_qrcode,
 																																	'signature'=>json_decode($config['DEFAULT_TTD_SK_KELULUSAN'],false),
 																																],

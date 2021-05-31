@@ -55,11 +55,11 @@ img {
   <tr>
     <td>No. Pendaftaran</td>
     <td>:</td>
-    <td><b>{{$formulir->formulir}}</b></td>
+    <td><b>{{$formulir->no_formulir}}</b></td>
   </tr>
 </table>
 <p style="text-align: justify;text-justify: inter-word;">
-Dengan ini Sdr/i dinyatakan  untuk pilihan jurusan, <b>JURUSAN</b>.<br>
+Dengan ini Sdr/i dinyatakan  untuk pilihan jurusan, <b>{{$formulir->nama_prodi}}</b>.<br>
 Dengan ketentuan bahwa pendaftaran sebagai Calon Mahasiswa Baru STT Indonesia T.A. {{$formulir->ta}}/{{$formulir->ta+1}}, Sdr/i diwajibkan melakukan <b>registrasi paling lambat</b>:
 </p>
 <table class="t2">
