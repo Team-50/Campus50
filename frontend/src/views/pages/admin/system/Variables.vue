@@ -45,10 +45,13 @@
 									</v-col>
 									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
 								</v-row>
-								<h3 class="mb-4">
+							</v-card-text>
+						</v-card>
+						<v-card class="mb-4" color="grey lighten-4" flat>
+							<v-card-title>
 									PEJABAT PENANDATANGAN SK KELULUSAN
-									<v-divider />
-								</h3>								
+							</v-card-title>		
+							<v-card-text>			
 								<v-row>
 									<v-col xs="12" sm="12" md="12">
 										<v-text-field
@@ -89,7 +92,7 @@
 				</v-col>
 				<v-col cols="12">
 					<v-form ref="frmdata_perkuliahan" v-model="form_valid" lazy-validation>
-						<v-card>
+							<v-card class="mb-4" color="grey lighten-4" flat>
 							<v-card-title>
 								PERKULIAHAN
 							</v-card-title>
@@ -125,7 +128,7 @@
 									@click.stop="save_perkuliahan"									
 									:disabled="!form_valid||btnLoading">SIMPAN</v-btn>
 							</v-card-actions>
-						</v-card>
+							</v-card>
 					</v-form>
 				</v-col>
 			</v-row>
