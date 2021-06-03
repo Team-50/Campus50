@@ -174,6 +174,9 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->delete('/spmb/nilaiujian/{id}',['middleware'=>['role:superadmin|pmb'],'uses'=>'SPMB\NilaiUjianController@destroy','as'=>'nilaiujian.destroy']);
     $router->post('/spmb/nilaiujian/store',['middleware'=>['role:superadmin|pmb'],'uses'=>'SPMB\NilaiUjianController@store','as'=>'nilaiujian.store']);
 
+    //spmb - peserta lulus
+    $router->post('/spmb/pesertalulus',['middleware'=>['role:superadmin|pmb|keuangan'],'uses'=>'SPMB\PesertaLulusController@index','as'=>'pesertalulus.index']);
+
     //spmb - report fakultas
     $router->post('/spmb/reportspmbfakultas',['middleware'=>['role:superadmin|pmb|keuangan'],'uses'=>'SPMB\ReportSPMBFakultasController@index','as'=>'reportspmbfakultas.index']);
     $router->post('/spmb/reportspmbfakultas/printtoexcel',['middleware'=>['role:superadmin|pmb|keuangan'],'uses'=>'SPMB\ReportSPMBFakultasController@printtoexcel','as'=>'reportspmbfakultas.printtoexcel']);

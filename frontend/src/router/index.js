@@ -263,7 +263,7 @@ const routes = [
 		meta: {
 			title: "SPMB - UJIAN ONLINE",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/spmb/UjianOnline.vue"),
 	},
 	{
@@ -272,8 +272,17 @@ const routes = [
 		meta: {
 			title: "SPMB - NILAI UJIAN",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/spmb/NilaiUjian.vue"),
+	},
+	{
+		path: "/spmb/pesertalulus",
+		name: "SPMBPesertaLulus",
+		meta: {
+			title: "SPMB - PESERTA LULUS",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/spmb/PesertaLulus.vue"),
 	},
 	{
 		path: "/spmb/jadwalujianpmb/passinggrade/:idjadwalujian",
@@ -281,7 +290,7 @@ const routes = [
 		meta: {
 			title: "SPMB - PASSING GRADE",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/spmb/PassingGrade.vue"),
 	},
 	{
@@ -290,7 +299,7 @@ const routes = [
 		meta: {
 			title: "SPMB - LAPORAN FAKULTAS",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/spmb/ReportFakultas.vue"),
 	},
 	{
@@ -299,7 +308,7 @@ const routes = [
 		meta: {
 			title: "SPMB - LAPORAN PROGRAM STUDI",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/spmb/ReportProdi.vue"),
 	},
 	{
@@ -308,7 +317,7 @@ const routes = [
 		meta: {
 			title: "SPMB - LAPORAN KELULUSAN",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/spmb/ReportKelulusan.vue"),
 	},
 	
@@ -319,7 +328,7 @@ const routes = [
 		meta: {
 			title: "KEUANGAN",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/keuangan/Keuangan.vue"),
 	},
 	{
@@ -328,7 +337,7 @@ const routes = [
 		meta: {
 			title: "KEUANGAN - CHANNEL PEMBAYARAN",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/keuangan/ChannelPembayaran.vue"),
 	},
 	{
@@ -337,7 +346,7 @@ const routes = [
 		meta: {
 			title: "KEUANGAN - STATUS TRANSAKSI",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/keuangan/StatusTransaksi.vue"),
 	},
 	{
@@ -346,7 +355,7 @@ const routes = [
 		meta: {
 			title: "KEUANGAN - BIAYA KOMPONEN",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/keuangan/BiayaKomponen.vue"),
 	},
 	{
@@ -355,7 +364,7 @@ const routes = [
 		meta: {
 			title: "KEUANGAN - BIAYA KOMPONEN PERIODE",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/keuangan/BiayaKomponenPeriode.vue"),
 	},
 	{
@@ -364,7 +373,7 @@ const routes = [
 		meta: {
 			title: "KEUANGAN - TRANSFER BANK",
 			requiresAuth: true,
-				},
+		},
 		component: () => import("../views/pages/admin/keuangan/TransferBank.vue"),
 	},
 	{
