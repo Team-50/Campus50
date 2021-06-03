@@ -1,5 +1,9 @@
 # Campus50
 
+Sebuah sistem informasi untuk mengelola perguruan tinggi dengan fitur-fitur sebagai berikut :
+## Bagi Developer 
+1. Clean code by Prettier.
+
 ## Cara update repositori dari parent
 
 1. git remote add upstream https://github.com/Team-50/Campus50.git
