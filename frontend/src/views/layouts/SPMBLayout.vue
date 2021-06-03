@@ -254,11 +254,11 @@
 				</v-list-item>      
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-NILAI-UJIAN_BROWSE') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'" to="/spmb/pesertalulus">
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-beaker-plus-outline</v-icon>
+						<v-icon>mdi-contacts</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
-							PESERTA YG LULUS
+							PESERTA YANG LULUS
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>      
