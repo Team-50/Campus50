@@ -117,7 +117,7 @@
 								<v-subheader style="color:#f0935c" v-if="CAN_ACCESS('AKADEMIK-DULANG-BARU_BROWSE')||CAN_ACCESS('AKADEMIK-DULANG-LAMA_BROWSE')">DAFTAR ULANG</v-subheader>
 								<v-list-item link to="/akademik/dulang/mhsbelumpunyanim" v-if="CAN_ACCESS('AKADEMIK-DULANG-BARU_BROWSE')">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-progress-check</v-icon>
+												<v-icon>mdi-account-question</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -127,7 +127,7 @@
 								</v-list-item>
 								<v-list-item link to="/akademik/dulang/mahasiswabaru" v-if="CAN_ACCESS('AKADEMIK-DULANG-BARU_BROWSE')">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-progress-check</v-icon>
+												<v-icon>mdi-account-star</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -137,7 +137,7 @@
 								</v-list-item>                
 								<v-list-item link to="/akademik/dulang/mahasiswalama" v-if="CAN_ACCESS('AKADEMIK-DULANG-LAMA_BROWSE')">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-progress-check</v-icon>
+												<v-icon>mdi-account-supervisor</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
@@ -159,7 +159,7 @@
 								<v-list-group group="/akademik/perkuliahan/penyelenggaraan" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" no-action v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_BROWSE')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')">
 										<template v-slot:activator>
 												<v-list-item-icon class="mr-2">
-														<v-icon>mdi-view-grid-plus</v-icon>
+														<v-icon>mdi-chart-timeline</v-icon>
 												</v-list-item-icon>
 												<v-list-item-content>								
 														<v-list-item-title>PENYELENGGARAAN</v-list-item-title>
