@@ -102,7 +102,7 @@
 								<v-subheader style="color:#f0935c">DATA MASTER</v-subheader>                
 								<v-list-item link to="/elearning/kelas" v-if="CAN_ACCESS('ELEARNING-GROUP')">
 										<v-list-item-icon class="mr-2">
-												<v-icon>mdi-google-classroom</v-icon>
+												<v-icon>mdi-book-multiple</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
