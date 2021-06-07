@@ -234,7 +234,7 @@
 																	v-model="formdata.desc"
 																	label="CATATAN:"                                                                    
 																	outlined />
-																<v-file-input 
+																<v-file-input
 																	accept="image/jpeg,image/png" 
 																	label="BUKTI BAYAR (MAKS. 2MB)"
 																	:rules="rule_bukti_bayar"
@@ -407,6 +407,7 @@
 						</template>
 						<template v-slot:item.actions="{ item }">
 							<v-icon
+								title="Upload Bukti"
 								small
 								class="mr-2"
 								@click.stop="addItem(item)"
@@ -414,6 +415,7 @@
 								mdi-send
 							</v-icon>
 							<v-icon
+								title="Upload Bukti"
 								small
 								class="mr-2"
 								:disabled="true"
@@ -421,6 +423,7 @@
 								mdi-send
 							</v-icon>   
 							<v-icon
+								title="Preview"
 								small
 								class="mr-2"
 								@click.stop="viewItem(item)"
@@ -428,6 +431,7 @@
 								mdi-eye
 							</v-icon>                        
 							<v-icon
+								title="Preview"
 								small
 								class="mr-2"
 								:disabled="true"                                
