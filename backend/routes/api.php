@@ -227,6 +227,12 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     //digunakan untuk mendapatkan spp milik user_id mhs baru dengan status sudah bayar
     $router->post('/keuangan/transaksi/{id}/sppmhsbaru',['uses'=>'Keuangan\TransaksiController@sppmhsbaru','as'=>'transaksi.sppmhsbaru']);
     
+    //keuangan - transaksi pendaftaran mahasiswa baru
+    $router->post('/keuangan/transaksi-pendaftaranmhsbaru',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiPendaftaranMHSBaruController@index','as'=>'transaksi-pendaftaranmhsbaru.index']);
+    $router->post('/keuangan/transaksi-pendaftaranmhsbaru/store',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiPendaftaranMHSBaruController@store','as'=>'transaksi-pendaftaranmhsbaru.store']);
+    $router->put('/keuangan/transaksi-pendaftaranmhsbaru/{id}',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiPendaftaranMHSBaruController@update','as'=>'transaksi-pendaftaranmhsbaru.update']);
+    $router->delete('/keuangan/transaksi-pendaftaranmhsbaru/{id}',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiPendaftaranMHSBaruController@destroy','as'=>'transaksi-pendaftaranmhsbaru.destroy']);
+    
     //keuangan - transaksi spp
     $router->post('/keuangan/transaksi-spp',['middleware'=>['role:superadmin|keuangan|mahasiswabaru|mahasiswa'],'uses'=>'Keuangan\TransaksiSPPController@index','as'=>'transaksi-spp.index']);
     $router->get('/keuangan/transaksi-spp/{id}',['middleware'=>['role:superadmin|keuangan|mahasiswa'],'uses'=>'Keuangan\TransaksiSPPController@show','as'=>'transaksi-spp.show']);        
