@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Akademik;
 use App\Http\Controllers\Controller;
 use App\Models\Akademik\RegisterMahasiswaModel;
 use App\Models\Akademik\DulangModel;
+use Spatie\Permission\Models\Role;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -95,6 +96,7 @@ class MahasiswaBelumPunyaNIMController extends Controller
             
             $user=$formulir->user;
             $user->username=$request->input('nim');
+            $user->password=Hash::make('12345678');
             $user->default_role='mahasiswa';
             $user->save();
 
