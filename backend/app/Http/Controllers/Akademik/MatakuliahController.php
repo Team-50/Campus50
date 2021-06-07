@@ -315,12 +315,12 @@ class MatakuliahController extends Controller {
     {
         $this->validate($request, [                       
             'prodi_id'=>'required',
-            'ta_akademik'=>'required',
+            'ta'=>'required',
             'semester_akademik'=>'required'
         ]);
         
         $prodi_id=$request->input('prodi_id');
-        $ta_akademik=$request->input('ta_akademik');
+        $ta_akademik=$request->input('ta');
         $semester_akademik=$request->input('semester_akademik');
 
         $matakuliah=MatakuliahModel::select(\DB::raw('

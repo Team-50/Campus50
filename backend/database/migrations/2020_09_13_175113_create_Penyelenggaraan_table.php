@@ -22,7 +22,7 @@ class CreatePenyelenggaraanTable extends Migration
             $table->string('nmatkul');
             $table->string('sks');
             $table->tinyinteger('semester');
-            $table->year('ta_matkul');
+            $table->year('ta_matkul')->nullable();
             $table->tinyinteger('idsmt');
             $table->year('tahun');            
             $table->tinyinteger('kjur');                
