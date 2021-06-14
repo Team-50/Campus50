@@ -89,7 +89,7 @@ class UsersDosenController extends Controller {
             $now = \Carbon\Carbon::now()->toDateTimeString();        
             $user=User::create([
                 'id'=>Uuid::uuid4()->toString(),
-                'name'=>$request->input('name'),
+                'name'=>strtoupper($request->input('name')),
                 'email'=>$request->input('email'),
                 'nomor_hp'=>$request->input('nomor_hp'),
                 'username'=> $request->input('username'),
@@ -183,7 +183,7 @@ class UsersDosenController extends Controller {
 
             $user = \DB::transaction(function () use ($request,$user){
 
-                $user->name = $request->input('name');                
+                $user->name = strtoupper($request->input('name'));
                 $user->email = $request->input('email');
                 $user->nomor_hp = $request->input('nomor_hp');
                 $user->username = $request->input('username');        
