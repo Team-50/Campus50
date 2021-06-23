@@ -247,7 +247,7 @@ class PMBController extends Controller {
             
             FormulirPendaftaranModel::create([
                 'user_id'=>$user->id,
-                'nama_mhs'=>$request->input('name'),                
+                'nama_mhs'=>strtoupper($request->input('name')),                
                 'telp_hp'=>$request->input('nomor_hp'),
                 'kjur1'=>$request->input('prodi_id'),
                 'ta'=>$ta,

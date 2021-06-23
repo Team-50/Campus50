@@ -98,7 +98,7 @@ class DosenWaliController extends Controller {
             
             UserDosen::create([
                 'user_id'=>$user->id,
-                'nama_dosen'=>$request->input('name'),                                
+                'nama_dosen'=>strtoupper($request->input('name')),
                 'nidn'=>$request->input('nidn'),                                
                 'nipy'=>$request->input('nipy'),                                
                 'is_dw'=>$request->input('is_dw'),                                
