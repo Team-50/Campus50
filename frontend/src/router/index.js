@@ -396,6 +396,15 @@ const routes = [
 			import("../views/pages/admin/keuangan/TransaksiPendaftaranMHSBaru.vue"),
 	},
 	{
+		path: "/keuangan/transaksi-pengembangan",
+		name: "KeuanganTransaksiPengembangan",
+		meta: {
+			title: "KEUANGAN - TRANSAKSI BIAYA PENGEMBANGAN",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/keuangan/TransaksiBiayaPengembangan.vue"),
+	},
+	{
 		path: "/keuangan/transaksi-spp",
 		name: "KeuanganTransaksiSPP",
 		meta: {

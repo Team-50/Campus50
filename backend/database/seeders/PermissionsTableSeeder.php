@@ -228,7 +228,7 @@ class PermissionsTableSeeder extends Seeder
             'KEUANGAN-METODE-IB',                 
             'KEUANGAN-TRANSAKSI',                 
             'KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN',
-            'KEUANGAN-TRANSAKSI-PENGEMBANGAN',            
+            'KEUANGAN-TRANSAKSI-PENGEMBANGAN',
             'KEUANGAN-TRANSAKSI-SPP',                     
             'KEUANGAN-TRANSAKSI-KERJA-PRAKTEK',
             'KEUANGAN-TRANSAKSI-SKRIPSI',

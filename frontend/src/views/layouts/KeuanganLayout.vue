@@ -252,7 +252,7 @@
 												</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item>
-								<v-divider/>
+								<v-divider class="mb-2"/>
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_BROWSE')" to="/keuangan/transaksi-pendaftaranmhsbaru">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-account-cash</v-icon>
@@ -263,13 +263,13 @@
 												</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item>
-								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-REGISTRASIKRS_BROWSE')" to="/keuangan/transaksi-registrasikrs">
+								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-PENGEMBANGAN_BROWSE')" to="/keuangan/transaksi-pengembangan">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-book-open</v-icon>
 										</v-list-item-icon>
 										<v-list-item-content>
 												<v-list-item-title>
-														TRANSAKSI REGISTRASI KRS
+														TRANSAKSI PENGEMBANGAN
 												</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item>                          
@@ -308,10 +308,10 @@
 								</v-list-item>
 								<slot name="filtersidebar"/>		                	
 						</v-list>
-		</v-navigation-drawer>
+			</v-navigation-drawer>
 				<v-main class="mx-4 mb-4">			
-			<slot />
-		</v-main>
+				<slot />
+			</v-main>
 		</div>    
 </template>
 <script>
