@@ -81,7 +81,7 @@ class UsersKeuanganController extends Controller {
                     INSERT INTO usersprodi (                    
                         user_id, 
                         prodi_id,
-                        kode_prodi,
+                        kode_forlap,                        
                         nama_prodi,
                         nama_prodi_alias,
                         kode_jenjang,
@@ -92,7 +92,7 @@ class UsersKeuanganController extends Controller {
                     SELECT
                         '$user_id',                    
                         id,
-                        kode_prodi,
+                        kode_forlap,                        
                         nama_prodi,
                         nama_prodi_alias,
                         kode_jenjang,
@@ -201,7 +201,7 @@ class UsersKeuanganController extends Controller {
                         INSERT INTO usersprodi (                    
                             user_id, 
                             prodi_id,
-                            kode_prodi,
+                            kode_forlap,
                             nama_prodi,
                             nama_prodi_alias,
                             kode_jenjang,
@@ -212,7 +212,7 @@ class UsersKeuanganController extends Controller {
                         SELECT
                             '$user_id',                    
                             id,
-                            kode_prodi,
+                            kode_forlap,
                             nama_prodi,
                             nama_prodi_alias,
                             kode_jenjang,
