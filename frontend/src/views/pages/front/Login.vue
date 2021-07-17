@@ -71,97 +71,101 @@
 																		</v-alert>
 																</v-card-text>
 																<v-card-actions class="justify-center">
-																		<v-btn
-																				height="50px"
-																				color="#1A237E"
-																				class="white--text"
-																				@click="doLogin"
-																				:loading="btnLoading"
-																				:disabled="btnLoading"
-																				block>
-																					Sign In
-																		</v-btn>                                    																		
+																	<v-btn
+																			height="50px"
+																			color="#1A237E"
+																			class="white--text"
+																			@click="doLogin"
+																			:loading="btnLoading"
+																			:disabled="btnLoading"
+																			block
+																		>
+																			Sign In
+																	</v-btn>																		
 																</v-card-actions>
 																<v-card-actions class="justify-center">
-																		<v-btn
-																				height="50px"
-																				color="#1A237E"
-																				class="white--text"
-																				@click="showDialogVerifikasi"																				
-																				:disabled="btnLoading"
-																				block>
-																					Verifikasi Email
-																		</v-btn>                                    																		
-																</v-card-actions>
-														</v-form>                           
+																	<v-btn
+																		height="50px"
+																		color="#1A237E"
+																		class="white--text"
+																		@click="showDialogVerifikasi"																				
+																		:disabled="btnLoading"
+																		block
+																	>
+																		Verifikasi Email
+																</v-btn>																		
+														</v-card-actions>
+													</v-form>
 												</v-card>
-										</v-card>
-										<v-dialog v-model="dialogkonfirmasiemail" max-width="500px" persistent>                                    
-											<v-form ref="frmkonfirmasi" v-model="form_valid" lazy-validation>
-													<v-card>
-															<v-card-title>
-																	<span class="headline">Konfirmasi Email</span>
-															</v-card-title>
-															<v-card-text>    
-																	<v-alert type="success">
-																		Silahkan isikan email dan kode OTP yang telah kami kirim di isian berikut.
-																	</v-alert>          
-																	<v-text-field 
-																		v-model="formkonfirmasi.email"
-																		label="EMAIL" 
-																		:rules="rule_email"
-																		outlined 
-																		dense />                           
-																	<v-text-field 
-																		v-model="formkonfirmasi.code" 
-																		label="CODE"
-																		outlined
-																		:rules="rule_code">
-																	</v-text-field>                                            
-															</v-card-text>
-															<v-card-actions>
-																	<v-spacer></v-spacer>  
-																	<v-btn color="blue darken-1" text @click.stop="closedialogfrm">KELUAR</v-btn>                                              
-																	<v-btn 
-																			color="blue darken-1" 
-																			text 
-																			@click.stop="konfirmasi" 
-																			:loading="btnLoading"
-																			:disabled="btnLoading">
-																					KONFIRMASI
-																	</v-btn>
-															</v-card-actions>
-													</v-card>
-											</v-form>
-									</v-dialog>   
-								</v-col>
-						</v-row>
-				</v-container>
-		</FrontLayout>
+											</v-card>
+						<v-dialog v-model="dialogkonfirmasiemail" max-width="500px" persistent>
+							<v-form ref="frmkonfirmasi" lazy-validation>
+								<v-card>
+									<v-card-title>
+										<span class="headline">Konfirmasi Email</span>
+									</v-card-title>
+									<v-card-text>    
+										<v-alert type="success">
+											Silahkan isikan email dan kode OTP yang telah kami kirim di isian berikut.
+										</v-alert>          
+										<v-text-field 
+											v-model="formkonfirmasi.email"
+											label="EMAIL" 
+											:rules="rule_email"
+											outlined 
+											dense
+										/>
+										<v-text-field 
+											v-model="formkonfirmasi.code" 
+											label="CODE"
+											outlined
+											:rules="rule_code"
+										>
+										</v-text-field>        
+									</v-card-text>
+								<v-card-actions>
+									<v-spacer></v-spacer>  
+									<v-btn color="blue darken-1" text @click.stop="closedialogfrm">KELUAR</v-btn>          
+									<v-btn 
+										color="blue darken-1" 
+										text 
+										@click.stop="konfirmasi" 
+										:loading="btnLoading"
+										:disabled="btnLoading"
+									>
+										KONFIRMASI
+									</v-btn>
+								</v-card-actions>
+							</v-card>
+						</v-form>
+					</v-dialog>   
+				</v-col>
+			</v-row>
+		</v-container>
+	</FrontLayout>
 </template>
 <script>
-import FrontLayout from '@/views/layouts/FrontLayout';
-export default {
-		name: 'Login',
-		created()
-	{
-		if (this.$store.getters['auth/Authenticated'])
-		{
-			this.$router.push('/dashboard/'+this.$store.getters['auth/AccessToken']);
-		}
-	},
+	import FrontLayout from "@/views/layouts/FrontLayout";
+	export default {
+		name: "Login",
+		created() {
+			if (this.$store.getters["auth/Authenticated"]) {
+				this.$router.push("/dashboard/"+this.$store.getters["auth/AccessToken"]);
+			}
+		},
 		data: () => ({
-				btnLoading:false,
+				btnLoading: false,
 				//form
-				form_error:false,
+				form_valid: true,
+				form_error: false,
 				dialogkonfirmasiemail: false,  
 				formlogin: {
-					username:'',
-					password:''
+					username: "",
+					password: ""
 				},
 				formkonfirmasi:{
-						email:'',
-						code:''
+						email: "",
+						code: ""
 				},
 				rule_username:[
 						value => !!value||"Kolom Username mohon untuk diisi !!!"
@@ -171,75 +175,82 @@ export default {
 				],
 				rule_email:[
 						value => !!value||"Email mohon untuk diisi !!!",
-						v => /.+@.+\..+/.test(v) || 'Format E-mail mohon di isi dengan benar',
+						v => /.+@.+\..+/.test(v) || "Format E-mail mohon di isi dengan benar",
 				],
 				rule_code:[
-					value => /^[0-9]+$/.test(value) || 'Code hanya boleh angka',
+					value => /^[0-9]+$/.test(value) || "Code hanya boleh angka",
 				]
 		}),
-		methods: {
-				doLogin: async function ()
-				{
-						if (this.$refs.frmlogin.validate())
-						{
-								this.btnLoading=true;
-								await this.$ajax.post('/auth/login',{
-										username:this.formlogin.username,
-										password:this.formlogin.password
-								}).then(({data})=>{
-										this.$ajax.get('/auth/me',{
-												headers:{
-														'Authorization': data.token_type+' '+data.access_token,
-												}
-										})
-										.then(response => {
-												var data_user = {
-													token: data,
-													user:response.data
-												}
-												this.$store.dispatch('auth/afterLoginSuccess',data_user);
-										});
-										this.btnLoading=false;
-										this.form_error=false;
-										this.$router.push('/dashboard/'+data.access_token);
-								}).catch(() => {
-										this.form_error=true;
-										this.btnLoading=false;
+			methods: {
+			doLogin: async function() {
+				if (this.$refs.frmlogin.validate()) {
+						this.btnLoading = true;
+						await this.$ajax
+							.post(
+								"/auth/login",
+								{
+									username: this.formlogin.username,
+									password: this.formlogin.password
+								}
+							)
+							.then(({ data }) => {
+								this.$ajax.get("/auth/me",{
+										headers:{
+												"Authorization": data.token_type+" "+data.access_token,
+										}
+								})
+								.then(response => {
+										var data_user = {
+											token: data,
+											user:response.data
+										}
+										this.$store.dispatch("auth/afterLoginSuccess",data_user);
 								});
-						}
-				},
-				konfirmasi: async function ()
-				{
-						if (this.$refs.frmkonfirmasi.validate())
-						{
-							this.btnLoading=true;                
-							await this.$ajax.post('/spmb/pmb/konfirmasi',{                                        
-									email:this.formkonfirmasi.email,                    
-									code:this.formkonfirmasi.code,
-							}).then(()=>{             
-									this.dialogkonfirmasiemail=false;       
-									this.btnLoading=false;                                                                                           
-							}).catch(() => {                                   
-									this.btnLoading=false;
-							});
-							this.$refs.frmkonfirmasi.reset(); 
-							this.frmkonfirmasi = Object.assign({}, {email:'',code:''});
-							this.$router.replace('/login');
-						}                           
-				},
-				showDialogVerifikasi() {
-					this.dialogkonfirmasiemail = true;					
-				},
-				closedialogfrm () {
-					this.dialogkonfirmasiemail = false;            
-					setTimeout(() => {						
-						this.frmkonfirmasi = Object.assign({}, {email:'',code:''});
-						this.$refs.formkonfirmasi.resetValidation(); 
-					}, 300);
-				},
+								this.btnLoading = false;
+								this.form_error=false;
+								this.$router.push("/dashboard/"+data.access_token);
+						})
+						.catch(() => {
+							this.form_error=true;
+							this.btnLoading = false;
+						});
+				}
+			},
+			konfirmasi: async function() {
+				if (this.$refs.frmkonfirmasi.validate()) {
+					this.btnLoading = true;
+					await this.$ajax
+						.post(
+							"/spmb/pmb/konfirmasi", { 
+								email: this.formkonfirmasi.email,                    
+								code: this.formkonfirmasi.code,
+							}
+						)
+						.then(() => {
+							this.dialogkonfirmasiemail = false;
+							this.btnLoading = false;
+						})
+						.catch(() => {
+							this.btnLoading = false;
+						});
+					this.$refs.frmkonfirmasi.reset();
+					this.frmkonfirmasi = Object.assign({}, { email: "", code: "" });
+					this.$router.replace("/login");
+				}
+			},
+			showDialogVerifikasi() {
+				this.dialogkonfirmasiemail = true;
+			},
+			closedialogfrm() {
+				this.dialogkonfirmasiemail = false;
+				setTimeout(() => {
+					this.frmkonfirmasi = Object.assign({}, { email: "" , code: "" });
+					this.$refs.formkonfirmasi.resetValidation();
+				}, 300);
+			},
 		},
 		components: {
-		FrontLayout
-	}
-}
+			FrontLayout,
+		},
+	};
 </script>
