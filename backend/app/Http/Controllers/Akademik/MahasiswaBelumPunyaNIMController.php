@@ -34,7 +34,7 @@ class MahasiswaBelumPunyaNIMController extends Controller
         
         $data = TransaksiDetailModel::select(\DB::raw('
                                         pe3_formulir_pendaftaran.user_id,
-                                        pe3_formulir_pendaftaran.no_formulir,
+                                        COALESCE(pe3_formulir_pendaftaran.no_formulir,\'N.A\') AS no_formulir,
                                         pe3_formulir_pendaftaran.nama_mhs,
                                         pe3_formulir_pendaftaran.telp_hp,
                                         pe3_formulir_pendaftaran.idkelas                                      

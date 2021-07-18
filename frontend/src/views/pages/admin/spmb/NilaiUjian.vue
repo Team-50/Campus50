@@ -293,7 +293,7 @@ export default {
 		datatable: [],
 		headers: [
 			{ text: '', value: 'foto', width:70 },
-			{ text: 'NO.FORMULIR', value: 'no_formulir',width:120,sortable:true },
+			{ text: 'NO.FORMULIR', value: 'no_formulir',width:150,sortable:true },
 			{ text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
 			{ text: 'NOMOR HP', value: 'nomor_hp',width:100},
 			{ text: 'KELAS', value: 'nkelas',width:100,sortable:true },
