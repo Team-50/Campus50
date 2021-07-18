@@ -170,7 +170,7 @@
 				{
 					text: "NO.FORMULIR",
 					value: "no_formulir",
-					width: 120,
+					width: 150,
 					sortable: true,
 				},
 				{ text: "NAMA MAHASISWA", value: "name", width: 350, sortable: true },

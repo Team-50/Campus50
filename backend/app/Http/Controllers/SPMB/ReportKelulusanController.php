@@ -34,7 +34,7 @@ class ReportKelulusanController extends Controller {
 
         $data = FormulirPendaftaranModel::select(\DB::raw('
                         users.id,
-                        pe3_formulir_pendaftaran.no_formulir,
+                        COALESCE(pe3_formulir_pendaftaran.no_formulir,\'N.A\') AS no_formulir,
                         users.name,
                         users.nomor_hp,
                         COALESCE(pe3_nilai_ujian_pmb.nilai,\'N.A\') AS nilai,
