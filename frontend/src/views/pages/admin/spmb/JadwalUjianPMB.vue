@@ -53,8 +53,8 @@
 						@click:row="dataTableRowClicked"
 						class="elevation-1"
 						:loading="datatableLoading"
-						loading-text="Loading... Please wait">
-
+						loading-text="Loading... Please wait"
+					>
 						<template v-slot:top>
 							<v-toolbar flat color="white">
 								<v-toolbar-title>DAFTAR JADWAL UJIAN PMB</v-toolbar-title>
@@ -564,7 +564,7 @@
 					if (confirm)
 					{
 						this.btnLoading = true;
-						this.$ajax.post("/spmb/jadwalujianpmb" + item.id,
+						this.$ajax.post("/spmb/jadwalujianpmb/" + item.id,
 							{
 								_method: "DELETE",
 							},
