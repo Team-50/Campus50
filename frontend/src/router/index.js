@@ -606,6 +606,15 @@ const routes = [
 	
 	//akademik - perkuliahan - krs
 	{
+		path: "/akademik/perkuliahan/krs/waktupengisiankrs",
+		name: "WaktuPengisianKRS",
+		meta: {
+			title: "AKADEMIK - KRS",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/akademik/PerkuliahanKRSWaktuPengisian.vue"),
+	},
+	{
 		path: "/akademik/perkuliahan/krs/daftar",
 		name: "PerkuliahanKRS",
 		meta: {
