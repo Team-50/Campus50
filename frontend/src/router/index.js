@@ -515,7 +515,66 @@ const routes = [
 		},
 		component: () => import("../views/pages/admin/akademik/DulangMahasiswaLama.vue"),
 	},
-	
+	{
+		path: "/akademik/dulang/mahasiswaaktif",
+		name: "AkademikDulangMHSAktif",
+		meta: {
+			title: "AKADEMIK - DAFTAR ULANG MAHASISWA AKTIF",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/akademik/DulangMahasiswaAktif.vue"),
+	},
+	{
+		path: "/akademik/dulang/mahasiswanonaktif",
+		name: "AkademikDulangMHSNonAktif",
+		meta: {
+			title: "AKADEMIK - DAFTAR ULANG MAHASISWA NON-AKTIF",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/akademik/DulangMahasiswaNonAktif.vue"),
+	},
+	{
+		path: "/akademik/dulang/mahasiswacuti",
+		name: "AkademikDulangMHSCuti",
+		meta: {
+			title: "AKADEMIK - DAFTAR ULANG MAHASISWA CUTI",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/akademik/DulangMahasiswaCuti.vue"),
+	},
+	{
+		path: "/akademik/dulang/mahasiswalulus",
+		name: "AkademikDulangMHSLulus",
+		meta: {
+			title: "AKADEMIK - DAFTAR ULANG MAHASISWA LULUS",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/akademik/DulangMahasiswaLulus.vue"),
+	},
+	{
+		path: "/akademik/dulang/mahasiswakeluar",
+		name: "AkademikDulangMHSKeluar",
+		meta: {
+			title: "AKADEMIK - DAFTAR ULANG MAHASISWA KELUAR",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/akademik/DulangMahasiswaKeluar.vue"),
+	},
+	{
+		path: "/akademik/dulang/mahasiswado",
+		name: "AkademikDulangMHSDO",
+		meta: {
+			title: "AKADEMIK - DAFTAR ULANG MAHASISWA DROPOUT / PUTUS",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/akademik/DulangMahasiswaDO.vue"),
+	},
 	//akademik - perkuliahan - penyelenggaraan
 	{
 		path: "/akademik/perkuliahan/penyelenggaraan/daftar",
