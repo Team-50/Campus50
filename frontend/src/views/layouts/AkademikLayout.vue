@@ -416,6 +416,20 @@
 						<v-list-item
 							link
 							v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_BROWSE')"
+							to="/akademik/perkuliahan/krs/waktupengisiankrs"
+						>
+							<v-list-item-icon class="mr-2">
+								<v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
+							</v-list-item-icon>
+							<v-list-item-content>
+								<v-list-item-title>
+									WAKTU PENGISIAN KRS
+								</v-list-item-title>
+							</v-list-item-content>
+						</v-list-item>
+						<v-list-item
+							link
+							v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_BROWSE')"
 							to="/akademik/perkuliahan/krs/daftar"
 						>
 							<v-list-item-icon class="mr-2">
