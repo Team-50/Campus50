@@ -261,7 +261,7 @@
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
-							MAHASISWA KELUARR
+							MAHASISWA KELUAR
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
