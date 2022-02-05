@@ -166,11 +166,8 @@
 						<p class="text-left">
 							Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum jelas di nomor kontak WhatsApp berikut.
 						</p>
-						<h3 class="font-weight-black">
-							Tim Marketing
-						</h3>
 						<v-icon color="blue darken-2">mdi-cellphone-message</v-icon>
-						<strong> Hendi - 0878-3934-3009 | Vivi - 0812-1188-9515 | Iim - 0812-6164-4329</strong>
+						<strong> CS - 0811 2299 914 | PMB - 0812 7770 0028</strong>
 				</v-alert>
 			</v-container>
 		</v-container>
