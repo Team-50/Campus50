@@ -200,7 +200,7 @@
 					v-if="CAN_ACCESS('AKADEMIK-DULANG-AKTIF_BROWSE')"
 				>
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-account-box-multiple</v-icon>
+						<v-icon>mdi-account-check</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -219,7 +219,7 @@
 					v-if="CAN_ACCESS('AKADEMIK-DULANG-NON-AKTIF_BROWSE')"
 				>
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-account-box-multiple</v-icon>
+						<v-icon>mdi-account-cancel</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -238,30 +238,11 @@
 					v-if="CAN_ACCESS('AKADEMIK-DULANG-CUTI_BROWSE')"
 				>
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-account-box-multiple</v-icon>
+						<v-icon>mdi-account-clock</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
 							MAHASISWA CUTI
-						</v-list-item-title>
-					</v-list-item-content>
-				</v-list-item>
-				<v-list-item
-					link
-					to="/akademik/dulang/mahasiswalulus"
-					:active-class="
-						this.$store.getters['uiadmin/getTheme'](
-							'V-LIST-ITEM-ACTIVE-CSS-CLASS'
-						)
-					"
-					v-if="CAN_ACCESS('AKADEMIK-DULANG-LULUS_BROWSE')"
-				>
-					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-account-box-multiple</v-icon>
-					</v-list-item-icon>
-					<v-list-item-content>
-						<v-list-item-title>
-							MAHASISWA LULUS
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
@@ -276,7 +257,7 @@
 					v-if="CAN_ACCESS('AKADEMIK-DULANG-KELUAR_BROWSE')"
 				>
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-account-box-multiple</v-icon>
+						<v-icon>mdi-account-arrow-right</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
@@ -295,11 +276,30 @@
 					v-if="CAN_ACCESS('AKADEMIK-DULANG-DO_BROWSE')"
 				>
 					<v-list-item-icon class="mr-2">
-						<v-icon>mdi-account-box-multiple</v-icon>
+						<v-icon>mdi-account-remove</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
 							MAHASISWA DROPOUT / PUTUS
+						</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
+				<v-list-item
+					link
+					to="/akademik/dulang/mahasiswalulus"
+					:active-class="
+						this.$store.getters['uiadmin/getTheme'](
+							'V-LIST-ITEM-ACTIVE-CSS-CLASS'
+						)
+					"
+					v-if="CAN_ACCESS('AKADEMIK-DULANG-LULUS_BROWSE')"
+				>
+					<v-list-item-icon class="mr-2">
+						<v-icon>mdi-account-tie</v-icon>
+					</v-list-item-icon>
+					<v-list-item-content>
+						<v-list-item-title>
+							MAHASISWA LULUS
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
@@ -413,6 +413,20 @@
 						</v-list-item-content>
 					</template>
 					<div>
+						<v-list-item
+							link
+							v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_BROWSE')"
+							to="/akademik/perkuliahan/krs/waktupengisiankrs"
+						>
+							<v-list-item-icon class="mr-2">
+								<v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
+							</v-list-item-icon>
+							<v-list-item-content>
+								<v-list-item-title>
+									WAKTU PENGISIAN KRS
+								</v-list-item-title>
+							</v-list-item-content>
+						</v-list-item>
 						<v-list-item
 							link
 							v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_BROWSE')"
