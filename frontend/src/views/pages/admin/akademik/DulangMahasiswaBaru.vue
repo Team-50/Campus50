@@ -78,11 +78,12 @@
 							{{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
 						</template>
 						<template v-slot:item.actions="{ item }">
-						  <v-icon
+							<v-icon
 								small
 								:loading="btnLoading"
 								:disabled="btnLoading"
-								@click.stop="deleteItem(item)">
+								@click.stop="deleteItem(item)"
+							>
 								mdi-delete
 							</v-icon>    
 						</template>           
