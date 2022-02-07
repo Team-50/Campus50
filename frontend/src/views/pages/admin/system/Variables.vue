@@ -50,8 +50,8 @@
 						<v-card class="mb-4" color="grey lighten-4" flat>
 							<v-card-title>
 									PEJABAT PENANDATANGAN SK KELULUSAN
-							</v-card-title>		
-							<v-card-text>			
+							</v-card-title>
+							<v-card-text>
 								<v-row>
 									<v-col xs="12" sm="12" md="12">
 										<v-text-field
