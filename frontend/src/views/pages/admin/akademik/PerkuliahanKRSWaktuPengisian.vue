@@ -24,14 +24,41 @@
 										colored-border
 										type="info"
 										>
-										Halaman untuk melihat daftar kontrak matakuliah per tahun akademik, dan semester yang telah dilakukan.
+										Halaman untuk melihat Waktu Pengisian KRS.
 								</v-alert>
 						</template>
 				</ModuleHeader>
 				<template v-slot:filtersidebar v-if="$store.getters['uiadmin/getDefaultDashboard']!='mahasiswa'">
 						<Filter6 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" v-on:changeProdi="changeProdi" ref="filter6" />	
 				</template>
-				<v-container fluid>                         
+				<v-container fluid>
+          <v-row class="mb-4" no-gutters>
+						<v-col cols="12">
+              <v-card>
+                <v-card-text>
+                  <v-row>
+                    <v-col xs="12" sm="12" md="12">
+                      <v-text-field
+											label="WAKTU MULAI"
+											outlined
+                      >
+                      </v-text-field>
+                      <v-text-field
+                        label="WAKTU SELESAI"
+                        outlined
+                      >
+                      </v-text-field>
+                      <v-text-field
+                        label="NOMOR INDUK KEPEGAWAIAN"
+                        outlined
+                      >
+                      </v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              </v-card>
+						</v-col>
+          </v-row>                         
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
 										<v-card>
