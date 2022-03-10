@@ -30,7 +30,7 @@
                 <v-col cols="12">
                     <v-card color="grey lighten-4">
                         <v-toolbar elevation="2"> 
-                            <v-toolbar-title>DATA USER</v-toolbar-title>                             
+                            <v-toolbar-title>DATA USER</v-toolbar-title>                      
                         </v-toolbar>
                         <v-card-text>
                             <v-row>
@@ -156,7 +156,7 @@
                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                             </v-row>
                         </v-card-text>
-                    </v-card>                    
+                    </v-card>             
                 </v-col>
             </v-row>
             <v-row> 
@@ -229,7 +229,7 @@ export default {
     data ()
     {
         return {
-            dashboard:null,
+            dashboard: null,
 
             btnLoading: false,
             datatable: [],
@@ -242,37 +242,37 @@ export default {
                 nama_prodi:'N.A',
                 nama_kelas:'N.A',
                 dosen_wali:'N.A',
-            },     
-            form_valid:true,       
+            }, 
+            form_valid:true,
             formdata: {
-                id:0,    
-                username: "",       
-                password: '',              
-                name: "",    
-                email: "",    
-                nomor_hp: "",    
-                theme: "",                    
+                id:0,
+                username: "",
+                password: '',  
+                name: "",
+                email: "",
+                nomor_hp: "",
+                theme: "", 
                 foto: "",
-                active: "",                                                                           
-                default_role: "",                    
-                locked: "",                    
-                created_at: '',         
-                updated_at: '',         
+                active: "",                                                        
+                default_role: "", 
+                locked: "", 
+                created_at: '', 
+                updated_at: '', 
             },
             formdefault: {
-                id:0,    
-                username: "",       
-                password: '',              
-                name: "",    
-                email: "",    
-                nomor_hp: "",    
-                theme: "",                    
+                id:0,
+                username: "",
+                password: '',  
+                name: "",
+                email: "",
+                nomor_hp: "",
+                theme: "", 
                 foto: "",
-                active: "",                                                                           
-                default_role: "",                    
-                locked: "",                    
-                created_at: '',         
-                updated_at: '',         
+                active: "",                                                        
+                default_role: "", 
+                locked: "", 
+                created_at: '', 
+                updated_at: '', 
             },
             //form rules  
             rule_foto: [
@@ -301,8 +301,8 @@ export default {
                 this.btnLoading = true;
                 this.$ajax.post('/system/users/updatepassword/'+this.$store.getters['auth/AttributeUser']('id'),
                     {
-                        '_method':'PUT',    
-                        password: this.formdata.password,       
+                        '_method':'PUT',
+                        password: this.formdata.password,
                     },
                     {
                         headers: {
@@ -353,7 +353,7 @@ export default {
                         }
                     ).then(({ data }) => {                           
                         this.btnLoading = false;
-                        this.$store.dispatch('updateFoto',data.user.foto);            
+                        this.$store.dispatch('updateFoto',data.user.foto); 
                     }).catch(() => {
                         this.btnLoading = false;
                     });    
@@ -367,7 +367,7 @@ export default {
             await this.$ajax.post('/setting/users/resetfoto/'+this.$store.getters.User.id,{},
                 {
                     headers: {
-                        Authorization: this.$store.getters['auth/Token'],          
+                        Authorization: this.$store.getters['auth/Token'],  
                     }
                 }
             ).then(({ data }) => {                           
@@ -382,7 +382,7 @@ export default {
             await this.$ajax.get('/akademik/kemahasiswaan/biodatamhs1/'+this.$store.getters['auth/AttributeUser']('id'),
                 {
                     headers: {
-                        Authorization: this.$store.getters['auth/Token'],          
+                        Authorization: this.$store.getters['auth/Token'],  
                     }
                 }
             ).then(({ data }) => {                           

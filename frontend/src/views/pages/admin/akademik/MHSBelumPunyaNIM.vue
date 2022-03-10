@@ -28,7 +28,7 @@
 								</v-alert>
 						</template>
 				</ModuleHeader>  
-				<v-container fluid>             
+				<v-container fluid>      
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
 										<v-card>
@@ -68,7 +68,7 @@
 																		inset
 																		vertical
 																></v-divider>
-																<v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">         
+																<v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">  
 																		<v-card color="grey lighten-4">
 																				<v-toolbar elevation="2"> 
 																						<v-toolbar-title>SETTING NIM !!!</v-toolbar-title>
@@ -110,13 +110,13 @@
 																														{{data_mhs.nama_mhs}}
 																												</v-card-subtitle>
 																										</v-card>
-																								</v-col>                     
+																								</v-col>              
 																						</v-row>
 																						<v-row>
 																								<v-col cols="12">
 																										<v-form ref="frmdata" v-model="form_valid" lazy-validation>
-																												<v-card>                                 
-																														<v-card-text>            
+																												<v-card>                          
+																														<v-card-text>     
 																																<v-text-field 
 																																		v-model="formdata.nim"
 																																		label="NIM"   
@@ -171,7 +171,7 @@
 												</template>
 												<template v-slot:expanded-item="{ headers,item }">
 													<td :colspan="headers.length" class="text-center">
-														<v-col cols="12">                          
+														<v-col cols="12">                   
 															<strong>userid:</strong>{{ item.user_id }}          
 															<strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
 															<strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -183,7 +183,7 @@
 												</template>   
 										</v-data-table>
 								</v-col>
-						</v-row>            
+						</v-row>     
 				</v-container>
 				<template v-slot:filtersidebar>
 						<Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
@@ -228,19 +228,19 @@ export default {
 		},
 		data: () => ({ 
 				firstloading:true,
-				prodi_id:null,
-				nama_prodi:null,
-				tahun_pendaftaran:null,      
+				prodi_id: null,
+				nama_prodi: null,
+				tahun_pendaftaran: null,  
 
 				btnLoading: false,
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  }, 
-						{ text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },             
-						{ text: 'TELP. HP', value: 'telp_hp', sortable:true,width:150 },             
-						{ text: 'KELAS', value: 'idkelas',sortable:true,width:120, },       
+						{ text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true }, 
+						{ text: 'TELP. HP', value: 'telp_hp', sortable:true,width:150 }, 
+						{ text: 'KELAS', value: 'idkelas',sortable:true,width:120, },
 						{ text: 'AKSI', value: 'actions', sortable: false,width:100 },
 				],
 				search: "", 
@@ -248,7 +248,7 @@ export default {
 				data_mhs: {},
 
 				//formdata
-				form_valid:true, 
+				form_valid: true,
 				dialogfrm:false, 
 				daftar_dw: [],   
 				
@@ -272,7 +272,7 @@ export default {
 				], 
 				rule_dw: [
 						value => !!value || "Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
-				],       
+				],
 		}),
 		methods: {
 				changeTahunPendaftaran (tahun)
@@ -340,13 +340,13 @@ export default {
 								},
 								{
 										headers: {
-												Authorization: this.$store.getters['auth/Token'],    
+												Authorization: this.$store.getters['auth/Token'],
 										}
 								}
 								).then(() => {               
 										this.btnLoading = false;
 										this.initialize();          
-										this.closedialogfrm();            
+										this.closedialogfrm(); 
 								}).catch(() => {
 										this.btnLoading = false;
 								});   
@@ -355,7 +355,7 @@ export default {
 				closedialogfrm() {            
 						this.dialogfrm = false;
 						setTimeout(() => {       
-								this.formdata = Object.assign({}, this.formdefault);                    
+								this.formdata = Object.assign({}, this.formdefault);         
 								this.data_mhs = Object.assign({}, {});   
 								}, 300
 						);

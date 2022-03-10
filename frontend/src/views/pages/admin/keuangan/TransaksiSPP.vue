@@ -70,11 +70,11 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>         
+                                <v-spacer></v-spacer>  
                                 <v-btn color="indigo darken-3" elevation="0" small class="primary" @click.stop="addItem">
                                     <v-icon size="21px">mdi-plus-circle</v-icon>
-                                </v-btn>             
-                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>         
+                                </v-btn>      
+                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>  
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
@@ -87,7 +87,7 @@
                                                     outlined
                                                     :rules="rule_nim"
                                                     :disabled="dashboard =='mahasiswa'">
-                                                </v-text-field>                  
+                                                </v-text-field>           
                                                 <v-select
                                                     v-model="formdata.semester_akademik"
                                                     :items="daftar_semester"                                    
@@ -95,7 +95,7 @@
                                                     :rules="rule_semester"
                                                     item-text="text"
                                                     item-value="id"
-                                                    outlined/>                                                      
+                                                    outlined/>                                         
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -132,7 +132,7 @@
                                 class="mr-2"
                                 @click.stop="viewItem(item)">
                                 mdi-eye
-                            </v-icon>                             
+                            </v-icon>                      
                         </template>
                         <template v-slot:body.append v-if="datatable.length > 0">
                             <tr class="grey lighten-4 font-weight-black">
@@ -205,30 +205,30 @@ export default {
         firstloading:true,
         breadcrumbs: [],   
         tahun_akademik:0,
-        btnLoading: false,    
+        btnLoading: false,
 
         //tables
-        datatableLoading:false,     
+        datatableLoading:false, 
         datatable: [], 
         headers: [                                                
             { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable:true },
             { text: 'TANGGAL', value: 'tanggal',width:90,sortable:true },
             { text: 'NIM', value: 'nim',sortable:true,width:100 },
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true, width:250 },          
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true,width:250 },  
             { text: 'BULAN', value: 'nama_bulan',width:100,sortable:true },
             { text: 'SMT', value: 'idsmt',width:50,sortable:false },
             { text: 'JUMLAH', value: 'sub_total',width:100,sortable:false,align:'right' },
-            { text: 'STATUS', value: 'nama_status',width:100,sortable:false },          
+            { text: 'STATUS', value: 'nama_status',width:100,sortable:false },  
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
-        ],      
+        ],  
         expanded: [],
         search: "", 
 
-        dialogfrm:false,      
+        dialogfrm:false,  
 
         //form data   
-        form_valid:true,         
-        daftar_semester: [],      
+        form_valid: true,
+        daftar_semester: [],  
         formdata: {
             nim: "",
             semester_akademik: ""
@@ -254,7 +254,7 @@ export default {
         initialize:async function() 
         {
             this.datatableLoading=true;
-            await this.$ajax.post('/keuangan/transaksi-spp',          
+            await this.$ajax.post('/keuangan/transaksi-spp',  
             {
                 TA: this.tahun_akademik,
             },
@@ -300,8 +300,8 @@ export default {
                 await this.$ajax.post('/keuangan/transaksi-spp/new',
                     {
                         nim: this.formdata.nim, 
-                        semester_akademik: this.formdata.semester_akademik,                                                        
-                        TA: this.tahun_akademik,                                 
+                        semester_akademik: this.formdata.semester_akademik,                                     
+                        TA: this.tahun_akademik,              
                     },
                     {
                         headers: {
@@ -309,7 +309,7 @@ export default {
                         }
                     }
                 ).then(({ data }) => {                                        
-                    this.btnLoading = false;                            
+                    this.btnLoading = false;                 
                     this.$router.push('/keuangan/transaksi-spp/tambah/'+data.transaksi.id);
                 }).catch(() => {
                     this.btnLoading = false;
@@ -319,7 +319,7 @@ export default {
         closedialogfrm() {
             this.dialogfrm = false;
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                    
+                this.formdata = Object.assign({}, this.formdefault);         
                 this.$refs.frmdata.reset(); 
                 }, 300
             );

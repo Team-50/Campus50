@@ -27,8 +27,8 @@
 										Halaman untuk melakukan penambahan  kelas pada tahun akademik dan semester terpilih.
 								</v-alert>
 						</template>
-				</ModuleHeader>        
-				<v-container fluid>         
+				</ModuleHeader> 
+				<v-container fluid>  
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
 										<v-form ref="frmdata" v-model="form_valid" lazy-validation>
@@ -164,7 +164,7 @@
 												</v-card>
 										</v-form>
 								</v-col>
-						</v-row>            
+						</v-row>     
 				</v-container>
 		</AkademikLayout>
 </template>
@@ -207,14 +207,14 @@ export default {
 				this.initialize()
 		},
 		data: () => ({         
-				tahun_akademik:null,
-				semester_akademik:null,
+				tahun_akademik: null,
+				semester_akademik: null,
 
-				btnLoading: false,      
+				btnLoading: false,  
 				//formdata
-				form_valid:true, 
-				daftar_dosen: [],      
-				dosen_id:null,
+				form_valid: true,
+				daftar_dosen: [],  
+				dosen_id: null,
 				daftar_zoom: [],
 
 				daftar_sks: [
@@ -255,13 +255,13 @@ export default {
 				],
 				formdata: {            
 						id: "",
-						user_id: "",          
+						user_id: "",  
 						zoom_id: "",
-						kmatkul: "",          
-						nmatkul: "",          
-						sks: "",          
-						idkelas: "",    
-						hari: "",          
+						kmatkul: "",  
+						nmatkul: "",  
+						sks: "",  
+						idkelas: "",
+						hari: "",  
 						jam_masuk: "",
 						jam_keluar: "",
 						penyelenggaraan_dosen_id: "",
@@ -271,14 +271,14 @@ export default {
 						value => !!value || "Mohon dipilih Dosen pengampu matakuliah !!!"
 				],
 				rule_kode_matkul: [
-						value => !!value || "Kode Program Studi mohon untuk diisi !!!",          
+						value => !!value || "Kode Program Studi mohon untuk diisi !!!",  
 				], 
 				rule_nama_matakuliah: [
-						value => !!value || "Mohon Nama Program Studi untuk diisi !!!",            
+						value => !!value || "Mohon Nama Program Studi untuk diisi !!!",
 				], 
 				rule_sks: [
-						value => !!value || "Mohon SKS Matakuliah untuk dipilih !!!",            
-				],               
+						value => !!value || "Mohon SKS Matakuliah untuk dipilih !!!",
+				],
 				rule_matakuliah: [
 						value => !!value || "Mohon dipilih matakuliah yang diselenggaran untuk dosen pengampu ini!!!"
 				],
@@ -303,9 +303,9 @@ export default {
 		methods: {        
 				initialize:async function() 
 				{
-						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',          
+						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',  
 						{
-								ta: this.$store.getters['uiadmin/getTahunAkademik'],              
+								ta: this.$store.getters['uiadmin/getTahunAkademik'],  
 								semester_akademik: this.$store.getters['uiadmin/getSemesterAkademik'],
 								pid:'daftarpengampu'
 						},
@@ -317,7 +317,7 @@ export default {
 								this.daftar_dosen = data.dosen;    
 						});  
 
-						await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',     
+						await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom', 
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
@@ -342,16 +342,16 @@ export default {
 										{
 												user_id: this.dosen_id,
 												zoom_id: this.formdata.zoom_id, 
-												idkelas: this.formdata.idkelas,        
-												kmatkul: this.formdata.kmatkul,        
-												nmatkul: this.formdata.nmatkul,        
-												sks: this.formdata.sks,        
-												hari: this.formdata.hari,        
+												idkelas: this.formdata.idkelas,
+												kmatkul: this.formdata.kmatkul,
+												nmatkul: this.formdata.nmatkul,
+												sks: this.formdata.sks,
+												hari: this.formdata.hari,
 												jam_masuk: this.formdata.jam_masuk,
-												jam_keluar: this.formdata.jam_keluar,    
+												jam_keluar: this.formdata.jam_keluar,
 												penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
-												ruang_kelas_id: this.formdata.ruang_kelas_id,                               
-												tahun: this.tahun_akademik,        
+												ruang_kelas_id: this.formdata.ruang_kelas_id,            
+												tahun: this.tahun_akademik,
 												idsmt: this.semester_akademik,
 										},
 										{
@@ -366,16 +366,16 @@ export default {
 										this.btnLoading = false;
 								});
 						}            
-				},      
+				},  
 		},
 		watch: {
 				async dosen_id(val)
 				{
-						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',          
+						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',  
 						{
 								user_id:val,
-								ta: this.$store.getters['uiadmin/getTahunAkademik'],              
-								semester_akademik: this.$store.getters['uiadmin/getSemesterAkademik'],              
+								ta: this.$store.getters['uiadmin/getTahunAkademik'],  
+								semester_akademik: this.$store.getters['uiadmin/getSemesterAkademik'],  
 						},
 						{
 								headers: {
@@ -390,7 +390,7 @@ export default {
 		},  
 		components: {
 				AkademikLayout,
-				ModuleHeader,          
+				ModuleHeader,  
 		},
 }
 </script>

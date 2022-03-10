@@ -81,8 +81,8 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">         
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" v-if="dialogprofilmhsbaru" />         
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">  
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" v-if="dialogprofilmhsbaru" />  
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -92,10 +92,10 @@
                                 :color="badgeColor(item)"
                                 :icon="badgeIcon(item)"
                                 :value="item.jumlah_persyaratan > 0"
-                                overlap>                
-                                <v-avatar size="30">             
-                                    <v-img :src="$api.storageURL+'/'+item.foto" />                                          
-                                </v-avatar>                                                                       
+                                overlap>         
+                                <v-avatar size="30">      
+                                    <v-img :src="$api.storageURL+'/'+item.foto" />                             
+                                </v-avatar>                                                                
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -120,7 +120,7 @@
                         </template>
                     </v-data-table>
                 </v-col>
-            </v-row>           
+            </v-row>    
         </v-container>
         <template v-slot:filtersidebar v-if="dashboard!='mahasiswabaru'">
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
@@ -163,20 +163,20 @@ export default {
     }, 
     data: () => ({
         firstloading:true,
-        prodi_id:null,
-        tahun_pendaftaran:null,
-        nama_prodi:null,
+        prodi_id: null,
+        tahun_pendaftaran: null,
+        nama_prodi: null,
 
         dialogprofilmhsbaru:false,
-        breadcrumbs: [],      
-        dashboard:null,
+        breadcrumbs: [],  
+        dashboard: null,
 
         btnLoading: false,
         datatableLoading:false,
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: '', value: 'foto', width:70 },             
+            { text: '', value: 'foto', width:70 }, 
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
             { text: 'KELAS', value: 'nkelas',width:100,sortable:true },
@@ -203,7 +203,7 @@ export default {
 		{	
             if (this.dashboard == 'mahasiswabaru' || this.dashboard =='mahasiswa')
             {
-                await this.$ajax.get('/spmb/formulirpendaftaran/'+this.$store.getters['auth/AttributeUser']('id'),           
+                await this.$ajax.get('/spmb/formulirpendaftaran/'+this.$store.getters['auth/AttributeUser']('id'),   
                     {
                         headers: {
                             Authorization: this.$store.getters['auth/Token']
@@ -247,7 +247,7 @@ export default {
         },
         badgeColor(item)
         {
-            return item.persyaratan<item.jumlah_persyaratan ? 'error':'success' ;           
+            return item.persyaratan<item.jumlah_persyaratan ? 'error':'success' ;
         },
         badgeIcon(item)
         {
@@ -282,7 +282,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,      
+        ModuleHeader,  
         FormPersyaratan,
         ProfilMahasiswaBaru,
         Filter7

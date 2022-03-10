@@ -81,7 +81,7 @@
 																		@click.stop="addItem">
 																		<v-icon size="21px">mdi-plus-circle</v-icon>
 																</v-btn>
-																<v-dialog v-model="dialogfrm" max-width="500px" persistent>         
+																<v-dialog v-model="dialogfrm" max-width="500px" persistent>  
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 																				<v-card>
 																						<v-card-title>
@@ -108,7 +108,7 @@
 																										v-model="formdata.email"
 																										label="EMAIL" 
 																										:rules="rule_email"
-																										outlined/>       
+																										outlined/>
 																								<v-select
 																										v-model="kode_fakultas"
 																										label="FAKULTAS"
@@ -230,14 +230,14 @@
 																														<v-btn small color="primary" @click.stop="resend(formdata.id)" class="mb-2" :loading="btnLoading">KIRIM ULANG</v-btn>
 																												</v-card-text>
 																										</v-card>
-																								</v-col>                     
+																								</v-col>              
 																						</v-row>
 																				</v-card-text>
 																				<v-card-actions>
 																						<v-spacer></v-spacer>
 																						<v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
 																				</v-card-actions>
-																		</v-card>         
+																		</v-card>  
 																</v-dialog>
 														</v-toolbar>
 												</template>
@@ -277,10 +277,10 @@
 																bordered
 																:color="badgeColor(item)"
 																:icon="badgeIcon(item)"
-																overlap>                
-																<v-avatar size="30">             
-																		<v-img :src="$api.storageURL+'/'+item.foto" />                                          
-																</v-avatar>                                                                       
+																overlap>         
+																<v-avatar size="30">      
+																		<v-img :src="$api.storageURL+'/'+item.foto" />                             
+																</v-avatar>                                                                
 														</v-badge>
 												</template>
 												<template v-slot:item.created_at="{ item }"> 
@@ -363,12 +363,12 @@ export default {
 		},
 		data: () => ({ 
 				firstloading:true,
-				prodi_id:null,
-				tahun_pendaftaran:null,
-				nama_prodi:null,
+				prodi_id: null,
+				tahun_pendaftaran: null,
+				nama_prodi: null,
 				
 				breadcrumbs: [],
-				dashboard:null,
+				dashboard: null,
 				datatableLoading:false,
 				btnLoading: false,
 				btnLoadingFakultas:false,

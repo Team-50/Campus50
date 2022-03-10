@@ -123,11 +123,6 @@
 		},
 		mounted() {
 			this.$root.$confirm = this.$refs.confirm;
-			// Clear the browser cache data in localStorage when closing the browser window
-			window.onbeforeunload = function() {
-				var storage = window.localStorage;
-				storage.clear();
-			}
 		},
 		data() {
 			return{

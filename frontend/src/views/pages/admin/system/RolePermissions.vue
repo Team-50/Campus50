@@ -93,7 +93,7 @@
                                             <v-icon small>
                                                 mdi-delete
                                             </v-icon>
-                                        </v-btn>                                               
+                                        </v-btn>                                        
                                     </template>
                                     <span>Hapus Permission dari Role ini</span>  
                                 </v-tooltip>
@@ -126,10 +126,10 @@ export default {
         //tables
         headers: [                        
             { text: 'NAMA PERMISSION', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },    
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },        
+            { text: 'GUARD', value: 'guard_name' },
+            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search: "",      
+        search: "",  
         perm_selected: []
     }),
     methods: {
@@ -187,7 +187,7 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{                             
-            TOKEN:'Token',              
+            TOKEN:'Token',  
         }),
         daftar_permissions()
         {

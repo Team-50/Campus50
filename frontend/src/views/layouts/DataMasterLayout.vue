@@ -102,7 +102,7 @@
 										<v-list-item-content>
 												<v-list-item-title>BOARD DATA MASTER</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                
+								</v-list-item>         
 								<v-subheader style="color:#f0935c">PERGURUAN TINGGI</v-subheader>
 								<v-list-item link to="/dmaster/jenjangstudi">
 										<v-list-item-icon class="mr-2">
@@ -133,7 +133,7 @@
 														PROGRAM STUDI
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>            								
+								</v-list-item>     								
 								<v-subheader style="color:#f0935c">FASILITAS</v-subheader>
 								<v-list-item link to="/dmaster/ruangkelas">
 										<v-list-item-icon class="mr-2">
@@ -176,7 +176,7 @@
 														KELAS
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>               
+								</v-list-item>        
 								<v-subheader style="color:#f0935c">DOSEN</v-subheader>
 								<v-list-item link to="/dmaster/jabatanakademik">
 										<v-list-item-icon class="mr-2">
@@ -198,7 +198,7 @@
 														TAHUN AKADEMIK
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                  
+								</v-list-item>           
 						</v-list>
 				</v-navigation-drawer>
 				<v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
@@ -243,12 +243,12 @@ export default {
 						type:Boolean,
 						default:false
 				},
-		},    
+		},
 		data:()=>({
 				loginTime:0,
-				drawer:null,
-				drawerRight:null, 
-		}),     
+				drawer: null,
+				drawerRight: null, 
+		}), 
 		methods: {        
 				logout ()
 				{
@@ -281,12 +281,12 @@ export default {
 		computed: {
 				...mapGetters('auth',{
 						AUTHENTICATED:'Authenticated',
-						ACCESS_TOKEN:'AccessToken',        
-						TOKEN:'Token',        
+						ACCESS_TOKEN:'AccessToken',
+						TOKEN:'Token',
 						DEFAULT_ROLE:'DefaultRole',
 						ROLE:'Role',
-						CAN_ACCESS:'can',       
-						ATTRIBUTE_USER:'AttributeUser',             
+						CAN_ACCESS:'can',
+						ATTRIBUTE_USER:'AttributeUser', 
 				}),
 				APP_NAME ()
 				{
@@ -315,7 +315,7 @@ export default {
 								if (value >= 0)
 								{
 										setTimeout(() => { 
-												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                         
+												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                              
 					}, 1000);
 								}
 								else
@@ -325,7 +325,7 @@ export default {
 								}
 						},
 						immediate:true
-				},      
+				},  
 		}
 }
 </script>

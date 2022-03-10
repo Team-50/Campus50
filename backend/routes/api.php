@@ -120,6 +120,8 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
 	$router->get('/spmb/soalpmb/{id}',['middleware'=>['role:superadmin|pmb'],'uses'=>'SPMB\SoalPMBController@show','as'=>'soalpmb.show']);
 	$router->put('/spmb/soalpmb/{id}',['middleware'=>['role:superadmin|pmb'],'uses'=>'SPMB\SoalPMBController@update','as'=>'soalpmb.update']);
 	$router->delete('/spmb/soalpmb/{id}',['middleware'=>['role:superadmin|pmb'],'uses'=>'SPMB\SoalPMBController@destroy','as'=>'soalpmb.destroy']);
+	//id disini adalah tahun tujuan
+	$router->post('/spmb/soalpmb/salin/{id}',['middleware'=>['role:superadmin'], 'uses'=>'SPMB\SoalPMBController@salin','as'=>'soalpmb.salin']);
 
 	//spmb - pendaftaran mahasiswa baru
 	$router->post('/spmb/pmb',['middleware'=>['role:superadmin|pmb|keuangan'],'uses'=>'SPMB\PMBController@index','as'=>'pmb.index']);

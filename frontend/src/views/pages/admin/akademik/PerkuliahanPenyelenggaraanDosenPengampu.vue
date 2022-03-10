@@ -27,13 +27,13 @@
 										Halaman untuk melakukan penyelenggaraan matakuliah per prodi, tahun akademik, dan semester.
 								</v-alert>
 						</template>
-				</ModuleHeader>        
+				</ModuleHeader> 
 				<v-container fluid>   
 						<v-row class="mb-4">   
 								<v-col cols="12">
 										<DataMatakuliahPenyelenggaraan :datamatkul="data_matkul"></DataMatakuliahPenyelenggaraan>
 								</v-col>
-								<v-col cols="12">                    
+								<v-col cols="12">             
 										<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 												<v-card>
 														<v-card-title>
@@ -54,7 +54,7 @@
 																<v-switch
 																		v-model="formdata.is_ketua"
 																		label="SEBAGAI KETUA GROUP DOSEN PENGAMPU">
-																</v-switch>                                                   
+																</v-switch>                                            
 														</v-card-text>
 														<v-card-actions>
 																<v-spacer></v-spacer>
@@ -76,7 +76,7 @@
 												</v-card>
 										</v-form>
 								</v-col>
-								<v-col cols="12">           
+								<v-col cols="12">    
 										<v-card>
 												<v-card-title>
 														DAFTAR DOSEN PENGAMPU
@@ -91,14 +91,14 @@
 																class="elevation-1"
 																:loading="datatableLoading"
 																loading-text="Loading... Please wait">
-																<template v-slot:item.is_ketua="{ item }">         
+																<template v-slot:item.is_ketua="{ item }">  
 																		<v-switch
 																				v-model="item.is_ketua"
 																				:label="item.is_ketua == 1?'YA':'TIDAK'"
 																				@change="updateketua(item)">
 																		</v-switch>  
 																</template>
-																<template v-slot:item.actions="{ item }">         
+																<template v-slot:item.actions="{ item }">  
 																		<v-btn
 																				small
 																				icon
@@ -159,7 +159,7 @@ export default {
 				this.prodi_id=prodi_id;
 				this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
 				this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];          
-				this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];            
+				this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik']; 
 				this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];    
 				this.formdata.idpenyelenggaraan=this.$route.params.idpenyelenggaraan;
 				this.initialize();
@@ -171,39 +171,39 @@ export default {
 		},
 		data: () => ({ 
 				firstloading:true,
-				prodi_id:null,
-				nama_prodi:null,
-				tahun_akademik:null,      
-				semester_akademik:null,
+				prodi_id: null,
+				nama_prodi: null,
+				tahun_akademik: null,  
+				semester_akademik: null,
 
-				btnLoading: false,      
+				btnLoading: false,  
 				btnLoadingTable:false,
 
 				//table        
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'NIDN', value: 'nidn', sortable:false,width:120  }, 
-						{ text: 'NAMA DOSEN', value: 'nama_dosen',sortable:false },             
-						{ text: 'KETUA', value: 'is_ketua', sortable:false,width:120 },       
-						{ text: 'AKSI', value: 'actions', sortable:false,width:120 },       
+						{ text: 'NAMA DOSEN', value: 'nama_dosen',sortable:false }, 
+						{ text: 'KETUA', value: 'is_ketua', sortable:false,width:120 },
+						{ text: 'AKSI', value: 'actions', sortable:false,width:120 },
 				],
 				
 				//formdata
-				form_valid:true, 
-				data_matkul:null,
+				form_valid: true,
+				data_matkul: null,
 				daftar_dosen: [],
 				formdata: {
-						idpenyelenggaraan:null,
-						dosen_id:null,
+						idpenyelenggaraan: null,
+						dosen_id: null,
 						is_ketua:false,
-				},      
+				},  
 				formdefault: {
-						idpenyelenggaraan:null,
-						dosen_id:null,
+						idpenyelenggaraan: null,
+						dosen_id: null,
 						is_ketua:false,
-				},      
+				},  
 				rule_dosen: [
 						value => !!value || "Mohon dipilih Dosen untuk matakuliah ini !!!"
 				],
@@ -211,7 +211,7 @@ export default {
 		methods: {   
 				async initialize ()
 				{
-						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',          
+						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',  
 						{
 								idpenyelenggaraan: this.formdata.idpenyelenggaraan,
 								pid:'terdaftar'
@@ -226,7 +226,7 @@ export default {
 				},
 				async fetchMatkul ()
 				{
-						await this.$ajax.get('/akademik/perkuliahan/penyelenggaraanmatakuliah/'+this.formdata.idpenyelenggaraan,          
+						await this.$ajax.get('/akademik/perkuliahan/penyelenggaraanmatakuliah/'+this.formdata.idpenyelenggaraan,  
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
@@ -237,7 +237,7 @@ export default {
 				},
 				async fetchDosenPengampu ()
 				{
-						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',          
+						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',  
 						{
 								idpenyelenggaraan: this.formdata.idpenyelenggaraan,
 								pid:'belumterdaftar'
@@ -257,8 +257,8 @@ export default {
 								await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/storedosenpengampu',
 										{
 												penyelenggaraan_id: this.formdata.idpenyelenggaraan, 
-												dosen_id: this.formdata.dosen_id,                                
-												is_ketua: this.formdata.is_ketua,                                                                                                           
+												dosen_id: this.formdata.dosen_id,             
+												is_ketua: this.formdata.is_ketua,                                                                                        
 										},
 										{
 												headers: {
@@ -268,7 +268,7 @@ export default {
 								).then(() => {   
 										setTimeout(() => {
 												this.btnLoading = false;        
-												this.$router.go();                     
+												this.$router.go();          
 												}, 500
 										);
 										
@@ -301,14 +301,14 @@ export default {
 										});
 								}                
 						});
-				},      
+				},  
 				async updateketua(item)
 				{
 						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/updateketua/'+item.id,
 								{
 										_method:'put',
-										penyelenggaraan_id:item.penyelenggaraan_id,                                                                                                           
-										is_ketua:item.is_ketua,                                                                                                           
+										penyelenggaraan_id:item.penyelenggaraan_id,                                                                                        
+										is_ketua:item.is_ketua,                                                                                        
 								},
 								{
 										headers: {
@@ -317,7 +317,7 @@ export default {
 								}
 						).then(() => {   
 								setTimeout(() => {                                     
-										this.initialize();                     
+										this.initialize();          
 										}, 500
 								);
 								

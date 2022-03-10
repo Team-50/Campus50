@@ -24,7 +24,7 @@
 												Halaman ini berisi daftar DOSEN WALI / PENDAMPING AKADEMIK yang bertanggungjawab untuk membantu pembelajaran mahasiswa.
 								</v-alert>
 						</template>
-				</ModuleHeader>        
+				</ModuleHeader> 
 				<v-container fluid>    
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
@@ -71,11 +71,11 @@
 																				<v-card>
 																						<v-card-title>
 																								<span class="headline">Alihkan Mahasiswa</span>
-																						</v-card-title>                 
+																						</v-card-title>          
 																						<v-card-subtitle>
 																								Alihkan Mahasiswa dari Dosen wali ini ke Dosen wali lain.
-																						</v-card-subtitle>                 
-																						<v-card-text>                                                                     
+																						</v-card-subtitle>          
+																						<v-card-text>                                                              
 																																																																
 																						</v-card-text>
 																						<v-card-actions>
@@ -121,7 +121,7 @@
 												<template v-slot:item.foto="{ item }"> 
 														<v-avatar size="30">
 																<v-img :src="$api.storageURL+'/'+item.foto" />     
-														</v-avatar>                                                                       
+														</v-avatar>                                                                
 												</template>
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
@@ -172,7 +172,7 @@ export default {
 		data: () => ({ 
 				role_id:0,
 				datatableLoading:false,
-				btnLoading: false,    
+				btnLoading: false,
 				//tables
 				headers: [                        
 						{ text: '', value: 'foto' },
@@ -186,50 +186,50 @@ export default {
 				],
 				expanded: [],
 				search: "",
-				daftar_users: [],      
+				daftar_users: [],  
 
 				//form
 				form_valid:true,
 				dialog: false,
-				dialogAlihkan: false,      
-				editedIndex: -1,      
+				dialogAlihkan: false,  
+				editedIndex: -1,  
 				editedItem: {
 						id:0,
-						username: '',         
-						password: '',         
-						name: '',    
+						username: '', 
+						password: '', 
+						name: '',
 						nidn: "", 
-						nipy: "",       
-						email: '',         
-						nomor_hp: "",               
-						is_dw:false,    
-						created_at: '',         
+						nipy: "",
+						email: '', 
+						nomor_hp: "",
+						is_dw:false,
+						created_at: '', 
 						updated_at: '', 
 				},
 				defaultItem: {
 						id:0,
-						username: '',         
-						password: '',         
+						username: '', 
+						password: '', 
 						name: '',  
 						nidn: "",
-						nipy: "",     
-						email: '',         
-						nomor_hp: '',        
+						nipy: "", 
+						email: '', 
+						nomor_hp: '',
 						is_dw:false,  
-						created_at: '',         
-						updated_at: '',      
+						created_at: '', 
+						updated_at: '',  
 				},
 				//form rules        
 				rule_user_name: [
 						value => !!value || "Mohon untuk di isi nama Dosen !!!",
-						value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',              
-				],       
+						value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',  
+				],
 				rule_nipy: [
-						value => !!value || "Mohon untuk di isi Nomor Induk Pegawai Yayasan (NIPY) dari User ini !!!",      
+						value => !!value || "Mohon untuk di isi Nomor Induk Pegawai Yayasan (NIPY) dari User ini !!!",  
 				], 
 				rule_user_email: [
 						value => !!value || "Mohon untuk di isi email User !!!",
-						value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',     
+						value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar', 
 				], 
 				rule_user_nomorhp: [
 						value => !!value || "Nomor HP mohon untuk diisi !!!",
@@ -288,7 +288,7 @@ export default {
 						{
 								this.expanded=[item];
 						}               
-				},      
+				},  
 				showDialogTambahUserDosen:async function()
 				{
 						this.dialog = true;
@@ -296,9 +296,9 @@ export default {
 				editItem:async function (item) {
 						this.editedIndex = this.daftar_users.indexOf(item)
 						item.password='';
-						this.editedItem = Object.assign({}, item);                  
+						this.editedItem = Object.assign({}, item);       
 						this.dialogAlihkan = true;
-				},      
+				},  
 				close() {            
 						this.btnLoading = false;
 						this.dialog = false;
@@ -317,7 +317,7 @@ export default {
 								this.$ajax.post('/akademik/dosenwali/'+this.editedItem.id,
 										{
 												'_method':'PUT',
-												user_id: this.editedItem.id,        
+												user_id: this.editedItem.id,
 												pid:'alihkan_mhs'
 										},
 										{
@@ -330,9 +330,9 @@ export default {
 										this.close();
 								}).catch(() => {
 										this.btnLoading = false;
-								});           
+								});
 						}
-				},      
+				},  
 				deleteItem (item) {           
 						this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus dosen wali '+item.username+' ?', { color: 'red' }).then((confirm) => {
 								if (confirm)
@@ -360,8 +360,8 @@ export default {
 		},
 		computed: {        
 				...mapGetters('auth',{            
-						ACCESS_TOKEN:'AccessToken',        
-						TOKEN:'Token',              
+						ACCESS_TOKEN:'AccessToken',
+						TOKEN:'Token',  
 				}),
 		},
 		watch: {
@@ -370,11 +370,11 @@ export default {
 				},
 				dialogAlihkan (val) {
 						val || this.close()
-				},      
+				},  
 		},  
 		components: {
 				AkademikLayout,
-				ModuleHeader,      
+				ModuleHeader,  
 		},
 }
 </script>

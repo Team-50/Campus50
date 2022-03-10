@@ -47,7 +47,7 @@
                         loading-text="Loading... Please wait">     
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">         
+                                <v-col cols="12">  
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
                                 </v-col>     
@@ -98,14 +98,14 @@ export default {
         headers: [                                            
             { text: 'ID', value: 'id',width:10,sortable:false },
             { text: 'NAMA KOMPONEN', value: 'nama',sortable:false},
-            { text: 'PERIODE', value: 'periode',width:150,sortable:false },          
-        ],      
+            { text: 'PERIODE', value: 'periode',width:150,sortable:false },  
+        ],  
     }),
     methods : {
         initialize:async function()
 		{
             this.datatableLoading=true;
-            await this.$ajax.get('/keuangan/komponenbiaya',          
+            await this.$ajax.get('/keuangan/komponenbiaya',  
             {
                 headers: {
                     Authorization: this.$store.getters['auth/Token']
@@ -129,7 +129,7 @@ export default {
     },
     components: {
         KeuanganLayout,
-        ModuleHeader,      
+        ModuleHeader,  
     },
 }
 </script>

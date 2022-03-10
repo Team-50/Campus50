@@ -27,16 +27,16 @@
 										Halaman untuk melakukan tambah krs 
 								</v-alert>
 						</template>
-				</ModuleHeader>        
-				<v-container fluid>                         
+				</ModuleHeader> 
+				<v-container fluid>                  
 						<v-row class="mb-4" no-gutters>
-								<v-col cols="12">                    
+								<v-col cols="12">             
 										<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 												<v-card>
 														<v-card-title>
 																PILIH TAHUN & SEMESTER DAFTAR ULANG
 														</v-card-title>
-														<v-card-text>        
+														<v-card-text> 
 																<v-alert type="info">
 																		Silahkan pilih tahun dan semester daftar ulang. Bila tidak ada disebabkan belum melakukan pembayaran atau status daftar ulang dinyatakan tidak aktif
 																</v-alert>
@@ -55,7 +55,7 @@
 																		label="DAFTAR ULANG"                                            
 																		class="mr-2"
 																		:rules="rule_dulang"
-																		outlined/>      
+																		outlined/>
 														</v-card-text>
 														<v-card-actions>
 																<v-spacer></v-spacer>
@@ -125,50 +125,50 @@ export default {
 		},
 		data: () => ({ 
 				firstloading:true,
-				prodi_id:null,
-				nama_prodi:null,
-				tahun_akademik:null,
-				ta_matkul:null,
-				semester_akademik:null,
+				prodi_id: null,
+				nama_prodi: null,
+				tahun_akademik: null,
+				ta_matkul: null,
+				semester_akademik: null,
 
-				btnLoading: false,      
+				btnLoading: false,  
 
 				//table
 				dialogdetailitem:false,
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'KODE', value: 'kmatkul', sortable:true,width:120  }, 
-						{ text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },             
-						{ text: 'KELOMPOK', value: 'group_alias', sortable:true,width:120 },             
-						{ text: 'SKS', value: 'sks',sortable:true,width:80, align:'center' },             
-						{ text: 'SMT', value: 'semester', sortable:true,width:80 },             
+						{ text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true }, 
+						{ text: 'KELOMPOK', value: 'group_alias', sortable:true,width:120 }, 
+						{ text: 'SKS', value: 'sks',sortable:true,width:80, align:'center' }, 
+						{ text: 'SMT', value: 'semester', sortable:true,width:80 }, 
 						{ text: 'AKSI', value: 'actions', sortable: false,width:100 },
 				],
 				search: "",  
 
 				//formdata
-				form_valid:true, 
+				form_valid: true,
 				daftar_dulang: [],
 				formdata: {
 						nim: "",
 						dulang_id: ""
-				},      
+				},  
 				rule_nim: [
 						value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
 						value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
 				], 
 				rule_dulang: [
 						value => !!value || "Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
-				],       
+				],
 		}),
 		methods: {          
 				async fetchDulang()
 				{
 						await this.$ajax.post('/akademik/dulang/dulangnotinkrs',
 						{
-								nim: this.formdata.nim,              
+								nim: this.formdata.nim,  
 						},
 						{
 								headers: {
@@ -208,7 +208,7 @@ export default {
 				},
 				closedialogfrm() {                             
 						setTimeout(() => {       
-								this.formdata = Object.assign({}, this.formdefault);                    
+								this.formdata = Object.assign({}, this.formdefault);         
 								this.$router.push('/akademik/perkuliahan/krs/daftar');
 								}, 300
 						);
@@ -217,7 +217,7 @@ export default {
 		
 		components: {
 				AkademikLayout,
-				ModuleHeader,          
+				ModuleHeader,  
 		},
 }
 </script>

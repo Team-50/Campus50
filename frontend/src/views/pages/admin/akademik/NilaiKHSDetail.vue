@@ -72,7 +72,7 @@
 																				</v-card-subtitle>
 																		</v-card>
 																</v-col>
-																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                
+																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 																<v-col xs="12" sm="6" md="6">
 																		<v-card flat>
 																				<v-card-title>NAMA MAHASISWA:</v-card-title>
@@ -91,13 +91,13 @@
 																		</v-card>
 																</v-col>
 																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-														</v-row>            
+														</v-row>     
 												</v-card-text>
 										</v-card>
-								</v-col>                
+								</v-col>         
 						</v-row>
 						<v-row>
-								<v-col cols="12">           
+								<v-col cols="12">    
 										<v-card>
 												<v-card-title>
 														DAFTAR MATAKULIAH
@@ -110,7 +110,7 @@
 																:loading="btnLoading"
 																:disabled="btnLoading || !datakrs.hasOwnProperty('id')">
 																<v-icon>mdi-printer</v-icon>
-														</v-btn>                            
+														</v-btn>                     
 												</v-card-title>
 												<v-card-text>
 														<v-data-table        
@@ -121,24 +121,24 @@
 																:disable-pagination="true"
 																:hide-default-footer="true"                                                                
 																:loading="datatableLoading"
-																loading-text="Loading... Please wait">                                    
+																loading-text="Loading... Please wait">                             
 																<template v-slot:body.append v-if="datatable.length > 0">
 																		<tr class="grey lighten-4 font-weight-black">
 																				<td class="text-right" colspan="2">JUMLAH</td>
-																				<td>{{jumlah_sks}}</td>              
-																				<td></td>              
+																				<td>{{jumlah_sks}}</td>       
+																				<td></td>       
 																				<td>{{jumlah_am}}</td>
 																				<td>{{jumlah_m}}</td>
 																				<td></td>     
 																		</tr>
 																		<tr class="grey lighten-4 font-weight-black">
 																				<td class="text-right" colspan="2">IPS</td>
-																				<td colspan="5">{{ips}}</td>              
-																		</tr>         
+																				<td colspan="5">{{ips}}</td>       
+																		</tr>  
 																		<tr class="grey lighten-4 font-weight-black">
 																				<td class="text-right" colspan="2">IPK</td>
-																				<td colspan="5">{{ipk}}</td>              
-																		</tr>         
+																				<td colspan="5">{{ipk}}</td>       
+																		</tr>  
 																</template>   
 																<template v-slot:no-data>
 																		Data matakuliah belum tersedia silahkan tambah
@@ -149,7 +149,7 @@
 								</v-col>
 						</v-row>
 				</v-container>
-				<v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
+				<v-dialog v-model="dialogprintpdf" max-width="500px" persistent>         
 						<v-card>
 								<v-card-title>
 										<span class="headline">Print to PDF</span>
@@ -166,7 +166,7 @@
 										<v-spacer></v-spacer>
 										<v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn> 
 								</v-card-actions>
-						</v-card>            
+						</v-card>     
 				</v-dialog>
 		</AkademikLayout>
 </template>
@@ -208,30 +208,30 @@ export default {
 				this.fetchKHS();   
 		},
 		data: () => ({ 
-				firstloading:true,      
-				nama_prodi:null,
-				tahun_akademik:null,      
-				semester_akademik:null,
+				firstloading: true, 
+				nama_prodi: null,
+				tahun_akademik: null,  
+				semester_akademik: null,
 		
 				btnLoading: false, 
 				btnLoadingTable:false,
 
 				//formdata
-				krs_id:null,
+				krs_id: null,
 				datakrs: {},
 				
 				//table        
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'KODE', value: 'kmatkul', sortable:true,width:100  }, 
-						{ text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },             
-						{ text: 'SKS', value: 'sks', sortable:false,width:50 },       
-						{ text: 'HM', value: 'HM', sortable:false,width:50 },       
-						{ text: 'AM', value: 'AM', sortable:false,width:50 },       
-						{ text: 'M', value: 'M', sortable:false,width:50 },       
-						{ text: 'NAMA DOSEN', value: 'nama_dosen', sortable:false,width:200 },                                            
+						{ text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true }, 
+						{ text: 'SKS', value: 'sks', sortable:false,width:50 },
+						{ text: 'HM', value: 'HM', sortable:false,width:50 },
+						{ text: 'AM', value: 'AM', sortable:false,width:50 },
+						{ text: 'M', value: 'M', sortable:false,width:50 },
+						{ text: 'NAMA DOSEN', value: 'nama_dosen', sortable:false,width:200 },                         
 				],
 
 				jumlah_sks:0,
@@ -242,12 +242,12 @@ export default {
 				ipk:0,
 
 				dialogprintpdf:false,
-				file_pdf:null
+				file_pdf: null
 		}),
 		methods: {          
 				async fetchKHS()
 				{
-						await this.$ajax.get('/akademik/nilai/khs/'+this.krs_id,    
+						await this.$ajax.get('/akademik/nilai/khs/'+this.krs_id,
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
@@ -259,7 +259,7 @@ export default {
 								{
 										let prodi_id=this.datakrs.kjur;        
 										this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);    
-										this.tahun_akademik=this.datakrs.tahun;                                          
+										this.tahun_akademik=this.datakrs.tahun;                               
 										this.semester_akademik=this.datakrs.idsmt;
 										
 										this.jumlah_sks=data.jumlah_sks;
@@ -270,11 +270,11 @@ export default {
 										this.ipk=data.ipk;
 								}
 						})  
-				},    
+				},
 				async printpdf()
 				{
 						this.btnLoading = true;
-						await this.$ajax.get('/akademik/nilai/khs/printpdf/'+this.krs_id,              
+						await this.$ajax.get('/akademik/nilai/khs/printpdf/'+this.krs_id,  
 								{
 										headers: {
 												Authorization: this.$store.getters['auth/Token']
@@ -295,11 +295,11 @@ export default {
 								this.dialogprintpdf = false;      
 								}, 300
 						);
-				},      
+				},  
 		},  
 		components: {
 				AkademikLayout,
-				ModuleHeader,          
+				ModuleHeader,  
 		},
 }
 </script>

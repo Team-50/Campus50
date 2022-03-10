@@ -16,7 +16,7 @@
                         <v-icon>mdi-chevron-right</v-icon>
                     </template>
                 </v-breadcrumbs>
-            </template>            
+            </template>     
             <template v-slot:desc>
                 <v-alert                                        
                     color="orange"
@@ -86,10 +86,10 @@
                                     :color="badgeColor(item)"
                                     :icon="badgeIcon(item)"
                                     overlap
-                                >                
-                                    <v-avatar size="30">             
-                                        <v-img :src="$api.storageURL+'/'+item.foto" />                                          
-                                    </v-avatar>                                                                       
+                                >         
+                                    <v-avatar size="30">      
+                                        <v-img :src="$api.storageURL+'/'+item.foto" />                             
+                                    </v-avatar>                                                                
                             </v-badge>
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
@@ -107,7 +107,7 @@
                     </v-data-table>
                 </v-col>
             </v-row>
-        </v-container>        
+        </v-container> 
         <template v-slot:filtersidebar>
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
@@ -147,23 +147,23 @@ export default {
     },
     data: () => ({
         firstloading:true,
-        prodi_id:null,
-        tahun_pendaftaran:null,
-        nama_prodi:null,
+        prodi_id: null,
+        tahun_pendaftaran: null,
+        nama_prodi: null,
 
         dialogprofilmhsbaru:false,
-        breadcrumbs: [],      
-        dashboard:null,
+        breadcrumbs: [],  
+        dashboard: null,
 
         btnLoading: false,
         datatableLoading:false,
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: '', value: 'foto', width:70 },             
+            { text: '', value: 'foto', width:70 }, 
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
-            { text: 'KELAS', value: 'nkelas',width:100,sortable:true },          
+            { text: 'KELAS', value: 'nkelas',width:100,sortable:true },  
         ],
         search: "",
         
@@ -228,9 +228,9 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post('/spmb/reportspmbprodi/printtoexcel',
                 {
-                    TA: this.tahun_pendaftaran,                                            
+                    TA: this.tahun_pendaftaran,                         
                     prodi_id: this.prodi_id,  
-                    nama_prodi: this.nama_prodi,               
+                    nama_prodi: this.nama_prodi,
                 },
                 {
                     headers: {
@@ -272,7 +272,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,              
+        ModuleHeader,  
         Filter7    
     },
 }

@@ -72,7 +72,7 @@
 																				</v-card-subtitle>
 																		</v-card>
 																</v-col>
-																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                
+																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 																<v-col xs="12" sm="6" md="6">
 																		<v-card flat>
 																				<v-card-title>NAMA MAHASISWA:</v-card-title>
@@ -91,10 +91,10 @@
 																		</v-card>
 																</v-col>
 																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-														</v-row>            
+														</v-row>     
 												</v-card-text>
 										</v-card>
-								</v-col>                
+								</v-col>         
 						</v-row>
 						<v-row>
 								<v-col cols="12">     
@@ -114,7 +114,7 @@
 																		:hide-default-footer="true"                                                                
 																		:loading="datatableLoading"
 																		loading-text="Loading... Please wait">     
-																		<template v-slot:item.n_kuan="props">         
+																		<template v-slot:item.n_kuan="props">  
 																				<v-numeric                
 																						v-model="props.item.n_kuan"
 																						text
@@ -130,7 +130,7 @@
 																				</v-numeric> 
 																				<v-chip color="primary" class="ma-2" outlined label v-if="props.item.n_kuan != null">{{props.item.n_kuan}}</v-chip>
 																		</template> 
-																		<template v-slot:item.n_kual="props">         
+																		<template v-slot:item.n_kual="props">  
 																				<v-select 
 																						:items="$store.getters['uiadmin/getSkalaNilai']" 
 																						v-model="props.item.n_kual"
@@ -145,7 +145,7 @@
 																						<td></td>
 																						<td></td>
 																						<td></td>
-																						<td></td>                 
+																						<td></td>          
 																				</tr>
 																				<tr class="grey lighten-4 font-weight-black">
 																						<td class="text-right" colspan="2">TOTAL SKS</td>
@@ -153,7 +153,7 @@
 																						<td></td>
 																						<td></td>
 																						<td></td>
-																						<td></td>                 
+																						<td></td>          
 																				</tr>
 																		</template>   
 																		<template v-slot:no-data>
@@ -213,38 +213,38 @@ export default {
 		},
 		data: () => ({ 
 				test:100,
-				firstloading:true,      
-				nama_prodi:null,
-				tahun_akademik:null,      
-				semester_akademik:null,
+				firstloading: true, 
+				nama_prodi: null,
+				tahun_akademik: null,  
+				semester_akademik: null,
 		
 				btnLoading: false, 
 				btnLoadingTable:false,
 
 				//formdata
-				krs_id:null,
+				krs_id: null,
 				datakrs: {},
 				
 				//table        
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'KODE', value: 'kmatkul', sortable:true,width:120  }, 
-						{ text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },             
-						{ text: 'SKS', value: 'sks', sortable:false,width:120 },       
-						{ text: 'SMT', value: 'semester', sortable:false,width:120 },       
-						{ text: 'KELAS', value: 'nama_kelas', sortable:false,width:120 },       
-						{ text: 'NILAI ANGKA (0 s.d 100)', value: 'n_kuan', sortable:false,width:100 },       
+						{ text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true }, 
+						{ text: 'SKS', value: 'sks', sortable:false,width:120 },
+						{ text: 'SMT', value: 'semester', sortable:false,width:120 },
+						{ text: 'KELAS', value: 'nama_kelas', sortable:false,width:120 },
+						{ text: 'NILAI ANGKA (0 s.d 100)', value: 'n_kuan', sortable:false,width:100 },
 						{ text: 'NILAI HURUF', value: 'n_kual', sortable:false,width:100 },											 
 				],
 				//formdata
-				form_valid:true,               
+				form_valid:true,
 		}),
 		methods: {          
 				async fetchKRS()
 				{
-						await this.$ajax.get('/akademik/nilai/matakuliah/perkrs/'+this.krs_id,    
+						await this.$ajax.get('/akademik/nilai/matakuliah/perkrs/'+this.krs_id,
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
@@ -256,8 +256,8 @@ export default {
 								{
 										let prodi_id=this.datakrs.kjur;        
 										this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);    
-										this.tahun_akademik=this.datakrs.tahun;                                          
-										this.semester_akademik=this.datakrs.idsmt;            
+										this.tahun_akademik=this.datakrs.tahun;                               
+										this.semester_akademik=this.datakrs.idsmt; 
 								}
 						})  
 				},   
@@ -288,7 +288,7 @@ export default {
 						}).catch(() => {
 								this.btnLoadingTable=false;
 						});
-				},         
+				}, 
 		},
 		computed: {
 				totalMatkul()
@@ -308,7 +308,7 @@ export default {
 		},
 		components: {
 				AkademikLayout,
-				ModuleHeader,          
+				ModuleHeader,  
 		},
 }
 </script>

@@ -23,7 +23,7 @@
 										>User dengan role AKADEMIK bertanggungjawab terhadap proses akademik mahasiswa.
 								</v-alert>
 						</template>
-				</ModuleHeader>        
+				</ModuleHeader> 
 				<v-container fluid>    
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
@@ -85,7 +85,7 @@
 																		@click.stop="showDialogTambahUserAkademik">
 																		<v-icon size="21px">mdi-plus-circle</v-icon>
 																</v-btn>
-																<v-dialog v-model="dialog" max-width="500px" persistent>         
+																<v-dialog v-model="dialog" max-width="500px" persistent>  
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 																				<v-card>
 																						<v-card-title>
@@ -100,13 +100,13 @@
 																										label="NAMA USER"
 																										outlined
 																										:rules="rule_user_name">
-																								</v-text-field>                                                                    
+																								</v-text-field>                                                             
 																								<v-text-field 
 																										v-model="editedItem.email" 
 																										label="EMAIL"
 																										outlined
 																										:rules="rule_user_email">
-																								</v-text-field>                             
+																								</v-text-field>                      
 																								<v-text-field 
 																										v-model="editedItem.nomor_hp" 
 																										label="NOMOR HP"
@@ -134,7 +134,7 @@
 																										item-value="id"
 																										multiple 
 																										small-chips
-																										outlined>                                                     
+																										outlined>                                              
 																								</v-autocomplete>
 																								<v-autocomplete 
 																										:items="daftar_roles" 
@@ -142,7 +142,7 @@
 																										label="ROLES"                                                     
 																										multiple 
 																										small-chips
-																										outlined>                                                     
+																										outlined>                                              
 																								</v-autocomplete>
 																						</v-card-text>
 																						<v-card-actions>
@@ -169,7 +169,7 @@
 																						<v-card-subtitle>
 																								Bila program studi, tidak dipilih artinya user ini dapat mengakses seluruh data akademik
 																						</v-card-subtitle>
-																						<v-card-text>                                                                     
+																						<v-card-text>                                                              
 																								<v-text-field 
 																										v-model="editedItem.name" 
 																										label="NAMA USER"
@@ -209,7 +209,7 @@
 																										item-value="id"
 																										multiple 
 																										small-chips
-																										outlined>                                                     
+																										outlined>                                              
 																								</v-autocomplete>
 																								<v-autocomplete 
 																										:items="daftar_roles" 
@@ -217,7 +217,7 @@
 																										label="ROLES"                                                     
 																										multiple 
 																										small-chips
-																										outlined>                                                     
+																										outlined>                                              
 																								</v-autocomplete>
 																						</v-card-text>
 																						<v-card-actions>
@@ -233,7 +233,7 @@
 																				</v-card>
 																		</v-form>
 																</v-dialog>
-																<v-dialog v-model="dialogUserPermission" max-width="800px" persistent>                                         
+																<v-dialog v-model="dialogUserPermission" max-width="800px" persistent>                                  
 																		<UserPermissions :user="editedItem" :daftarpermissions="daftar_permissions" :permissionsselected="permissions_selected" v-on:closeUserPermissions="closeUserPermissions" />
 																</v-dialog>
 														</v-toolbar>
@@ -269,7 +269,7 @@
 												<template v-slot:item.foto="{ item }"> 
 														<v-avatar size="30">
 																<v-img :src="$api.storageURL+'/'+item.foto" />     
-														</v-avatar>                                                                       
+														</v-avatar>                                                                
 												</template>
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
@@ -319,7 +319,7 @@ export default {
 		data: () => ({ 
 				role_id:0,
 				datatableLoading:false,
-				btnLoading: false,    
+				btnLoading: false,
 				//tables
 				headers: [                        
 						{ text: '', value: 'foto' },
@@ -344,36 +344,36 @@ export default {
 				daftar_prodi: [],
 				editedItem: {
 						id:0,
-						username: '',         
-						password: '',         
-						name: '',         
-						email: '',         
-						nomor_hp: "",         
+						username: '', 
+						password: '', 
+						name: '', 
+						email: '', 
+						nomor_hp: "", 
 						prodi_id: [],
 						role_id: ['akademik'], 
-						created_at: '',         
+						created_at: '', 
 						updated_at: '', 
 				},
 				defaultItem: {
 						id:0,
-						username: '',         
-						password: '',         
-						name: '',         
-						email: '',         
+						username: '', 
+						password: '', 
+						name: '', 
+						email: '', 
 						nomor_hp: '',
-						prodi_id: [],     
+						prodi_id: [], 
 						role_id: ['akademik'], 
-						created_at: '',         
-						updated_at: '',      
+						created_at: '', 
+						updated_at: '',  
 				},
 				//form rules        
 				rule_user_name: [
 						value => !!value || "Mohon untuk di isi nama User !!!",
-						value => /^[A-Za-z\s]*$/.test(value) || 'Nama User hanya boleh string dan spasi',              
+						value => /^[A-Za-z\s]*$/.test(value) || 'Nama User hanya boleh string dan spasi',  
 				], 
 				rule_user_email: [
 						value => !!value || "Mohon untuk di isi email User !!!",
-						value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',     
+						value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar', 
 				], 
 				rule_user_nomorhp: [
 						value => !!value || "Nomor HP mohon untuk diisi !!!",
@@ -466,18 +466,18 @@ export default {
 												daftar_roles.push({
 														text:element.name,
 														disabled:true,
-												});            
+												}); 
 										}
 										else if (element.name=='dosen'||element.name=='dosenwali')
 										{
 												daftar_roles.push({
 														text:element.name,
-														disabled:false,        
-												});            
+														disabled:false,
+												}); 
 										}                    
 								});        
 								this.daftar_roles=daftar_roles;         
-								this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];              
+								this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];   
 								this.dialog = true;
 						});   
 				},
@@ -486,7 +486,7 @@ export default {
 						item.password='';
 						this.editedItem = Object.assign({}, item);      
 						this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];  
-						await this.$ajax.get('/system/users/'+item.id+'/prodi',             
+						await this.$ajax.get('/system/users/'+item.id+'/prodi', 
 								{
 										headers: {
 												Authorization: this.TOKEN
@@ -496,10 +496,10 @@ export default {
 								let daftar_prodi = data.daftar_prodi;
 								var prodi=[];
 								daftar_prodi.forEach(element => {
-										prodi.push(element.id);            
+										prodi.push(element.id); 
 								});   
 								this.editedItem.prodi_id=prodi;     
-						});             
+						});  
 						
 						await this.$ajax.get('/system/setting/roles',{
 								headers: {
@@ -514,17 +514,17 @@ export default {
 												daftar_roles.push({
 														text:element.name,
 														disabled:true,
-												});            
+												}); 
 										}
 										else if (element.name=='dosen'||element.name=='dosenwali')
 										{
 												daftar_roles.push({
 														text:element.name,
-														disabled:false,        
-												});            
+														disabled:false,
+												}); 
 										}                    
 								});        
-								this.daftar_roles=daftar_roles;                                    
+								this.daftar_roles=daftar_roles;                         
 						});    
 						this.btnLoading = true;
 						await this.$ajax.get('/system/users/'+item.id+'/roles',
@@ -545,7 +545,7 @@ export default {
 										Authorization: this.TOKEN
 								}
 						}).then(({ data }) => {
-								this.daftar_permissions = data.permissions;               
+								this.daftar_permissions = data.permissions;    
 						}).catch(() => {
 								this.btnLoading = false;
 						});
@@ -592,7 +592,7 @@ export default {
 														nomor_hp: this.editedItem.nomor_hp,   
 														username: this.editedItem.username,
 														password: this.editedItem.password, 
-														prodi_id:JSON.stringify(Object.assign({},this.editedItem.prodi_id)),                                                                                      
+														prodi_id:JSON.stringify(Object.assign({},this.editedItem.prodi_id)),                                                                   
 														role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
 												},
 												{
@@ -613,8 +613,8 @@ export default {
 														email: this.editedItem.email,
 														nomor_hp: this.editedItem.nomor_hp,   
 														username: this.editedItem.username,
-														password: this.editedItem.password,          
-														prodi_id:JSON.stringify(Object.assign({},this.editedItem.prodi_id)),         
+														password: this.editedItem.password,  
+														prodi_id:JSON.stringify(Object.assign({},this.editedItem.prodi_id)), 
 														role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
 												},
 												{
@@ -661,8 +661,8 @@ export default {
 						return this.editedIndex === -1 ? 'TAMBAH USER AKADEMIK' : 'EDIT USER AKADEMIK'
 				},
 				...mapGetters('auth',{            
-						ACCESS_TOKEN:'AccessToken',        
-						TOKEN:'Token',              
+						ACCESS_TOKEN:'AccessToken',
+						TOKEN:'Token',  
 				}),
 		},
 		watch: {
@@ -671,7 +671,7 @@ export default {
 				},
 				dialogEdit (val) {
 						val || this.close()
-				},      
+				},  
 		},  
 		components: {
 				SystemUserLayout,

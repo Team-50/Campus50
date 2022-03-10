@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter2 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" ref="filter2" />	
         </template>
-        <v-container fluid>            
+        <v-container fluid>     
             <v-row class="mb-4" no-gutters>
                 <v-col
                 cols="4"
@@ -128,10 +128,10 @@ export default {
     data: () => ({
         datatableLoading:false,
         firstloading:true,
-        breadcrumbs: [],      
-        datatable: [],    
-        tahun_akademik:null,
-        semester_akademik:null,
+        breadcrumbs: [],  
+        datatable: [],
+        tahun_akademik: null,
+        semester_akademik: null,
         
     }),
     methods : {
@@ -183,8 +183,8 @@ export default {
     },
     components: {
         ElearningLayout,
-        ModuleHeader,         
-        Filter2,      
+        ModuleHeader, 
+        Filter2,  
     },
 }
 </script>

@@ -6,7 +6,7 @@
             </template>
             <template v-slot:name>
                 CHANNEL PEMBAYARAN
-            </template>            
+            </template>     
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
                     <template v-slot:divider>
@@ -24,7 +24,7 @@
                         Halaman ini berisi informasi macam-macam channel pembayaran.
                     </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader> 
         <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -52,10 +52,10 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>     
                             </v-toolbar>
-                        </template>                          
+                        </template>                   
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">                   
                                     <strong>ID:</strong>{{ item.id_channel }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -100,16 +100,16 @@ export default {
     },
     data: () => ({
         firstloading:true,
-        breadcrumbs: [],       
+        breadcrumbs: [],
         
         btnLoading: false,
         datatableLoading:false,
         expanded: [],
         datatable: [],
         headers: [            
-            { text: 'ID', value: 'id_channel',width:10,sortable:false },                       
-            { text: 'NAMA CHANNEL', value: 'nama_channel',sortable:false},               
-        ],    
+            { text: 'ID', value: 'id_channel',width:10,sortable:false },    
+            { text: 'NAMA CHANNEL', value: 'nama_channel',sortable:false},
+        ],
         
     }),
     methods : {        
@@ -125,7 +125,7 @@ export default {
                 this.datatable = data.channel;    
                 this.datatableLoading=false;
             });         
-            this.firstloading=false;            
+            this.firstloading=false; 
         },
         dataTableRowClicked(item)
         {
@@ -137,11 +137,11 @@ export default {
             {
                 this.expanded=[item];
             }               
-        },              
+        },  
     }, 
     components: {
         KeuanganLayout,
-        ModuleHeader,          
+        ModuleHeader,  
     },
 }
 </script>

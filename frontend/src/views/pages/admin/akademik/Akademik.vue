@@ -64,7 +64,7 @@ export default {
 		data: () => ({
 				datatableLoading:false,
 				firstloading:true,
-				breadcrumbs: [],      
+				breadcrumbs: [],  
 				tahun_akademik:0,
 				
 		}),
@@ -93,8 +93,8 @@ export default {
 		},
 		components: {
 				AkademikLayout,
-				ModuleHeader,         
-				Filter1,      
+				ModuleHeader, 
+				Filter1,  
 		},
 }
 </script>

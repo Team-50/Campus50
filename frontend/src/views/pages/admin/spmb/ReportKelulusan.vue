@@ -27,7 +27,7 @@
                         Berisi laporan kelulusan calon mahasiswa baru.
                 </v-alert>
             </template>
-        </ModuleHeader>         
+        </ModuleHeader>  
         <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -78,8 +78,8 @@
                                     :disabled="btnLoading">
                                     <v-icon size="21px">mdi-printer</v-icon>
                                 </v-btn>   
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">         
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />         
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">  
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />  
                                 </v-dialog>     
                             </v-toolbar>
                         </template>
@@ -89,10 +89,10 @@
                                     :color="badgeColor(item)"
                                     :icon="badgeIcon(item)"
                                     overlap
-                                >                
-                                    <v-avatar size="30">             
-                                        <v-img :src="$api.storageURL+'/'+item.foto" />                                          
-                                    </v-avatar>                                                                       
+                                >         
+                                    <v-avatar size="30">      
+                                        <v-img :src="$api.storageURL+'/'+item.foto" />                             
+                                    </v-avatar>                                                                
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -109,7 +109,7 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>           
+                                </v-col>    
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -118,7 +118,7 @@
                     </v-data-table>
                 </v-col>
             </v-row>
-        </v-container>        
+        </v-container> 
         <template v-slot:filtersidebar v-if="dashboard!='mahasiswabaru'">
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
@@ -161,21 +161,21 @@ export default {
     },
     data: () => ({
         firstloading:true,
-        prodi_id:null,
-        tahun_pendaftaran:null,
-        nama_prodi:null,
+        prodi_id: null,
+        tahun_pendaftaran: null,
+        nama_prodi: null,
 
         dialogprofilmhsbaru:false,
 
-        breadcrumbs: [],      
-        dashboard:null,
+        breadcrumbs: [],  
+        dashboard: null,
 
         btnLoading: false,
         datatableLoading:false,
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: '', value: 'foto', width:70 },             
+            { text: '', value: 'foto', width:70 }, 
             { text: 'NO.FORMULIR', value: 'no_formulir',width:120,sortable:true },
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
@@ -190,10 +190,10 @@ export default {
 
         //form data 
         filter_status:1,
-        form_valid:true, 
+        form_valid: true,
 
-        data_mhs: {},      
-        daftar_prodi: [],      
+        data_mhs: {},  
+        daftar_prodi: [],  
         
     }),
     methods : {
@@ -256,16 +256,16 @@ export default {
         {
             this.datamhsbaru = item;
             this.dialogprofilmhsbaru = true;
-        },              
+        },  
         printtoexcel:async function()
         {
             this.btnLoading = true;
             await this.$ajax.post('/spmb/reportspmbkelulusan/printtoexcel',
                 {
-                    TA: this.tahun_pendaftaran,                                            
+                    TA: this.tahun_pendaftaran,                         
                     prodi_id: this.prodi_id,  
-                    nama_prodi: this.nama_prodi,               
-                    filter_status: this.filter_status,               
+                    nama_prodi: this.nama_prodi,
+                    filter_status: this.filter_status,
                 },
                 {
                     headers: {
@@ -286,7 +286,7 @@ export default {
             }).catch(() => {
                 this.btnLoading = false;
             });     
-        },           
+        },   
         closeProfilMahasiswaBaru ()
         {
             this.dialogprofilmhsbaru = false;         
@@ -311,7 +311,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,              
+        ModuleHeader,  
         ProfilMahasiswaBaru,
         Filter7    
     },

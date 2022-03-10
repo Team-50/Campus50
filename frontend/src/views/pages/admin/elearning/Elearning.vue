@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter1 v-on:changeTahunAkademik="changeTahunAkademik" ref="filter1" />
         </template>
-        <v-container fluid>            
+        <v-container fluid>     
             
         </v-container>
     </ElearningLayout>
@@ -65,7 +65,7 @@ export default {
     data: () => ({
         datatableLoading:false,
         firstloading:true,
-        breadcrumbs: [],      
+        breadcrumbs: [],  
         tahun_akademik:0,
         
     }),
@@ -94,8 +94,8 @@ export default {
     },
     components: {
         ElearningLayout,
-        ModuleHeader,         
-        Filter1,      
+        ModuleHeader, 
+        Filter1,  
     },
 }
 </script>

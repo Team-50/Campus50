@@ -77,20 +77,20 @@
                                 @close="closeItem"> 
                                     {{ props.item.nilai }}         
                                     <template v-slot:input>
-                                        <div class="mt-4 title">Update Nilai</div>             
+                                        <div class="mt-4 title">Update Nilai</div>      
                                         <v-text-field 
                                             label="NILAI PASSING GRADE" 
                                             :rules="rule_angka"
                                             outlined
                                             autofocus
-                                            v-model="props.item.nilai">             
+                                            v-model="props.item.nilai">      
                                         </v-text-field>
                                     </template>
                             </v-edit-dialog>
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">                   
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -138,23 +138,23 @@ export default {
         this.initialize();    
     },
     data:()=>({
-        jadwal_ujian_id:null,
+        jadwal_ujian_id: null,
         jadwal_ujian: {
-            id:0,    
-            nama_kegiatan: "",          
-            ta: "",    
-            idsmt: "",                
+            id:0,
+            nama_kegiatan: "",  
+            ta: "",
+            idsmt: "", 
         },
-        breadcrumbs: [],      
-        dashboard:null,
+        breadcrumbs: [],  
+        dashboard: null,
 
         btnLoading: false,
-        datatableLoading:false,      
+        datatableLoading:false,  
         expanded: [],
         datatable: [],
         headers: [                                        
             { text: 'PROGRAM STUDI', value: 'kjur', sortable: true},
-            { text: 'NILAI', value: 'nilai', sortable: false,width:100 },    
+            { text: 'NILAI', value: 'nilai', sortable: false,width:100 },
         ],
         search: "",
 
@@ -169,7 +169,7 @@ export default {
             this.datatableLoading=true;
             await this.$ajax.post('/spmb/passinggrade',
             {
-                jadwal_ujian_id: this.jadwal_ujian_id,              
+                jadwal_ujian_id: this.jadwal_ujian_id,  
             },
             {
                 headers: {
@@ -178,7 +178,7 @@ export default {
             }).then(({ data }) => {                 
                 this.datatableLoading=false;
                 this.jadwal_ujian=data.jadwal_ujian;      
-                this.datatable=data.passing_grade;                   
+                this.datatable=data.passing_grade;        
             }).catch(() => {
                 this.datatableLoading=false;    
             });  
@@ -199,7 +199,7 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post('/spmb/passinggrade/loadprodi',
                 {
-                    jadwal_ujian_id: this.jadwal_ujian_id,             
+                    jadwal_ujian_id: this.jadwal_ujian_id, 
                 },
                 {
                     headers: {
@@ -216,7 +216,7 @@ export default {
         saveItem:async function ({id,nilai})
         {
             this.btnLoading = true;
-            await this.$ajax.post('/spmb/passinggrade/'+id,          
+            await this.$ajax.post('/spmb/passinggrade/'+id,  
             {
                 _method:'put',
                 id:id,
@@ -228,7 +228,7 @@ export default {
                 }
             }).then(() => {        
                 this.btnLoading = false;       
-                this.initialize();            
+                this.initialize(); 
             });  
         },
         cancelItem()
@@ -249,7 +249,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,      
+        ModuleHeader,  
     },
 }
 </script>

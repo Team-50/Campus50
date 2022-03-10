@@ -22,7 +22,7 @@
 					<template v-slot:activator="{on}">
 						<v-avatar size="30">
 							<v-img :src="photoUser" v-on="on" />
-						</v-avatar>                    
+						</v-avatar>             
 					</template>
 					<v-list>
 						<v-list-item>
@@ -37,7 +37,7 @@
 									[{{DEFAULT_ROLE}}]
 								</v-list-item-subtitle>
 							</v-list-item-content>
-						</v-list-item>                    
+						</v-list-item>             
 						<v-divider/>
 						<v-list-item to="/system-users/profil">
 							<v-list-item-icon class="mr-2">
@@ -61,7 +61,7 @@
 		></v-divider>
 		<v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
 			<v-icon>mdi-menu-open</v-icon>
-		</v-app-bar-nav-icon>            
+		</v-app-bar-nav-icon>     
 	</v-app-bar>    
 		<!-- role sebagai mahasiswabaru dan mahasiswa -->
 		<v-navigation-drawer
@@ -120,7 +120,7 @@
 							BIODATA
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>                    
+				</v-list-item>             
 				<v-list-item link to="/spmb/persyaratan">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-numeric-3-circle</v-icon>
@@ -140,7 +140,7 @@
 							KONFIRMASI PEMBAYARAN
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>        
+				</v-list-item> 
 			</v-list>
 		</v-navigation-drawer>
 		<!-- role selain mahasiswabaru dan mahasiswa -->
@@ -189,7 +189,7 @@
 														CHANNEL PEMBAYARAN
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                        
+								</v-list-item>                 
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-STATUS-TRANSAKSI_BROWSE')" to="/keuangan/statustransaksi">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-cash-register</v-icon>
@@ -199,7 +199,7 @@
 														STATUS TRANSAKSI
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                        
+								</v-list-item>                 
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-KOMPONEN-BIAYA_BROWSE')" to="/keuangan/biayakomponen">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-cash-multiple</v-icon>
@@ -209,7 +209,7 @@
 														BIAYA KOMPONEN
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                        
+								</v-list-item>                 
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-BIAYA-KOMPONEN-PERIODE_BROWSE')" to="/keuangan/biayakomponenperiode">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-note-multiple</v-icon>
@@ -219,7 +219,7 @@
 														BIAYA KOMPONEN PERIODE
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                        
+								</v-list-item>                 
 								<v-subheader v-if="dashboard!='mahasiswabaru' && dashboard!='mahasiswa'" style="color:#f0935c">METODE PEMBAYARAN</v-subheader>
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-METODE-TRANSFER-BANK_BROWSE')" to="/keuangan/transferbank">
 										<v-list-item-icon class="mr-2">
@@ -241,7 +241,7 @@
 														KONFIRMASI PEMBAYARAN
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>        
+								</v-list-item> 
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI_BROWSE')" to="/keuangan/transaksi">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-file-document</v-icon>
@@ -272,7 +272,7 @@
 														TRANSAKSI PENGEMBANGAN
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                          
+								</v-list-item>                   
 								<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-SPP_BROWSE')" to="/keuangan/transaksi-spp">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-calendar-account</v-icon>
@@ -282,7 +282,7 @@
 														TRANSAKSI SPP
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                          
+								</v-list-item>                   
 						</v-list>
 				</v-navigation-drawer>
 				<v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">

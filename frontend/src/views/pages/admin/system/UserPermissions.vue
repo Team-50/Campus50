@@ -106,7 +106,7 @@
                                     label="ROLES"
                                     :items="daftar_role"
                                     v-model="role_name"
-                                >         
+                                >  
                                 </v-select>
                                 <v-text-field
                                     v-model="search"
@@ -176,11 +176,11 @@ export default {
         headers: [                        
             { text: 'NAMA PERMISSION', value: 'name' },
             { text: 'GUARD', value: 'guard_name' }, 
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },       
+            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         search: "",
 
-        role_name:null,
+        role_name: null,
         daftar_role: [],
 
         daftar_permissions: [],
@@ -199,7 +199,7 @@ export default {
     methods: {
         initialize()
         {
-            this.$ajax.get('/system/users/'+this.user.id+'/roles',              
+            this.$ajax.get('/system/users/'+this.user.id+'/roles',  
                 {
                     headers: {
                         Authorization: this.$store.getters['auth/Token']
@@ -249,7 +249,7 @@ export default {
         },
         exit()
         {
-            this.$emit('closeUserPermissions');           
+            this.$emit('closeUserPermissions');
         }
     },
     computed: {

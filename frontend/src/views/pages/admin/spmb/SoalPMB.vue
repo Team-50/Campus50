@@ -59,18 +59,65 @@
 					>
 						<template v-slot:top>
 							<v-toolbar flat color="white">
-								<v-toolbar-title>DAFTAR TRANSAKSI</v-toolbar-title>
+								<v-toolbar-title>DAFTAR SOAL PMB</v-toolbar-title>
 								<v-divider class="mx-4" inset vertical />
 								<v-spacer></v-spacer>
+								<v-btn
+									color="warning"
+									small elevation="0"
+									class="ma-2 mr-2 primary"
+									@click.stop="showDialogCopySoal"
+									v-if="$store.getters['auth/can']('SPMB-PMB-SOAL_STORE')"
+								>
+									SALIN SOAL
+								</v-btn>
 								<v-btn
 									color="indigo darken-3"
 									elevation="0"
 									small
 									class="primary"
 									@click.stop="addItem"
+									v-if="$store.getters['auth/can']('SPMB-PMB-SOAL_STORE')"
 								>
 									<v-icon size="21px">mdi-plus-circle</v-icon>
 								</v-btn>
+								<v-dialog v-model="dialogcopysoal" max-width="500px" persistent>     
+								<v-form ref="frmdialogcopysoal" v-model="form_valid" lazy-validation>
+									<v-card>
+										<v-card-title>
+											<span class="headline">SALIN SOAL PMB</span>
+										</v-card-title>          
+										<v-card-text>
+											<v-alert class="info" dark>
+												Salin soal PMB dari tahun pendaftaran berikut ke tahun akademik {{tahun_pendaftaran}}
+											</v-alert>
+											<v-select
+												v-model="dari_tahun_pendaftaran"
+												:items="daftar_ta"                                                    
+												label="TAHUN PENDAFTARAN"
+												:rules="rule_dari_tahun_pendaftaran"
+												outlined
+											/>
+											</v-card-text>
+											<v-card-actions>
+												<v-spacer></v-spacer>
+												<v-spacer></v-spacer>
+													<v-btn color="blue darken-1" text @click.stop="closedialogsalinsoal">
+														BATAL
+													</v-btn>
+													<v-btn 
+														color="blue darken-1" 
+														text 
+														@click.stop="salinsoal" 
+														:loading="btnLoading"
+														:disabled="!form_valid||btnLoading"
+													>
+														SALIN
+													</v-btn>
+												</v-card-actions>
+											</v-card>
+										</v-form>
+									</v-dialog>
 								<v-dialog v-model="dialogfrm" max-width="750px" persistent>
 									<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 										<v-card>
@@ -454,6 +501,7 @@
 			dialogfrm: false,
 			dialogeditfrm: false,
 			dialogdetailitem: false,
+			dialogcopysoal: false,
 			//form data
 			form_valid: true,
 			form_edit_valid: true,
@@ -503,6 +551,9 @@
 				updated_at: null,
 			},
 			editedIndex: -1,
+			
+			daftar_ta: [],
+			dari_tahun_pendaftaran: null,
 
 			//form rules
 			rule_soal: [value => !!value || "Mohon untuk di isi soal !!!"],
@@ -515,6 +566,11 @@
 					!value ||
 					value.size < 2000000 ||
 					"File Bukti Bayar harus kurang dari 2MB.",
+			],
+
+			//form rules
+			rule_dari_tahun_pendaftaran: [
+				value => !!value || "Mohon tahun sumber soal untuk dipilih !!!",
 			],
 		}),
 		methods: {
@@ -557,6 +613,19 @@
 					this.expanded = [item];
 				}
 			},
+			showDialogCopySoal() {
+				let list_ta = this.$store.getters["uiadmin/getDaftarTA"];  
+				for (var i =0; i < list_ta.length; i++) {
+					var item = list_ta[i];      
+					if (this.tahun_pendaftaran != item.value) {
+						this.daftar_ta.push({
+							value: item.value,
+							text: item.text,
+						});
+					}   
+				}            
+				this.dialogcopysoal = true;
+			},
 			addItem() {
 				this.dialogfrm = true;
 			},
@@ -585,6 +654,29 @@
 							this.formdata.gambar = null;
 						}
 					});
+			},
+			salinsoal() {
+				if(this.$refs.frmdialogcopysoal.validate()) {
+					this.btnLoading = true;
+					this.$ajax
+						.post("/spmb/soalpmb/salin/" + this.tahun_pendaftaran,
+						{
+							dari_tahun_pendaftaran: this.dari_tahun_pendaftaran,								
+						},
+						{
+							headers: {
+								Authorization: this.$store.getters["auth/Token"],
+							},
+						}
+					)
+					.then(() => {   
+						this.$router.go();
+						this.closedialogsalinsoal();
+					})
+					.catch(() => {
+							this.btnLoading = false;
+					});
+				}
 			},
 			copyItem() {
 				this.daftar_ta = this.$store.getters["uifront/getDaftarTA"];
@@ -751,6 +843,13 @@
 					this.image_prev = null;
 					this.formdata = Object.assign({}, this.formdefault);
 					this.$refs.frmeditdata.resetValidation();
+					this.editedIndex = -1;
+				}, 300);
+			},
+			closedialogsalinsoal() {                       
+				this.dialogcopysoal = false; 
+				setTimeout(() => {                
+					this.$refs.frmdialogcopysoal.reset();          
 					this.editedIndex = -1;
 				}, 300);
 			},
