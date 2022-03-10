@@ -92,13 +92,13 @@
 												</template>
 												<template v-slot:item.idkelas="{item}">
 														{{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
-												</template>                        
+												</template>                 
 												<template v-slot:item.k_status="{item}">
 														{{$store.getters['uiadmin/getStatusMahasiswa'](item.k_status)}}
-												</template>                        
+												</template>                 
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
-																<v-col cols="12">                          
+																<v-col cols="12">                   
 																		<strong>id:</strong>{{ item.user_id }}          
 																		<strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
 																		<strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -110,7 +110,7 @@
 												</template>   
 										</v-data-table>
 								</v-col>
-						</v-row>            
+						</v-row>     
 				</v-container>
 		</AkademikLayout>
 </template>
@@ -152,22 +152,22 @@ export default {
 		},
 		data: () => ({ 
 				firstloading:true,
-				prodi_id:null,
-				nama_prodi:null,
-				tahun_pendaftaran:null,
+				prodi_id: null,
+				nama_prodi: null,
+				tahun_pendaftaran: null,
 
 				btnLoading: false,
 				btnLoadingTable:false,
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  }, 
 						{ text: 'NIM', value: 'nim', sortable:true,width:150  }, 
 						{ text: 'NIRM', value: 'nirm', sortable:true,width:150  }, 
-						{ text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },       
-						{ text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                   
-						{ text: 'STATUS', value: 'k_status',sortable:true,width:120, },                   
+						{ text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },
+						{ text: 'KELAS', value: 'idkelas',sortable:true,width:120, },
+						{ text: 'STATUS', value: 'k_status',sortable:true,width:120, },
 				],
 				search: "", 
 		}),
@@ -217,9 +217,9 @@ export default {
 						this.btnLoading = true;
 						await this.$ajax.post('/akademik/kemahasiswaan/daftarmhs/printtoexcel',
 								{
-										TA: this.tahun_pendaftaran,                                            
+										TA: this.tahun_pendaftaran,                         
 										prodi_id: this.prodi_id,  
-										nama_prodi: this.nama_prodi,               
+										nama_prodi: this.nama_prodi,
 								},
 								{
 										headers: {

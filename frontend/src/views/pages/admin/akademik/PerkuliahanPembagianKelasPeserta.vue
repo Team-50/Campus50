@@ -27,8 +27,8 @@
 										Halaman untuk melakukan menambah peserta pada kelas terpilih.
 								</v-alert>
 						</template>
-				</ModuleHeader>        
-				<v-container fluid v-if="data_kelas_mhs">        
+				</ModuleHeader> 
+				<v-container fluid v-if="data_kelas_mhs"> 
 						<v-row>
 								<v-col cols="12"> 
 										<DataKelasMHS :datakelas="data_kelas_mhs" />
@@ -54,8 +54,8 @@
 																		vertical
 																></v-divider>
 																<v-spacer></v-spacer> 
-																<v-tooltip bottom>             
-																		<template v-slot:activator="{ on, attrs }">                  
+																<v-tooltip bottom>      
+																		<template v-slot:activator="{ on, attrs }">           
 																				<v-btn 
 																						v-bind="attrs"
 																						v-on="on"
@@ -68,7 +68,7 @@
 																						<v-icon>mdi-plus</v-icon>
 																				</v-btn>     
 																		</template>
-																		<span>Tambah Matakuliah</span>        
+																		<span>Tambah Matakuliah</span> 
 																</v-tooltip>
 														</v-toolbar>
 												</template>
@@ -92,7 +92,7 @@
 																		mdi-delete
 																</v-icon>
 														</v-btn>   
-												</template>                                
+												</template>                         
 												<template v-slot:no-data>
 														Data belum tersedia
 												</template>   
@@ -100,8 +100,8 @@
 								</v-col>
 						</v-row>
 						<v-row>
-								<v-col cols="12">          
-										<v-dialog v-model="showdialogmatakuliah" max-width="800px" persistent>         
+								<v-col cols="12">   
+										<v-dialog v-model="showdialogmatakuliah" max-width="800px" persistent>  
 												<v-form ref="frmdatamatkul" v-model="form_valid" lazy-validation>
 														<v-card>
 																<v-card-title>
@@ -135,8 +135,8 @@
 																</v-card-actions>
 														</v-card>
 												</v-form>
-										</v-dialog>                  
-										<v-dialog v-model="showdialogpeserta" max-width="800px" persistent>         
+										</v-dialog>           
+										<v-dialog v-model="showdialogpeserta" max-width="800px" persistent>  
 												<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 														<v-card>
 																<v-card-title>
@@ -156,7 +156,7 @@
 
 																				<template v-slot:item.id="{ item }">    
 																						{{item.id}}
-																				</template>             
+																				</template>      
 																				<template v-slot:expanded-item="{ headers, item }">
 																						<td :colspan="headers.length" class="text-center">
 																								<v-col cols="12">
@@ -185,7 +185,7 @@
 																</v-card-actions>
 														</v-card>
 												</v-form>
-										</v-dialog>                  
+										</v-dialog>           
 										<v-data-table
 												:headers="headers_peserta"
 												:items="datatable_peserta"                        
@@ -204,8 +204,8 @@
 																		vertical
 																></v-divider>
 																<v-spacer></v-spacer>     
-																<v-tooltip bottom>             
-																		<template v-slot:activator="{ on, attrs }">                  
+																<v-tooltip bottom>      
+																		<template v-slot:activator="{ on, attrs }">           
 																				<v-btn 
 																						v-bind="attrs"
 																						v-on="on"
@@ -219,10 +219,10 @@
 																						<v-icon>mdi-plus</v-icon>
 																				</v-btn>     
 																		</template>
-																		<span>Tambah Peserta Kelas</span>        
+																		<span>Tambah Peserta Kelas</span> 
 																</v-tooltip>
 														</v-toolbar>
-												</template>                        
+												</template>                 
 												<template v-slot:item.idkelas="{item}">
 														{{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
 												</template>
@@ -240,14 +240,14 @@
 																		mdi-delete
 																</v-icon>
 														</v-btn>   
-												</template>                                
+												</template>                         
 												<template v-slot:no-data>
 														Data belum tersedia
 												</template>   
 										</v-data-table>
 								</v-col>
 						</v-row>
-				</v-container>        
+				</v-container> 
 		</AkademikLayout>
 </template>
 <script>
@@ -291,10 +291,10 @@ export default {
 				this.initialize()
 		},
 		data: () => ({ 
-				kelas_mhs_id:null,
-				data_kelas_mhs:null,
-				tahun_akademik:null,
-				semester_akademik:null,
+				kelas_mhs_id: null,
+				data_kelas_mhs: null,
+				tahun_akademik: null,
+				semester_akademik: null,
 
 				btnLoadingTable:false,
 				datatableLoading:false,
@@ -303,39 +303,39 @@ export default {
 				datatable: [],  
 				daftar_matakuliah: [],   
 				datatable_peserta: [], 
-				datatable_members: [],        
+				datatable_members: [],
 				headers: [
 						{ text: 'KODE', value: 'kmatkul', sortable:false,width:100  }, 
 						{ text: 'NAMA', value: 'nmatkul', sortable:false  }, 
-						{ text: 'SKS', value: 'sks', sortable:false  },       
-						{ text: 'PROGRAM STUDI', value: 'kjur', sortable:false, width:200 },       
-						{ text: 'JUMLAH MHS DI KRS', value: 'jumlah_mhs', sortable:false, width:100 },       
+						{ text: 'SKS', value: 'sks', sortable:false  },
+						{ text: 'PROGRAM STUDI', value: 'kjur', sortable:false, width:200 },
+						{ text: 'JUMLAH MHS DI KRS', value: 'jumlah_mhs', sortable:false, width:100 },
 						{ text: 'AKSI', value: 'actions', sortable: false,width:60 },
 				],
 				headers_peserta: [
 						{ text: 'NIM', value: 'nim', sortable:false,width:100  }, 
 						{ text: 'NAMA', value: 'nama_mhs', sortable:false  }, 
 						{ text: 'PROGRAM STUDI', value: 'kjur', sortable:false  }, 
-						{ text: 'KELAS', value: 'idkelas', sortable:false  },       
-						{ text: 'TAHUN MASUK', value: 'tahun', sortable:false },                   
+						{ text: 'KELAS', value: 'idkelas', sortable:false  },
+						{ text: 'TAHUN MASUK', value: 'tahun', sortable:false },
 						{ text: 'AKSI', value: 'actions', sortable: false,width:60 },
 				],
 				headers_members: [
 						{ text: 'NIM', value: 'nim', sortable:false,width:100  }, 
 						{ text: 'NAMA', value: 'nama_mhs', sortable:false  }, 
-						{ text: 'KELAS', value: 'idkelas', sortable:false  },       
-						{ text: 'TAHUN MASUK', value: 'tahun', sortable:false },                               
+						{ text: 'KELAS', value: 'idkelas', sortable:false  },
+						{ text: 'TAHUN MASUK', value: 'tahun', sortable:false },            
 				],
 				search_members: "",  
 
-				showdialogmatakuliah:false,    
-				showdialogpeserta:false,    
+				showdialogmatakuliah:false,
+				showdialogpeserta:false,
 
 				//formdata
 				form_valid:true,
 				members_selected: [],
 				formdata: {                        
-						penyelenggaraan_dosen_id: "",    
+						penyelenggaraan_dosen_id: "",
 				},
 				
 		}),
@@ -343,51 +343,51 @@ export default {
 				initialize:async function() 
 				{
 						this.datatableLoading=true;
-						await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,          
+						await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,  
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
 								}
 						}).then(({ data }) => {           
 								this.data_kelas_mhs=data.pembagiankelas;    
-								this.datatable=data.penyelenggaraan;                    
-								this.datatable_peserta=data.peserta;                    
+								this.datatable=data.penyelenggaraan;         
+								this.datatable_peserta=data.peserta;         
 								this.datatableLoading=false;
 						})       
 				},
 				async fetchMatkul()
 				{
 						this.datatableLoading=true;
-						await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/matakuliah/'+this.kelas_mhs_id,          
+						await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/matakuliah/'+this.kelas_mhs_id,  
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
 								}
 						}).then(({ data }) => {                                                      
-								this.datatable=data.penyelenggaraan;                    
+								this.datatable=data.penyelenggaraan;         
 								this.datatableLoading=false;
 						})   
 				},
 				async fetchPeserta()
 				{
 						this.datatableLoading=true;
-						await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/peserta/'+this.kelas_mhs_id,          
+						await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/peserta/'+this.kelas_mhs_id,  
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
 								}
 						}).then(({ data }) => {                                                      
-								this.datatable_peserta=data.peserta;                    
+								this.datatable_peserta=data.peserta;         
 								this.datatableLoading=false;
 						})   
 				},
 				async tambahMatakuliah()
 				{
-						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',          
+						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',  
 						{
 								user_id: this.data_kelas_mhs.user_id,
-								ta: this.data_kelas_mhs.tahun,              
-								semester_akademik: this.data_kelas_mhs.idsmt,              
+								ta: this.data_kelas_mhs.tahun,  
+								semester_akademik: this.data_kelas_mhs.idsmt,  
 						},
 						{
 								headers: {
@@ -400,7 +400,7 @@ export default {
 				},
 				async tambahPeserta()
 				{
-						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/members',          
+						await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/members',  
 						{
 								pid:'belumterdaftar',
 								kelas_mhs_id: this.kelas_mhs_id,
@@ -421,8 +421,8 @@ export default {
 								this.btnLoading = true;
 								await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/storepeserta',
 										{
-												kelas_mhs_id: this.kelas_mhs_id,    
-												members_selected:JSON.stringify(Object.assign({},this.members_selected)),                                                
+												kelas_mhs_id: this.kelas_mhs_id,
+												members_selected:JSON.stringify(Object.assign({},this.members_selected)),                             
 										},
 										{
 												headers: {
@@ -443,7 +443,7 @@ export default {
 								this.btnLoading = true;
 								await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/storematakuliah',
 										{
-												kelas_mhs_id: this.kelas_mhs_id,    
+												kelas_mhs_id: this.kelas_mhs_id,
 												penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
 										},
 										{
@@ -482,7 +482,7 @@ export default {
 										});
 								}                
 						});
-				},     
+				}, 
 				deletePeserta(item)
 				{
 						this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data mahasiswa di kelas ini dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
@@ -506,7 +506,7 @@ export default {
 										});
 								}                
 						});
-				},     
+				}, 
 				closedialogpeserta() {
 						this.showdialogpeserta = false;
 						setTimeout(() => {                

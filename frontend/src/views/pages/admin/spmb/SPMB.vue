@@ -123,11 +123,11 @@
                                 :disable-pagination="true"
                                 :hide-default-footer="true"
                                 :headers="headers"
-                                :items="daftar_registrasi">         
+                                :items="daftar_registrasi">  
                                 <template v-slot:body.append v-if="daftar_registrasi.length > 0">
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">TOTAL</td>
-                                        <td class="text-right">{{total_registrasi}}</td>                                                     
+                                        <td class="text-right">{{total_registrasi}}</td>                                              
                                     </tr>
                                 </template>
                                 <template v-slot:no-data> 
@@ -154,11 +154,11 @@
                                 :disable-pagination="true"
                                 :hide-default-footer="true"
                                 :headers="headers"
-                                :items="daftar_isi_formulir">         
+                                :items="daftar_isi_formulir">  
                                 <template v-slot:body.append v-if="daftar_isi_formulir.length > 0">
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">TOTAL</td>
-                                        <td class="text-right">{{total_isi_formulir}}</td>                                                     
+                                        <td class="text-right">{{total_isi_formulir}}</td>                                              
                                     </tr>
                                 </template>
                                 <template v-slot:no-data> 
@@ -187,11 +187,11 @@
                                 :disable-pagination="true"
                                 :hide-default-footer="true"
                                 :headers="headers"
-                                :items="daftar_lulus">         
+                                :items="daftar_lulus">  
                                 <template v-slot:body.append v-if="daftar_lulus.length > 0">
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">TOTAL</td>
-                                        <td class="text-right">{{total_lulus}}</td>                                                     
+                                        <td class="text-right">{{total_lulus}}</td>                                              
                                     </tr>
                                 </template>
                                 <template v-slot:no-data> 
@@ -218,11 +218,11 @@
                                 :disable-pagination="true"
                                 :hide-default-footer="true"
                                 :headers="headers"
-                                :items="daftar_tidak_lulus">         
+                                :items="daftar_tidak_lulus">  
                                 <template v-slot:body.append v-if="daftar_lulus.length > 0">
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">TOTAL</td>
-                                        <td class="text-right">{{total_tidak_lulus}}</td>                                                     
+                                        <td class="text-right">{{total_tidak_lulus}}</td>                                              
                                     </tr>
                                 </template>
                                 <template v-slot:no-data> 
@@ -267,7 +267,7 @@ export default {
     data: () => ({
         datatableLoading:false,
         firstloading:true,
-        breadcrumbs: [],      
+        breadcrumbs: [],  
         tahun_pendaftaran:0,
         
         //statistik
@@ -275,17 +275,17 @@ export default {
         daftar_registrasi: [], 
 
         total_isi_formulir:0,
-        daftar_isi_formulir: [],      
+        daftar_isi_formulir: [],  
 
         total_lulus:0,
-        daftar_lulus: [],      
+        daftar_lulus: [],  
         
         total_tidak_lulus:0,
-        daftar_tidak_lulus: [],      
+        daftar_tidak_lulus: [],  
         headers: [                        
-            { text: 'NAMA PRODI', value: 'nama_prodi', sortable:false},             
-            { text: 'JENJANG', value: 'nama_jenjang', sortable:false},             
-            { text: 'JUMLAH', align:'end',value: 'jumlah', sortable:false},              
+            { text: 'NAMA PRODI', value: 'nama_prodi', sortable:false}, 
+            { text: 'JENJANG', value: 'nama_jenjang', sortable:false}, 
+            { text: 'JUMLAH', align:'end',value: 'jumlah', sortable:false},  
         ], 
     }),
     methods : {
@@ -298,7 +298,7 @@ export default {
             this.datatableLoading=true;
             await this.$ajax.post('/dashboard/pmb',
             {
-                TA: this.tahun_pendaftaran,              
+                TA: this.tahun_pendaftaran,  
             },
             {
                 headers: {
@@ -336,8 +336,8 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,         
-        Filter9,      
+        ModuleHeader, 
+        Filter9,  
     },
 }
 </script>

@@ -8,7 +8,7 @@
 					<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="headline font-weight-bold mx-1">{{APP_NAME}}</span>
 			</v-toolbar-title>
-						<v-spacer></v-spacer>            
+						<v-spacer></v-spacer>     
 						<v-divider
 								class="mx-4"
 								inset
@@ -24,7 +24,7 @@
 								<template v-slot:activator="{on}">
 										<v-avatar size="30">
 												<v-img :src="photoUser" v-on="on" />
-										</v-avatar>                    
+										</v-avatar>             
 								</template>
 								<v-list>
 										<v-list-item>
@@ -39,7 +39,7 @@
 																[{{DEFAULT_ROLE}}]
 														</v-list-item-subtitle>
 												</v-list-item-content>
-										</v-list-item>                    
+										</v-list-item>             
 										<v-divider/>
 										<v-list-item to="/system-users/profil">
 												<v-list-item-icon class="mr-2">
@@ -125,7 +125,7 @@
 												</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item>    
-								<v-subheader style="color:#f0935c">SERVER</v-subheader>            
+								<v-subheader style="color:#f0935c">SERVER</v-subheader>     
 								<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES')" to="/system-setting/captcha">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-puzzle</v-icon>
@@ -146,7 +146,7 @@
 												</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item>
-								<v-subheader style="color:#f0935c">PLUGIN</v-subheader>                    
+								<v-subheader style="color:#f0935c">PLUGIN</v-subheader>             
 								<v-list-item link v-if="CAN_ACCESS('PLUGINS-H2H-ZOOMAPI_BROWSE')" to="/system-setting/zoom">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-desktop-mac-dashboard</v-icon>
@@ -157,7 +157,7 @@
 												</v-list-item-title>
 										</v-list-item-content>
 								</v-list-item>
-								<v-subheader v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" style="color:#f0935c">THEMES</v-subheader>                    
+								<v-subheader v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" style="color:#f0935c">THEMES</v-subheader>             
 								<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" to="/system-setting/themes/colordashboard">
 										<v-list-item-icon class="mr-2">
 												<v-icon>mdi-monitor-clean</v-icon>
@@ -179,7 +179,7 @@
 										</v-list-item-content>
 								</v-list-item>
 						</v-list>
-				</v-navigation-drawer>        
+				</v-navigation-drawer> 
 				<v-main class="mx-4 mb-4">			
 			<slot />
 		</v-main>
@@ -201,8 +201,8 @@ export default {
 		},   
 		data:()=>({
 				loginTime:0,
-				drawer:null,      
-		}),     
+				drawer: null,  
+		}), 
 		methods: {        
 				logout ()
 				{
@@ -235,12 +235,12 @@ export default {
 		computed: {
 				...mapGetters('auth',{
 						AUTHENTICATED:'Authenticated',
-						ACCESS_TOKEN:'AccessToken',        
-						TOKEN:'Token',        
+						ACCESS_TOKEN:'AccessToken',
+						TOKEN:'Token',
 						DEFAULT_ROLE:'DefaultRole',
 						ROLE:'Role',
-						CAN_ACCESS:'can',       
-						ATTRIBUTE_USER:'AttributeUser',             
+						CAN_ACCESS:'can',
+						ATTRIBUTE_USER:'AttributeUser', 
 				}),
 				APP_NAME ()
 				{
@@ -269,7 +269,7 @@ export default {
 								if (value >= 0)
 								{
 										setTimeout(() => { 
-												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                         
+												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                              
 					}, 1000);
 								}
 								else
@@ -279,7 +279,7 @@ export default {
 								}
 						},
 						immediate:true
-				},      
+				},  
 		}
 }
 </script>

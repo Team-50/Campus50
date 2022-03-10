@@ -23,7 +23,7 @@
 				</v-alert>
 			</template>
 		</ModuleHeader>  
-		<v-container fluid>             
+		<v-container fluid>      
 			<v-row class="mb-4" no-gutters>
 				<v-col cols="12">
 					<v-card>
@@ -115,12 +115,12 @@
 													<v-date-picker
 														v-model="formdata.tanggal_akhir_daftar"                                        
 														no-title                                
-														scrollable>                   
+														scrollable>            
 														<v-spacer></v-spacer>
 														<v-btn text color="primary" @click="menuTanggalAkhirPendaftaran = false">Cancel</v-btn>
 														<v-btn text color="primary" @click="$refs.menuTanggalAkhirPendaftaran.save(formdata.tanggal_akhir_daftar)">OK</v-btn>
 													</v-date-picker>
-												</v-menu>           
+												</v-menu>    
 												<v-menu
 													ref="menuTanggalUjian"
 													v-model="menuTanggalUjian"
@@ -142,7 +142,7 @@
 													<v-date-picker
 														v-model="formdata.tanggal_ujian"                                        
 														no-title                                
-														scrollable>                   
+														scrollable>            
 														<v-spacer></v-spacer>
 														<v-btn text color="primary" @click="menuTanggalUjian = false">Cancel</v-btn>
 														<v-btn text color="primary" @click="$refs.menuTanggalUjian.save(formdata.tanggal_ujian)">OK</v-btn>

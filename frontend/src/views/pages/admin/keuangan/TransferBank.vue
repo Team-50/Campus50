@@ -70,7 +70,7 @@
                                     <template v-slot:activator="{ on }">
                                         <v-btn color="indigo darken-3" elevation="0" small class="primary" v-on="on">
                                             <v-icon size="21px">mdi-plus-circle</v-icon>
-                                        </v-btn>             
+                                        </v-btn>      
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -83,25 +83,25 @@
                                                     label="NAMA BANK"
                                                     outlined
                                                     :rules="rule_nama_bank">
-                                                </v-text-field>             
+                                                </v-text-field>      
                                                 <v-text-field 
                                                     v-model="formdata.nama_cabang" 
                                                     label="CABANG"
                                                     outlined
                                                     :rules="rule_nama_cabang">
-                                                </v-text-field>             
+                                                </v-text-field>      
                                                 <v-text-field 
                                                     v-model="formdata.nomor_rekening" 
                                                     label="NOMOR REKENING"
                                                     outlined
                                                     :rules="rule_no_rekening">
-                                                </v-text-field>             
+                                                </v-text-field>      
                                                 <v-text-field 
                                                     v-model="formdata.pemilik_rekening" 
                                                     label="PEMILIK REKENING"
                                                     outlined
                                                     :rules="rule_pemilik">
-                                                </v-text-field>             
+                                                </v-text-field>      
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -143,7 +143,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>                 
+                                            </v-row>          
                                             <v-row no-gutters>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -163,7 +163,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>                 
+                                            </v-row>          
                                             <v-row no-gutters>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -183,13 +183,13 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>                 
+                                            </v-row>          
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>         
+                                    </v-card>  
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -277,43 +277,43 @@ export default {
         dialogdetailitem:false,
 
         //form data           
-        form_valid:true,       
+        form_valid:true,
         formdata: {
-            id: "",    
-            nama_bank: "",    
-            nama_cabang: "",    
-            nomor_rekening: "",    
-            pemilik_rekening: "",    
-            created_at: "",    
-            updated_at: "",    
+            id: "",
+            nama_bank: "",
+            nama_cabang: "",
+            nomor_rekening: "",
+            pemilik_rekening: "",
+            created_at: "",
+            updated_at: "",
         },
         formdefault: {
-            id: "",    
-            nama_bank: "",    
-            nama_cabang: "",    
-            nomor_rekening: "",    
-            pemilik_rekening: "",    
-            created_at: "",    
-            updated_at: "",           
+            id: "",
+            nama_bank: "",
+            nama_cabang: "",
+            nomor_rekening: "",
+            pemilik_rekening: "",
+            created_at: "",
+            updated_at: "",   
         },
         editedIndex: -1,
 
         //form rules  
         rule_nama_bank: [
             value => !!value || "Mohon untuk di isi nama bank !!!",
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama bank hanya boleh string dan spasi',              
+            value => /^[A-Za-z\s]*$/.test(value) || 'Nama bank hanya boleh string dan spasi',  
         ], 
         rule_nama_cabang: [
             value => !!value || "Mohon untuk di isi nama cabang bank !!!",
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama cabang bank hanya boleh string dan spasi',              
-        ],       
+            value => /^[A-Za-z\s]*$/.test(value) || 'Nama cabang bank hanya boleh string dan spasi',  
+        ],
         rule_no_rekening: [
             value => !!value || "Mohon untuk di isi nomor rekening !!!", 
             value => /^[0-9]+$/.test(value) || 'Nomor rekening hanya boleh angka',
         ],
         rule_pemilik: [
             value => !!value || "Mohon untuk di isi nama pemilik rekening !!!",
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama pemilik rekening hanya boleh string dan spasi',              
+            value => /^[A-Za-z\s]*$/.test(value) || 'Nama pemilik rekening hanya boleh string dan spasi',  
         ],
     }),
     methods: {
@@ -360,10 +360,10 @@ export default {
                     await this.$ajax.post('/keuangan/transferbank/'+this.formdata.id,
                         {
                             '_method':'PUT',
-                            nama_bank: this.formdata.nama_bank,        
-                            nama_cabang: this.formdata.nama_cabang,        
-                            nomor_rekening: this.formdata.nomor_rekening,        
-                            pemilik_rekening: this.formdata.pemilik_rekening,        
+                            nama_bank: this.formdata.nama_bank,
+                            nama_cabang: this.formdata.nama_cabang,
+                            nomor_rekening: this.formdata.nomor_rekening,
+                            pemilik_rekening: this.formdata.pemilik_rekening,
                         },
                         {
                             headers: {
@@ -381,10 +381,10 @@ export default {
                 } else {
                     await this.$ajax.post('/keuangan/transferbank/store',
                         {
-                            nama_bank: this.formdata.nama_bank,        
-                            nama_cabang: this.formdata.nama_cabang,        
-                            nomor_rekening: this.formdata.nomor_rekening,        
-                            pemilik_rekening: this.formdata.pemilik_rekening,        
+                            nama_bank: this.formdata.nama_bank,
+                            nama_cabang: this.formdata.nama_cabang,
+                            nomor_rekening: this.formdata.nomor_rekening,
+                            pemilik_rekening: this.formdata.pemilik_rekening,
                         },
                         {
                             headers: {
@@ -445,16 +445,16 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',        
-            TOKEN:'Token',              
+            ACCESS_TOKEN:'AccessToken',
+            TOKEN:'Token',  
         }),
         formTitle() {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
-        },      
+        },  
     },
     components: {
         KeuanganLayout,
-        ModuleHeader,      
+        ModuleHeader,  
     },
 
 }

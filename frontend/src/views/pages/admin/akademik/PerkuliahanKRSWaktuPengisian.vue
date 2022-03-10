@@ -58,7 +58,7 @@
                 </v-card-text>
               </v-card>
 						</v-col>
-          </v-row>                         
+          </v-row>                  
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
 										<v-card>
@@ -105,9 +105,9 @@
 																		to="/akademik/perkuliahan/krs/tambah"
 																		v-if="$store.getters['auth/can']('AKADEMIK-PERKULIAHAN-KRS_STORE')">
 																				<v-icon size="21px">mdi-plus-circle</v-icon>
-																</v-btn>             
+																</v-btn>      
 														</v-toolbar>
-														<v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
+														<v-dialog v-model="dialogprintpdf" max-width="500px" persistent>         
 																<v-card>
 																		<v-card-title>
 																				<span class="headline">Print to PDF</span>
@@ -124,7 +124,7 @@
 																				<v-spacer></v-spacer>
 																				<v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn> 
 																		</v-card-actions>
-																</v-card>            
+																</v-card>     
 														</v-dialog>
 												</template>
 												<template v-slot:item.idkelas="{item}">
@@ -159,10 +159,10 @@
 																		mdi-delete
 																</v-icon>
 														</v-btn>   
-												</template>           
+												</template>    
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
-																<v-col cols="12">                          
+																<v-col cols="12">                   
 																		<strong>krs_id:</strong>{{ item.id }}          
 																		<strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
 																		<strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -174,7 +174,7 @@
 												</template>   
 										</v-data-table>
 								</v-col>
-						</v-row>            
+						</v-row>     
 				</v-container>
 		</AkademikLayout>
 </template>
@@ -217,7 +217,7 @@ export default {
 						this.prodi_id=prodi_id;
 						this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
 						this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];    
-						this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+						this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];     
 				}     
 		},
 		mounted()
@@ -229,31 +229,31 @@ export default {
 		},
 		data: () => ({ 
 				firstloading:true,
-				prodi_id:null,
-				nama_prodi:null,
+				prodi_id: null,
+				nama_prodi: null,
 				daftar_ta: [],
-				tahun_akademik:null,
-				semester_akademik:null,
+				tahun_akademik: null,
+				semester_akademik: null,
 				
 				btnLoading: false,
 				btnLoadingTable:false,
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'NIM', value: 'nim', sortable:true,width:100  }, 
 						{ text: 'NAMA', value: 'nama_mhs', sortable:true,width:250  }, 
-						{ text: 'ANGK.', value: 'tahun_masuk', sortable:true, width:100  },             
-						{ text: 'JUMLAH MATKUL', value: 'jumlah_matkul', sortable:true, width:100  },             
-						{ text: 'JUMLAH SKS', value: 'jumlah_sks', sortable:true, width:100 },             
-						{ text: 'TA.SMT', value: 'tasmt',sortable:true, width:100 },       
-						{ text: 'SAH', value: 'sah',sortable:true, width:100},       
+						{ text: 'ANGK.', value: 'tahun_masuk', sortable: true,width:100  }, 
+						{ text: 'JUMLAH MATKUL', value: 'jumlah_matkul', sortable: true,width:100  }, 
+						{ text: 'JUMLAH SKS', value: 'jumlah_sks', sortable: true,width:100 }, 
+						{ text: 'TA.SMT', value: 'tasmt',sortable: true,width:100 },
+						{ text: 'SAH', value: 'sah',sortable: true,width:100},
 						{ text: 'AKSI', value: 'actions', sortable: false,width:140 },
 				],
 				search: "", 
 
 				dialogprintpdf:false,
-				file_pdf:null
+				file_pdf: null
 		}),
 		methods: {
 				changeTahunAkademik (tahun)
@@ -347,7 +347,7 @@ export default {
 				async printpdf(item)
 				{
 						this.btnLoading = true;
-						await this.$ajax.get('/akademik/perkuliahan/krs/printpdf/'+item.id,              
+						await this.$ajax.get('/akademik/perkuliahan/krs/printpdf/'+item.id,  
 								{
 										headers: {
 												Authorization: this.$store.getters['auth/Token']

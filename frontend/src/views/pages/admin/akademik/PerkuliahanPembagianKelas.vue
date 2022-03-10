@@ -31,7 +31,7 @@
 				<template v-slot:filtersidebar>
 						<Filter2 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" ref="filter2" />	
 				</template>
-				<v-container fluid>                         
+				<v-container fluid>                  
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
 										<v-card>
@@ -78,7 +78,7 @@
 																<v-btn color="indigo darken-3" elevation="0" small class="primary">
 																		<v-icon>mdi-printer</v-icon>
 																</v-btn>
-																<v-dialog v-model="dialogfrm" max-width="750px" persistent>         
+																<v-dialog v-model="dialogfrm" max-width="750px" persistent>  
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 																				<v-card>
 																						<v-card-title>
@@ -179,13 +179,13 @@
 																		mdi-delete
 																</v-icon>
 														</v-btn>   
-												</template>           
+												</template>    
 												<template v-slot:item.actions v-else>
 														N.A
-												</template>           
+												</template>    
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
-																<v-col cols="12">                          
+																<v-col cols="12">                   
 																		<strong>ID:</strong>{{ item.id }}          
 																		<strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
 																		<strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -197,7 +197,7 @@
 												</template>   
 										</v-data-table>
 								</v-col>
-						</v-row>            
+						</v-row>     
 				</v-container>
 		</AkademikLayout>
 </template>
@@ -238,23 +238,23 @@ export default {
 				this.initialize()
 		},
 		data: () => ({ 
-				firstloading:true,      
-				tahun_akademik:null,
-				semester_akademik:null,
+				firstloading: true, 
+				tahun_akademik: null,
+				semester_akademik: null,
 
 				btnLoading: false,
-				btnLoadingTable:false,      
+				btnLoadingTable:false,  
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'KODE', value: 'kmatkul', sortable:true,width:100  }, 
 						{ text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable:true  }, 
-						{ text: 'NAMA DOSEN', value: 'nama_dosen', sortable:true  },       
-						{ text: 'HARI', value: 'nama_hari', sortable:true, width:100 },             
-						{ text: 'JAM', value: 'jam_masuk',sortable:true, width:100 },       
-						{ text: 'RUANG', value: 'namaruang',sortable:true, width:100},       
-						{ text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable:true, width:100},       
+						{ text: 'NAMA DOSEN', value: 'nama_dosen', sortable:true  },
+						{ text: 'HARI', value: 'nama_hari', sortable: true,width:100 }, 
+						{ text: 'JAM', value: 'jam_masuk',sortable: true,width:100 },
+						{ text: 'RUANG', value: 'namaruang',sortable: true,width:100},
+						{ text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable: true,width:100},
 						{ text: 'AKSI', value: 'actions', sortable: false,width:120 },
 				],
 				search: "",
@@ -263,7 +263,7 @@ export default {
 				dialogfrm:false,
 
 				//formdata
-				form_valid:true, 
+				form_valid: true,
 				daftar_ruang_kelas: [],
 				daftar_hari: [
 						{
@@ -295,23 +295,23 @@ export default {
 				formdata: {            
 						id: "",
 						zoom_id: "",
-						idkelas: "",          
-						hari: "",          
+						idkelas: "",  
+						hari: "",  
 						jam_masuk: "",
 						jam_keluar: "",
 						penyelenggaraan_dosen_id: "",
-						ruang_kelas_id: "",          
+						ruang_kelas_id: "",  
 				}, 
 				formdefault: {            
 						id: "",
 						zoom_id: "",
-						idkelas: "",          
-						hari: "",          
+						idkelas: "",  
+						hari: "",  
 						jam_masuk: "",
 						jam_keluar: "",
 						penyelenggaraan_dosen_id: "",
-						ruang_kelas_id: "",          
-				},       
+						ruang_kelas_id: "",  
+				},
 
 				rule_hari: [
 						value => !!value || "Mohon dipilih hari mengajar!!!"
@@ -337,7 +337,7 @@ export default {
 				changeSemesterAkademik (semester)
 				{
 						this.semester_akademik=semester;
-				},      
+				},  
 				initialize:async function() 
 				{
 						this.datatableLoading=true;
@@ -369,7 +369,7 @@ export default {
 						{
 								this.expanded=[item];
 						}               
-				},      
+				},  
 				async editItem (item) {
 						await this.$ajax.get('/datamaster/ruangankelas',{
 								headers: {
@@ -380,7 +380,7 @@ export default {
 								this.formdata = Object.assign({}, item);
 								this.dialogfrm = true;   
 						});
-						await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',     
+						await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom', 
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
@@ -396,11 +396,11 @@ export default {
 								
 								await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/'+this.formdata.id,
 										{
-												'_method':'PUT',    
-												hari: this.formdata.hari,        
+												'_method':'PUT',
+												hari: this.formdata.hari,
 												jam_masuk: this.formdata.jam_masuk,
-												jam_keluar: this.formdata.jam_keluar,    
-												ruang_kelas_id: this.formdata.ruang_kelas_id,        
+												jam_keluar: this.formdata.jam_keluar,
+												ruang_kelas_id: this.formdata.ruang_kelas_id,
 										},
 										{
 												headers: {
@@ -415,7 +415,7 @@ export default {
 										this.btnLoading = false;
 								});
 						}
-				},          
+				},  
 				deleteItem (item)
 				{
 						this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus pembagian kelas matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc':'proses ini membuat mahasiswa tidak memiliki kelas.' }).then((confirm) => {
@@ -444,7 +444,7 @@ export default {
 				closedialogfrm() {
 						this.dialogfrm = false;
 						setTimeout(() => {
-								this.formdata = Object.assign({}, this.formdefault);                    
+								this.formdata = Object.assign({}, this.formdefault);         
 								this.$refs.frmdata.reset(); 
 								}, 300
 						);
@@ -464,7 +464,7 @@ export default {
 						{
 								this.initialize();
 						}            
-				},      
+				},  
 		},
 		computed: {
 				...mapGetters('auth',{            

@@ -194,7 +194,7 @@ export default {
         //form rules
         rule_permission_name: [
             value => !!value || "Mohon untuk di isi nama Permission !!!",
-            value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || 'Nama Permission hanya boleh angka,huruf,dan tanda -',              
+            value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || 'Nama Permission hanya boleh angka,huruf,dan tanda -',  
         ],
     }),
     methods: {

@@ -72,7 +72,7 @@
 																				</v-card-subtitle>
 																		</v-card>
 																</v-col>
-																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                
+																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 																<v-col xs="12" sm="6" md="6">
 																		<v-card flat>
 																				<v-card-title>NAMA MAHASISWA:</v-card-title>
@@ -91,10 +91,10 @@
 																		</v-card>
 																</v-col>
 																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-														</v-row>            
+														</v-row>     
 												</v-card-text>
 										</v-card>
-								</v-col>                
+								</v-col>         
 						</v-row>
 						<v-row>
 								<v-col cols="12">     
@@ -187,16 +187,16 @@ export default {
 				this.fetchKRS();   
 		},
 		data: () => ({ 
-				firstloading:true,      
-				nama_prodi:null,
-				tahun_akademik:null,      
-				semester_akademik:null,
+				firstloading: true, 
+				nama_prodi: null,
+				tahun_akademik: null,  
+				semester_akademik: null,
 		
 				btnLoading: false, 
 				
 				//formdata
-				form_valid:true, 
-				krs_id:null,
+				form_valid: true,
+				krs_id: null,
 				datakrs: {},
 				jumlah_matkul:0,
 				jumlah_sks:0,
@@ -205,19 +205,19 @@ export default {
 				//table        
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'KODE', value: 'kmatkul', sortable:true,width:120  }, 
-						{ text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },             
-						{ text: 'SKS', value: 'sks', sortable:false,width:120 },       
-						{ text: 'SMT', value: 'semester', sortable:false,width:120 },                   
-						{ text: 'TAHUN MATKUL', value: 'ta_matkul', sortable:false,width:120 },                   
+						{ text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true }, 
+						{ text: 'SKS', value: 'sks', sortable:false,width:120 },
+						{ text: 'SMT', value: 'semester', sortable:false,width:120 },
+						{ text: 'TAHUN MATKUL', value: 'ta_matkul', sortable:false,width:120 },
 				],
 		}),
 		methods: {          
 				async fetchKRS()
 				{
-						await this.$ajax.get('/akademik/perkuliahan/krs/'+this.krs_id,    
+						await this.$ajax.get('/akademik/perkuliahan/krs/'+this.krs_id,
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
@@ -228,8 +228,8 @@ export default {
 								{
 										let prodi_id=this.datakrs.kjur;        
 										this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);    
-										this.tahun_akademik=this.datakrs.tahun;                                          
-										this.semester_akademik=this.datakrs.idsmt;            
+										this.tahun_akademik=this.datakrs.tahun;                               
+										this.semester_akademik=this.datakrs.idsmt; 
 								}
 						})  
 
@@ -263,7 +263,7 @@ export default {
 								this.btnLoading = true;
 								await this.$ajax.post('/akademik/perkuliahan/krs/storematkul',
 										{
-												krs_id: this.krs_id,    
+												krs_id: this.krs_id,
 												matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),
 										},
 										{
@@ -300,7 +300,7 @@ export default {
 		},
 		components: {
 				AkademikLayout,
-				ModuleHeader,          
+				ModuleHeader,  
 		},
 }
 </script>

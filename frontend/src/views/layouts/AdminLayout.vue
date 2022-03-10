@@ -21,7 +21,7 @@
 								<template v-slot:activator="{on}">
 										<v-avatar size="30">
 												<v-img :src="photoUser" v-on="on" />
-										</v-avatar>                    
+										</v-avatar>             
 								</template>
 								<v-list>
 										<v-list-item>
@@ -36,7 +36,7 @@
 																[{{DEFAULT_ROLE}}]
 														</v-list-item-subtitle>
 												</v-list-item-content>
-										</v-list-item>                    
+										</v-list-item>             
 										<v-divider/>
 										<v-list-item to="/system-users/profil">
 												<v-list-item-icon class="mr-2">
@@ -53,7 +53,7 @@
 										</v-list-item>
 								</v-list>
 						</v-menu>			
-				</v-app-bar>                    
+				</v-app-bar>             
 				<v-main>
 					<slot />
 				</v-main>
@@ -72,12 +72,12 @@ export default {
 						type:Boolean,
 						default:false
 				},
-		},    
+		},
 		data:()=>({
 				loginTime:0,
-				drawer:null,
-				drawerRight:null, 
-		}),     
+				drawer: null,
+				drawerRight: null, 
+		}), 
 		methods: {        
 				logout ()
 				{
@@ -110,12 +110,12 @@ export default {
 		computed: {
 				...mapGetters('auth',{
 						AUTHENTICATED:'Authenticated',
-						ACCESS_TOKEN:'AccessToken',        
+						ACCESS_TOKEN:'AccessToken',
 						TOKEN:'Token', 
-						DEFAULT_ROLE:'DefaultRole',       
+						DEFAULT_ROLE:'DefaultRole',
 						ROLE:'Role',
-						CAN_ACCESS:'can',       
-						ATTRIBUTE_USER:'AttributeUser',             
+						CAN_ACCESS:'can',
+						ATTRIBUTE_USER:'AttributeUser', 
 				}),
 				APP_NAME ()
 				{
@@ -144,7 +144,7 @@ export default {
 								if (value >= 0)
 								{
 										setTimeout(() => { 
-												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                         
+												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                              
 					}, 1000);
 								}
 								else
@@ -154,7 +154,7 @@ export default {
 								}
 						},
 						immediate:true
-				},      
+				},  
 		}
 }
 </script>

@@ -106,21 +106,21 @@ export default {
         datatableLoading:false,
         btnLoading: false, 
         //form
-        form_valid:true, 
+        form_valid: true,
         currentBox:'dmaster',
-        color:'#fff',        
+        color:'#fff',
         formdata: {
-            dmaster:null,          
-            perencanaan:null,          
-            spmb:null,          
-            keuangan:null,          
-            akademik:null,          
-            kemahasiswaan:null,          
-            elearning:null,          
-            user_sistem:null,          
-            konfigurasi_sistem:null,          
-            migrasi_sistem:null,          
-        },      
+            dmaster: null,  
+            perencanaan: null,  
+            spmb: null,  
+            keuangan: null,  
+            akademik: null,  
+            kemahasiswaan: null,  
+            elearning: null,  
+            user_sistem: null,  
+            konfigurasi_sistem: null,  
+            migrasi_sistem: null,  
+        },  
     }),
     methods: {
         initialize:async function() 
@@ -133,7 +133,7 @@ export default {
                 }
             }).then(({ data }) => {  
                 let setting = JSON.parse(data.setting.COLOR_DASHBOARD);  
-                this.showColor=setting.dmaster;                 
+                this.showColor=setting.dmaster;      
                 this.formdata.dmaster=setting.dmaster;
                 this.formdata.perencanaan=setting.perencanaan;
                 this.formdata.spmb=setting.spmb;
@@ -191,8 +191,8 @@ export default {
                         '_method':'PUT', 
                         'pid':'Color Dashboard',
                         setting:JSON.stringify({
-                            807: this.formdata,        
-                        }),                                                                                                        
+                            807: this.formdata,
+                        }),                                                                                     
                     },
                     {
                         headers: {
@@ -210,8 +210,8 @@ export default {
     },
     computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',        
-            TOKEN:'Token',              
+            ACCESS_TOKEN:'AccessToken',
+            TOKEN:'Token',  
         }),
         showColor: {
             set(val)
@@ -265,7 +265,7 @@ export default {
     },
     components: {
 		SystemConfigLayout,
-        ModuleHeader,      
+        ModuleHeader,  
 	}
 }
 </script>

@@ -70,7 +70,7 @@
                                     <template v-slot:activator="{ on }">
                                         <v-btn color="indigo darken-3" small elevation="0" class="primary" v-on="on">
                                             <v-icon size="21px">mdi-plus-circle</v-icon>
-                                        </v-btn>             
+                                        </v-btn>      
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -135,7 +135,7 @@
                                                             </v-date-picker>
                                                         </v-menu>
                                                     </v-col>
-                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                         
+                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                                                 </v-row>
                                                 <v-row no-gutters>
                                                     <v-col xs="12" sm="12" md="12">
@@ -173,7 +173,7 @@
                                                             </v-date-picker>
                                                         </v-menu>
                                                     </v-col>
-                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                         
+                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
                                                 </v-row>
                                             </v-card-text>
                                             <v-card-actions>
@@ -391,9 +391,9 @@ export default {
             //form data
             old_tahun: "",
             form_valid:true,
-            menuSemesterGanjil:false,      
+            menuSemesterGanjil:false,  
             semester_ganjil:semester_ganjil,
-            menuSemesterGenap:false,      
+            menuSemesterGenap:false,  
             semester_genap:semester_genap,
 
             formdata: {
@@ -421,7 +421,7 @@ export default {
             //form rules
             rule_tahun: [
                 value => !!value || "Tahun Akademik mohon untuk diisi Misalnya 2020 !!!",
-                value => /^[0-9]+$/.test(value) || 'Tahun Akademik hanya boleh angka',              
+                value => /^[0-9]+$/.test(value) || 'Tahun Akademik hanya boleh angka',  
                 value => {                    
                     if (value && typeof value !== 'undefined' && value.length > 0){
                         return value.length == 4 || 'Tahun Akademik hanya boleh 4 karakter';
@@ -434,7 +434,7 @@ export default {
             ],
             rule_tahun_akademik: [                
                 value => !!value || "Mohon untuk di isi nama tahun akademik !!!",
-            ],          
+            ],  
         }
     },
     methods: {
@@ -600,7 +600,7 @@ export default {
             {
                   return this.semester_genap.join(' ~ ');
             }
-        },         
+        }, 
     },
     components: {
         DataMasterLayout,

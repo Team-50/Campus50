@@ -23,9 +23,12 @@ class CreateSoalPmbTable extends Migration
             $table->year('ta');
             $table->tinyInteger('semester');
             $table->boolean('active')->default(1);
+            $table->uuid('soal_id_src')->nullable();
             $table->timestamps();   
             
             $table->index('prodi_id');
+            $table->index('soal_id_src');
+            
             $table->foreign('prodi_id')
                 ->references('id')
                 ->on('pe3_prodi')

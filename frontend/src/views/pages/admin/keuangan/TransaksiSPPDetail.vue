@@ -28,7 +28,7 @@
                     </v-alert>
             </template>
         </ModuleHeader>
-        <v-container fluid v-if="data_transaksi">           
+        <v-container fluid v-if="data_transaksi">    
             <v-row>   
                 <v-col cols="12">
                     <v-card>
@@ -87,7 +87,7 @@
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
-                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>             
+                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                 
                                 <v-col xs="12" sm="6" md="6">
                                     <v-card flat>
@@ -116,10 +116,10 @@
                                     </v-card>
                                 </v-col>
                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                            </v-row>            
+                            </v-row>     
                         </v-card-text>
                     </v-card>
-                </v-col>                
+                </v-col>         
             </v-row>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -141,10 +141,10 @@
                                         inset
                                         vertical
                                     ></v-divider>
-                                    <v-spacer></v-spacer>             
+                                    <v-spacer></v-spacer>      
                                     <v-btn color="primary" icon outlined small class="ma-2" :to="{path:'/keuangan/transaksi-spp/tambah/'+transaksi_id}" :disabled="data_transaksi.status==1 || data_transaksi.status==2">
                                         <v-icon>mdi-plus</v-icon>
-                                    </v-btn>             
+                                    </v-btn>      
                                 </v-toolbar>
                             </template>   
                             <template v-slot:item.biaya_kombi="{ item }">  
@@ -170,11 +170,11 @@
                             </template>   
                             <template v-slot:no-data>
                                 daftar bulan yang akan dibayar belum tersedia; silahkan pilih bulan di bawah ini.
-                            </template>                     
+                            </template>              
                         </v-data-table>
                     </v-form>
                 </v-col>
-            </v-row>            
+            </v-row>     
         </v-container>
     </KeuanganLayout>
 </template>
@@ -208,28 +208,28 @@ export default {
                 disabled:true,
                 href:'#'
             }
-        ];              
+        ];   
         this.initialize();
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];  
     },  
     data: () => ({
-        transaksi_id:null,
-        data_transaksi:null,
+        transaksi_id: null,
+        data_transaksi: null,
         item_selected: [],
 
         breadcrumbs: [],   
         tahun_akademik:0,
-        btnLoading: false,            
+        btnLoading: false,
         //tables
-        datatableLoading:false,     
+        datatableLoading:false, 
         datatable: [], 
         headers: [                                                
             { text: 'NO. BULAN', value: 'no_bulan',width:120,sortable:false },
-            { text: 'BULAN', value: 'nama_bulan',sortable:false },          
-            { text: 'TAHUN', value: 'tahun',sortable:false },          
+            { text: 'BULAN', value: 'nama_bulan',sortable:false },  
+            { text: 'TAHUN', value: 'tahun',sortable:false },  
             { text: 'BIAYA KOMBI', value: 'biaya_kombi',sortable:false },  
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },      
-        ],            
+            { text: 'AKSI', value: 'actions', sortable: false,width:100 },  
+        ],
         //form
         form_valid:true  
     }),
@@ -241,13 +241,13 @@ export default {
         initialize:async function() 
         {
             this.datatableLoading=true;
-            await this.$ajax.get('/keuangan/transaksi-spp/'+this.transaksi_id,    
+            await this.$ajax.get('/keuangan/transaksi-spp/'+this.transaksi_id,
             {
                 headers: {
                     Authorization: this.$store.getters['auth/Token']
                 }
             }).then(({ data }) => {       
-                this.data_transaksi=data.transaksi;                           
+                this.data_transaksi=data.transaksi;                
                 this.item_selected = data.item_selected;    
                 this.datatableLoading=false;
             });         
@@ -303,7 +303,7 @@ export default {
     },
     components: {
         KeuanganLayout,
-        ModuleHeader,           
+        ModuleHeader,   
     },
 }
 </script>

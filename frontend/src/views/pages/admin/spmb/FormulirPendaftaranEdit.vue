@@ -16,7 +16,7 @@
                         <v-icon>mdi-chevron-right</v-icon>
                     </template>
                 </v-breadcrumbs>
-            </template>           
+            </template>    
             <template v-slot:desc>
                 <v-alert                                        
                     color="cyan"
@@ -192,10 +192,10 @@
                                 />
                             </v-card-text>
                         </v-card>
-                        <v-card class="mb-4">                    
+                        <v-card class="mb-4">             
                             <v-card-actions>
                                 Kode Billing: <strong>{{kode_billing}}</strong>
-                                <v-spacer></v-spacer>                        
+                                <v-spacer></v-spacer>                 
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -207,7 +207,7 @@
                     </v-form>
                 </v-col>
             </v-row>
-        </v-container>                
+        </v-container>         
     </SPMBLayout>
 </template>
 <script>
@@ -244,11 +244,11 @@ export default {
         this.initialize();    
     },
     data: () => ({
-        breadcrumbs: [],      
-        dashboard:null,
+        breadcrumbs: [],  
+        dashboard: null,
 
-        tahun_pendaftaran:null,
-        nama_prodi:null,
+        tahun_pendaftaran: null,
+        nama_prodi: null,
         
         btnLoading: false,
         btnLoadingProv:false,
@@ -257,7 +257,7 @@ export default {
         btnLoadingFakultas:false,
 
         //form
-        user_id:null,
+        user_id: null,
         kode_billing:'N.A',
         form_valid:true,
 
@@ -278,11 +278,11 @@ export default {
         daftar_fakultas: [],
         kode_fakultas: "",
 
-        daftar_prodi: [],      
+        daftar_prodi: [],  
         daftar_kelas: [],
         
         formdata: {
-            nama_mhs: "",         
+            nama_mhs: "", 
             tempat_lahir: "",
             tanggal_lahir: "",
             jk:'L',
@@ -299,12 +299,12 @@ export default {
         ], 
         rule_nidn: [
             value => !!value || "Mohon untuk di isi NIDN !!!", 
-            value => /^[0-9]+$/.test(value) || 'NIDN hanya boleh angka',              
-        ],       
+            value => /^[0-9]+$/.test(value) || 'NIDN hanya boleh angka',  
+        ],
         rule_nipy: [
             value => !!value || "Mohon untuk di isi NIP Yayasan !!!", 
-            value => /^[0-9]+$/.test(value) || 'NIP Yayasan hanya boleh angka',              
-        ],       
+            value => /^[0-9]+$/.test(value) || 'NIP Yayasan hanya boleh angka',  
+        ],
         rule_tempat_lahir: [
             value => !!value || "Tempat Lahir mohon untuk diisi !!!"
         ], 
@@ -362,7 +362,7 @@ export default {
             this.$ajax.get('/datamaster/kelas').then(({ data }) => {                
                 this.daftar_kelas=data.kelas;
             });
-            await this.$ajax.get('/spmb/formulirpendaftaran/'+this.user_id,           
+            await this.$ajax.get('/spmb/formulirpendaftaran/'+this.user_id,   
                 {
                     headers: {
                         Authorization: this.$store.getters['auth/Token']
@@ -370,11 +370,11 @@ export default {
                 },
                 
             ).then(({ data }) => {   
-                this.formdata.nama_mhs=data.formulir.nama_mhs;           
-                this.formdata.tempat_lahir=data.formulir.tempat_lahir;           
-                this.formdata.tanggal_lahir=data.formulir.tanggal_lahir;           
-                this.formdata.jk=data.formulir.jk;           
-                this.formdata.nomor_hp='+'.data.formulir.nomor_hp;           
+                this.formdata.nama_mhs=data.formulir.nama_mhs;
+                this.formdata.tempat_lahir=data.formulir.tempat_lahir;
+                this.formdata.tanggal_lahir=data.formulir.tanggal_lahir;
+                this.formdata.jk=data.formulir.jk;
+                this.formdata.nomor_hp='+'.data.formulir.nomor_hp;
                 this.formdata.email=data.formulir.email;    
                 this.formdata.nama_ibu_kandung=data.formulir.nama_ibu_kandung;    
 
@@ -410,7 +410,7 @@ export default {
 
                 this.$refs.frmdata.resetValidation();       
             });
-        },      
+        },  
         save: async function()
         {
             if (this.$refs.frmdata.validate())
@@ -418,11 +418,11 @@ export default {
                 this.btnLoading = true;    
                 await this.$ajax.post('/spmb/formulirpendaftaran/'+this.user_id,{                    
                     _method:'put',
-                    nama_mhs: this.formdata.nama_mhs,         
-                    tempat_lahir: this.formdata.tempat_lahir,         
-                    tanggal_lahir: this.formdata.tanggal_lahir,         
-                    jk: this.formdata.jk,         
-                    nomor_hp: this.formdata.nomor_hp,         
+                    nama_mhs: this.formdata.nama_mhs, 
+                    tempat_lahir: this.formdata.tempat_lahir, 
+                    tanggal_lahir: this.formdata.tanggal_lahir, 
+                    jk: this.formdata.jk, 
+                    nomor_hp: this.formdata.nomor_hp, 
                     email: this.formdata.email,  
                     nama_ibu_kandung: this.formdata.nama_ibu_kandung,  
                     address1_provinsi_id: this.provinsi_id.id,
@@ -444,11 +444,11 @@ export default {
                 }
                 ).then(({ data }) => {               
                     this.kode_billing=data.no_transaksi;
-                    this.btnLoading = false;            
+                    this.btnLoading = false; 
                 }).catch(() => {                                   
                     this.btnLoading = false;
-                });                        
-                this.form_valid=true;                                                                            
+                });             
+                this.form_valid=true;                                                                 
                 this.$refs.frmdata.resetValidation();     
             }  
         },
@@ -500,7 +500,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,            
+        ModuleHeader,
     },
 }
 </script>

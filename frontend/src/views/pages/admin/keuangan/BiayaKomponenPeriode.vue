@@ -117,14 +117,14 @@
                                 @close="closeItem"> 
                                     {{ props.item.biaya|formatUang }}         
                                     <template v-slot:input>
-                                        <div class="mt-4 title">Update Biaya</div>             
+                                        <div class="mt-4 title">Update Biaya</div>      
                                         <v-currency-field 
                                             label="BIAYA KOMPONEN" 
                                             :min="null"
                                             :max="null"                                            
                                             outlined
                                             autofocus
-                                            v-model="props.item.biaya">             
+                                            v-model="props.item.biaya">      
                                         </v-currency-field>
                                     </template>
                             </v-edit-dialog>
@@ -134,7 +134,7 @@
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">                   
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -183,12 +183,12 @@ export default {
         this.initialize();
     },
     data: () => ({
-        dashboard:null,
+        dashboard: null,
         firstloading:true,
         breadcrumbs: [],
         tahun_pendaftaran:0,
-        prodi_id:null,
-        nama_prodi:null,
+        prodi_id: null,
+        nama_prodi: null,
         filter_idkelas: "",
         daftar_kelas: [],
         
@@ -197,13 +197,13 @@ export default {
         expanded: [],
         datatable: [],
         headers: [            
-            { text: 'ID KOMPONEN', value: 'kombi_id',width:10,sortable:false },                       
+            { text: 'ID KOMPONEN', value: 'kombi_id',width:10,sortable:false },    
             { text: 'NAMA KOMPONEN', value: 'nama_kombi',sortable:false},
-            { text: 'PERIODE', value: 'periode',width:150,sortable:false },          
-            { text: 'KELAS', value: 'nkelas',width:120,sortable:false },          
-            { text: 'BIAYA', value: 'biaya',width:150,sortable:false },          
+            { text: 'PERIODE', value: 'periode',width:150,sortable:false },  
+            { text: 'KELAS', value: 'nkelas',width:120,sortable:false },  
+            { text: 'BIAYA', value: 'biaya',width:150,sortable:false },  
         ],  
-        search: "",    
+        search: "",
     }),
     methods : {
         changeTahunPendaftaran (tahun)
@@ -217,7 +217,7 @@ export default {
         initialize:async function()
 		{
             this.datatableLoading=true;
-            await this.$ajax.post('/keuangan/biayakomponenperiode',          
+            await this.$ajax.post('/keuangan/biayakomponenperiode',  
             {
                 TA: this.tahun_pendaftaran,
                 prodi_id: this.prodi_id
@@ -247,7 +247,7 @@ export default {
         loadkombiperiode:async function()
         {
             this.btnLoading = true;
-            await this.$ajax.post('/keuangan/biayakomponenperiode/loadkombiperiode',          
+            await this.$ajax.post('/keuangan/biayakomponenperiode/loadkombiperiode',  
             {
                 TA: this.tahun_pendaftaran,
                 prodi_id: this.prodi_id
@@ -263,7 +263,7 @@ export default {
         },
         saveItem:async function ({id,biaya})
         {
-            await this.$ajax.post('/keuangan/biayakomponenperiode/updatebiaya',          
+            await this.$ajax.post('/keuangan/biayakomponenperiode/updatebiaya',  
             {
                 id:id,
                 biaya:biaya
@@ -273,7 +273,7 @@ export default {
                     Authorization: this.$store.getters['auth/Token']
                 }
             }).then(() => {               
-                this.initialize();            
+                this.initialize(); 
             });  
         },
         cancelItem()
@@ -312,7 +312,7 @@ export default {
                 if (val && typeof val !== 'undefined' && val.length > 0) 
                 {
                     this.datatableLoading=true;
-                    this.$ajax.post('/keuangan/biayakomponenperiode',          
+                    this.$ajax.post('/keuangan/biayakomponenperiode',  
                     {
                         TA: this.tahun_pendaftaran,
                         prodi_id: this.prodi_id,
@@ -337,7 +337,7 @@ export default {
     components: {
         KeuanganLayout,
         ModuleHeader,  
-        Filter7,     
+        Filter7, 
     },
 }
 </script>

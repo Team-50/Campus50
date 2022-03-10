@@ -23,7 +23,7 @@
 										>User dengan role Super Admin bertanggungjawab terhadap proses keseluruhan sistem.
 								</v-alert>
 						</template>
-				</ModuleHeader>        
+				</ModuleHeader> 
 				<v-container fluid>    
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
@@ -75,25 +75,25 @@
 																		@click.stop="showDialogTambahUserSuperAdmin">
 																		<v-icon size="21px">mdi-plus-circle</v-icon>
 																</v-btn>
-																<v-dialog v-model="dialog" max-width="500px" persistent>         
+																<v-dialog v-model="dialog" max-width="500px" persistent>  
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 																				<v-card>
 																						<v-card-title>
 																								<span class="headline">{{ formTitle }}</span>
-																						</v-card-title>                 
+																						</v-card-title>          
 																						<v-card-text>     
 																								<v-text-field 
 																										v-model="editedItem.name" 
 																										label="NAMA USER"
 																										outlined
 																										:rules="rule_user_name">
-																								</v-text-field>                                                                    
+																								</v-text-field>                                                             
 																								<v-text-field 
 																										v-model="editedItem.email" 
 																										label="EMAIL"
 																										outlined
 																										:rules="rule_user_email">
-																								</v-text-field>                             
+																								</v-text-field>                      
 																								<v-text-field 
 																										v-model="editedItem.nomor_hp" 
 																										label="NOMOR HP"
@@ -119,8 +119,8 @@
 																										label="ROLES"                                                     
 																										multiple 
 																										small-chips
-																										outlined>                                                     
-																								</v-autocomplete>            
+																										outlined>                                              
+																								</v-autocomplete>     
 																						</v-card-text>
 																						<v-card-actions>
 																								<v-spacer></v-spacer>
@@ -142,8 +142,8 @@
 																				<v-card>
 																						<v-card-title>
 																								<span class="headline">{{ formTitle }}</span>
-																						</v-card-title>                 
-																						<v-card-text>                                                                     
+																						</v-card-title>          
+																						<v-card-text>                                                              
 																								<v-text-field 
 																										v-model="editedItem.name" 
 																										label="NAMA USER"
@@ -181,8 +181,8 @@
 																										label="ROLES"                                                     
 																										multiple 
 																										small-chips
-																										outlined>                                                     
-																								</v-autocomplete>            
+																										outlined>                                              
+																								</v-autocomplete>     
 																						</v-card-text>
 																						<v-card-actions>
 																								<v-spacer></v-spacer>
@@ -221,7 +221,7 @@
 												<template v-slot:item.foto="{ item }"> 
 														<v-avatar size="30">
 																<v-img :src="$api.storageURL+'/'+item.foto" />     
-														</v-avatar>                                                                       
+														</v-avatar>                                                                
 												</template>
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
@@ -270,7 +270,7 @@ export default {
 		data: () => ({ 
 				role_id:0,
 				datatableLoading:false,
-				btnLoading: false,    
+				btnLoading: false,
 				//tables
 				headers: [                        
 						{ text: '', value: 'foto' },
@@ -282,44 +282,44 @@ export default {
 				],
 				expanded: [],
 				search: "",
-				daftar_users: [],      
+				daftar_users: [],  
 
 				//form
 				form_valid:true,
 				daftar_roles: [],
 				dialog: false,
-				dialogEdit: false,      
-				editedIndex: -1,        
+				dialogEdit: false,  
+				editedIndex: -1,
 				editedItem: {
 						id:0,
-						username: '',         
-						password: '',         
-						name: '',         
-						email: '',         
-						nomor_hp: "",     
+						username: '', 
+						password: '', 
+						name: '', 
+						email: '', 
+						nomor_hp: "", 
 						role_id: ['superadmin'],
-						created_at: '',         
+						created_at: '', 
 						updated_at: '', 
 				},
 				defaultItem: {
 						id:0,
-						username: '',         
-						password: '',         
-						name: '',         
-						email: '',         
+						username: '', 
+						password: '', 
+						name: '', 
+						email: '', 
 						nomor_hp: '', 
 						role_id: ['superadmin'],  
-						created_at: '',         
-						updated_at: '',      
+						created_at: '', 
+						updated_at: '',  
 				},
 				//form rules        
 				rule_user_name: [
 						value => !!value || "Mohon untuk di isi nama User !!!",
-						value => /^[A-Za-z\s]*$/.test(value) || 'Nama User hanya boleh string dan spasi',              
+						value => /^[A-Za-z\s]*$/.test(value) || 'Nama User hanya boleh string dan spasi',  
 				], 
 				rule_user_email: [
 						value => !!value || "Mohon untuk di isi email User !!!",
-						value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',     
+						value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar', 
 				], 
 				rule_user_nomorhp: [
 						value => !!value || "Nomor HP mohon untuk diisi !!!",
@@ -378,7 +378,7 @@ export default {
 						{
 								this.expanded=[item];
 						}               
-				},      
+				},  
 				showDialogTambahUserSuperAdmin:async function()
 				{
 						await this.$ajax.get('/system/setting/roles',{
@@ -394,18 +394,18 @@ export default {
 												daftar_roles.push({
 														text:element.name,
 														disabled:true,
-												});            
+												}); 
 										}
 										else
 										{
 												daftar_roles.push({
 														text:element.name,
-														disabled:false,        
-												});            
+														disabled:false,
+												}); 
 										}                    
 								});        
 								this.daftar_roles=daftar_roles;     
-								this.dialog = true;                        
+								this.dialog = true;             
 						});     
 						
 				},
@@ -427,17 +427,17 @@ export default {
 												daftar_roles.push({
 														text:element.name,
 														disabled:true,
-												});            
+												}); 
 										}
 										else
 										{
 												daftar_roles.push({
 														text:element.name,
-														disabled:false,        
-												});            
+														disabled:false,
+												}); 
 										}                    
 								});        
-								this.daftar_roles=daftar_roles;                                    
+								this.daftar_roles=daftar_roles;                         
 						});    
 
 						this.btnLoading = true;
@@ -451,7 +451,7 @@ export default {
 								this.btnLoading = false;
 								this.dialogEdit = true;
 						});   
-				},      
+				},  
 				close() {            
 						this.btnLoading = false;
 						this.dialog = false;
@@ -462,7 +462,7 @@ export default {
 								this.editedIndex = -1                
 								}, 300
 						);
-				},      
+				},  
 				save() {
 						if (this.$refs.frmdata.validate())
 						{
@@ -545,8 +545,8 @@ export default {
 						return this.editedIndex === -1 ? 'TAMBAH USER SUPER ADMIN' : 'EDIT USER SUPER ADMIN'
 				},
 				...mapGetters('auth',{            
-						ACCESS_TOKEN:'AccessToken',        
-						TOKEN:'Token',              
+						ACCESS_TOKEN:'AccessToken',
+						TOKEN:'Token',  
 				}),
 		},
 
@@ -556,11 +556,11 @@ export default {
 				},
 				dialogEdit (val) {
 						val || this.close()
-				},      
+				},  
 		},  
 		components: {
 				SystemUserLayout,
-				ModuleHeader,      
+				ModuleHeader,  
 		},
 }
 </script>

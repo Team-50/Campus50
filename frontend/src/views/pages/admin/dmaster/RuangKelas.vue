@@ -67,10 +67,10 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-dialog v-model="dialogfrm" max-width="600px" persistent>
-                                    <template v-slot:activator="{ on }">             
+                                    <template v-slot:activator="{ on }">      
                                         <v-btn color="indigo darken-3" small elevation="0" class="primary" v-on="on">
                                             <v-icon size="21px">mdi-plus-circle</v-icon>
-                                        </v-btn>             
+                                        </v-btn>      
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -242,8 +242,8 @@ export default {
         ],
         rule_kapasitas: [
             value => !!value || "Kapasitas Ruangan mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Kapasitas Ruangan Kelas hanya boleh angka',          
-        ],      
+            value => /^[0-9]+$/.test(value) || 'Kapasitas Ruangan Kelas hanya boleh angka',  
+        ],  
     }),
     methods: {
         initialize:async function()

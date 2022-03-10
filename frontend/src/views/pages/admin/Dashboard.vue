@@ -2,7 +2,7 @@
 		<AdminLayout v-if="dashboard">		
 				<v-container v-if="dashboard=='mahasiswabaru'">
 						<DashboardMB />
-				</v-container>        
+				</v-container> 
 				<v-container fluid v-else color="#f1f2f6">
 						<v-row class="mt-n5">
 								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
@@ -35,7 +35,7 @@
 												</v-card-subtitle>
 										</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>     
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('PERENCANAAN-GROUP')">
 										<v-card
 										elevation="0"
@@ -65,7 +65,7 @@
 												</v-card-subtitle>
 										</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>     
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SPMB-GROUP')">
 										<v-card
 										elevation="0"
@@ -95,7 +95,7 @@
 												</v-card-subtitle>
 										</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>     
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('KEUANGAN-GROUP')">
 										<v-card
 										elevation="0"
@@ -125,7 +125,7 @@
 												</v-card-subtitle>
 										</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>     
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('AKADEMIK-GROUP')">
 										<v-card
 										elevation="0"
@@ -155,7 +155,7 @@
 												</v-card-subtitle>
 										</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>     
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
 										<v-card
 										elevation="0"
@@ -185,7 +185,7 @@
 												</v-card-subtitle>
 										</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>     
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('ELEARNING-GROUP')">
 										<v-card
 										elevation="0"
@@ -215,7 +215,7 @@
 												</v-card-subtitle>
 										</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>     
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
 										<v-card
 										elevation="0"
@@ -245,7 +245,7 @@
 												</v-card-subtitle>
 										</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>     
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-SETTING-GROUP')">
 										<v-card
 										elevation="0"
@@ -275,7 +275,7 @@
 												</v-card-subtitle>
 										</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>     
 								<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
 										<v-card
 										elevation="0"
@@ -334,8 +334,8 @@
 				},
 				data: () => ({
 						breadcrumbs: [],
-						TOKEN:null,
-						dashboard:null,
+						TOKEN: null,
+						dashboard: null,
 
 						tahun_pendaftaran: "",
 						//theme
@@ -344,7 +344,7 @@
 				methods : {
 					initialize:async function()
 					{	            
-						await this.$ajax.get('/auth/me',              
+						await this.$ajax.get('/auth/me',  
 						{
 								headers: {
 										Authorization:'Bearer '+this.TOKEN
@@ -366,8 +366,8 @@
 						
 				},
 				components: {
-						AdminLayout,      
-						DashboardMB,      
+						AdminLayout,  
+						DashboardMB,  
 				}
 		};
 </script>

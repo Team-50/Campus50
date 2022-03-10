@@ -27,15 +27,15 @@
 										Halaman berisi daftar transkrip nilai berdasarkan kurikulum. 
 								</v-alert>
 						</template>
-				</ModuleHeader>        
+				</ModuleHeader> 
 				<v-container fluid>      
 						<v-row> 
-								<v-col cols="12">                  
+								<v-col cols="12">           
 										<ProfilMahasiswa :datamhs="data_mhs" url="/akademik/nilai/transkripkurikulum" />
 								</v-col>
 						</v-row>
 						<v-row>
-								<v-col cols="12">           
+								<v-col cols="12">    
 										<v-card>
 												<v-card-title>
 														DAFTAR NILAI TRANSKRIP
@@ -59,8 +59,8 @@
 																:disable-pagination="true"
 																:hide-default-footer="true"                                                                
 																:loading="datatableLoading"
-																loading-text="Loading... Please wait">                                     
-																<template v-slot:body.append v-if="datatable.length > 0">        
+																loading-text="Loading... Please wait">                              
+																<template v-slot:body.append v-if="datatable.length > 0"> 
 																		<tr class="grey lighten-4 font-weight-black">
 																				<td class="text-right" colspan="3">JUMLAH</td>
 																				<td></td> 
@@ -68,7 +68,7 @@
 																				<td></td>
 																				<td>{{totalAM}}</td>
 																				<td>{{totalSKS}}</td>
-																				<td>{{totalM}}</td>             
+																				<td>{{totalM}}</td>      
 																		</tr>
 																		<tr class="grey lighten-4 font-weight-black">
 																				<td class="text-right" colspan="3">IPK SEMENTARA</td>
@@ -77,7 +77,7 @@
 																				<td></td>
 																				<td></td>
 																				<td></td>
-																				<td></td>             
+																				<td></td>      
 																		</tr>
 																</template>   
 																<template v-slot:no-data>
@@ -89,7 +89,7 @@
 								</v-col>
 						</v-row>
 				</v-container>
-				<v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
+				<v-dialog v-model="dialogprintpdf" max-width="500px" persistent>         
 						<v-card>
 								<v-card-title>
 										<span class="headline">Print to PDF</span>
@@ -106,7 +106,7 @@
 										<v-spacer></v-spacer>
 										<v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn> 
 								</v-card-actions>
-						</v-card>            
+						</v-card>     
 				</v-dialog>
 		</AkademikLayout>
 </template>
@@ -153,26 +153,26 @@ export default {
 				this.initialize()
 		},
 		data: () => ({ 
-				user_id:null,
+				user_id: null,
 				firstloading:true,
-				prodi_id:null,
-				nama_prodi:null,
-				tahun_pendaftaran:null,
+				prodi_id: null,
+				nama_prodi: null,
+				tahun_pendaftaran: null,
 
 				btnLoading: false,
 				btnLoadingTable:false,
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [            
-						{ text: 'NO', value: 'no', sortable:true,width:100  },             
-						{ text: 'MATAKULIAH', value: 'nmatkul',sortable:true },       
-						{ text: 'KODE', value: 'kmatkul',sortable:true,width:120, },       
-						{ text: 'SEMESTER', value: 'semester',sortable:true,width:120, },       
-						{ text: 'KELOMPOK', value: 'group_alias',sortable:true,width:120, },       
-						{ text: 'HM', value: 'HM',sortable:false,width:100, },       
-						{ text: 'AM', value: 'AM',sortable:false,width:100, },       
-						{ text: 'K', value: 'sks',sortable:true,width:100, },       
+						{ text: 'NO', value: 'no', sortable:true,width:100  }, 
+						{ text: 'MATAKULIAH', value: 'nmatkul',sortable:true },
+						{ text: 'KODE', value: 'kmatkul',sortable:true,width:120, },
+						{ text: 'SEMESTER', value: 'semester',sortable:true,width:120, },
+						{ text: 'KELOMPOK', value: 'group_alias',sortable:true,width:120, },
+						{ text: 'HM', value: 'HM',sortable:false,width:100, },
+						{ text: 'AM', value: 'AM',sortable:false,width:100, },
+						{ text: 'K', value: 'sks',sortable:true,width:100, },
 						{ text: 'M', value: 'M', sortable: false,width:100 },
 				],
 				search: "", 
@@ -184,7 +184,7 @@ export default {
 				ipk:0.00, 
 
 				dialogprintpdf:false,
-				file_pdf:null
+				file_pdf: null
 		}),
 		methods: {
 				changeTahunPendaftaran (tahun)
@@ -198,7 +198,7 @@ export default {
 				initialize:async function() 
 				{
 						this.datatableLoading=true;
-						await this.$ajax.get('/akademik/nilai/transkripkurikulum/'+this.user_id,         
+						await this.$ajax.get('/akademik/nilai/transkripkurikulum/'+this.user_id, 
 						{
 								headers: {
 										Authorization: this.$store.getters['auth/Token']
@@ -216,7 +216,7 @@ export default {
 						}).catch(() => {
 								this.datatableLoading=false;
 						});  
-						this.firstloading=false;            
+						this.firstloading=false; 
 				},
 				dataTableRowClicked(item)
 				{
@@ -228,11 +228,11 @@ export default {
 						{
 								this.expanded=[item];
 						}               
-				},      
+				},  
 				async printpdf()
 				{
 						this.btnLoading = true;
-						await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf/'+this.data_mhs.user_id,              
+						await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf/'+this.data_mhs.user_id,  
 								{
 										headers: {
 												Authorization: this.$store.getters['auth/Token']
@@ -257,7 +257,7 @@ export default {
 		},
 		components: {
 				AkademikLayout,
-				ModuleHeader,        
+				ModuleHeader,
 				ProfilMahasiswa  
 		},
 }

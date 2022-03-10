@@ -31,7 +31,7 @@
 				<template v-slot:filtersidebar>
 						<Filter2 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" ref="filter2" />	
 				</template>
-				<v-container fluid>                         
+				<v-container fluid>                  
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
 										<v-card>
@@ -93,10 +93,10 @@
 														<span v-else>
 																N.A
 														</span>
-												</template>        
+												</template> 
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
-																<v-col cols="12">                          
+																<v-col cols="12">                   
 																		<strong>ID:</strong>{{ item.id }}          
 																		<strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
 																		<strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -108,7 +108,7 @@
 												</template>   
 										</v-data-table>
 								</v-col>
-						</v-row>            
+						</v-row>     
 				</v-container>
 		</AkademikLayout>
 </template>
@@ -149,23 +149,23 @@ export default {
 				this.initialize()
 		},
 		data: () => ({ 
-				firstloading:true,      
+				firstloading: true, 
 				daftar_ta: [],
-				tahun_akademik:null,
-				semester_akademik:null,
+				tahun_akademik: null,
+				semester_akademik: null,
 
 				btnLoadingTable:false,
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'KODE', value: 'kmatkul', sortable:true,width:100  }, 
 						{ text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable:true  }, 
-						{ text: 'NAMA DOSEN', value: 'nama_dosen', sortable:true  },       
-						{ text: 'HARI', value: 'nama_hari', sortable:true, width:100 },             
-						{ text: 'JAM', value: 'jam_masuk',sortable:true, width:100 },       
-						{ text: 'RUANG', value: 'namaruang',sortable:true, width:100},       
-						{ text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable:true, width:100},       
+						{ text: 'NAMA DOSEN', value: 'nama_dosen', sortable:true  },
+						{ text: 'HARI', value: 'nama_hari', sortable: true,width:100 }, 
+						{ text: 'JAM', value: 'jam_masuk',sortable: true,width:100 },
+						{ text: 'RUANG', value: 'namaruang',sortable: true,width:100},
+						{ text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable: true,width:100},
 						{ text: 'AKSI', value: 'actions', sortable: false,width:120 },
 				],
 				search: "", 
@@ -179,7 +179,7 @@ export default {
 				changeSemesterAkademik (semester)
 				{
 						this.semester_akademik=semester;
-				},      
+				},  
 				initialize:async function() 
 				{
 						this.datatableLoading=true;
@@ -211,7 +211,7 @@ export default {
 						{
 								this.expanded=[item];
 						}               
-				},              
+				},  
 		},
 		watch: {
 				tahun_akademik()
@@ -227,7 +227,7 @@ export default {
 						{
 								this.initialize();
 						}            
-				},      
+				},  
 		},
 		computed: {
 				...mapGetters('auth',{            

@@ -10,7 +10,7 @@
 								@click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="headline font-weight-bold mx-1">{{APP_NAME}}</span>
 			</v-toolbar-title>
-						<v-spacer></v-spacer>                        
+						<v-spacer></v-spacer>                 
 						<v-menu 
 								:close-on-content-click="true"
 								origin="center center"
@@ -36,7 +36,7 @@
 																[{{DEFAULT_ROLE}}]
 														</v-list-item-subtitle>
 												</v-list-item-content>
-										</v-list-item>                    
+										</v-list-item>             
 										<v-divider/>
 										<v-list-item to="/system-users/profil">
 												<v-list-item-icon class="mr-2">
@@ -60,7 +60,7 @@
 						></v-divider>
 				<v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
 									<v-icon>mdi-menu-open</v-icon>
-				</v-app-bar-nav-icon>            
+				</v-app-bar-nav-icon>     
 				</v-app-bar>
 
 				<v-navigation-drawer
@@ -102,7 +102,7 @@
 										<v-list-item-content>
 												<v-list-item-title>BOARD PERENCANAAN</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                
+								</v-list-item>         
 								<v-subheader style="color:#f0935c">RENSTRA P.T</v-subheader>
 								<v-list-item link to="/dmaster/renstra/visi">
 										<v-list-item-icon class="mr-2">
@@ -123,7 +123,7 @@
 														MISI
 												</v-list-item-title>
 										</v-list-item-content>
-								</v-list-item>                      
+								</v-list-item>               
 						</v-list>
 				</v-navigation-drawer>
 				<v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
@@ -168,12 +168,12 @@ export default {
 						type:Boolean,
 						default:false
 				},
-		},    
+		},
 		data:()=>({
 				loginTime:0,
-				drawer:null,
-				drawerRight:null, 
-		}),     
+				drawer: null,
+				drawerRight: null, 
+		}), 
 		methods: {        
 				logout ()
 				{
@@ -206,12 +206,12 @@ export default {
 		computed: {
 				...mapGetters('auth',{
 						AUTHENTICATED:'Authenticated',
-						ACCESS_TOKEN:'AccessToken',        
-						TOKEN:'Token',        
+						ACCESS_TOKEN:'AccessToken',
+						TOKEN:'Token',
 						DEFAULT_ROLE:'DefaultRole',
 						ROLE:'Role',
-						CAN_ACCESS:'can',       
-						ATTRIBUTE_USER:'AttributeUser',             
+						CAN_ACCESS:'can',
+						ATTRIBUTE_USER:'AttributeUser', 
 				}),
 				APP_NAME ()
 				{
@@ -240,7 +240,7 @@ export default {
 								if (value >= 0)
 								{
 										setTimeout(() => { 
-												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                         
+												this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                              
 					}, 1000);
 								}
 								else
@@ -250,7 +250,7 @@ export default {
 								}
 						},
 						immediate:true
-				},      
+				},  
 		}
 }
 </script>

@@ -113,13 +113,13 @@
 																										label="IM TOKEN"
 																										outlined
 																										:rules="rule_im_token">
-																								</v-text-field>       
+																								</v-text-field>
 																								<v-text-field 
 																										v-model="formdata.jwt_token" 
 																										label="JWT TOKEN"
 																										outlined
 																										:disabled="true">
-																								</v-text-field>         
+																								</v-text-field>  
 																						</v-card-text>
 																						<v-card-actions>
 																								<v-spacer></v-spacer>
@@ -241,7 +241,7 @@
 																												</v-card-subtitle>
 																										</v-card>
 																								</v-col>
-																								<!-- <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>             -->
+																								<!-- <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>-->
 																						</v-row>
 
 																				</v-card-text>
@@ -249,7 +249,7 @@
 																						<v-spacer></v-spacer>
 																						<v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
 																				</v-card-actions>
-																		</v-card>         
+																		</v-card>  
 																</v-dialog>
 														</v-toolbar>
 												</template>
@@ -348,33 +348,33 @@ export default {
 				dialogdetailitem:false,
 
 				//form data   
-				form_valid:true,       
+				form_valid:true,
 				formdata: {
 						id:0,
-						zoom_id: "",    
-						email: "",    
+						zoom_id: "",
+						email: "",
 						api_key: "",
 						api_secret: "",
 						im_token: "",
 						jwt_token: "",
 						status: "",
-						desc: "",    
-						created_at: '',         
-						updated_at: '',         
+						desc: "",
+						created_at: '', 
+						updated_at: '', 
 
 				},
 				formdefault: {
 						id:0,
-						zoom_id: "",    
-						email: "",    
+						zoom_id: "",
+						email: "",
 						api_key: "",
 						api_secret: "",
 						im_token: "",
 						jwt_token: "",
 						status: "",
-						desc: "",    
-						created_at: '',         
-						updated_at: '',       
+						desc: "",
+						created_at: '', 
+						updated_at: '',
 				},
 				editedIndex: -1,
 
@@ -443,9 +443,9 @@ export default {
 										await this.$ajax.post(process.env.VUE_APP_API_HOST+'/h2h/zoom/'+this.formdata.id,
 												{
 														'_method':'PUT',
-														email: this.formdata.email,        
+														email: this.formdata.email,
 														api_key: this.formdata.api_key, 
-														api_secret: this.formdata.api_secret,        
+														api_secret: this.formdata.api_secret,
 														im_token: this.formdata.im_token, 
 												},
 												{
@@ -463,10 +463,10 @@ export default {
 								} else {
 										await this.$ajax.post(process.env.VUE_APP_API_HOST+'/h2h/zoom/store',
 												{
-														email: this.formdata.email,        
+														email: this.formdata.email,
 														api_key: this.formdata.api_key, 
-														api_secret: this.formdata.api_secret,        
-														im_token: this.formdata.im_token,                                   
+														api_secret: this.formdata.api_secret,
+														im_token: this.formdata.im_token,                
 												},
 												{
 														headers: {
@@ -548,11 +548,11 @@ export default {
 		computed: {        
 				formTitle() {
 						return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
-				},      
+				},  
 		},
 		components: {
 				SystemConfigLayout,
-				ModuleHeader,      
+				ModuleHeader,  
 		},
 
 }

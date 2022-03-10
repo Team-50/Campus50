@@ -39,7 +39,7 @@
 																		label="CLASS CSS SYSTEM BAR"
 																		outlined
 																		:rules="rule_required">
-																</v-text-field>                                                                    
+																</v-text-field>                                                             
 																<v-text-field 
 																		v-model="formdata.V_APP_BAR_NAV_ICON_CSS_CLASS" 
 																		label="CLASS CSS APPLICATION BAR"
@@ -124,7 +124,7 @@ export default {
 				datatableLoading:false,
 				btnLoading: false, 
 				//form
-				form_valid:true, 
+				form_valid: true,
 				formdata: {
 						V_SYSTEM_BAR_CSS_CLASS: "",
 						V_APP_BAR_NAV_ICON_CSS_CLASS: "",
@@ -135,7 +135,7 @@ export default {
 				},
 				//form rules        
 				rule_required: [
-						value => !!value || "Mohon untuk diisi dengan nama class !!!",           
+						value => !!value || "Mohon untuk diisi dengan nama class !!!",   
 				], 
 		}),
 		methods: {
@@ -148,7 +148,7 @@ export default {
 										Authorization: this.TOKEN
 								}
 						}).then(({ data }) => {  
-								let setting = data.setting;               
+								let setting = data.setting;    
 								this.formdata.V_SYSTEM_BAR_CSS_CLASS=setting.V_SYSTEM_BAR_CSS_CLASS;
 								this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS=setting.V_APP_BAR_NAV_ICON_CSS_CLASS;
 								this.formdata.V_NAVIGATION_DRAWER_CSS_CLASS=setting.V_NAVIGATION_DRAWER_CSS_CLASS;
@@ -174,7 +174,7 @@ export default {
 														804: this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS,
 														805: this.formdata.V_LIST_ITEM_BOARD_COLOR,
 														806: this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS,
-												}),                                                                                                        
+												}),                                                                                     
 										},
 										{
 												headers: {
@@ -192,13 +192,13 @@ export default {
 		},
 		computed: { 
 				...mapGetters('auth',{            
-						ACCESS_TOKEN:'AccessToken',        
-						TOKEN:'Token',              
+						ACCESS_TOKEN:'AccessToken',
+						TOKEN:'Token',  
 				}),
 		},
 		components: {
 		SystemConfigLayout,
-				ModuleHeader,      
+				ModuleHeader,  
 	}
 }
 </script>

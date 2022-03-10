@@ -81,8 +81,8 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">         
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />         
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">  
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />  
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -92,10 +92,10 @@
                                     :color="badgeColor(item)"
                                     :icon="badgeIcon(item)"
                                     overlap
-                                >                
-                                    <v-avatar size="30">             
-                                        <v-img :src="$api.storageURL+'/'+item.foto" />                                          
-                                    </v-avatar>                                                                       
+                                >         
+                                    <v-avatar size="30">      
+                                        <v-img :src="$api.storageURL+'/'+item.foto" />                             
+                                    </v-avatar>                                                                
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -127,7 +127,7 @@
                     </v-data-table>
                 </v-col>
             </v-row>
-        </v-container>        
+        </v-container> 
         <template v-slot:filtersidebar v-if="dashboard!='mahasiswabaru'">
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
@@ -171,20 +171,20 @@ export default {
 		},
 		data: () => ({
 				firstloading:true,
-				prodi_id:null,
-				tahun_pendaftaran:null,
-				nama_prodi:null,
+				prodi_id: null,
+				tahun_pendaftaran: null,
+				nama_prodi: null,
 
 				dialogprofilmhsbaru:false,
-				breadcrumbs: [],      
-				dashboard:null,
+				breadcrumbs: [],  
+				dashboard: null,
 
 				btnLoading: false,
 				datatableLoading:false,
 				expanded: [],
 				datatable: [],
 				headers: [                        
-						{ text: '', value: 'foto', width:70 },             
+						{ text: '', value: 'foto', width:70 }, 
 						{ text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
 						{ text: 'JK', value: 'jk',width:50 },
 						{ text: 'NOMOR HP', value: 'nomor_hp',width:100},
@@ -283,7 +283,7 @@ export default {
 		},
 		components: {
 				SPMBLayout,
-				ModuleHeader,      
+				ModuleHeader,  
 				FormMhsBaru,
 				ProfilMahasiswaBaru,
 				Filter7    

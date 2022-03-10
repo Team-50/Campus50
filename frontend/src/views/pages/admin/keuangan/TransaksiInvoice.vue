@@ -58,7 +58,7 @@ export default {
         ];				             
     },
     data: () => ({
-        dashboard:null,
+        dashboard: null,
         firstloading:true,
         breadcrumbs: [],   
         
@@ -66,7 +66,7 @@ export default {
     }),
     components: {
         KeuanganLayout,
-        ModuleHeader,                 
+        ModuleHeader,  
     },
 }
 </script>

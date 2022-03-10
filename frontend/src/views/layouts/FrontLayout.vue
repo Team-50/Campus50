@@ -1,6 +1,6 @@
 <template>
 		<div>
-				<v-app-bar app class="white" elevation="0">            
+				<v-app-bar app class="white" elevation="0">     
 						<v-toolbar-title>
 								<span>
 									<v-img
@@ -98,7 +98,7 @@ export default {
 		name:'FrontLayout',
 		created ()
 		{
-				this.$store.dispatch('uifront/init',this.$ajax);           
+				this.$store.dispatch('uifront/init',this.$ajax);
 		},
 		computed : {
 				...mapGetters('uifront',{

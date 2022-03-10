@@ -91,7 +91,7 @@
 														<v-row
 																justify="center"
 																alignment="center">
-																<v-col xs="12" sm="6" md="12" v-for="(item,index) in daftar_jawaban" v-bind:key="item.id">         
+																<v-col xs="12" sm="6" md="12" v-for="(item,index) in daftar_jawaban" v-bind:key="item.id">  
 																		<JawabanSoal :index="index" :item="item" v-on:selesaiJawab="selesaiJawab" />
 																</v-col> 
 																<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
@@ -126,8 +126,8 @@
 				this.initialize();
 		},
 		data: () => ({
-				jadwal_ujian:null,
-				peserta:null,
+				jadwal_ujian: null,
+				peserta: null,
 				isprosesujian:false,
 
 				nama_soal: "",
@@ -137,7 +137,7 @@
 		methods: {
 				initialize:async function() 
 				{
-						await this.$ajax.get("/spmb/ujianonline/soal/"+this.peserta.user_id,         
+						await this.$ajax.get("/spmb/ujianonline/soal/"+this.peserta.user_id, 
 						{
 								headers: {
 										Authorization: this.$store.getters["auth/Token"]
@@ -184,7 +184,7 @@
 				}
 		},  
 		components: {
-				JawabanSoal,      
+				JawabanSoal,  
 		},
 	};
 </script>

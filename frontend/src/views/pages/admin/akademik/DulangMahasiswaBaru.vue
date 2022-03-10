@@ -78,17 +78,18 @@
 							{{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
 						</template>
 						<template v-slot:item.actions="{ item }">
-						  <v-icon
+							<v-icon
 								small
 								:loading="btnLoading"
 								:disabled="btnLoading"
-								@click.stop="deleteItem(item)">
+								@click.stop="deleteItem(item)"
+							>
 								mdi-delete
 							</v-icon>    
-						</template>           
+						</template>    
 						<template v-slot:expanded-item="{ headers, item }">
 							<td :colspan="headers.length" class="text-center">
-								<v-col cols="12">                          
+								<v-col cols="12">                   
 									<strong>id:</strong>{{ item.id }}          
 									<strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
 									<strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -100,7 +101,7 @@
 						</template>   
 					</v-data-table>
 				</v-col>
-			</v-row>            
+			</v-row>     
 		</v-container>
 	</AkademikLayout>
 </template>
@@ -141,21 +142,21 @@
 		},
 		data: () => ({ 
 			firstloading:true,
-			prodi_id:null,
-			nama_prodi:null,
-			tahun_pendaftaran:null,
+			prodi_id: null,
+			nama_prodi: null,
+			tahun_pendaftaran: null,
 
 			btnLoading: false,
 			btnLoadingTable:false,
 			datatableLoading:false,
 			expanded: [],
-			datatable: [],    
+			datatable: [],
 			headers: [
 				{ text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  }, 
 				{ text: 'NIM', value: 'nim', sortable:true,width:150  }, 
 				{ text: 'NIRM', value: 'nirm', sortable:true,width:150  }, 
-				{ text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },       
-				{ text: 'KELAS', value: 'idkelas',sortable:true,width:120, },       
+				{ text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },
+				{ text: 'KELAS', value: 'idkelas',sortable:true,width:120, },
 				{ text: 'AKSI', value: 'actions', sortable: false,width:100 },
 			],
 			search: "", 
@@ -163,7 +164,7 @@
 			data_mhs: {},
 
 			//formdata
-			form_valid:true, 
+			form_valid: true,
 			dialogfrm:false, 
 			daftar_dw: [],   
 
@@ -283,7 +284,7 @@
 			closedialogfrm() {            
 				this.dialogfrm = false;
 				setTimeout(() => {       
-					this.formdata = Object.assign({}, this.formdefault);                    
+					this.formdata = Object.assign({}, this.formdefault);         
 					this.data_mhs = Object.assign({}, {});   
 					}, 300
 				);

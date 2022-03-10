@@ -22,7 +22,7 @@
 				<template v-slot:activator="{on}">
 					<v-avatar size="30">
 						<v-img :src="photoUser" v-on="on" />
-					</v-avatar>                    
+					</v-avatar>             
 				</template>
 				<v-list>
 					<v-list-item>
@@ -37,7 +37,7 @@
 								[{{DEFAULT_ROLE}}]
 							</v-list-item-subtitle>
 						</v-list-item-content>
-					</v-list-item>                    
+					</v-list-item>             
 					<v-divider/>
 					<v-list-item to="/system-users/profil">
 						<v-list-item-icon class="mr-2">
@@ -62,7 +62,7 @@
 			></v-divider>
 			<v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
 				<v-icon>mdi-menu-open</v-icon>
-			</v-app-bar-nav-icon>            
+			</v-app-bar-nav-icon>     
 		</v-app-bar>		
 		<!-- role sebagai mahasiswabaru dan mahasiswa -->
 		<v-navigation-drawer
@@ -124,7 +124,7 @@
 							BIODATA
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>                    
+				</v-list-item>             
 				<v-list-item link to="/spmb/persyaratan">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-numeric-3-circle</v-icon>
@@ -144,7 +144,7 @@
 							KONFIRMASI PEMBAYARAN
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>        
+				</v-list-item> 
 			</v-list>
 		</v-navigation-drawer>
 
@@ -199,8 +199,8 @@
 							SOAL PMB
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>        
-				<v-subheader style="color:#f0935c">DATA MHS. BARU</v-subheader>                
+				</v-list-item> 
+				<v-subheader style="color:#f0935c">DATA MHS. BARU</v-subheader>         
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB_BROWSE')" to="/spmb/pendaftaranbaru">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account-plus</v-icon>
@@ -210,7 +210,7 @@
 							PENDAFTAR
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>                    
+				</v-list-item>             
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-FORMULIR-PENDAFTARAN_BROWSE')" to="/spmb/formulirpendaftaran">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-playlist-edit</v-icon>
@@ -220,7 +220,7 @@
 							BIODATA
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>                    
+				</v-list-item>             
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-PERSYARATAN_BROWSE')" to="/spmb/persyaratan">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-file-document-edit-outline</v-icon>
@@ -230,8 +230,8 @@
 							PERSYARATAN
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>            
-				<v-subheader style="color:#f0935c">UJIAN PMB</v-subheader>       
+				</v-list-item>     
+				<v-subheader style="color:#f0935c">UJIAN PMB</v-subheader>
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-JADWAL-UJIAN_BROWSE') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'" to="/spmb/jadwalujianpmb">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-format-float-left</v-icon>
@@ -262,7 +262,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>      
-				<v-subheader style="color:#f0935c" v-if="CAN_ACCESS('SPMB-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">LAPORAN</v-subheader>                      
+				<v-subheader style="color:#f0935c" v-if="CAN_ACCESS('SPMB-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">LAPORAN</v-subheader>               
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-LAPORAN-FAKULTAS_BROWSE') && isBentukPT('universitas')" to="/spmb/laporanfakultas">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-file-document-edit-outline</v-icon>
@@ -282,7 +282,7 @@
 							LAPORAN PRODI
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>                
+				</v-list-item>         
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-LAPORAN-KELULUSAN_BROWSE')" to="/spmb/laporankelulusan">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-newspaper-variant-outline</v-icon>
@@ -292,7 +292,7 @@
 							LAPORAN KELULUSAN
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>                
+				</v-list-item>         
 			</v-list>
 		</v-navigation-drawer>
 		<v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
@@ -344,11 +344,11 @@
 		},
 		data:()=>({
 			loginTime:0,
-			drawer:null,
-			drawerRight:null, 
+			drawer: null,
+			drawerRight: null, 
 			
-			dashboard:null,
-		}),     
+			dashboard: null,
+		}), 
 		methods: {        
 			logout ()
 			{
@@ -381,12 +381,12 @@
 		computed: {
 			...mapGetters("auth", {
 				AUTHENTICATED:"Authenticated",
-				ACCESS_TOKEN:"AccessToken",        
+				ACCESS_TOKEN:"AccessToken",
 				TOKEN:"Token",  
-				DEFAULT_ROLE:"DefaultRole",    
+				DEFAULT_ROLE:"DefaultRole",
 				ROLE:"Role",
-				CAN_ACCESS:"can",       
-				ATTRIBUTE_USER:"AttributeUser",             
+				CAN_ACCESS:"can",
+				ATTRIBUTE_USER:"AttributeUser", 
 			}),
 			APP_NAME ()
 			{
@@ -413,7 +413,7 @@
 					if (value >= 0)
 					{
 						setTimeout(() => { 
-							this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                         
+							this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                              
 						}, 1000);
 					}
 					else
@@ -423,7 +423,7 @@
 					}
 				},
 				immediate:true
-			},      
+			},  
 		},
 	};
 </script>

@@ -166,7 +166,7 @@
 											<v-row>
 												<v-col cols="12">
 													<v-form ref="frmdata" v-model="form_valid" lazy-validation>
-														<v-card>                                 
+														<v-card>                          
 															<v-card-text>  
 																<v-select
 																	label="PEMBAYARAN MELALUI :"
@@ -182,7 +182,7 @@
 																	:min="null"
 																	:max="null"                                            
 																	outlined                                                                    
-																	v-model="formdata.total_bayar">             
+																	v-model="formdata.total_bayar">      
 																</v-currency-field>
 																<v-text-field 
 																	v-model="formdata.nomor_rekening_pengirim"
@@ -241,7 +241,7 @@
 																	v-model="formdata.bukti_bayar"
 																	@change="previewImage">
 																</v-file-input> 
-																<v-img class="white--text align-end" :src="buktiBayar"></v-img>                                                    
+																<v-img class="white--text align-end" :src="buktiBayar"></v-img>                                             
 															</v-card-text>
 															<v-card-actions>
 																<v-spacer></v-spacer>
@@ -315,7 +315,7 @@
 															{{$date(data_konfirmasi.tanggal_bayar).format("DD/MM/YYYY")}}
 														</v-card-subtitle>
 													</v-card>
-												</v-col>                     
+												</v-col>              
 												<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
 											</v-row>
 											<v-row>
@@ -326,7 +326,7 @@
 															{{data_konfirmasi.nomor_rekening_pengirim}}
 														</v-card-subtitle>
 													</v-card>
-												</v-col>                     
+												</v-col>              
 												<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
 												<v-col xs="12" sm="6" md="6">
 													<v-card flat>
@@ -379,11 +379,11 @@
 												</v-col>
 												<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
 											</v-row>
-											<v-img class="white--text align-end" :src="buktiBayar"></v-img>                                                    
+											<v-img class="white--text align-end" :src="buktiBayar"></v-img>                                             
 										</v-card-text>
 										<v-card-actions>
 											<v-spacer></v-spacer>
-											<v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">BATAL</v-btn>                 
+											<v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">BATAL</v-btn>          
 										</v-card-actions>
 									</v-card>
 								</v-dialog>
@@ -428,7 +428,7 @@
 								@click.stop="viewItem(item)"
 								v-if="item.status_konfirmasi=='VERIFIED' || item.status_konfirmasi=='UNVERIFIED'">
 								mdi-eye
-							</v-icon>                        
+							</v-icon>                 
 							<v-icon
 								title="Preview"
 								small
@@ -436,16 +436,16 @@
 								:disabled="true"                                
 								v-else>
 								mdi-eye
-							</v-icon>                        
-						</template>           
+							</v-icon>                 
+						</template>    
 						<template v-slot:expanded-item="{ headers, item }">
 							<td :colspan="headers.length" class="text-center">
-								<v-col cols="12">                          
+								<v-col cols="12">                   
 									<strong>ID TRANSAKSI:</strong>{{ item.id }}          
 									<strong>created_at:</strong>{{ item.created_at_konfirm=="N.A"?"N.A":$date(item.created_at_konfirm).format("DD/MM/YYYY HH:mm") }}
 									<strong>updated_at:</strong>{{ item.updated_at_konfirm=="N.A"?"N.A":$date(item.updated_at_konfirm).format("DD/MM/YYYY HH:mm") }}
 								</v-col>  
-								<v-col cols="12" v-if="$store.getters['auth/can']('KEUANGAN-KONFIRMASI-PEMBAYARAN_UPDATE')&&(dashboard!='mahasiswabaru'&&dashboard!='mahasiswa')">                          
+								<v-col cols="12" v-if="$store.getters['auth/can']('KEUANGAN-KONFIRMASI-PEMBAYARAN_UPDATE')&&(dashboard!='mahasiswabaru'&&dashboard!='mahasiswa')">                   
 									<v-btn 
 										text 
 										small 
@@ -471,7 +471,7 @@
 						</template>
 						<template v-slot:no-data>
 							Data belum tersedia
-						</template>             
+						</template>      
 					</v-data-table>
 				</v-col>
 			</v-row>
@@ -513,9 +513,9 @@
 		data: () => ({
 			firstloading:true,
 			breadcrumbs: [],
-			dashboard:null,
+			dashboard: null,
 			btnLoading: false,
-			tahun_akademik:null,
+			tahun_akademik: null,
 
 			//tables
 			datatableLoading:false,
@@ -543,7 +543,7 @@
 			//form data   
 			form_valid:true,
 			menuTanggalBayar:false,
-			image_prev:null,
+			image_prev: null,
 			data_transaksi: {
 				
 			},

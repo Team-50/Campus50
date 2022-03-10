@@ -36,7 +36,7 @@
                                     v-model="formdata.header_1" 
                                     label="HEADER 1"
                                     outlined>
-                                </v-text-field>                                                                                                                                                                                               
+                                </v-text-field>                                                                                                                                                                                        
                                 <v-text-field 
                                     v-model="formdata.header_2" 
                                     label="HEADER 2"
@@ -111,14 +111,14 @@ export default {
         datatableLoading:false,
         btnLoading: false, 
         //form
-        form_valid:true, 
+        form_valid: true,
         formdata: {
-            header_1:null,
-            header_2:null,
-            header_3:null,
-            header_4:null,
-            header_address:null,
-        },      
+            header_1: null,
+            header_2: null,
+            header_3: null,
+            header_4: null,
+            header_address: null,
+        },  
     }),
     methods: {
         initialize:async function() 
@@ -130,7 +130,7 @@ export default {
                     Authorization: this.TOKEN
                 }
             }).then(({ data }) => {  
-                let setting = data.setting;               
+                let setting = data.setting;    
                 this.formdata.header_1=setting.HEADER_1;
                 this.formdata.header_2=setting.HEADER_2;
                 this.formdata.header_3=setting.HEADER_3;
@@ -153,7 +153,7 @@ export default {
                             703: this.formdata.header_3,
                             704: this.formdata.header_4,
                             705: this.formdata.header_address,
-                        }),                                                                                                        
+                        }),                                                                                     
                     },
                     {
                         headers: {
@@ -170,13 +170,13 @@ export default {
     },
     computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',        
-            TOKEN:'Token',              
+            ACCESS_TOKEN:'AccessToken',
+            TOKEN:'Token',  
         }),
     },
     components: {
 		SystemConfigLayout,
-        ModuleHeader,      
+        ModuleHeader,  
 	}
 }
 </script>

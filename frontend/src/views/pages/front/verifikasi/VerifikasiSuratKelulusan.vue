@@ -65,7 +65,7 @@
 				id: "",   
 				nama_user_ttd:"",
 				nomor_surat:"",
-				tanggal_surat: "",    
+				tanggal_surat: "",
 				perihal:"",
 				kepada:"", 
 			},

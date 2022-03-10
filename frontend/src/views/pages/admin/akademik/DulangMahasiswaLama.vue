@@ -31,7 +31,7 @@
 				<template v-slot:filtersidebar>
 						<Filter6 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" v-on:changeProdi="changeProdi" ref="filter6" />	
 				</template>
-				<v-container fluid>             
+				<v-container fluid>      
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
 										<v-card>
@@ -85,10 +85,10 @@
 														@click.stop="deleteItem(item)">
 														mdi-delete
 													</v-icon>    
-												</template>           
+												</template>    
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
-																<v-col cols="12">                          
+																<v-col cols="12">                   
 																		<strong>id:</strong>{{ item.id }}          
 																		<strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
 																		<strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -100,7 +100,7 @@
 												</template>   
 										</v-data-table>
 								</v-col>
-						</v-row>            
+						</v-row>     
 				</v-container>
 		</AkademikLayout>
 </template>
@@ -142,23 +142,23 @@ export default {
 		},
 		data: () => ({ 
 				firstloading:true,
-				prodi_id:null,
-				nama_prodi:null,
-				tahun_akademik:null,
-				semester_akademik:null,
+				prodi_id: null,
+				nama_prodi: null,
+				tahun_akademik: null,
+				semester_akademik: null,
 
 				btnLoading: false,
 				btnLoadingTable:false,
 				datatableLoading:false,
 				expanded: [],
-				datatable: [],    
+				datatable: [],
 				headers: [
 						{ text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  }, 
 						{ text: 'NIM', value: 'nim', sortable:true,width:150  }, 
 						{ text: 'NIRM', value: 'nirm', sortable:true,width:150  }, 
-						{ text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },       
-						{ text: 'KELAS', value: 'idkelas',sortable:true,width:120, },       
-						{ text: 'STATUS', value: 'n_status',sortable:true,width:120, },       
+						{ text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },
+						{ text: 'KELAS', value: 'idkelas',sortable:true,width:120, },
+						{ text: 'STATUS', value: 'n_status',sortable:true,width:120, },
 						{ text: 'AKSI', value: 'actions', sortable: false,width:100 },
 				],
 				search: "", 
@@ -208,7 +208,7 @@ export default {
 						{
 								this.expanded=[item];
 						}               
-				},      
+				},  
 				deleteItem (item)
 				{
 						this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA.' }).then((confirm) => {
@@ -237,7 +237,7 @@ export default {
 				closedialogfrm() {            
 						this.dialogfrm = false;
 						setTimeout(() => {       
-								this.formdata = Object.assign({}, this.formdefault);                    
+								this.formdata = Object.assign({}, this.formdefault);         
 								this.data_mhs = Object.assign({}, {});   
 								}, 300
 						);
