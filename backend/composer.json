@@ -5,19 +5,19 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.3|^8.1",
         "carlos-meneses/laravel-mpdf": "^2.1",
         "firebase/php-jwt": "^5.2",
-        "flipbox/lumen-generator": "^8.0",
+        "flipbox/lumen-generator": "^8.2",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.4",
         "illuminate/mail": "^8.15",
-        "laravel/lumen-framework": "^8.0",
-        "phpoffice/phpspreadsheet": "^1.15",
-        "ramsey/uuid": "^4.1",
+        "laravel/lumen-framework": "^8.3.1",
+        "phpoffice/phpspreadsheet": "^1.18",
+        "ramsey/uuid": "^4.2",
         "simplesoftwareio/simple-qrcode": "~4",
-        "spatie/laravel-permission": "^3.17",
-        "tymon/jwt-auth": "^1.0"
+        "spatie/laravel-permission": "^4.2",
+        "php-open-source-saver/jwt-auth": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
@@ -29,7 +29,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/LumenConfig.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [

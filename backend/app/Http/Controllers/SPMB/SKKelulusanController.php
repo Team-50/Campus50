@@ -25,18 +25,18 @@ class SKKelulusanController extends Controller {
 		if (is_null($surat_keluar))
 		{
 			return Response()->json([
-																'status'=>0,
-																'pid'=>'fetchdata',                
-																'message'=>["SK Kelulusan tidak dikenali"]
-														], 422); 
+				'status'=>0,
+				'pid'=>'fetchdata',                
+				'message'=>["SK Kelulusan tidak dikenali"]
+			], 422); 
 		}
 		else
 		{
 			return Response()->json([
-																'status'=>1,
-																'pid'=>'fetchdata',															
-																'surat_keluar'=>$surat_keluar                        
-														],200);
+				'status'=>1,
+				'pid'=>'fetchdata',															
+				'surat_keluar'=>$surat_keluar                        
+			],200);
 		}
 	}
 	/**
@@ -47,27 +47,35 @@ class SKKelulusanController extends Controller {
 	public function printtopdf1(Request $request,$id)
 	{
 		$formulir = FormulirPendaftaranModel::select(\DB::raw('
-									user_id,
-									no_formulir,
-									nama_mhs,
-									kjur1,
-									(CASE WHEN pe3_prodi.konsentrasi IS NULL OR pe3_prodi.konsentrasi = \'N.A\' THEN
-										CONCAT(pe3_prodi.nama_prodi,\' (\',pe3_prodi.nama_jenjang, \')\') 
-									ELSE
-										CONCAT(pe3_prodi.nama_prodi,\' Kons. \',pe3_prodi.konsentrasi,\' (\',pe3_prodi.nama_jenjang, \')\') 
-									END) AS nama_prodi,
-									ta
-							'))
-							->join('pe3_prodi', 'pe3_prodi.id','pe3_formulir_pendaftaran.kjur1')
-							->find($id);
+			user_id,
+			no_formulir,
+			nama_mhs,
+			kjur1,
+			(CASE WHEN pe3_prodi.konsentrasi IS NULL OR pe3_prodi.konsentrasi = \'N.A\' THEN
+				CONCAT(pe3_prodi.nama_prodi,\' (\',pe3_prodi.nama_jenjang, \')\') 
+			ELSE
+				CONCAT(pe3_prodi.nama_prodi,\' Kons. \',pe3_prodi.konsentrasi,\' (\',pe3_prodi.nama_jenjang, \')\') 
+			END) AS nama_prodi,
+			ta
+		'))
+		->join('pe3_prodi', 'pe3_prodi.id','pe3_formulir_pendaftaran.kjur1')
+		->find($id);
 
 		if (is_null($formulir))
 		{
-				return Response()->json([
-																'status'=>0,
-																'pid'=>'fetchdata',                
-																'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
-														], 422); 
+			return Response()->json([
+				'status'=>0,
+				'pid'=>'fetchdata',                
+				'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
+			], 422); 
+		}
+		else if (is_null($formulir->no_formulir) )
+		{
+			return Response()->json([
+				'status'=>0,
+				'pid'=>'fetchdata',                
+				'message'=>["Pembayaran PMB a.n ({$formuli->nama_mhs}) mohon di verifikasi terlebih dahulu."]
+			], 422); 
 		}
 		else
 		{
@@ -148,23 +156,25 @@ class SKKelulusanController extends Controller {
 					'HEADER_KOP_SURAT'=>Helper::public_path("images/headers/headerreport.png")
 				];		
 				$pdf = \Meneses\LaravelMpdf\Facades\LaravelMpdf::loadView('spmb.ReportSKKelulusan',
-																																[
-																																	'headers'=>$headers,
-																																	'nomor_surat'=>$nomor_surat,
-																																	'formulir'=>$formulir,
-																																	'tanggal_lulus'=>Helper::tanggal('d F Y',$nilai_ujian->updated_at),
-																																	'next_day'=>Helper::nextDay('d F Y',$nilai_ujian->updated_at,7),																																	
-																																	'sign_qrcode'=>$sign_qrcode,
-																																	'signature'=>json_decode($config['DEFAULT_TTD_SK_KELULUSAN'],false),
-																																],
-																																[],
-																																[
-																																	'format'=>'A4',
-																																	'title'=>'SK Kelulusan',
-																																	'margin_left'=> 20,
-																																	'margin_right'=> 20,
-																																	'margin_footer'=> 10,
-																																]);
+					[
+						'headers'=>$headers,
+						'nomor_surat'=>$nomor_surat,
+						'formulir'=>$formulir,
+						'tanggal_lulus'=>Helper::tanggal('d F Y',$nilai_ujian->updated_at),
+						'next_day'=>Helper::nextDay('d F Y',$nilai_ujian->updated_at,7),																																	
+						'sign_qrcode'=>$sign_qrcode,
+						'sign_kepala'=>Helper::public_path('images/signature/sign_kepala.jpeg'),
+						'signature'=>json_decode($config['DEFAULT_TTD_SK_KELULUSAN'],false),
+					],
+					[],
+					[
+						'format'=>'A4',
+						'title'=>'SK Kelulusan',
+						'margin_left'=> 20,
+						'margin_right'=> 20,
+						'margin_footer'=> 10,
+					]
+				);
 
 				$file_pdf=Helper::public_path("exported/pdf/sklulus_".$surat_keluar->id.'.pdf');
 				$pdf->save($file_pdf);
@@ -172,18 +182,18 @@ class SKKelulusanController extends Controller {
 				$pdf_file="storage/exported/pdf/sklulus_".$surat_keluar->id.".pdf";
 
 				return Response()->json([
-																'status'=>1,
-																'pid'=>'fetchdata',															
-																'pdf_file'=>$pdf_file                        
-														],200);
+					'status'=>1,
+					'pid'=>'fetchdata',															
+					'pdf_file'=>$pdf_file                        
+				],200);
 			}
 			else
 			{
 				return Response()->json([
-																'status'=>0,
-																'pid'=>'fetchdata',															
-																'SK Kelulusan tidak bisa dicetak disebakan belum lulus atau belum diterima di prodi'                       
-														], 422);
+					'status'=>0,
+					'pid'=>'fetchdata',															
+					'SK Kelulusan tidak bisa dicetak disebakan belum lulus atau belum diterima di prodi'                       
+				], 422);
 			}
 		}			
 	}
