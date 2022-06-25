@@ -85,13 +85,22 @@ Dengan ketentuan bahwa pendaftaran sebagai Calon Mahasiswa Baru STT Indonesia T.
 </p>
 <p style="text-align: justify;text-justify: inter-word;text-indent:50px;">Demikian Surat Keputusan ini disampaikan untuk dapat dipergunakan sebagaimana mestinya, Terima kasih.</p>
 <br>
-<p style="text-align: right;">
-  Tanjungpinang, {{$tanggal_lulus}}<br>
-  Kepala Bagian Marketing,<br>
-  <img src="{{$sign_qrcode}}" height="80"><br>
-  <u>{{$signature->nama}}</u><br>
-  NIPY. {{$signature->nik}}
-</p>
+<table width="100%">
+  <tr>
+    <td width="60%">
+      <img src="{{$sign_qrcode}}" height="80"><br>
+    </td>
+    <td>
+      <p style="text-align: right;">
+        Tanjungpinang, {{$tanggal_lulus}}<br>
+        Ketua STT Indonesia Tanjungpinang,<br>
+        <img src="{{$sign_kepala}}" height="80"><br>
+        <u>{{$signature->nama}}</u><br>
+        NIPY. {{$signature->nik}}
+      </p>
+    </td>
+  </tr>
+</table>
 <htmlpagefooter name="page-footer">
   <hr>
   <br>
